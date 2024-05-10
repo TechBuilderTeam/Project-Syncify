@@ -1,9 +1,10 @@
+import Sponsors from "./Sponsors";
 
 
 const Home = () => {
     return (
         <div>
-            <h1>Home</h1>
+            <Sponsors />
         </div>
     );
 };
