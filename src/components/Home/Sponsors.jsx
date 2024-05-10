@@ -15,7 +15,7 @@ const Sponsors = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold p-4  text-[#73e9fe]">Our Clients Who Uses Syncify Most</h1>
+            <h1 className="text-3xl font-bold p-4  text-[#8401A1]">Our Clients Who Uses Syncify Most</h1>
             <div className="flex justify-center items-center gap-5 pt-10">
                 {data.map((item, index) => (
                  <div key={index} className="w-90 bg-slate-100 p-10 rounded shadow-slate-50 shadow-xl">
