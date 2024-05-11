@@ -146,7 +146,7 @@ const TopCompanySlider = () => {
           };
           return (
             <div className='w-full bg-gray-100 h-fit px-10 py-10 my-6'>
-               <h1 className='text-5xl mt-[50px] mb-[50px] '>The world’s top companies trust Asana</h1>
+               <h1 className='text-5xl mt-[50px] mb-[50px] '>The world’s top companies trust Synify</h1>
 
             <div className='flex gap-2 items-center hover:text-red-400 font-semibold py-2 px-4 mt-2'>
             <p className='my-2' >See all case studies </p> <span><FaArrowRight /></span>

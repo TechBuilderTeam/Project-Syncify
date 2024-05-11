@@ -1,6 +1,8 @@
 import Sponsors from "./Sponsors";
 import Banner from "./banner";
 import TopCompanySlider from "../Pages/Home/TopCampanySliderSection/TopCompanySlider";
+import DifferentTypeOfTabSection from "../Pages/Home/DifferentTypeOfTabSection/DifferentTypeOfTabSection";
+
 import Login from "../Pages/Login/login";
 
 const Home = () => {
@@ -8,7 +10,8 @@ const Home = () => {
     <div>
       <Banner />
       <Sponsors />
-      <TopCompanySlider />
+      <DifferentTypeOfTabSection/>
+      <TopCompanySlider/>
       <Login />
     </div>
   );
