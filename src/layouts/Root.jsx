@@ -6,10 +6,7 @@ import { useEffect, useState } from "react";
 
 const Root = () => {
     const [theme, setTheme] = useState("light");
-    // const [isDarkTheme, setIsDarkTheme] = useState(false);
-    // const toggleTheme = () => {
-    //     setIsDarkTheme((prevTheme) => !prevTheme);
-    // };
+   
 
     useEffect(() => {
         if (theme === "dark") {

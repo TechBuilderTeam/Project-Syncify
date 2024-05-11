@@ -2,8 +2,8 @@
 
 const Navbar = ({ handleThemeChange }) => {
     return (
-        <div className="mx-auto  p-4 bg-transparent"  >
-            <div className="flex justify-between items-center gap-10">
+        <div className=" mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl p-4 "  >
+            <div className="flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50 w-full h-20 px-6">
                 <div className="w-1/4  flex justify-start items-center text-[#8401A1] dark:text-[#73e9fe]" >
                     <a href="/">
                         <img src="./public/Justlogo.png" className="w-14 h-12 text-[#8401A1] dark:text-[#73e9fe]" alt="logo" />
