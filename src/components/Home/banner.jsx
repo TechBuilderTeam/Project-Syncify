@@ -10,7 +10,7 @@ const Banner = () => {
           connecting work and <br /> workflows to company-wide goals.
         </p>
         <div className="flex gap-5">
-          <button className="btn btn-neutral text-white rounded-sm">
+          <button className="btn btn-neutral dark:bg-[#73e9fe] text-white rounded-sm">
             Get Started
           </button>
           <button className="btn btn-outline btn-neutral rounded-sm">
