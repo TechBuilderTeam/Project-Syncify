@@ -4,7 +4,7 @@ const Footer = () => {
       <footer className="footer bg-black text-white px-10 py-5">
         <aside className="">
           <div className="flex flex-col justify-center items-center h-[100px]">
-            <img src="./public/logo.png" alt="" className="h-[100px]" />
+            <img src="./public/JUSTlogo.png" alt="" className="h-20" />
             <p>Providing reliable workflow</p>
           </div>
         </aside>
