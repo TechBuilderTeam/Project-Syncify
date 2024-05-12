@@ -11,10 +11,10 @@ const DifferentTypeOfTabSection = () => {
     const [showComponent, setShowComponent] = useState("Marketing");
 
     return (
-        <div className='w-full  h-fit px-10 py-10 my-6'>
+        <div className='w-full px-4 md:px-10 py-6 md:py-10 my-6'>
             {/* <h1 className='w-[70%] text-5xl mt-[50px] mb-[50px] '>See how different departments use Synify</h1> */}
             <Title title="See how different departments use Synify" />
-            <div>
+            <div className="flex flex-wrap gap-2 sm:items-center">
                 <button onClick={() => setShowComponent("Marketing")} className={`border-solid border border-slate-400 rounded-full py-4 px-6 mx-2  text-sm hover:text-base ${showComponent === "Marketing" ? "bg-[#8401A1] text-white dark:bg-cyan-600" : ""}`}>Marketing</button>
                 <button onClick={() => setShowComponent("Operations")} className={`border-solid border border-slate-400 rounded-full py-4 px-6 mx-2  text-sm hover:text-base ${showComponent === "Operations" ? "bg-[#8401A1] text-white dark:bg-cyan-600" : ""}`}>Operations</button>
                 <button onClick={() => setShowComponent("IT")} className={`border-solid border border-slate-400 rounded-full py-4 px-6 mx-2  text-sm hover:text-base ${showComponent === "IT" ? "bg-[#8401A1] text-white dark:bg-cyan-600" : ""}`}>IT</button>
