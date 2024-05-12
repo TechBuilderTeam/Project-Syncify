@@ -9,15 +9,17 @@ import CustomerSection from "../Pages/Home/CustomerSection/CustomerSection";
 // import Login from "../Pages/Login/login";
 import Banner from './Banner';
 
+import Features from "../Pages/Home/Features/Features";
 const Home = () => {
   return (
     <div>
-    <Banner />
+      <Banner />
       <Sponsors />
-      <DifferentTypeOfTabSection/>
+      <DifferentTypeOfTabSection />
+      <Features />
       <CustomerSection/>
-      <TopCompanySlider/>
-      <HomeEmailSection/>
+      <TopCompanySlider />
+      <HomeEmailSection />
     </div>
   );
 };

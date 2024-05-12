@@ -1,12 +1,14 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../pages/shared/Navbar";
 import Footer from "../pages/shared/Footer";
 import { useEffect, useState } from "react";
 
 
 const Root = () => {
+    const location = useLocation();
     const [theme, setTheme] = useState("light");
-   
+    const noHeaderFooter = location.pathname.includes('login') || location.pathname.includes('register');
+
 
     useEffect(() => {
         if (theme === "dark") {
@@ -20,7 +22,7 @@ const Root = () => {
     }
     return (
         <div className="bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]">
-            <Navbar handleThemeChange={handleThemeChange} />
+           {noHeaderFooter || <Navbar handleThemeChange={handleThemeChange} /> }
             <Outlet />
             <Footer />
         </div>
