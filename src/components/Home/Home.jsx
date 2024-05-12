@@ -4,10 +4,9 @@ import DifferentTypeOfTabSection from "../Pages/Home/DifferentTypeOfTabSection/D
 
 import HomeEmailSection from "../Pages/Home/HomeEmailSection/HomeEmailSection";
 
-
 import CustomerSection from "../Pages/Home/CustomerSection/CustomerSection";
 // import Login from "../Pages/Login/login";
-import Banner from './Banner';
+import Banner from "./Banner";
 
 import Features from "../Pages/Home/Features/Features";
 const Home = () => {
@@ -17,7 +16,7 @@ const Home = () => {
       <Sponsors />
       <DifferentTypeOfTabSection />
       <Features />
-      <CustomerSection/>
+      <CustomerSection />
       <TopCompanySlider />
       <HomeEmailSection />
     </div>
