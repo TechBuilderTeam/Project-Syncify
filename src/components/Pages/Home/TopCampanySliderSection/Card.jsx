@@ -29,7 +29,7 @@ const Card = ({ data }) => {
     //     </div>
 
     <div
-      className="relative bg-white border rounded-lg overflow-hidden shadow-lg transition duration-300 delay-150 ease-in-out transform hover:scale-80"
+      className="relative border rounded-lg overflow-hidden shadow-lg transition duration-300 delay-150 ease-in-out transform hover:scale-80"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -52,7 +52,7 @@ const Card = ({ data }) => {
           //   <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mt-2">
           //     {label}
           //   </button>
-          <div className="flex gap-2 items-center hover:text-red-400 font-bold py-2 px-4 mt-2">
+          <div className="flex gap-2 items-center hover:text-cyan-600 dark:hover:text-[#8401A1] font-bold py-2 px-4 mt-2">
             <p className="">{label} </p>{" "}
             <span>
               <FaArrowRight />
