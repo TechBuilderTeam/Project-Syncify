@@ -1,6 +1,81 @@
 // import { VscGraph } from "react-icons/vsc";
-import { Link }  from "react-router-dom";
+import { Link, NavLink }  from "react-router-dom";
 const Navbar = ({ handleThemeChange }) => {
+    const navlinks = (
+        <>
+            <NavLink
+                to="/"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+                        : "text-[#8401A1] dark:text-[#73e9fe]"
+                }
+            >
+                Home
+            </NavLink>
+            <NavLink
+                to="/features"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+                        : "text-[#8401A1] dark:text-[#73e9fe]"
+                }
+            >
+                Features
+            </NavLink>
+            <NavLink
+                to="/solutions"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+                        : "text-[#8401A1] dark:text-[#73e9fe]"
+                }
+            >
+                Solutions
+            </NavLink>
+            <NavLink
+                to="/login"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+                        : "text-[#8401A1] dark:text-[#73e9fe]"
+                }
+            >
+                Login
+            </NavLink>
+            <NavLink
+                to="/register"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+                        : "text-[#8401A1] dark:text-[#73e9fe]"
+                }
+            >
+                Register
+            </NavLink>
+            <NavLink 
+                to="/dashboard"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+                        : "text-[#8401A1] dark:text-[#73e9fe]"
+                }
+            >
+                Dashboard
+            </NavLink>
+            <NavLink
+                to="/contact"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+                        : "text-[#8401A1] dark:text-[#73e9fe]"
+                }
+            >
+                Contact
+            </NavLink>
+
+        </>
+    )
     return (
         <div className=" mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl p-4 "  >
             <div className="flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50 w-full h-20 px-6">
@@ -12,12 +87,14 @@ const Navbar = ({ handleThemeChange }) => {
                     <h1 className="text-2xl  font-bold italic">Project Syncify</h1>
                     </a>
                 </div>
-                <div className="w-2/4 flex justify-start items-center gap-4 font-semibold text-lg text-[#8401A1] dark:text-[#73e9fe]" >
-                    <a href="solutions">Solutions</a>
+                <div className="hidden w-2/4  md:flex  justify-start items-center gap-4 font-semibold text-lg text-[#8401A1] dark:text-[#73e9fe]" >
+                    {/* <a href="solutions">Solutions</a>
                     <a href="features">Features</a>
                     <a href="about">About</a>
                     <a href="contact">Contact</a>
-                    <a href="faq">FAQ</a>
+                    <a href="faq">FAQ</a> */}
+
+                    {navlinks}
 
 
                 </div>
