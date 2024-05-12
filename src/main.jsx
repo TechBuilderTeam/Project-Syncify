@@ -4,7 +4,7 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./layouts/Root";
 import Home from "./components/Home/Home";
-import Login from "./components/Pages/Login/Login";
+import Login from "./components/Pages/Login/login";
 const router = createBrowserRouter([
   {
     path: "/",

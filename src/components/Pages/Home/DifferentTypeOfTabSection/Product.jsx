@@ -3,12 +3,12 @@ import { FaArrowCircleRight } from "react-icons/fa";
 
 const Product = () => {
     return (
-        <div className='flex gap-4 my-10'>
-                <div className='w-1/2 mx-2'>
+        <div className='flex flex-wrap md:flex-nowrap gap-4 my-10'>
+                <div className='w-full md:w-1/2 mx-2'>
                     <img src="https://assets.asana.biz/transform/070f1abb-5a90-477c-8b90-b5eb6ba3a3f9/home24-product-team-ui?io=transform:fill" alt="" />
                 </div>
 
-                <div className='mx-4'>
+                <div className='w-full md:w-auto mx-4'>
                     <h2 className='text-2xl font-semibold'>Launch better products faster</h2>
                     <p className='flex items-center gap-2 my-2 text-lg'><FaArrowCircleRight />Keep product development on track  </p>
                     <p className='flex items-center gap-2 my-2 text-lg'><FaArrowCircleRight />Centralize launch information  </p>

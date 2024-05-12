@@ -43,7 +43,7 @@ const Card = ({ data }) => {
         <p
           className={`text-gray-700 ${
             isHovered ? "block" : "h-20 overflow-hidden mb-2"
-          }`}
+          } dark:text-white`}
         >
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
           eaque placeat blanditiis.
