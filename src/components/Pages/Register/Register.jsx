@@ -1,10 +1,18 @@
 import RegiAni from "../../../../public/RegAni.json";
-import { Link } from "react-router-dom";
+import { TiArrowBackOutline } from "react-icons/ti";
 import Lottie from "lottie-react";
 
 const Register = () => {
   return (
     <div className="py-10 px-10 text-[#8401A1] dark:text-[#73e9fe]">
+      <div className="flex gap-3 my-5 justify-center md:justify-normal items-center">
+        <a href="/" className="text-2xl font-bold">
+          <TiArrowBackOutline />
+        </a>
+        <a href="/" className="text-lg font-bold">
+          Back to home
+        </a>
+      </div>
       <div className="flex flex-col md:flex-row gap-5">
         <div className="w-full md:w-1/2 ">
           <Lottie
