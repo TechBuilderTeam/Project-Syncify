@@ -2,9 +2,9 @@ const Login = () => {
   return (
     <div className="my-10 px-10 text-[#8401A1] dark:text-[#73e9fe]">
       <div className="flex gap-3 justify-center md:justify-normal items-center">
-        <img src="../public/Justlogo.png" style={{ height: "100px" }} alt="" />
+        {/* <img src="../public/Justlogo.png" style={{ height: "100px" }} alt="" /> */}
         <a href="/" className="text-lg font-bold">
-          Project Syncify
+          Back to home
         </a>
       </div>
       <div className="min-h-[600px] md:min-h-[600px] flex flex-col md:flex-row justify-between gap-3 md:gap-5">
