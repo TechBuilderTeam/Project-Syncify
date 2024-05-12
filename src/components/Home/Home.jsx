@@ -4,6 +4,7 @@ import TopCompanySlider from "../Pages/Home/TopCampanySliderSection/TopCompanySl
 import DifferentTypeOfTabSection from "../Pages/Home/DifferentTypeOfTabSection/DifferentTypeOfTabSection";
 
 import Login from "../Pages/Login/login";
+import CustomerSection from "../Pages/Home/CustomerSection/CustomerSection";
 
 const Home = () => {
   return (
@@ -11,7 +12,9 @@ const Home = () => {
       <Banner />
       <Sponsors />
       <DifferentTypeOfTabSection/>
+      <CustomerSection/>
       <TopCompanySlider/>
+      
       <Login />
     </div>
   );
