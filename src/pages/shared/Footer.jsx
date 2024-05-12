@@ -5,7 +5,7 @@ const Footer = () => {
         <footer className="footer  px-10 py-5 ">
           <aside className="">
             <div className="flex flex-col justify-center items-center h-[100px]">
-              <img src="./public/JUSTlogo.png" alt="" className="h-24" />
+              <img src={"https://i.ibb.co/T4FSNsb/Justlogo.png"} alt="" className="h-24" />
               <p className="text-2xl font-extrabold  ">Providing reliable workflow</p>
             </div>
           </aside>
