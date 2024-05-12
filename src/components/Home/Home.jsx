@@ -12,7 +12,6 @@ const Home = () => {
       <Sponsors />
       <DifferentTypeOfTabSection/>
       <TopCompanySlider/>
-      {/* <Login /> */}
     </div>
   );
 };

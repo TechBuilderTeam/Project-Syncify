@@ -3,24 +3,27 @@
 const Banner = () => {
     return (
         <div className="relative bg-gradient-to-b from-[#73e9fe] to-[#78118f] text-[#8401A1]">
-            <div className="h-[85vh] flex flex-col justify-center items-center space-y-4 ">
+            <div className="h-[85vh] flex flex-col justify-center items-center space-y-4 space-x-4 md:space-x-0">
                 <div>
                     <h1 className="text-center text-5xl font-bold">
                         A smarter way to work
                     </h1>
                 </div>
                 <div>
-                    <p className="text-lg text-center text-black font-semibold">
+                    <p className="text-sm md:text-lg text-center text-black font-semibold">
                         With ProjectSyncify, you can drive clarity and impact at scale by
                         connecting work and <br /> workflows to company-wide goals.
                     </p>
                 </div>
 
                 <div className="flex gap-5">
-                    <button className="btn btn-neutral bg-[#8401A1]  text-white rounded-sm">
-                        Get Started
-                    </button>
-                    <button className="btn btn-outline text-[#73e9fe] rounded-sm">
+                    <a href="\login">
+                        <button className="btn bg-[#8401A1] hover:bg-gradient-to-r from-[#30acc2] to-[#8401A1] text-white rounded-sm">
+                            Get Started
+                        </button>
+                    </a>
+
+                    <button className="px-4 py-2 border border-[#73e9fe] text-[#73e9fe] hover:bg-[#73e9fe] hover:text-[#8401A1] hover:font-bold rounded-sm">
                         See how it works
                     </button>
                 </div>
