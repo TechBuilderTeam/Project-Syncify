@@ -1,17 +1,13 @@
 import { TiArrowBackOutline } from "react-icons/ti";
-
-
-
+import { Link } from "react-router-dom";
 const Login = () => {
   return (
     <div className="py-10 px-10 text-[#8401A1] dark:text-[#73e9fe]">
       <div className="flex gap-3 justify-center md:justify-normal items-center">
-        {/* <img src="../public/Justlogo.png" style={{ height: "100px" }} alt="" /> */}
         <a href="/" className="text-2xl font-bold">
-        <TiArrowBackOutline />
+          <TiArrowBackOutline />
         </a>
         <a href="/" className="text-lg font-bold">
-
           Back to home
         </a>
       </div>
@@ -75,9 +71,11 @@ const Login = () => {
           <h3 className="text-lg md:text-xl md:px-16">
             Sign up and discover a grea amount of opportunities
           </h3>
-          <button className=" bg-white text-black px-10 py-2 rounded-full  border-2">
-            Sign up
-          </button>
+          <Link to="/register">
+            <button className=" bg-white text-black px-10 py-2 rounded-full  border-2">
+              Sign up
+            </button>
+          </Link>
         </div>
       </div>
     </div>
