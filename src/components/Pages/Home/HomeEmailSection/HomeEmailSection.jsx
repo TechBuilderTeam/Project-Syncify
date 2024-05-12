@@ -11,9 +11,9 @@ const HomeEmailSection = () => {
                     <div className="w-full md:w-1/2 flex flex-col justify-center items-start md:pl-20 pl-10 md:px-0">
                         <h1 className="text-4xl md:text-7xl font-bold ">Nice to meet you!</h1>
                         <p className="text-lg my-4 pr-10">Get started with Synify today. And explore some excited features for keeping your team on track.</p>
-                        <div className="mt-6 w-[80%] md:w-[90%] flex bg-white rounded">
+                        <div className="mt-6 w-[90%] md:w-full flex justify-between bg-white rounded">
                             <input type="text" placeholder="Enter your email" className="px-8 md:px-16 py-2 md:py-4 text-lg bg-white rounded rounded-r-none " />
-                            <button className="py-2 md:py-4 bg-white dark:text-cyan-600 rounded rounded-l-none">Get Started</button>
+                            <button className="py-2 md:py-4 pr-4 md:pr-8  bg-white dark:text-cyan-600 rounded rounded-l-none font-bold">Send</button>
                         </div>
                     </div>
                     <div className="w-full md:w-1/2 ">
