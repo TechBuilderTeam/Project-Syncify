@@ -5,15 +5,16 @@ import Banner from "./Banner";
 import HomeEmailSection from "../Pages/Home/HomeEmailSection/HomeEmailSection";
 
 // import Login from "../Pages/Login/login";
-
+import Features from "../Pages/Home/Features/Features";
 const Home = () => {
   return (
     <div>
-    <Banner />
+      <Banner />
       <Sponsors />
-      <DifferentTypeOfTabSection/>
-      <TopCompanySlider/>
-      <HomeEmailSection/>
+      <DifferentTypeOfTabSection />
+      <Features />
+      <TopCompanySlider />
+      <HomeEmailSection />
     </div>
   );
 };
