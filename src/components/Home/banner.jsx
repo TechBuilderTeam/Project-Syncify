@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 
 const Banner = () => {
     return (
@@ -17,11 +17,11 @@ const Banner = () => {
                 </div>
 
                 <div className="flex gap-5">
-                    <a href="\login">
+                    <Link to="/login">
                         <button className="btn bg-[#8401A1] hover:bg-gradient-to-r from-[#30acc2] to-[#8401A1] text-white rounded-sm">
                             Get Started
                         </button>
-                    </a>
+                    </Link>
 
                     <button className="px-4 py-2 border border-[#73e9fe] text-[#73e9fe] hover:bg-[#73e9fe] hover:text-[#8401A1] hover:font-bold rounded-sm">
                         See how it works
