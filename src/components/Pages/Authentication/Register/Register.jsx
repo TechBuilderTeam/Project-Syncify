@@ -1,4 +1,4 @@
-import RegiAni from "../../../../public/RegAni.json";
+import RegiAni from "../../../../../public/RegAni.json";
 import { TiArrowBackOutline } from "react-icons/ti";
 import Lottie from "lottie-react";
 
@@ -26,32 +26,32 @@ const Register = () => {
           <div className="px-8 py-5">
             <h1 className="text-4xl font-bold">Register</h1>
             <form className="flex flex-col mt-5 ">
-              <div className="flex flex-col md:flex-row justify-between gap-4">
+              <div className="flex flex-col md:flex-row justify-between gap-4  ">
                 <input
                   type="text"
                   placeholder="First Name"
-                  className="w-full md:w-1/2 px-4 py-2 border-2 outline-none rounded-lg"
+                  className="w-full md:w-1/2 px-4 py-2 border-2 outline-none rounded-lg bg-slate-100 dark:bg-slate-900 "
                 />
                 <input
                   type="text"
                   placeholder="Last Name"
-                  className="w-full md:w-1/2 px-4 py-2 border-2 outline-none rounded-lg"
+                  className="w-full md:w-1/2 px-4 py-2 border-2 outline-none rounded-lg bg-slate-100 dark:bg-slate-900 "
                 />
               </div>
               <input
                 type="email"
                 placeholder="Email"
-                className="px-4 py-2 border-2 outline-none rounded-lg mt-5"
+                className="px-4 py-2 border-2 outline-none rounded-lg mt-5 bg-slate-100 dark:bg-slate-900 "
               />
               <input
                 type="password"
                 placeholder="Password"
-                className="px-4 py-2 border-2 outline-none rounded-lg my-5"
+                className="px-4 py-2 border-2 outline-none rounded-lg my-5 bg-slate-100 dark:bg-slate-900 "
               />
               <input
                 type="password"
                 placeholder="Confirm Password"
-                className="px-4 py-2 border-2 outline-none rounded-lg"
+                className="px-4 py-2 border-2 outline-none rounded-lg bg-slate-100 dark:bg-slate-900 "
               />
               <button
                 type="submit"
