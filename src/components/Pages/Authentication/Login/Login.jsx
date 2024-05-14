@@ -44,9 +44,9 @@ const Login = () => {
         toast.success(response.message)
         navigate("/profile")
       }
+      console.log(response)
     }
   }
-
   return (
     <div className="py-10 px-10 text-[#8401A1] dark:text-[#73e9fe]">
       <div className="flex gap-3 justify-center md:justify-normal items-center">
