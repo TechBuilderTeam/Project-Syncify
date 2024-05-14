@@ -92,14 +92,13 @@ const Navbar = ({ handleThemeChange }) => {
     return (
         <div className=" mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl p-4 "  >
             <div className="flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50 w-full h-20 px-6">
-                
-                {/** logo and name section */}
                 <div className="w-1/4 flex justify-start items-center text-[#8401A1] dark:text-[#73e9fe]" >
                     <a href="/">
                         <img src={"https://i.ibb.co/T4FSNsb/Justlogo.png"} className="w-14 h-12 text-[#8401A1] dark:text-[#73e9fe]" alt="logo" />
                     </a>
                     <a href="/">
-                    <h1 className="text-2xl  font-bold italic ">Project Syncify</h1>
+                    <h1 className=" text-lg md:text-2xl  font-bold italic">Project Syncify</h1>
+
                     </a>
                 </div>
                 
@@ -132,6 +131,7 @@ const Navbar = ({ handleThemeChange }) => {
                     <a href="contact" >Contact</a>
                     <Link to="/login">Log In</Link>
                     <button className="px-4 py-2 hidden md:flex bg-[#8401A1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#8401A1] rounded text-white">Get Started</button>
+
                 </div>
 
                 {/** start toggle section and navlist for mobile device */}
