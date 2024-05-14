@@ -38,6 +38,7 @@ const Navbar = ({ handleThemeChange }) => {
                 Solutions
             </NavLink>
             {/* <NavLink
+            {/* <NavLink
                 to="/login"
                 className={({ isActive }) =>
                     isActive
@@ -68,6 +69,7 @@ const Navbar = ({ handleThemeChange }) => {
                 Dashboard
             </NavLink>
             {/* <NavLink
+            {/* <NavLink
                 to="/contact"
                 className={({ isActive }) =>
                     isActive
@@ -76,6 +78,7 @@ const Navbar = ({ handleThemeChange }) => {
                 }
             >
                 Contact
+            </NavLink> */}
             </NavLink> */}
 
         </>
