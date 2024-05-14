@@ -79,7 +79,7 @@ const Navbar = ({ handleThemeChange }) => {
             >
                 Contact
             </NavLink> */}
-            </NavLink> */}
+         
 
         </>
     )
