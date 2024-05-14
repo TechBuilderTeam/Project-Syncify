@@ -1,6 +1,52 @@
+import { useState } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import useAxios from "../../../../hooks/useAxios";
 const Login = () => {
+  const axios = useAxios();
+  const navigate = useNavigate();
+  const [logindata , setLogindata] = useState({
+    email : "",
+    password : ""
+  })
+  const [error, setError] = useState("")
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleChange = (e) => {
+    setLogindata({
+      ...logindata,
+      [e.target.name] : e.target.value
+    })
+  }
+
+  const handleSubmit = async(e) => {
+    e.preventDefault()
+    const {email , password} = logindata
+    if(!email || !password){
+      setError("All fields are required")
+    }
+    else{
+      setIsLoading(true)
+      const res = await axios.post("login/",logindata)
+      const response = res.data
+      console.log(response)
+      setIsLoading(false)
+      const user = {
+        "email" : response.email,
+        "names" : response.full_name
+      }
+      if(res.status === 200){
+        localStorage.setItem("user",JSON.stringify(user))
+        localStorage.setItem('access',JSON.stringify(response.access_token))
+        localStorage.setItem('refresh',JSON.stringify(response.refresh_token))
+
+        toast.success(response.message)
+        navigate("/profile")
+      }
+    }
+  }
+
   return (
     <div className="py-10 px-10 text-[#8401A1] dark:text-[#73e9fe]">
       <div className="flex gap-3 justify-center md:justify-normal items-center">
@@ -37,19 +83,30 @@ const Login = () => {
             __________________________________or__________________________________
           </span>
           <hr />
+          <form
+            onSubmit={handleSubmit} 
+            className="w-full md:w-1/2">
+           
+          <div className="flex flex-col mt-5 ">
           <input
             type="text"
             placeholder="Email"
-            className=" outline-none border-2 w-full md:w-[50%] mt-4 px-8 py-4 bg-[#EEF5F3]  rounded-full"
+            name="email"
+            className=" outline-none border-2 w-full  mt-4 px-8 py-4 bg-[#EEF5F3]  rounded-full"
+            value={logindata.email}
+            onChange={handleChange}
           />
           <br />
           <input
             type="text"
             placeholder="Password"
-            className=" outline-none border-2 w-full md:w-[50%] px-8 py-4 bg-[#EEF5F3] rounded-full"
+            name="password"
+            className=" outline-none border-2 w-full  px-8 py-4 bg-[#EEF5F3] rounded-full"
+            value={logindata.password}
+            onChange={handleChange}
           />
           <button
-            className="mt-5 w-full md:w-[50%] text-white py-3 rounded-full"
+            className="mt-5 w-full  text-white py-3 rounded-full"
             style={{
               background: "linear-gradient(135deg, #5AA6E1, #D939F5)",
               color: "white",
@@ -60,6 +117,8 @@ const Login = () => {
           >
             Sign in
           </button>
+          </div>
+          </form>
         </div>
         <div
           className="w-full md:w-[40%] text-white flex flex-col justify-center items-center text-center gap-y-2 md:gap-y-3 px-10 py-24 rounded md:p-0"
