@@ -13,7 +13,7 @@ const VerifyEmail = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(otp){
-            const response =await axios.post("/auth/https://projectsyncifyapi.onrender.com/api/v1/auth/verify-email/",{'otp':otp});
+            const response =await axios.post("https://projectsyncifyapi.onrender.com/api/v1/auth/verify-email/",{'otp':otp});
             if(response.status === 200){
                 toast.success(response.data.message)
                 navigate("/login")

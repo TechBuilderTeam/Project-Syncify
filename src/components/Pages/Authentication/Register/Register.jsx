@@ -2,14 +2,13 @@ import RegiAni from "../../../../../public/RegAni.json";
 import { TiArrowBackOutline } from "react-icons/ti";
 import Lottie from "lottie-react";
 import { useState } from "react";
-// import useAxios from "../../../../hooks/useAxios";
+import useAxios from "../../../../hooks/useAxios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import axios from "axios";
 
 const Register = () => {
   const navigate = useNavigate();
-  // const axiosData = useAxios();
+  const axiosData = useAxios();
   const [formdata, setFormdata] = useState({
     email : "",
     first_name : "",
@@ -36,7 +35,7 @@ const Register = () => {
       alert("Password does not match")
     }
     else{
-     const res = await axios.post("https://projectsyncifyapi.onrender.com/api/v1/auth/register/",formdata)
+     const res = await axiosData.post("/auth/register/",formdata)
      const response = res.data
      console.log(response)
      if(res.status === 201){

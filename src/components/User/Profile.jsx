@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import useAxios from "../../hooks/useAxios";
 import { toast } from "react-toastify";
+import axiosInstance from "../../Utils/axiosInstance";
 
 const Profile = () => {
-    const axiosInstance = useAxios;
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("user"));
     const jwt_access = localStorage.getItem("access");
@@ -21,7 +20,7 @@ const Profile = () => {
     
     const getSomeData = async () => {
         try {
-            const resp = await axiosInstance.get("/user/details/email");
+            const resp = await axiosInstance.get("/user/details/email/");
             if (resp.status === 200) {
                 console.log(resp.data);
             }
@@ -31,7 +30,6 @@ const Profile = () => {
     };
 
     const handleLogout = async () => {
-        try {
             const res = await axiosInstance.post("/auth/logout/", { "refresh_token": refresh });
             if (res.status === 200) {
                 localStorage.removeItem("access");
@@ -41,9 +39,7 @@ const Profile = () => {
                 toast.success(res.data.message);
                 navigate("/login");
             }
-        } catch (error) {
-            console.error("Logout error:", error);
-        }
+       
     };
 
     return (
