@@ -2,11 +2,13 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axiosInstance from "../../Utils/axiosInstance";
+import axios from "axios";
 
 const Profile = () => {
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("user"));
     const jwt_access = localStorage.getItem("access");
+    
 
     useEffect(() => {
         if (jwt_access === null && !user) {
@@ -17,29 +19,33 @@ const Profile = () => {
     }, [jwt_access, user]);
 
     const refresh = JSON.parse(localStorage.getItem("refresh"));
-    
-    const getSomeData = async () => {
-        try {
-            const resp = await axiosInstance.get("/user/details/email/");
-            if (resp.status === 200) {
-                console.log(resp.data);
-            }
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        }
+
+    const getSomeData = () => {
+        axios.get(`https://projectsyncifyapi.onrender.com/api/v1/user/details/${user.email}/`)
+            .then(function (response) {
+                // handle success
+                console.log(response);
+            })
+            .catch(function (error) {
+                // handle error
+                console.log(error);
+            })
+            .finally(function () {
+                // always executed
+            });
     };
 
     const handleLogout = async () => {
-            const res = await axiosInstance.post("/auth/logout/", { "refresh_token": refresh });
-            if (res.status === 200) {
-                localStorage.removeItem("access");
-                localStorage.removeItem("refresh");
-                localStorage.removeItem("user");
+        const res = await axiosInstance.post("/auth/logout/", { "refresh_token": refresh });
+        if (res.status === 200) {
+            localStorage.removeItem("access");
+            localStorage.removeItem("refresh");
+            localStorage.removeItem("user");
 
-                toast.success(res.data.message);
-                navigate("/login");
-            }
-       
+            toast.success(res.data.message);
+            navigate("/login");
+        }
+
     };
 
     return (
