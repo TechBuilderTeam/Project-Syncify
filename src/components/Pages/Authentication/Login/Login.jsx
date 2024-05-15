@@ -1,10 +1,11 @@
+import axios from "axios";
 import { useState } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import useAxios from "../../../../hooks/useAxios";
+// import useAxios from "../../../../hooks/useAxios";
 const Login = () => {
-  const axios = useAxios();
+  // const axiosInstance = useAxios();
   const navigate = useNavigate();
   const [logindata , setLogindata] = useState({
     email : "",
@@ -28,7 +29,7 @@ const Login = () => {
     }
     else{
       setIsLoading(true)
-      const res = await axios.post("login/",logindata)
+      const res = await axios.post("https://projectsyncifyapi.onrender.com/api/v1/auth/login/",logindata)
       const response = res.data
       console.log(response)
       setIsLoading(false)
