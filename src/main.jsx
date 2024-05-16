@@ -6,6 +6,8 @@ import Root from "./layouts/Root";
 import Home from "./components/Home/Home";
 import Login from "./components/Pages/Login/Login";
 import Register from "./components/Pages/Register/Register";
+import Dashboard from "./components/Pages/Dashboard/Dashboard";
+import App from "./App";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +27,10 @@ const router = createBrowserRouter([
       }
     ],
   },
+  {
+    path:'/dashboard',
+    element: <Dashboard/>
+  }
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
