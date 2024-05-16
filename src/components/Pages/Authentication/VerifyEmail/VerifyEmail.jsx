@@ -1,18 +1,19 @@
 import Lottie from "lottie-react";
 import Otp from"../../../../../public/otp.json";
 import { useState } from "react";
-import useAxios from "../../../../hooks/useAxios";
+// import useAxios from "../../../../hooks/useAxios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import axios from "axios";
 const VerifyEmail = () => {
     const [otp, setOtp] = useState("");
-    const axiosData = useAxios();
+    // const axiosData = useAxios();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(otp){
-            const response =await axiosData.post("verify-email/",{'otp':otp});
+            const response =await axios.post("https://projectsyncifyapi.onrender.com/api/v1/auth/verify-email/",{'otp':otp});
             if(response.status === 200){
                 toast.success(response.data.message)
                 navigate("/login")

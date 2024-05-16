@@ -1,10 +1,13 @@
+import axios from "axios";
 import { useState } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAxios from "../../../../hooks/useAxios";
+import { FcGoogle } from "react-icons/fc";
+import { FaGithub } from "react-icons/fa";
 const Login = () => {
-  const axios = useAxios();
+  const axiosData = useAxios();
   const navigate = useNavigate();
   const [logindata , setLogindata] = useState({
     email : "",
@@ -28,7 +31,7 @@ const Login = () => {
     }
     else{
       setIsLoading(true)
-      const res = await axios.post("login/",logindata)
+      const res = await axiosData.post("/auth/login/",logindata)
       const response = res.data
       console.log(response)
       setIsLoading(false)
@@ -37,11 +40,12 @@ const Login = () => {
         "names" : response.full_name
       }
       if(res.status === 200){
+        toast.success(response.message)
         localStorage.setItem("user",JSON.stringify(user))
         localStorage.setItem('access',JSON.stringify(response.access_token))
         localStorage.setItem('refresh',JSON.stringify(response.refresh_token))
 
-        toast.success(response.message)
+        
         navigate("/profile")
       }
       console.log(response)
@@ -60,24 +64,16 @@ const Login = () => {
       <div className="min-h-[600px] md:min-h-[600px] flex flex-col md:flex-row justify-between gap-3 md:gap-5">
         <div className="w-full md:w-[60%] flex flex-col items-center justify-center md:p-0">
           <h1 className="text-3xl md:text-5xl font-bold text-transparent bg-gradient-to-r from-[#8401A1] to-[#73e9fe] bg-clip-text py-3">
-            Login to Your Account
+            Login
           </h1>
-          <p className="mt-6 text-lg">Login to your social account</p>
+          <p className="mt-6 text-lg">Login with your social account</p>
           <div className="flex gap-4 mt-3">
-            <a href="#">
-              <img
-                src="../public/facebook.png"
-                style={{ height: "50px" }}
-                alt=""
-              />
-            </a>
-            <a href="#">
-              <img
-                src="../public/google.png"
-                style={{ height: "50px" }}
-                alt=""
-              />
-            </a>
+          <button>
+          <FcGoogle className="w-8 h-8" />
+          </button>
+          <button>
+          <FaGithub className="w-8 h-8" />
+          </button>
           </div>
           <span className="my-5 hidden md:flex">
             __________________________________or__________________________________
@@ -106,9 +102,9 @@ const Login = () => {
             onChange={handleChange}
           />
           <button
-            className="mt-5 w-full  text-white py-3 rounded-full"
+            className="mt-5 w-full  text-white py-3 rounded-full bg-gradient-to-r from-[#9d11bd] to-[#73e9fe] hover:from-[#73e9fe] hover:to-[#9d11bd]"
             style={{
-              background: "linear-gradient(135deg, #5AA6E1, #D939F5)",
+              // background: "linear-gradient(135deg, #5AA6E1, #D939F5)",
               color: "white",
               fontSize: "20px",
               fontWeight: "bold",
@@ -131,7 +127,7 @@ const Login = () => {
             Sign up and discover a grea amount of opportunities
           </h3>
           <Link to="/register">
-            <button className=" bg-white text-black px-10 py-2 rounded-full  border-2">
+            <button className="hover:bg-gradient-to-r from-[#9d11bd] to-[#73e9fe] text-white font-bold  px-10 py-2 rounded-full  border-2">
               Sign up
             </button>
           </Link>
