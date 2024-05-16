@@ -4,6 +4,8 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./layouts/Root";
 import Home from "./components/Home/Home";
+import Dashboard from "./components/Pages/Dashboard/Dashboard";
+// import App from "./App";
 import Login from "./components/Pages/Authentication/Login/Login";
 import Register from "./components/Pages/Authentication/Register/Register";
 import VerifyEmail from "./components/Pages/Authentication/VerifyEmail/VerifyEmail";
@@ -43,6 +45,10 @@ const router = createBrowserRouter([
       }
     ],
   },
+  {
+    path:'/dashboard',
+    element: <Dashboard/>
+  }
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
