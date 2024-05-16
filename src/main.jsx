@@ -4,10 +4,16 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Root from "./layouts/Root";
 import Home from "./components/Home/Home";
-import Login from "./components/Pages/Login/Login";
-import Register from "./components/Pages/Register/Register";
 import Dashboard from "./components/Pages/Dashboard/Dashboard";
-import App from "./App";
+// import App from "./App";
+import Login from "./components/Pages/Authentication/Login/Login";
+import Register from "./components/Pages/Authentication/Register/Register";
+import VerifyEmail from "./components/Pages/Authentication/VerifyEmail/VerifyEmail";
+import ForgetPassword from "./components/Pages/Authentication/ForgetPassword/ForgetPassword";
+import Profile from "./components/User/Profile";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +30,18 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path:"/otp/verify",
+        element:<VerifyEmail/>
+      },
+      {
+        path: "/forgotpassword",
+        element: <ForgetPassword />,
+      },
+      {
+        path: "/profile",
+        element:<Profile/>
       }
     ],
   },
@@ -35,5 +53,6 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
+    <ToastContainer />
   </React.StrictMode>
 );
