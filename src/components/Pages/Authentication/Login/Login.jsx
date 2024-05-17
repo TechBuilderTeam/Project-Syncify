@@ -46,7 +46,7 @@ const Login = () => {
         localStorage.setItem('refresh',JSON.stringify(response.refresh_token))
 
         
-        navigate("/profile")
+        navigate("/dashboard/profile")
       }
       console.log(response)
     }
@@ -94,7 +94,7 @@ const Login = () => {
           />
           <br />
           <input
-            type="text"
+            type="password"
             placeholder="Password"
             name="password"
             className=" outline-none border-2 w-full  px-8 py-4 bg-[#EEF5F3] rounded-full"

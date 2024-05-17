@@ -12,6 +12,9 @@ import VerifyEmail from "./components/Pages/Authentication/VerifyEmail/VerifyEma
 import ForgetPassword from "./components/Pages/Authentication/ForgetPassword/ForgetPassword";
 import Profile from "./components/User/Profile";
 import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import Workspace from "./components/Pages/Workspace/Workspace";
+
 import "react-toastify/dist/ReactToastify.css";
 import "react-calendar/dist/Calendar.css";
 import Calendarui from "./components/Pages/Dashboard/Calendarui/Calendarui";
@@ -40,10 +43,10 @@ const router = createBrowserRouter([
         path: "/forgotpassword",
         element: <ForgetPassword />,
       },
-      // {
-      //   path: "/profile",
-      //   element:<Profile/>
-      // }
+      {
+       path: "/workspace",
+       element:<Workspace/>,
+      }
     ],
   },
   {
