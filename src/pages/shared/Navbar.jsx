@@ -11,7 +11,7 @@ const Navbar = ({ handleThemeChange }) => {
                 to="/"
                 className={({ isActive }) =>
                     isActive
-                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
                         : "text-[#8401A1] dark:text-[#73e9fe]"
                 }
             >
@@ -21,7 +21,7 @@ const Navbar = ({ handleThemeChange }) => {
                 to="/features"
                 className={({ isActive }) =>
                     isActive
-                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-1"
                         : "text-[#8401A1] dark:text-[#73e9fe]"
                 }
             >
@@ -31,7 +31,7 @@ const Navbar = ({ handleThemeChange }) => {
                 to="/solutions"
                 className={({ isActive }) =>
                     isActive
-                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
                         : "text-[#8401A1] dark:text-[#73e9fe]"
                 }
             >
@@ -62,7 +62,7 @@ const Navbar = ({ handleThemeChange }) => {
                 to="/dashboard"
                 className={({ isActive }) =>
                     isActive
-                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
                         : "text-[#8401A1] dark:text-[#73e9fe]"
                 }
             >
@@ -115,7 +115,7 @@ const Navbar = ({ handleThemeChange }) => {
                     </div>
 
                     {/** toggle section */}
-                    <div className="w-1/3 flex justify-between items-center gap-2 text-[#8401A1] dark:text-[#73e9fe] font-semibold text-lg">
+                    <div className="w-1/4 flex justify-between items-center gap-1 text-[#8401A1] dark:text-[#73e9fe] font-semibold text-lg">
                         <label className="swap swap-rotate ">
 
                             <input type="checkbox" onChange={handleThemeChange} />
@@ -130,7 +130,9 @@ const Navbar = ({ handleThemeChange }) => {
 
                         <a href="contact" >Contact</a>
                         <Link to="/login">Log In</Link>
-                        <button className="px-4 py-2 hidden md:flex bg-[#8401A1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#8401A1] rounded text-white">Get Started</button>
+                        <Link to ="/register">
+                        <button className="px-3 py-1 hidden md:flex bg-[#8401A1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#8401A1] rounded text-white">Get Started</button>
+                        </Link>
                     </div>
 
                 </div>
@@ -165,7 +167,7 @@ const Navbar = ({ handleThemeChange }) => {
                                 {open ? <FaXmark className=" text-3xl cursor-pointer" /> : <HiMenuAlt2 className=" text-3xl cursor-pointer" />}
                             </div>
                             {/** conditional show navlist items */}
-                            <div className={`${open ? "flex" : "hidden"} w-full h-fit bg-[#dbfaff]  dark:bg-[#8401A1] p-4 absolute top-[80px] left-0`}>
+                            <div className={`${open ? "flex" : "hidden"} w-full h-fit bg-cyan-50 dark:bg-slate-800 bg-opacity-50 dark:bg-opacity-50 p-4 absolute top-[80px] left-0`}>
                                 <div className="flex flex-col justify-center items-center gap-4 w-full font-semibold ">
                                     {navlinks}
                                     <a href="contact" >Contact</a>
