@@ -12,7 +12,7 @@ import VerifyEmail from "./components/Pages/Authentication/VerifyEmail/VerifyEma
 import ForgetPassword from "./components/Pages/Authentication/ForgetPassword/ForgetPassword";
 import Profile from "./components/User/Profile";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 const router = createBrowserRouter([
   {
@@ -32,8 +32,8 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path:"/otp/verify",
-        element:<VerifyEmail/>
+        path: "/otp/verify",
+        element: <VerifyEmail />,
       },
       {
         path: "/forgotpassword",
@@ -41,14 +41,14 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element:<Profile/>
-      }
+        element: <Profile />,
+      },
     ],
   },
   {
-    path:'/dashboard',
-    element: <Dashboard/>
-  }
+    path: "/dashboard",
+    element: <Dashboard />,
+  },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
