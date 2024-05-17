@@ -1,14 +1,14 @@
-
-import Dashboard from './Dashboard';
-import { FaBoxTissue, FaChalkboard } from 'react-icons/fa';
+import Dashboard from "./Dashboard";
+import { FaBoxTissue, FaChalkboard } from "react-icons/fa";
 import { CiViewTimeline } from "react-icons/ci";
 import { SlCalender } from "react-icons/sl";
 import { FaListUl } from "react-icons/fa6";
-import { Link } from 'react-router-dom';
-import { IoHomeSharp } from 'react-icons/io5';
-import { CgProfile } from 'react-icons/cg';
+import { Link } from "react-router-dom";
+import { IoHomeSharp } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
 
 const Sidebar = ({ sidebarToggle }) => {
+
     return (
         <div className={`${sidebarToggle ? "hidden" : "block"} w-40 md:w-60  bg-gradient-to-b from-[#73e9fe] dark:from-[#8401A1] to-[#78118f] dark:to-[#73e9fe] absolute top-20 left-0 h-full px-4 py-2`}>
             <div className='my-2 mb-4'>

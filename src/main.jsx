@@ -12,8 +12,9 @@ import VerifyEmail from "./components/Pages/Authentication/VerifyEmail/VerifyEma
 import ForgetPassword from "./components/Pages/Authentication/ForgetPassword/ForgetPassword";
 import Profile from "./components/User/Profile";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-
+import "react-toastify/dist/ReactToastify.css";
+import "react-calendar/dist/Calendar.css";
+import Calendarui from "./components/Pages/Dashboard/Calendarui/Calendarui";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -32,13 +33,13 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path:"/otp/verify",
-        element:<VerifyEmail/>
+        path: "/otp/verify",
+        element: <VerifyEmail />,
       },
       {
         path: "/forgotpassword",
         element: <ForgetPassword />,
-      }
+      },
       // {
       //   path: "/profile",
       //   element:<Profile/>
@@ -46,15 +47,19 @@ const router = createBrowserRouter([
     ],
   },
   {
-    path:'/dashboard',
-    element: <Dashboard/>,
+    path: "/dashboard",
+    element: <Dashboard />,
     children: [
       {
         path: "/dashboard/profile",
-        element: <Profile  />,
-      }
-    ]
-  }
+        element: <Profile />,
+      },
+      {
+        path: "/dashboard/calendar",
+        element: <Calendarui />,
+      },
+    ],
+  },
 ]);
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
