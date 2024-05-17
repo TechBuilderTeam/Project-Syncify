@@ -13,6 +13,7 @@ import ForgetPassword from "./components/Pages/Authentication/ForgetPassword/For
 import Profile from "./components/User/Profile";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Workspace from "./components/Pages/Workspace/Workspace";
 
 const router = createBrowserRouter([
   {
@@ -38,11 +39,11 @@ const router = createBrowserRouter([
       {
         path: "/forgotpassword",
         element: <ForgetPassword />,
+      },
+      {
+       path: "/workspace",
+       element:<Workspace/>,
       }
-      // {
-      //   path: "/profile",
-      //   element:<Profile/>
-      // }
     ],
   },
   {
