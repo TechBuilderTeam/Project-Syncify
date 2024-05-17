@@ -29,7 +29,7 @@ const Dashboard = ({ sidebarToggle, setSidebarToggle }) => {
                 <div className='w-1/4 '>
                     <Sidebar />
                 </div>
-                <div className='w-3/4 ml-20 md:ml-56 relative h-full'>
+                <div className='w-3/4 ml-32 md:ml-56 relative h-full'>
                     <Outlet />
                 </div>
 

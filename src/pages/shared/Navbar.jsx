@@ -59,7 +59,7 @@ const Navbar = ({ handleThemeChange }) => {
                 Register
             </NavLink> */}
             <NavLink
-                to="/dashboard"
+                to="/dashboard/profile"
                 className={({ isActive }) =>
                     isActive
                         ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
