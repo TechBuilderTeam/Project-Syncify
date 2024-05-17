@@ -44,7 +44,7 @@ const Sidebar = ({ sidebarToggle }) => {
           </Link>
         </li>
         <li className="mb-2 rounded hover:shadow  py-2">
-          <Link to="" className="px-3">
+          <Link to="/dashboard/calendar" className="px-3">
             <SlCalender className="inline-block w-6 h-6 mr-2 -mt-2" />
             Calendar
           </Link>

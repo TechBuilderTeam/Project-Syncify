@@ -13,7 +13,8 @@ import ForgetPassword from "./components/Pages/Authentication/ForgetPassword/For
 import Profile from "./components/User/Profile";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import "react-calendar/dist/Calendar.css";
+import Calendarui from "./components/Pages/Dashboard/Calendarui/Calendarui";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/profile",
         element: <Profile />,
+      },
+      {
+        path: "/dashboard/calendar",
+        element: <Calendarui />,
       },
     ],
   },
