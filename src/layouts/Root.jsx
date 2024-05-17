@@ -24,7 +24,7 @@ const Root = () => {
         <div className="bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]">
            {noHeaderFooter || <Navbar handleThemeChange={handleThemeChange} /> }
             <Outlet />
-            <Footer />
+            {noHeaderFooter || <Footer />}
         </div>
     );
 };
