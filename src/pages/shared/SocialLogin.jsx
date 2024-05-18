@@ -2,11 +2,15 @@ import React, { useContext } from 'react';
 import { FaGithub } from "react-icons/fa";
 import { BsFacebook } from "react-icons/bs";
 import { FcGoogle } from "react-icons/fc";
+<<<<<<< HEAD
 import { toast } from "react-toastify";
+=======
+>>>>>>> origin/testing
 // import { AuthContext } from '../../Providers/AuthProviders/AuthProviders';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProviders/AuthProviders';
 
+<<<<<<< HEAD
 const handleSignInWithGoogle = async (response) => {
     // console.log(response); // Logging the response for debugging
     console.log(response);
@@ -30,6 +34,8 @@ const handleSignInWithGoogle = async (response) => {
 
   };
 
+=======
+>>>>>>> origin/testing
 const SocialLogin = () => {
     const {GoogleSignIn,GithubSignIn,user} = useContext(AuthContext);
     console.log(user)
@@ -86,7 +92,11 @@ const SocialLogin = () => {
 
     return (
         <div className="flex gap-4 mt-3">
+<<<<<<< HEAD
               <button onClick={handleSignInWithGoogle}>
+=======
+              <button onClick={handleGoogleSignIn}>
+>>>>>>> origin/testing
                 <FcGoogle className="w-8 h-8" />
               </button>
               <div id='signInDiv'></div>

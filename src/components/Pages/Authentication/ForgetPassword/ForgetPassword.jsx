@@ -15,9 +15,16 @@ const ForgetPassword = () => {
             if(res.status === 200){
                 toast.success('a link to reset your password has be sent to your email')
             }
+<<<<<<< HEAD
         }
 
         setEmail("")
+=======
+            console.log(res)
+            setEmail("")
+        }
+
+>>>>>>> origin/testing
     }
 
     return (

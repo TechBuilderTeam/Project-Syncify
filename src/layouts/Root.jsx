@@ -22,13 +22,20 @@ const Root = () => {
         setTheme(theme === "dark" ? "light" : "dark");
     }
     return (
+<<<<<<< HEAD
         <AuthProviders>
+=======
+        
+>>>>>>> origin/testing
             <div className="bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]">
             {noHeaderFooter || <Navbar handleThemeChange={handleThemeChange} /> }
                 <Outlet />
                 {noHeaderFooter || <Footer />}
             </div>
+<<<<<<< HEAD
         </AuthProviders>
+=======
+>>>>>>> origin/testing
     );
 };
 

@@ -38,8 +38,14 @@ axiosInstance.interceptors.request.use(async req =>{
                 }
             }
         }
+<<<<<<< HEAD
         return req
      }
     }
 )
+=======
+     }
+     return req
+})
+>>>>>>> origin/testing
 export default axiosInstance 

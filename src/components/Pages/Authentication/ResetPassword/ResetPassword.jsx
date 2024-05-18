@@ -1,5 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import axiosInstance from './../../../../Utils/axiosInstance';
+import { toast } from 'react-toastify';
+>>>>>>> origin/testing
 
 const ResetPassword = () => {
     const navigate = useNavigate();
@@ -21,11 +26,28 @@ const ResetPassword = () => {
     }
 
     const handleSubmit = async (e) => {
+<<<<<<< HEAD
 
     }
     return (
         <div>
             <h2>Enter your Register Email Address</h2>
+=======
+        e.preventDefault()
+        //make api call
+        const response = await axiosInstance.patch('auth/set-new-password/', data)
+        const result = response.data
+
+        if(result.status === 200){
+            navigate('/login');
+            toast.success(response.message)
+        }
+        console.log(response)
+    }
+    return (
+        <div>
+            <h2>Enter your new password</h2>
+>>>>>>> origin/testing
             <div className="wrapper">
             <form
                 onSubmit={handleSubmit} 
@@ -37,8 +59,13 @@ const ResetPassword = () => {
                 placeholder="New password"
                 name="email"
                 className=" outline-none border-2 w-full  mt-4 px-8 py-4 bg-[#EEF5F3]  rounded-full"
+<<<<<<< HEAD
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+=======
+                value={newPasswords.password}
+                onChange={handleChange}
+>>>>>>> origin/testing
             />
             <br />
             <input
@@ -46,8 +73,13 @@ const ResetPassword = () => {
                 placeholder="Confirm Password"
                 name="email"
                 className=" outline-none border-2 w-full  mt-4 px-8 py-4 bg-[#EEF5F3]  rounded-full"
+<<<<<<< HEAD
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+=======
+                value={newPasswords.confirm_password}
+                onChange={handleChange}
+>>>>>>> origin/testing
             />
             <button
                 className="mt-5 w-full  text-white py-3 rounded-full bg-gradient-to-r from-[#9d11bd] to-[#73e9fe] hover:from-[#73e9fe] hover:to-[#9d11bd]"
@@ -59,7 +91,11 @@ const ResetPassword = () => {
                 cursor: "pointer",
                 }}
             >
+<<<<<<< HEAD
                 Send
+=======
+                Submit
+>>>>>>> origin/testing
             </button>
             </div>
             </form>

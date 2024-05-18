@@ -13,6 +13,10 @@ import ForgetPassword from "./components/Pages/Authentication/ForgetPassword/For
 import Profile from "./components/User/Profile";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+<<<<<<< HEAD
+=======
+import ResetPassword from "./components/Pages/Authentication/ResetPassword/ResetPassword";
+>>>>>>> origin/testing
 
 const router = createBrowserRouter([
   {
@@ -46,6 +50,13 @@ const router = createBrowserRouter([
       {
         path: "/forget",
         element: <ForgetPassword/>
+<<<<<<< HEAD
+=======
+      },
+      {
+        path: "/password-reset-confirm/:uid/:token",
+        element: <ResetPassword/>
+>>>>>>> origin/testing
       }
     ],
   },

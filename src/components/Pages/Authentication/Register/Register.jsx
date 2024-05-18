@@ -3,7 +3,11 @@ import { TiArrowBackOutline } from "react-icons/ti";
 import Lottie from "lottie-react";
 import { useEffect, useState } from "react";
 import useAxios from "../../../../hooks/useAxios";
+<<<<<<< HEAD
 import { Link, useNavigate } from "react-router-dom";
+=======
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+>>>>>>> origin/testing
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
@@ -12,6 +16,10 @@ import SocialLogin from "../../../../pages/shared/SocialLogin";
 
 const Register = () => {
   const navigate = useNavigate();
+<<<<<<< HEAD
+=======
+  const [searchparams] = useSearchParams()
+>>>>>>> origin/testing
   const axiosData = useAxios();
   const [formdata, setFormdata] = useState({
     email: "",
@@ -60,9 +68,14 @@ const Register = () => {
     // console.log(response); // Logging the response for debugging
     console.log(response);
     const payload = response.credential
+<<<<<<< HEAD
     console.log(payload);
     console.log('payload', typeof payload)
     const server_res = await axios.post("http://127.0.0.1:8000/api/v1/auth/google/", {"access_token": payload})
+=======
+    console.log('payload', typeof payload)
+    const server_res = await axios.post("https://projectsyncifyapi.onrender.com/api/v1/auth/google/", {"access_token": payload})
+>>>>>>> origin/testing
     console.log('server -> ',server_res)
 
     const user = {
@@ -73,15 +86,63 @@ const Register = () => {
     if(server_res.status === 200){
       localStorage.setItem('user', JSON.stringify(user))
       localStorage.setItem('access', JSON.stringify(server_res.data.access_token))
+<<<<<<< HEAD
       localStorage.setItem('refresh', JSON.stringify(server_res.data.refresh))
+=======
+      localStorage.setItem('refresh', JSON.stringify(server_res.data.refresh_token))
+>>>>>>> origin/testing
       navigate("/dashboard");
       toast.success("login successfull")
     }
 
   };
 
+<<<<<<< HEAD
 useEffect(() => {
   // console.log(import.meta.env.VITE_GOOGLE_CLIENT_ID)
+=======
+  const handleSignInWithGithub = async (response) => {
+    window.location.assign(`https://github.com/login/oauth/authorize/?client_id=${import.meta.env.VITE_GITHU_ID}`)
+  }
+
+  const send_code_to_backend = async () => {
+    if(searchparams){
+      try {
+        const qcode = searchparams.get('code');
+        const response = await axiosInstance.post('/auth/github/', {"code": qcode})
+        const result = response.data
+
+        console.log('result -> ',result)
+    
+        if(response.status === 200){
+
+          const user = {
+            "email": result.email,
+            "name": result.full_name 
+          }
+
+          localStorage.setItem('user', JSON.stringify(user))
+          localStorage.setItem('access', JSON.stringify(result.access_token))
+          localStorage.setItem('refresh', JSON.stringify(result.refresh_token))
+          navigate("/dashboard");
+          toast.success("login successfull")
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+
+let code = searchparams.get('code')
+useEffect(() => {
+  console.log(import.meta.env.VITE_GOOGLE_CLIENT_ID)
+  
+
+   if(code){
+    send_code_to_backend()
+   }
+>>>>>>> origin/testing
   //global google
   google.accounts.id.initialize({
     client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID, // Using client ID from environment variable
@@ -100,7 +161,11 @@ useEffect(() => {
     }
   );
   
+<<<<<<< HEAD
 },[])
+=======
+},[code])
+>>>>>>> origin/testing
 
   return (
     <div className="py-10 px-10 ">
@@ -127,17 +192,29 @@ useEffect(() => {
           </h1>
           <div className="text-center flex flex-col items-center" >
             <p className="text-lg">Login with your social account</p>
+<<<<<<< HEAD
             
             <div className="flex gap-4 mt-3">
+=======
+             <div className="flex gap-4 mt-3">
+>>>>>>> origin/testing
               <button >
                 <FcGoogle className="w-8 h-8" />
               </button>
               <div id='signInDiv'></div>
+<<<<<<< HEAD
               <button>
                 <FaGithub className="w-8 h-8" />
               </button>
             </div>
             <SocialLogin/>
+=======
+              <button onClick={handleSignInWithGithub}>
+                <FaGithub className="w-8 h-8" />
+              </button>
+            </div> 
+            
+>>>>>>> origin/testing
 
             <span className="my-1 hidden md:flex">
               __________________________________or__________________________________
@@ -206,7 +283,11 @@ useEffect(() => {
 
             <h3 className="mt-4">
               Already have an account? Please{" "}
+<<<<<<< HEAD
               <Link to="\login" className="underline">
+=======
+              <Link to="login" className="underline">
+>>>>>>> origin/testing
                 Sign in
               </Link>
             </h3>

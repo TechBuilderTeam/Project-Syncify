@@ -40,6 +40,7 @@ const Login = () => {
         "names" : response.full_name
       }
       if(res.status === 200){
+<<<<<<< HEAD
         toast.success(response.message)
         localStorage.setItem("user",JSON.stringify(user))
         localStorage.setItem('access',JSON.stringify(response.access_token))
@@ -47,6 +48,13 @@ const Login = () => {
 
         
         navigate("/profile")
+=======
+        localStorage.setItem("user",JSON.stringify(user))
+        localStorage.setItem('access',JSON.stringify(response.access_token))
+        localStorage.setItem('refresh',JSON.stringify(response.refresh_token))
+        navigate("/dashboard")
+        toast.success(response.message)
+>>>>>>> origin/testing
       }
       console.log(response)
     }
