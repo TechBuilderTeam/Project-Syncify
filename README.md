@@ -4,13 +4,13 @@
 <p align="center">
 <a href="#tech">Technologies</a>
 <a href="#started">Getting Started</a>
-<a href="#routes">API Endpoints</a>
 <a href="#colab">Collaborators</a>
 <a href="#contribute">Contribute</a> 
 </p>
 
 
 <p align="center">ProjectSyncify is a Project Management Application.</p>
+<a href="https://project-syncify.netlify.app" align="center">ProjectSyncify Live Site.</a>
 
 
 <p align="center">
@@ -20,6 +20,9 @@
 <h2 id="technologies">💻 Technologies</h2>
 
 list of all technologies we used
+- React
+- Tailwind
+- React route
 - Django
 - Django REST Framework
 - PyJWT
