@@ -43,7 +43,18 @@ const Workspace = () => {
   if (error) {
     return <div>{error}</div>;
   }
-
+  if (workspaces.length === 0) {
+    return (
+      <div className="flex justify-center items-center my-10">
+        <h1 className="text-xl">
+          No workspaces available for your account. <br />
+          <a href="/createworkspace" className="hover:underline">
+            Create a new workspace
+          </a>
+        </h1>
+      </div>
+    );
+  }
   return (
     <div>
       <h1 className="text-center text-2xl font-semibold my-3">Workspaces</h1>
@@ -55,8 +66,7 @@ const Workspace = () => {
               <th>Name</th>
               <th>Manager</th>
               <th>Email</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -66,12 +76,10 @@ const Workspace = () => {
                 <td>{workspace.name}</td>
                 <td>{user.names}</td>
                 <td>{user.email}</td>
-                <th>
+                <th className="flex justify-between">
                   <Link to={`/editworkspace/${workspace.id}`}>
                     <FaRegEdit className="text-xl" />
                   </Link>
-                </th>
-                <th>
                   <DeleteWorkspace
                     workspaceId={workspace.id}
                     onDelete={handleDeleteWorkspace}
