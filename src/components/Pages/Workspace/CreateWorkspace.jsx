@@ -9,7 +9,6 @@ const CreateWorkspace = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Ensure workspace name is provided and user is logged in
     if (!workspaceName) {
       setError("Please enter a workspace name.");
       return;
@@ -31,7 +30,6 @@ const CreateWorkspace = () => {
         }
       );
 
-      // Check if the status is 201 (Created)
       if (response.status === 201) {
         setSuccess("Workspace created successfully!");
         setError("");

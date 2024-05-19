@@ -15,7 +15,7 @@ const DeleteWorkspace = ({ workspaceId, onDelete }) => {
       );
 
       if (response.status === 204) {
-        onDelete(workspaceId); // Remove workspace from UI immediately
+        onDelete(workspaceId);
       } else {
         setError("Failed to delete the workspace.");
       }

@@ -10,7 +10,6 @@ const EditWorkspace = () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
   useEffect(() => {
-    // Fetch existing workspace details when component mounts
     fetchWorkspaceDetails();
   }, [workspaceId]);
 
@@ -30,7 +29,6 @@ const EditWorkspace = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Ensure workspace name is provided and user is logged in
     if (!workspaceName) {
       setError("Please enter a workspace name.");
       return;
@@ -52,7 +50,6 @@ const EditWorkspace = () => {
         }
       );
 
-      // Check if the status is 200 (OK)
       if (response.status === 200) {
         setSuccess("Workspace updated successfully!");
         setError("");

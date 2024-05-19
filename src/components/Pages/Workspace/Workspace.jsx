@@ -3,7 +3,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import DeleteWorkspace from "./DeleteWorkspace";
 import { FaRegEdit } from "react-icons/fa";
-import { MdDeleteForever } from "react-icons/md";
 const Workspace = () => {
   const [workspaces, setWorkspaces] = useState([]);
   const [loading, setLoading] = useState(true);
