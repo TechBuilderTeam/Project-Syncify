@@ -4,15 +4,16 @@ import { Link } from "react-router-dom";
 import DeleteWorkspace from "./DeleteWorkspace";
 import { FaRegEdit } from "react-icons/fa";
 import { AuthContext } from "../../../Providers/AuthProviders/AuthProviders";
+import { FaCirclePlus } from "react-icons/fa6";
 
 const Workspace = () => {
   const [workspaces, setWorkspaces] = useState([]);
   // const [loading, setLoading] = useState(true);
-  const {user,loading, setLoading} = useContext(AuthContext)
+  const { user, loading, setLoading } = useContext(AuthContext)
   const [error, setError] = useState(null);
   // const user = JSON.parse(localStorage.getItem("user"));
 
-  console.log('user data show from workspace -> ',{user})
+  console.log('user data show from workspace -> ', { user })
 
   useEffect(() => {
     const fetchWorkspaces = async () => {
@@ -25,7 +26,7 @@ const Workspace = () => {
         );
         setWorkspaces(response.data);
       } catch (err) {
-        setError("Failed to fetch workspaces");
+        setError();
       } finally {
         setLoading(false);
       }
@@ -49,25 +50,31 @@ const Workspace = () => {
   if (error) {
     return <div>{error}</div>;
   }
-  if (workspaces.length === 0) {
+  if (workspaces.length === 0 || setError) {
     return (
       <div className="flex justify-center items-center my-10">
-        <h1 className="text-xl">
+        <h1 className="text-2xl">
           No workspaces available for your account. <br />
-          <a href="/createworkspace" className="hover:underline">
-            Create a new workspace
-          </a>
+          <div className="flex items-center  gap-2 my-2">
+            <Link to="/createworkspace" className="">
+              <FaCirclePlus />
+            </Link>
+            <Link to="/createworkspace" className="hover:underline">
+              Create a new workspace
+            </Link>
+          </div>
+
         </h1>
       </div>
     );
   }
   return (
     <div>
-      <h1 className="text-center text-2xl font-semibold my-3">Workspaces</h1>
+      <h1 className="text-center text-4xl font-semibold mt-4 mb-10">Workspaces</h1>
       <div className="overflow-x-auto">
-        <table className="table border-separate dark:bg-black">
-          <thead>
-            <tr>
+        <table className="table border-separate ">
+          <thead className="">
+            <tr className="text-center text-[#8401A1] dark:text-[#73e9fe] text-xl ">
               <th>Id</th>
               <th>Name</th>
               <th>Manager</th>
@@ -77,7 +84,7 @@ const Workspace = () => {
           </thead>
           <tbody>
             {workspaces.map((workspace) => (
-              <tr key={workspace.id} className="bg-base-200">
+              <tr key={workspace.id} className="text-center">
                 <th>{workspace.id}</th>
                 <td>{workspace.name}</td>
                 <td>{user.names}</td>
