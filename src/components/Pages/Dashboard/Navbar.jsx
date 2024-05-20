@@ -62,10 +62,10 @@ const Navbar = ({ sidebarToggle, setSidebarToggle, handleThemeChange }) => {
 
                 <div className='relative'>
                     {
-                        user ? <> <button className='text-white group '>
+                        user ? <> <button className=' group '>
                         <FaUserCircle className='w-6 h-6 mt-1'/>
-                        <div className='z-10 absolute hidden bg-white rounded-lg shadow w-32 group-focus:block top-full right-0'>
-                            <ul className='py-2 text-sm text-gray-950'>
+                        <div className='z-10 absolute hidden bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-32 group-focus:block top-full right-0'>
+                            <ul className='py-2 text-sm'>
                                 <li><a href="">Profile</a></li>
                                 <li><a href="">Setting</a></li>
                                 <li onClick={handleLogout}>Logout</li>
