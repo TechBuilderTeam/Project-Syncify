@@ -134,7 +134,9 @@ npm run dev
 git pull
 ```
 [💾 Commit pattern](#)
-`git add .`
-`git commit -m"your commit title"`
-`git push`
+```bash
+git add .
+git commit -m"your commit title"
+git push
+```
 
