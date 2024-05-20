@@ -61,6 +61,7 @@ const Navbar = ({ handleThemeChange }) => {
             >
                 Register
             </NavLink> */}
+
       <NavLink
         to="/dashboard/profile"
         className={({ isActive }) =>
