@@ -63,11 +63,11 @@ const Workspace = () => {
   }
   return (
     <div>
-      <h1 className="text-center text-2xl font-semibold my-3">Workspaces</h1>
+      <h1 className="text-center text-4xl font-semibold mt-4 mb-10">Workspaces</h1>
       <div className="overflow-x-auto">
-        <table className="table border-separate dark:bg-black">
-          <thead>
-            <tr>
+        <table className="table border-separate ">
+          <thead className="">
+            <tr className="text-center text-[#8401A1] dark:text-[#73e9fe] text-xl ">
               <th>Id</th>
               <th>Name</th>
               <th>Manager</th>
@@ -77,7 +77,7 @@ const Workspace = () => {
           </thead>
           <tbody>
             {workspaces.map((workspace) => (
-              <tr key={workspace.id} className="bg-base-200">
+              <tr key={workspace.id} className="text-center">
                 <th>{workspace.id}</th>
                 <td>{workspace.name}</td>
                 <td>{user.names}</td>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 const CreateWorkspace = () => {
@@ -64,24 +64,24 @@ const CreateWorkspace = () => {
             <input
               type="text"
               id="workspaceName"
-              className="border-2 p-4 w-96 mt-3"
+              className="border-2 p-4 w-96 mt-3 bg-slate-100 dark:bg-slate-900"
               value={workspaceName}
               onChange={(e) => setWorkspaceName(e.target.value)}
               required
               placeholder="Enter Workspace Name"
             />
           </div>
-          <div>
+          {/* <div>
             <label htmlFor="workspaceManager">Workspace Manager:</label>
             <br />
             <input
               type="text"
               id="workspaceManager"
-              value={user.userId}
+              value={user?.userId}
               readOnly
-              className="border-2 p-4 w-96 mt-3"
+              className="border-2 p-4 w-96 mt-3 bg-slate-100 dark:bg-slate-900 "
             />
-          </div>
+          </div> */}
           <button
             type="submit"
             className="border-none outline-none bg-[#8401A1] hover:bg-gradient-to-r from-[#30acc2] to-[#8401A1] text-white rounded-sm w-96 p-4"
