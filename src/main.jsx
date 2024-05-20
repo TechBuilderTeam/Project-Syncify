@@ -13,11 +13,15 @@ import ForgetPassword from "./components/Pages/Authentication/ForgetPassword/For
 import Profile from "./components/User/Profile";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import Workspace from "./components/Pages/Workspace/Workspace";
-
+import ResetPassword from "./components/Pages/Authentication/ResetPassword/ResetPassword";
+import "react-toastify/dist/ReactToastify.css";
+import UserWorkspace from "./components/Pages/Workspace/UserWorkspace";
+import CreateWorkspace from "./components/Pages/Workspace/CreateWorkspace";
 import "react-toastify/dist/ReactToastify.css";
 import "react-calendar/dist/Calendar.css";
 import Calendarui from "./components/Pages/Dashboard/Calendarui/Calendarui";
+import EditWorkspace from "./components/Pages/Workspace/EditWorkspace";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -44,9 +48,29 @@ const router = createBrowserRouter([
         element: <ForgetPassword />,
       },
       {
-       path: "/workspace",
-       element:<Workspace/>,
-      }
+        path: "/profile",
+        element:<Profile/>
+      },
+      {
+        path: "/forget",
+        element: <ForgetPassword/>
+      },
+      {
+        path: "/password-reset-confirm/:uid/:token",
+        element: <ResetPassword/>
+      },
+      {
+        path: "/workspace",
+        element: <UserWorkspace />,
+      },
+      {
+        path: "/createworkspace",
+        element: <CreateWorkspace />,
+      },
+      {
+        path: "/editworkspace/:workspaceId",
+        element: <EditWorkspace />,
+      },
     ],
   },
   {
@@ -64,6 +88,7 @@ const router = createBrowserRouter([
     ],
   },
 ]);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />
