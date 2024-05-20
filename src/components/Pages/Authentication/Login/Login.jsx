@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -23,6 +23,41 @@ const Login = () => {
     })
   }
 
+  const handleSignInWithGoogle = async (response) => {
+
+    try{
+       // console.log(response); // Logging the response for debugging
+      console.log(response);
+      const payload = response.credential
+      console.log('payload', typeof payload)
+      const server_res = await axios.post("https://projectsyncifyapi.onrender.com/api/v1/auth/google/", {"access_token": payload})
+      console.log('server -> ',server_res)
+      
+
+      const user = {
+        "email": server_res.data.email,
+        "name": server_res.data.full_name,
+        "userId": server_res.data.user_id 
+      }
+
+      if(server_res.status === 200){
+        localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('access', JSON.stringify(server_res.data.access_token))
+        localStorage.setItem('refresh', JSON.stringify(server_res.data.refresh_token))
+        navigate("/dashboard");
+        toast.success("login successfull")
+      }   
+    }
+    catch(err){
+       console.log('error from google -> ',err.response.status)
+       if(err.response.status === 500){
+        toast.warning("Server Error!!!")
+       }
+    }
+    
+
+  };
+
   const handleSubmit = async(e) => {
     e.preventDefault()
     const {email , password} = logindata
@@ -33,11 +68,12 @@ const Login = () => {
       setIsLoading(true)
       const res = await axiosData.post("/auth/login/",logindata)
       const response = res.data
-      console.log(response)
+      console.log('response from login  -> ',response)
       setIsLoading(false)
       const user = {
         "email" : response.email,
-        "names" : response.full_name
+        "names" : response.full_name,
+        "userId" : response.user_id
       }
       if(res.status === 200){
         localStorage.setItem("user",JSON.stringify(user))
@@ -49,6 +85,27 @@ const Login = () => {
       console.log(response)
     }
   }
+
+  useEffect(() => {
+     //global google
+  google.accounts.id.initialize({
+    client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID, // Using client ID from environment variable
+    callback: handleSignInWithGoogle // Callback function when sign-in completes
+  });
+
+   // Render the sign-in button
+   google.accounts.id.renderButton(
+    document.getElementById("signInDiv"), // Assuming there's an element with id 'signInDiv'
+    {
+      theme: "outline",
+      size: "large",
+      text: "continue_with",
+      shape: "circle",
+      width: 200 // Width should be a number, not a string
+    }
+  );
+  },[])
+
   return (
     <div className="py-10 px-10 text-[#8401A1] dark:text-[#73e9fe]">
       <div className="flex gap-3 justify-center md:justify-normal items-center">
@@ -66,9 +123,10 @@ const Login = () => {
           </h1>
           <p className="mt-6 text-lg">Login with your social account</p>
           <div className="flex gap-4 mt-3">
-          <button>
+          {/* <button  >
           <FcGoogle className="w-8 h-8" />
-          </button>
+          </button> */}
+          <div id='signInDiv'></div>
           <button>
           <FaGithub className="w-8 h-8" />
           </button>
@@ -92,7 +150,7 @@ const Login = () => {
           />
           <br />
           <input
-            type="text"
+            type="password"
             placeholder="Password"
             name="password"
             className=" outline-none border-2 w-full  px-8 py-4 bg-[#EEF5F3] rounded-full"
