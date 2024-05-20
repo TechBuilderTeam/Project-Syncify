@@ -10,7 +10,7 @@
 
 
 <p align="center">ProjectSyncify is a Project Management Application.</p>
-<a href="https://project-syncify.netlify.app" align="center">ProjectSyncify Live Site.</a>
+<a href="https://project-syncify.netlify.app" align="center">Live Site.</a>
 
 
 <p align="center">
@@ -47,7 +47,7 @@ Run this command to install all prerequisites.
 
 
 ```bash
-git clone https://github.com/TechBuilderTeam/project-syncify.git
+git clone https://github.com/TechBuilderTeam/Project-Syncify.git
 ```
 
 Run this command to clone this project.
@@ -122,13 +122,19 @@ npm run dev
 
 
 
-1. `git clone https://github.com/TechBuilderTeam/project-syncify.git`
+1. `git clone https://github.com/TechBuilderTeam/Project-Syncify.git`
 2. `git checkout -b your_branch_name`
 3. Follow commit patterns
-4. Open a Pull Request explaining the problem solved or feature made, if exists, append screenshot of visual modifications and wait for the review!
+4. Open a Pull Request explaining the problem solved or feature made, if exists, append a screenshot of visual modifications and wait for the review!
  
 <h3>Documentations that might help</h3>
 
 [📝 How to create a Pull Request](#)
-
+```bash
+git pull
+```
 [💾 Commit pattern](#)
+`git add .`
+`git commit -m"your commit title"`
+`git push`
+
