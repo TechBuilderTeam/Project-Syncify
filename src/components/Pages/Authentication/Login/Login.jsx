@@ -1,11 +1,14 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAxios from "../../../../hooks/useAxios";
+import { TiEyeOutline } from "react-icons/ti";
+import { IoIosEyeOff } from "react-icons/io";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { AuthContext } from "../../../../Providers/AuthProviders/AuthProviders";
 const Login = () => {
   const axiosData = useAxios();
   const navigate = useNavigate();
@@ -14,7 +17,15 @@ const Login = () => {
     password : ""
   })
   const [error, setError] = useState("")
-  const [isLoading, setIsLoading] = useState(false)
+  const {loading,setLoading} = useContext(AuthContext)
+
+  console.log({loading, setLoading})
+
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
 
   const handleChange = (e) => {
     setLogindata({
@@ -30,7 +41,9 @@ const Login = () => {
       console.log(response);
       const payload = response.credential
       console.log('payload', typeof payload)
+      setLoading(true);
       const server_res = await axios.post("https://projectsyncifyapi.onrender.com/api/v1/auth/google/", {"access_token": payload})
+      setLoading(false);
       console.log('server -> ',server_res)
       
 
@@ -49,6 +62,7 @@ const Login = () => {
       }   
     }
     catch(err){
+      setLoading(false)
        console.log('error from google -> ',err.response.status)
        if(err.response.status === 500){
         toast.warning("Server Error!!!")
@@ -65,24 +79,35 @@ const Login = () => {
       setError("All fields are required")
     }
     else{
-      setIsLoading(true)
-      const res = await axiosData.post("/auth/login/",logindata)
-      const response = res.data
-      console.log('response from login  -> ',response)
-      setIsLoading(false)
-      const user = {
-        "email" : response.email,
-        "names" : response.full_name,
-        "userId" : response.user_id
+      try {
+        setLoading(true)
+        const res = await axiosData.post("/auth/login/",logindata)
+        const response = res.data
+        console.log('response from login  -> ',response)
+        setLoading(false)
+        const user = {
+          "email" : response.email,
+          "names" : response.full_name,
+          "userId" : response.user_id
+        }
+        if(res.status === 200){
+          localStorage.setItem("user",JSON.stringify(user))
+          localStorage.setItem('access',JSON.stringify(response.access_token))
+          localStorage.setItem('refresh',JSON.stringify(response.refresh_token))
+          navigate("/dashboard")
+          toast.success(response.message)
+        }
+        console.log(response)
+      } 
+      catch (error) {
+        setLoading(false)
+        if(error.response.status === 500){
+          toast.warning("Server Error!")
+        }
+        
+        console.log(error)
+        console.log(error.response.status)
       }
-      if(res.status === 200){
-        localStorage.setItem("user",JSON.stringify(user))
-        localStorage.setItem('access',JSON.stringify(response.access_token))
-        localStorage.setItem('refresh',JSON.stringify(response.refresh_token))
-        navigate("/dashboard")
-        toast.success(response.message)
-      }
-      console.log(response)
     }
   }
 
@@ -108,13 +133,14 @@ const Login = () => {
 
   return (
     <div className="py-10 px-10 text-[#8401A1] dark:text-[#73e9fe]">
+      {loading && <div className="flex justify-center items-center"><span className="loading loading-ring loading-md"></span>Loging Processing....</div>}
       <div className="flex gap-3 justify-center md:justify-normal items-center">
-        <a href="/" className="text-2xl font-bold">
+        <Link to={'/'} className="text-2xl font-bold">
           <TiArrowBackOutline />
-        </a>
-        <a href="/" className="text-lg font-bold">
+        </Link>
+        <Link to={'/'} className="text-lg font-bold">
           Back to home
-        </a>
+        </Link>
       </div>
       <div className="min-h-[600px] md:min-h-[600px] flex flex-col md:flex-row justify-between gap-3 md:gap-5">
         <div className="w-full md:w-[60%] flex flex-col items-center justify-center md:p-0">
@@ -149,14 +175,75 @@ const Login = () => {
             onChange={handleChange}
           />
           <br />
-          <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            className=" outline-none border-2 w-full  px-8 py-4 bg-[#EEF5F3] rounded-full"
-            value={logindata.password}
-            onChange={handleChange}
-          />
+            {/* <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              className="w-full  px-8 py-4 bg-[#EEF5F3] rounded-full"
+              value={logindata.password}
+              onChange={handleChange}
+            /> */}
+
+<div className="relative">
+      <input
+        type={passwordVisible ? 'text' : 'password'}
+        className=" outline-none border-2 w-full  mt-4 px-8 py-4 bg-[#EEF5F3]  rounded-full"
+        placeholder="Enter your password"
+      />
+      <div className="absolute inset-y-2 right-0 flex items-center pt-4 px-2">
+        <button
+          type="button"
+          className="focus:outline-none"
+          onClick={togglePasswordVisibility}
+        >
+          {passwordVisible ? (
+            <svg
+              className="w-6 h-6 text-gray-700"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M2.458 12C3.732 7.943 7.522 5 12 5c4.478 0 8.268 2.943 9.542 7-.957 3.104-3.645 5.588-6.803 6.167M15 12a3 3 0 01-3 3 3 3 0 01-3-3m-9.542 0a9.956 9.956 0 011.085-3.917m0 0A9.956 9.956 0 012 12m12 6a9.956 9.956 0 01-3.917-1.085m3.917 1.085a9.956 9.956 0 01-3.917-1.085"
+              />
+            </svg>
+          ) : (
+            <svg
+              className="w-6 h-6 text-gray-700"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M2.458 12C3.732 7.943 7.522 5 12 5c4.478 0 8.268 2.943 9.542 7-.957 3.104-3.645 5.588-6.803 6.167M15 12a3 3 0 01-3 3 3 3 0 01-3-3m-9.542 0a9.956 9.956 0 011.085-3.917m0 0A9.956 9.956 0 012 12m12 6a9.956 9.956 0 01-3.917-1.085m3.917 1.085a9.956 9.956 0 01-3.917-1.085"
+              />
+            </svg>
+          )}
+        </button>
+      </div>
+    </div>
+
+
           <button
             className="mt-5 w-full  text-white py-3 rounded-full bg-gradient-to-r from-[#9d11bd] to-[#73e9fe] hover:from-[#73e9fe] hover:to-[#9d11bd]"
             style={{

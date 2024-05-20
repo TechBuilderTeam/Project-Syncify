@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import DeleteWorkspace from "./DeleteWorkspace";
 import { FaRegEdit } from "react-icons/fa";
+import { AuthContext } from "../../../Providers/AuthProviders/AuthProviders";
+
 const Workspace = () => {
   const [workspaces, setWorkspaces] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
+  const {user,loading, setLoading} = useContext(AuthContext)
   const [error, setError] = useState(null);
-  const user = JSON.parse(localStorage.getItem("user"));
+  // const user = JSON.parse(localStorage.getItem("user"));
+
+  console.log('user data show from workspace -> ',{user})
 
   useEffect(() => {
     const fetchWorkspaces = async () => {
@@ -16,7 +21,7 @@ const Workspace = () => {
 
       try {
         const response = await axios.get(
-          `https://projectsyncifyapi.onrender.com/workspace/user/${user.user_id}/workspaces/`
+          `https://projectsyncifyapi.onrender.com/workspace/user/${user.userId}/workspaces/`
         );
         setWorkspaces(response.data);
       } catch (err) {
@@ -27,7 +32,7 @@ const Workspace = () => {
     };
 
     fetchWorkspaces();
-  }, [user.user_id]);
+  }, []);
 
   const handleDeleteWorkspace = (workspaceId) => {
     setWorkspaces((prevWorkspaces) =>
