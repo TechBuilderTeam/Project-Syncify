@@ -1,8 +1,8 @@
 // import { VscGraph } from "react-icons/vsc";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { HiMenuAlt2 } from "react-icons/hi";
-
+import { IoLogOutSharp } from "react-icons/io5";
 import { FaXmark } from "react-icons/fa6";
 import { AuthContext } from "../../Providers/AuthProviders/AuthProviders";
 const Navbar = ({ handleThemeChange }) => {
@@ -90,7 +90,7 @@ const Navbar = ({ handleThemeChange }) => {
           className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
         >
           <li>
-            <a href="/workspace">View All</a>
+            <Link to="/workspace">View All</Link>
           </li>
           <li>
             <a href="/createworkspace">Create New</a>
@@ -105,6 +105,8 @@ const Navbar = ({ handleThemeChange }) => {
   const toggleMenu = () => {
     setOpen(!open);
   };
+
+  
 
   return (
     <div className=" mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl p-4 ">
@@ -154,7 +156,7 @@ const Navbar = ({ handleThemeChange }) => {
             <hr className="w-[3px] h-[36px] bg-[#8401A1] dark:bg-[#73e9fe]" />
 
             <a href="contact">Contact</a>
-            <Link to="/login">Log In</Link>
+            {user ? <><div onClick={handleLogout}>LogOut</div></>: <Link to="/login">Log In</Link>}
             <Link to="/register">
               <button className="px-3 py-1 hidden md:flex bg-[#8401A1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#8401A1] rounded text-white">
                 Get Started
