@@ -1,43 +1,46 @@
 // import { VscGraph } from "react-icons/vsc";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { HiMenuAlt2 } from "react-icons/hi";
 
 import { FaXmark } from "react-icons/fa6";
+import { AuthContext } from "../../Providers/AuthProviders/AuthProviders";
 const Navbar = ({ handleThemeChange }) => {
-  const navlinks = (
-    <>
-      <NavLink
-        to="/"
-        className={({ isActive }) =>
-          isActive
-            ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
-            : "text-[#8401A1] dark:text-[#73e9fe]"
-        }
-      >
-        Home
-      </NavLink>
-      <NavLink
-        to="/features"
-        className={({ isActive }) =>
-          isActive
-            ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-1"
-            : "text-[#8401A1] dark:text-[#73e9fe]"
-        }
-      >
-        Features
-      </NavLink>
-      <NavLink
-        to="/solutions"
-        className={({ isActive }) =>
-          isActive
-            ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
-            : "text-[#8401A1] dark:text-[#73e9fe]"
-        }
-      >
-        Solutions
-      </NavLink>
-      {/* <NavLink
+    const {user, handleLogout} = useContext(AuthContext);
+    console.log(user)
+    const navlinks = (
+        <>
+            <NavLink
+                to="/"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+                        : "text-[#8401A1] dark:text-[#73e9fe]"
+                }
+            >
+                Home
+            </NavLink>
+            <NavLink
+                to="/features"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+                        : "text-[#8401A1] dark:text-[#73e9fe]"
+                }
+            >
+                Features
+            </NavLink>
+            <NavLink
+                to="/solutions"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+                        : "text-[#8401A1] dark:text-[#73e9fe]"
+                }
+            >
+                Solutions
+            </NavLink>
+            {/* <NavLink
             {/* <NavLink
                 to="/login"
                 className={({ isActive }) =>

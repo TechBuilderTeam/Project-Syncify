@@ -12,6 +12,8 @@ import VerifyEmail from "./components/Pages/Authentication/VerifyEmail/VerifyEma
 import ForgetPassword from "./components/Pages/Authentication/ForgetPassword/ForgetPassword";
 import Profile from "./components/User/Profile";
 import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import ResetPassword from "./components/Pages/Authentication/ResetPassword/ResetPassword";
 import "react-toastify/dist/ReactToastify.css";
 import UserWorkspace from "./components/Pages/Workspace/UserWorkspace";
 import CreateWorkspace from "./components/Pages/Workspace/CreateWorkspace";
@@ -44,6 +46,18 @@ const router = createBrowserRouter([
       {
         path: "/forgotpassword",
         element: <ForgetPassword />,
+      },
+      {
+        path: "/profile",
+        element:<Profile/>
+      },
+      {
+        path: "/forget",
+        element: <ForgetPassword/>
+      },
+      {
+        path: "/password-reset-confirm/:uid/:token",
+        element: <ResetPassword/>
       },
       {
         path: "/workspace",

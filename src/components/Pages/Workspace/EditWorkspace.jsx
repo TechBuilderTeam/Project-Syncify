@@ -36,7 +36,7 @@ const EditWorkspace = () => {
 
     const updatedWorkspace = {
       name: workspaceName,
-      workSpace_manager: user.user_id,
+      workSpace_manager: user.userId,
     };
 
     try {
@@ -96,7 +96,7 @@ const EditWorkspace = () => {
             <input
               type="text"
               id="workspaceManager"
-              value={user.user_id}
+              value={user.userId}
               readOnly
               className="border-2 p-4 w-96 mt-3"
             />

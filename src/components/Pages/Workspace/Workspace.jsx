@@ -16,7 +16,7 @@ const Workspace = () => {
 
       try {
         const response = await axios.get(
-          `https://projectsyncifyapi.onrender.com/workspace/user/${user.user_id}/workspaces/`
+          `https://projectsyncifyapi.onrender.com/workspace/user/${user.userId}/workspaces/`
         );
         setWorkspaces(response.data);
       } catch (err) {
@@ -27,7 +27,7 @@ const Workspace = () => {
     };
 
     fetchWorkspaces();
-  }, [user.user_id]);
+  }, [user.userId]);
 
   const handleDeleteWorkspace = (workspaceId) => {
     setWorkspaces((prevWorkspaces) =>

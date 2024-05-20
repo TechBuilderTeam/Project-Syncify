@@ -2,6 +2,8 @@ import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../pages/shared/Navbar";
 import Footer from "../pages/shared/Footer";
 import { useEffect, useState } from "react";
+import AuthProviders from "../Providers/AuthProviders/AuthProviders";
+// import AuthProviders from "../Providers/AuthProviders/AuthProviders";
 
 
 const Root = () => {
@@ -21,11 +23,14 @@ const Root = () => {
         setTheme(theme === "dark" ? "light" : "dark");
     }
     return (
-        <div className="bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]">
-           {noHeaderFooter || <Navbar handleThemeChange={handleThemeChange} /> }
-            <Outlet />
-            {noHeaderFooter || <Footer />}
-        </div>
+            <AuthProviders>
+            <div className="bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]">
+            {noHeaderFooter || <Navbar handleThemeChange={handleThemeChange} /> }
+                <Outlet />
+                {noHeaderFooter || <Footer />}
+            </div>
+            </AuthProviders>
+           
     );
 };
 
