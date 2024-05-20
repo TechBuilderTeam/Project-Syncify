@@ -58,15 +58,11 @@ Use the `.env` as reference to create your configuration file `.env` with your
 Google, GitHub Credentials
 
 ```yaml
-EMAIL= ''
-EMAIL_PASSWORD='' 
-GOOGLE_CLIENT_ID={your google client id}
-GOOGLE_CLIENT_SECRET={your google client secret}
-GITHUB_CLIENT_ID={your github client id}
-GITHUB_CLIENT_SECRET={your github client secret}
-SOCIAL_AUTH_PASSWORD=''
+VITE_GOOGLE_CLIENT_ID={your google client id}
+CLIENT_SECRET={your client secret}
+VITE_GITHUB_ID={your github client id}
 ```
- 
+
 <h3>Starting</h3>
 
 How to start this project
