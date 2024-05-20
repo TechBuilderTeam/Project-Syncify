@@ -18,7 +18,7 @@ const HomeEmailSection = () => {
               <input
                 type="text"
                 placeholder="Enter your email"
-                className="px-8 md:px-16 py-2 md:py-4 text-lg bg-white rounded rounded-r-none text-black"
+                className="px-8 md:px-16 py-2 md:py-4 text-lg bg-white rounded rounded-r-none "
               />
               <button className="py-2 md:py-4 pr-4 md:pr-8  bg-white dark:text-cyan-600 rounded rounded-l-none font-bold">
                 Send

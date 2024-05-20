@@ -1,15 +1,18 @@
 import RegiAni from "../../../../../public/RegAni.json";
 import { TiArrowBackOutline } from "react-icons/ti";
 import Lottie from "lottie-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAxios from "../../../../hooks/useAxios";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import axios from "axios";
+import SocialLogin from "../../../../pages/shared/SocialLogin";
 
 const Register = () => {
   const navigate = useNavigate();
+  const [searchparams] = useSearchParams()
   const axiosData = useAxios();
   const [formdata, setFormdata] = useState({
     email: "",
@@ -37,17 +40,106 @@ const Register = () => {
       alert("Password does not match")
     }
     else {
-      const res = await axiosData.post("/auth/register/", formdata)
-      const response = res.data
-      console.log(response)
-      if (res.status === 201) {
-        toast.success(response.message)
-        navigate("/otp/verify")
+      try {
+        console.log('formdata->',formdata)
+        const res = await axiosData.post("/auth/register/", formdata)
+        const response = res.data
+        console.log(response)
+        console.log(response)
+        if (res.status === 201) {
+          toast.success(response.message)
+          navigate("/otp/verify")
 
+        }
+      } catch (error) {
+        console.log('error -> ',error)
       }
     }
-    console.log(formdata)
   }
+
+  const handleSignInWithGoogle = async (response) => {
+    // console.log(response); // Logging the response for debugging
+    console.log(response);
+    const payload = response.credential
+    console.log('payload', typeof payload)
+    const server_res = await axios.post("https://projectsyncifyapi.onrender.com/api/v1/auth/google/", {"access_token": payload})
+    console.log('server -> ',server_res)
+
+    const user = {
+      "email": server_res.data.email,
+      "name": server_res.data.full_name 
+    }
+
+    if(server_res.status === 200){
+      localStorage.setItem('user', JSON.stringify(user))
+      localStorage.setItem('access', JSON.stringify(server_res.data.access_token))
+      localStorage.setItem('refresh', JSON.stringify(server_res.data.refresh_token))
+      navigate("/dashboard");
+      toast.success("login successfull")
+    }
+
+  };
+
+  const handleSignInWithGithub = async (response) => {
+    window.location.assign(`https://github.com/login/oauth/authorize/?client_id=${import.meta.env.VITE_GITHU_ID}`)
+  }
+
+  const send_code_to_backend = async () => {
+    if(searchparams){
+      try {
+        const qcode = searchparams.get('code');
+        const response = await axiosInstance.post('/auth/github/', {"code": qcode})
+        const result = response.data
+
+        console.log('result -> ',result)
+    
+        if(response.status === 200){
+
+          const user = {
+            "email": result.email,
+            "name": result.full_name 
+          }
+
+          localStorage.setItem('user', JSON.stringify(user))
+          localStorage.setItem('access', JSON.stringify(result.access_token))
+          localStorage.setItem('refresh', JSON.stringify(result.refresh_token))
+          navigate("/dashboard");
+          toast.success("login successfull")
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
+
+let code = searchparams.get('code')
+useEffect(() => {
+  console.log(import.meta.env.VITE_GOOGLE_CLIENT_ID)
+  
+
+   if(code){
+    send_code_to_backend()
+   }
+  //global google
+  google.accounts.id.initialize({
+    client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID, // Using client ID from environment variable
+    callback: handleSignInWithGoogle // Callback function when sign-in completes
+  });
+
+   // Render the sign-in button
+   google.accounts.id.renderButton(
+    document.getElementById("signInDiv"), // Assuming there's an element with id 'signInDiv'
+    {
+      theme: "outline",
+      size: "large",
+      text: "continue_with",
+      shape: "circle",
+      width: 200 // Width should be a number, not a string
+    }
+  );
+  
+},[code])
 
   return (
     <div className="py-10 px-10 ">
@@ -74,14 +166,17 @@ const Register = () => {
           </h1>
           <div className="text-center flex flex-col items-center" >
             <p className="text-lg">Login with your social account</p>
-            <div className="flex gap-4 mt-3">
-              <button>
+             <div className="flex gap-4 mt-3">
+              <button >
                 <FcGoogle className="w-8 h-8" />
               </button>
-              <button>
+              <div id='signInDiv'></div>
+              <button onClick={handleSignInWithGithub}>
                 <FaGithub className="w-8 h-8" />
               </button>
-            </div>
+            </div> 
+            
+
             <span className="my-1 hidden md:flex">
               __________________________________or__________________________________
             </span>
@@ -149,7 +244,7 @@ const Register = () => {
 
             <h3 className="mt-4">
               Already have an account? Please{" "}
-              <Link to="\login" className="underline">
+              <Link to="login" className="underline">
                 Sign in
               </Link>
             </h3>

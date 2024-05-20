@@ -12,13 +12,8 @@ import VerifyEmail from "./components/Pages/Authentication/VerifyEmail/VerifyEma
 import ForgetPassword from "./components/Pages/Authentication/ForgetPassword/ForgetPassword";
 import Profile from "./components/User/Profile";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import UserWorkspace from "./components/Pages/Workspace/UserWorkspace";
-import CreateWorkspace from "./components/Pages/Workspace/CreateWorkspace";
-import "react-toastify/dist/ReactToastify.css";
-import "react-calendar/dist/Calendar.css";
-import Calendarui from "./components/Pages/Dashboard/Calendarui/Calendarui";
-import EditWorkspace from "./components/Pages/Workspace/EditWorkspace";
+import 'react-toastify/dist/ReactToastify.css';
+import ResetPassword from "./components/Pages/Authentication/ResetPassword/ResetPassword";
 
 const router = createBrowserRouter([
   {
@@ -38,43 +33,32 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/otp/verify",
-        element: <VerifyEmail />,
+        path:"/otp/verify",
+        element:<VerifyEmail/>
       },
       {
         path: "/forgotpassword",
         element: <ForgetPassword />,
       },
       {
-        path: "/workspace",
-        element: <UserWorkspace />,
+        path: "/profile",
+        element:<Profile/>
       },
       {
-        path: "/createworkspace",
-        element: <CreateWorkspace />,
+        path: "/forget",
+        element: <ForgetPassword/>
       },
       {
-        path: "/editworkspace/:workspaceId",
-        element: <EditWorkspace />,
-      },
+        path: "/password-reset-confirm/:uid/:token",
+        element: <ResetPassword/>
+      }
     ],
   },
   {
-    path: "/dashboard",
-    element: <Dashboard />,
-    children: [
-      {
-        path: "/dashboard/profile",
-        element: <Profile />,
-      },
-      {
-        path: "/dashboard/calendar",
-        element: <Calendarui />,
-      },
-    ],
-  },
+    path:'/dashboard',
+    element: <Dashboard/>
+  }
 ]);
-
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <RouterProvider router={router} />

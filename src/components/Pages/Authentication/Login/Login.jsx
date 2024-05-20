@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { TiArrowBackOutline } from "react-icons/ti";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAxios from "../../../../hooks/useAxios";
 import { FcGoogle } from "react-icons/fc";
@@ -40,13 +40,11 @@ const Login = () => {
         "names" : response.full_name
       }
       if(res.status === 200){
-        toast.success(response.message)
         localStorage.setItem("user",JSON.stringify(user))
         localStorage.setItem('access',JSON.stringify(response.access_token))
         localStorage.setItem('refresh',JSON.stringify(response.refresh_token))
-
-        
-        navigate("/dashboard/profile")
+        navigate("/dashboard")
+        toast.success(response.message)
       }
       console.log(response)
     }
@@ -94,7 +92,7 @@ const Login = () => {
           />
           <br />
           <input
-            type="password"
+            type="text"
             placeholder="Password"
             name="password"
             className=" outline-none border-2 w-full  px-8 py-4 bg-[#EEF5F3] rounded-full"
@@ -115,6 +113,7 @@ const Login = () => {
           </button>
           </div>
           </form>
+          <p className="text-start"><NavLink to='/forget'>Forget Password</NavLink></p>
         </div>
         <div
           className="w-full md:w-[40%] text-white flex flex-col justify-center items-center text-center gap-y-2 md:gap-y-3 px-10 py-24 rounded md:p-0"
