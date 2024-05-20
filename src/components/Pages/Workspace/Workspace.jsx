@@ -32,7 +32,9 @@ const Workspace = () => {
     };
 
     fetchWorkspaces();
+
   }, []);
+
 
   const handleDeleteWorkspace = (workspaceId) => {
     setWorkspaces((prevWorkspaces) =>
