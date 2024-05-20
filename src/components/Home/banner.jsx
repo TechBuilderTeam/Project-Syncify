@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Banner = () => {
     return (
-        <div className="relative bg-gradient-to-b from-[#73e9fe] to-[#78118f] text-[#8401A1]">
+        <div className="relative bg-gradient-to-b from-[#73e9fe] dark:from-[#78118f] to-[#78118f] dark:to-[#73e9fe]">
             <div className="h-[85vh] flex flex-col justify-center items-center space-y-4 space-x-4 md:space-x-0">
                 <div>
                     <h1 className="text-center text-5xl font-bold">

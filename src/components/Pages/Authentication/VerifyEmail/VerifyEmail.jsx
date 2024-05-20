@@ -13,10 +13,18 @@ const VerifyEmail = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if(otp){
-            const response =await axios.post("https://projectsyncifyapi.onrender.com/api/v1/auth/verify-email/",{'otp':otp});
-            if(response.status === 200){
-                toast.success(response.data.message)
-                navigate("/login")
+
+            try{
+                const response =await axios.post("https://projectsyncifyapi.onrender.com/api/v1/auth/verify-email/",{'otp':otp})
+                console.log('response -> ', response)
+                if(response.status === 200){
+                    toast.success(response.data.message)
+                    navigate("/login")
+                }
+            }
+            catch(err){
+                console.log('error -> ',err.response.data.message)
+                toast.success(err.response.data.message)
             }
         }
     };

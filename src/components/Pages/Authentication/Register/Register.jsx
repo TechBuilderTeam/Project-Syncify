@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import axios from "axios";
-import SocialLogin from "../../../../pages/shared/SocialLogin";
+// import SocialLogin from "../../../../pages/shared/SocialLogin";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -30,9 +30,11 @@ const Register = () => {
       [e.target.name]: e.target.value
     })
   }
+
   const { email, first_name, last_name, password, password2 } = formdata
   const handleSubmit = async (e) => {
     e.preventDefault()
+    console.log('Fromdata -> ',formdata)
     if (!email || !first_name || !last_name || !password || !password2) {
       alert("All fields are required")
     }
@@ -47,36 +49,47 @@ const Register = () => {
         console.log(response)
         console.log(response)
         if (res.status === 201) {
-          toast.success(response.message)
+          toast.success("please check email and provide otp!!!")
           navigate("/otp/verify")
 
         }
       } catch (error) {
-        console.log('error -> ',error)
+        console.log('error -> ',error.response.data.email[0])
+        toast.warning(error.response.data.email[0])
       }
     }
   }
 
   const handleSignInWithGoogle = async (response) => {
-    // console.log(response); // Logging the response for debugging
-    console.log(response);
-    const payload = response.credential
-    console.log('payload', typeof payload)
-    const server_res = await axios.post("https://projectsyncifyapi.onrender.com/api/v1/auth/google/", {"access_token": payload})
-    console.log('server -> ',server_res)
 
-    const user = {
-      "email": server_res.data.email,
-      "name": server_res.data.full_name 
-    }
+    try{
+       // console.log(response); // Logging the response for debugging
+      console.log(response);
+      const payload = response.credential
+      console.log('payload', typeof payload)
+      const server_res = await axios.post("https://projectsyncifyapi.onrender.com/api/v1/auth/google/", {"access_token": payload})
+      console.log('server -> ',server_res)
 
-    if(server_res.status === 200){
-      localStorage.setItem('user', JSON.stringify(user))
-      localStorage.setItem('access', JSON.stringify(server_res.data.access_token))
-      localStorage.setItem('refresh', JSON.stringify(server_res.data.refresh_token))
-      navigate("/dashboard");
-      toast.success("login successfull")
+      const user = {
+        "email": server_res.data.email,
+        "name": server_res.data.full_name 
+      }
+
+      if(server_res.status === 200){
+        localStorage.setItem('user', JSON.stringify(user))
+        localStorage.setItem('access', JSON.stringify(server_res.data.access_token))
+        localStorage.setItem('refresh', JSON.stringify(server_res.data.refresh_token))
+        navigate("/dashboard");
+        toast.success("login successfull")
+      }   
     }
+    catch(err){
+       console.log('error from google -> ',err.response.status)
+       if(err.response.status === 500){
+        toast.warning("Server side facing error")
+       }
+    }
+    
 
   };
 
@@ -116,12 +129,16 @@ const Register = () => {
 let code = searchparams.get('code')
 useEffect(() => {
   console.log(import.meta.env.VITE_GOOGLE_CLIENT_ID)
+
+  const userData = localStorage.getItem("user");
+  console.log({userData})
   
 
    if(code){
     send_code_to_backend()
-   }
-  //global google
+   }  
+  
+   //global google
   google.accounts.id.initialize({
     client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID, // Using client ID from environment variable
     callback: handleSignInWithGoogle // Callback function when sign-in completes
@@ -138,7 +155,6 @@ useEffect(() => {
       width: 200 // Width should be a number, not a string
     }
   );
-  
 },[code])
 
   return (
@@ -167,9 +183,9 @@ useEffect(() => {
           <div className="text-center flex flex-col items-center" >
             <p className="text-lg">Login with your social account</p>
              <div className="flex gap-4 mt-3">
-              <button >
+              {/* <button >
                 <FcGoogle className="w-8 h-8" />
-              </button>
+              </button> */}
               <div id='signInDiv'></div>
               <button onClick={handleSignInWithGithub}>
                 <FaGithub className="w-8 h-8" />
