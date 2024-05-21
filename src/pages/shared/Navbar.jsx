@@ -6,41 +6,41 @@ import { IoLogOutSharp } from "react-icons/io5";
 import { FaXmark } from "react-icons/fa6";
 import { AuthContext } from "../../Providers/AuthProviders/AuthProviders";
 const Navbar = ({ handleThemeChange }) => {
-    const {user, handleLogout} = useContext(AuthContext);
-    console.log(user)
-    const navlinks = (
-        <>
-            <NavLink
-                to="/"
-                className={({ isActive }) =>
-                    isActive
-                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
-                        : "text-[#8401A1] dark:text-[#73e9fe]"
-                }
-            >
-                Home
-            </NavLink>
-            <NavLink
-                to="/features"
-                className={({ isActive }) =>
-                    isActive
-                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
-                        : "text-[#8401A1] dark:text-[#73e9fe]"
-                }
-            >
-                Features
-            </NavLink>
-            <NavLink
-                to="/solutions"
-                className={({ isActive }) =>
-                    isActive
-                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
-                        : "text-[#8401A1] dark:text-[#73e9fe]"
-                }
-            >
-                Solutions
-            </NavLink>
-            {/* <NavLink
+  const { user, handleLogout } = useContext(AuthContext);
+  console.log({ user });
+  const navlinks = (
+    <>
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive
+            ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+            : "text-[#8401A1] dark:text-[#73e9fe]"
+        }
+      >
+        Home
+      </NavLink>
+      <NavLink
+        to="/features"
+        className={({ isActive }) =>
+          isActive
+            ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+            : "text-[#8401A1] dark:text-[#73e9fe]"
+        }
+      >
+        Features
+      </NavLink>
+      <NavLink
+        to="/solutions"
+        className={({ isActive }) =>
+          isActive
+            ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+            : "text-[#8401A1] dark:text-[#73e9fe]"
+        }
+      >
+        Solutions
+      </NavLink>
+      {/* <NavLink
             {/* <NavLink
                 to="/login"
                 className={({ isActive }) =>
@@ -62,18 +62,47 @@ const Navbar = ({ handleThemeChange }) => {
                 Register
             </NavLink> */}
 
-      <NavLink
-        to="/dashboard/profile"
-        className={({ isActive }) =>
-          isActive
-            ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
-            : "text-[#8401A1] dark:text-[#73e9fe]"
-        }
-      >
-        Dashboard
-      </NavLink>
+      {user?.email && (
+        <>
+          <NavLink
+            to="/dashboard/profile"
+            className={({ isActive }) =>
+              isActive
+                ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
+                : "text-[#8401A1] dark:text-[#73e9fe]"
+            }
+          >
+            Dashboard
+          </NavLink>
+          {/* workspace dropdown  */}
+          <div className="dropdown dropdown-bottom">
+            <div
+              tabIndex={0}
+              role="button"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
+                  : "text-[#8401A1] underline-offset-0 dark:text-[#73e9fe]"
+              }
+            >
+              Project
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-2 shadow-2xl  rounded-box w-52"
+            >
+              <li>
+                <Link to="/workspace">View All</Link>
+              </li>
+              <li>
+                <a href="/createworkspace">Create New</a>
+              </li>
+            </ul>
+          </div>
+        </>
+      )}
 
-      {/* dropdown  */}
+      {/* dropdown 
       <div className="dropdown dropdown-bottom">
         <div
           tabIndex={0}
@@ -88,7 +117,7 @@ const Navbar = ({ handleThemeChange }) => {
         </div>
         <ul
           tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+          className="dropdown-content z-[1] menu p-2 shadow-2xl  rounded-box w-52"
         >
           <li>
             <Link to="/workspace">View All</Link>
@@ -97,7 +126,7 @@ const Navbar = ({ handleThemeChange }) => {
             <a href="/createworkspace">Create New</a>
           </li>
         </ul>
-      </div>
+      </div> */}
     </>
   );
 
@@ -106,8 +135,6 @@ const Navbar = ({ handleThemeChange }) => {
   const toggleMenu = () => {
     setOpen(!open);
   };
-
-  
 
   return (
     <div className=" mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl p-4 ">
@@ -157,7 +184,13 @@ const Navbar = ({ handleThemeChange }) => {
             <hr className="w-[3px] h-[36px] bg-[#8401A1] dark:bg-[#73e9fe]" />
 
             <a href="contact">Contact</a>
-            {user ? <><div onClick={handleLogout}>LogOut</div></>: <Link to="/login">Log In</Link>}
+            {user ? (
+              <>
+                <div onClick={handleLogout}>LogOut</div>
+              </>
+            ) : (
+              <Link to="/login">Log In</Link>
+            )}
             <Link to="/register">
               <button className="px-3 py-1 hidden md:flex bg-[#8401A1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#8401A1] rounded text-white">
                 Get Started
