@@ -88,6 +88,10 @@ const router = createBrowserRouter([
         {
           path: "/workspace/:id",
           element: <Member/>,
+        },
+        {
+          path: "/workspace/:id/profile",
+          element: <Profile/>,
         }
     ]
   },
@@ -95,10 +99,10 @@ const router = createBrowserRouter([
     path: "/dashboard",
     element: <Dashboard />,
     children: [
-      {
-        path: "/dashboard/profile",
-        element: <Profile />,
-      },
+      // {
+      //   path: "/dashboard/profile",
+      //   element: <Profile />,
+      // },
       {
         path: "/dashboard/calendar",
         element: <Calendarui />,

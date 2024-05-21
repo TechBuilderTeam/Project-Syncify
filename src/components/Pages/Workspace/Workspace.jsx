@@ -5,9 +5,10 @@ import DeleteWorkspace from "./DeleteWorkspace";
 import { FaRegEdit } from "react-icons/fa";
 import { AuthContext } from "../../../Providers/AuthProviders/AuthProviders";
 import { FaCirclePlus } from "react-icons/fa6";
+import { TbListDetails } from "react-icons/tb";
 
 const Workspace = () => {
-  
+
   const [workspaces, setWorkspaces] = useState([]);
   // const [loading, setLoading] = useState(true);
   const { user, loading, setLoading } = useContext(AuthContext)
@@ -26,8 +27,9 @@ const Workspace = () => {
         const response = await axios.get(
           `https://projectsyncifyapi.onrender.com/workspace/user/${user.userId}/workspaces/`
         );
-        console.log("response data -> ",response.data)
+        console.log("response data -> ", response.data)
         setWorkspaces(response.data);
+        setError(null);
         console.log('out try block')
       } catch (err) {
         setError("Feting workspaces failed");
@@ -51,10 +53,10 @@ const Workspace = () => {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>{error}</div>;
-  }
-  if (workspaces.length === 0 ) {
+  // if (error) {
+  //   return <div>{error}</div>;
+  // }
+  if (workspaces.length === 0) {
     return (
       <div className="flex justify-center items-center my-10">
         <h1 className="text-2xl">
@@ -83,17 +85,24 @@ const Workspace = () => {
               <th>Name</th>
               <th>Manager</th>
               <th>Email</th>
+              <th>More Details</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
             {workspaces.map((workspace) => (
-              <tr key={workspace.id} className="bg-base-200">
+              <tr key={workspace.id} className="text-center">
                 <th><Link to={`${workspace.id}`}>{workspace.id}</Link></th>
                 <td>{workspace.name}</td>
-                <td>{user.names}</td>
-                <td>{user.email}</td>
+                <td>{user?.name}</td>
+                <td>{user?.email}</td>
+                <td>   <Link to={`${workspace.id}`}>
+                  Visit
+                </Link></td>
                 <th className="flex justify-between">
+                  {/* <Link to={`${workspace.id}`}>
+                    <TbListDetails className="text-xl" />
+                  </Link> */}
                   <Link to={`/editworkspace/${workspace.id}`}>
                     <FaRegEdit className="text-xl" />
                   </Link>
