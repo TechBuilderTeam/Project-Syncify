@@ -57,7 +57,7 @@ const Login = () => {
         localStorage.setItem('user', JSON.stringify(user))
         localStorage.setItem('access', JSON.stringify(server_res.data.access_token))
         localStorage.setItem('refresh', JSON.stringify(server_res.data.refresh_token))
-        navigate("/dashboard");
+        navigate("/workspace");
         toast.success("login successfull")
       }   
     }
@@ -94,7 +94,7 @@ const Login = () => {
           localStorage.setItem("user",JSON.stringify(user))
           localStorage.setItem('access',JSON.stringify(response.access_token))
           localStorage.setItem('refresh',JSON.stringify(response.refresh_token))
-          navigate("/dashboard")
+          navigate("/workspace")
           toast.success(response.message)
         }
         console.log(response)
@@ -175,16 +175,16 @@ const Login = () => {
             onChange={handleChange}
           />
           <br />
-            {/* <input
+            <input
               type="password"
               placeholder="Password"
               name="password"
               className="w-full  px-8 py-4 bg-[#EEF5F3] rounded-full"
               value={logindata.password}
               onChange={handleChange}
-            /> */}
+            />
 
-<div className="relative">
+{/* <div className="relative">
       <input
         type={passwordVisible ? 'text' : 'password'}
         className=" outline-none border-2 w-full  mt-4 px-8 py-4 bg-[#EEF5F3]  rounded-full"
@@ -241,7 +241,7 @@ const Login = () => {
           )}
         </button>
       </div>
-    </div>
+    </div> */}
 
 
           <button
