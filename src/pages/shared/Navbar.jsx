@@ -1,13 +1,12 @@
 // import { VscGraph } from "react-icons/vsc";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { HiMenuAlt2 } from "react-icons/hi";
-import { IoLogOutSharp } from "react-icons/io5";
 import { FaXmark } from "react-icons/fa6";
 import { AuthContext } from "../../Providers/AuthProviders/AuthProviders";
 const Navbar = ({ handleThemeChange }) => {
     const {user, handleLogout} = useContext(AuthContext);
-    console.log(user)
+    console.log({user})
     const navlinks = (
         <>
             <NavLink

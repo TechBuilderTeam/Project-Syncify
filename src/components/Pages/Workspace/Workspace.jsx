@@ -7,6 +7,7 @@ import { AuthContext } from "../../../Providers/AuthProviders/AuthProviders";
 import { FaCirclePlus } from "react-icons/fa6";
 
 const Workspace = () => {
+  
   const [workspaces, setWorkspaces] = useState([]);
   // const [loading, setLoading] = useState(true);
   const { user, loading, setLoading } = useContext(AuthContext)
@@ -21,10 +22,13 @@ const Workspace = () => {
       setError(null);
 
       try {
+        console.log("currently in try block")
         const response = await axios.get(
           `https://projectsyncifyapi.onrender.com/workspace/user/${user.userId}/workspaces/`
         );
+        console.log("response data -> ",response.data)
         setWorkspaces(response.data);
+        console.log('out try block')
       } catch (err) {
         setError("Feting workspaces failed");
       } finally {
@@ -33,7 +37,7 @@ const Workspace = () => {
     };
 
     fetchWorkspaces();
-
+    console.log("workspace data -> ", workspaces)
   }, []);
 
 
@@ -84,8 +88,8 @@ const Workspace = () => {
           </thead>
           <tbody>
             {workspaces.map((workspace) => (
-              <tr key={workspace.id} className="text-center">
-                <th>{workspace.id}</th>
+              <tr key={workspace.id} className="bg-base-200">
+                <th><Link to={`${workspace.id}`}>{workspace.id}</Link></th>
                 <td>{workspace.name}</td>
                 <td>{user.names}</td>
                 <td>{user.email}</td>
