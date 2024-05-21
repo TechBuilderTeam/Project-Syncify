@@ -7,7 +7,7 @@ import { FaXmark } from "react-icons/fa6";
 import { AuthContext } from "../../Providers/AuthProviders/AuthProviders";
 const Navbar = ({ handleThemeChange }) => {
     const {user, handleLogout} = useContext(AuthContext);
-    console.log(user)
+    console.log({user})
     const navlinks = (
         <>
             <NavLink
@@ -61,7 +61,10 @@ const Navbar = ({ handleThemeChange }) => {
             >
                 Register
             </NavLink> */}
-      <NavLink
+
+            { user?.email &&
+           <>  
+              <NavLink
         to="/dashboard/profile"
         className={({ isActive }) =>
           isActive
@@ -71,8 +74,38 @@ const Navbar = ({ handleThemeChange }) => {
       >
         Dashboard
       </NavLink>
+      {/* workspace dropdown  */}
+           <div className="dropdown dropdown-bottom">
+             <div
+               tabIndex={0}
+               role="button"
+               className={({ isActive }) =>
+                 isActive
+                   ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
+                   : "text-[#8401A1] underline-offset-0 dark:text-[#73e9fe]"
+               }
+             >
+               Project
+             </div>
+             <ul
+               tabIndex={0}
+               className="dropdown-content z-[1] menu p-2 shadow-2xl  rounded-box w-52"
+             >
+               <li>
+                 <Link to="/workspace">View All</Link>
+               </li>
+               <li>
+                 <a href="/createworkspace">Create New</a>
+               </li>
+             </ul>
+           </div>
 
-      {/* dropdown  */}
+           </>
+            }
+
+   
+
+      {/* dropdown 
       <div className="dropdown dropdown-bottom">
         <div
           tabIndex={0}
@@ -87,7 +120,7 @@ const Navbar = ({ handleThemeChange }) => {
         </div>
         <ul
           tabIndex={0}
-          className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+          className="dropdown-content z-[1] menu p-2 shadow-2xl  rounded-box w-52"
         >
           <li>
             <Link to="/workspace">View All</Link>
@@ -96,7 +129,7 @@ const Navbar = ({ handleThemeChange }) => {
             <a href="/createworkspace">Create New</a>
           </li>
         </ul>
-      </div>
+      </div> */}
     </>
   );
 

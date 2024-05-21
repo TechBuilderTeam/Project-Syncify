@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
+import { AuthContext } from './../../../Providers/AuthProviders/AuthProviders';
 
 const CreateWorkspace = () => {
   const [workspaceName, setWorkspaceName] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-  const user = JSON.parse(localStorage.getItem("user"));
+  
+  const {user, loading, setLoading } = useContext(AuthContext)
+  
+  console.log({user})
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -16,10 +21,16 @@ const CreateWorkspace = () => {
 
     const newWorkspace = {
       name: workspaceName,
-      workSpace_manager: user.user_id,
+      workSpace_manager: user.userId.toString(),
     };
 
+    console.log({newWorkspace})
+
     try {
+      setLoading(true);
+      setSuccess("");
+      setError("");
+      
       const response = await axios.post(
         "https://projectsyncifyapi.onrender.com/workspace/list/",
         newWorkspace,
@@ -33,16 +44,20 @@ const CreateWorkspace = () => {
       if (response.status === 201) {
         setSuccess("Workspace created successfully!");
         setError("");
+
         // Reset the form
         setWorkspaceName("");
+        setLoading(false)
       } else {
         setError("Failed to create the workspace.");
         setSuccess("");
+        setLoading(false)
       }
     } catch (error) {
       console.error("There was an error creating the workspace!", error);
       setError("There was an error creating the workspace!");
       setSuccess("");
+      setLoading(false)
     }
   };
   return (
@@ -51,6 +66,9 @@ const CreateWorkspace = () => {
         <h2 className="mt-3 mb-5 text-2xl font-semibold text-center">
           Create a new workspace
         </h2>
+
+        {loading && <div className="flex justify-center items-center"><span className="loading loading-ring loading-md"></span>Please wait! Creating new workspace.....</div>}
+
         <div className="text-center my-5">
           {error && <p style={{ color: "red" }}>{error}</p>}
           {success && <p style={{ color: "green" }}>{success}</p>}
@@ -64,24 +82,24 @@ const CreateWorkspace = () => {
             <input
               type="text"
               id="workspaceName"
-              className="border-2 p-4 w-96 mt-3"
+              className="border-2 p-4 w-96 mt-3 bg-slate-100 dark:bg-slate-900"
               value={workspaceName}
               onChange={(e) => setWorkspaceName(e.target.value)}
               required
               placeholder="Enter Workspace Name"
             />
           </div>
-          <div>
+          {/* <div>
             <label htmlFor="workspaceManager">Workspace Manager:</label>
             <br />
             <input
               type="text"
               id="workspaceManager"
-              value={user.user_id}
+              value={user?.userId}
               readOnly
-              className="border-2 p-4 w-96 mt-3"
+              className="border-2 p-4 w-96 mt-3 bg-slate-100 dark:bg-slate-900 "
             />
-          </div>
+          </div> */}
           <button
             type="submit"
             className="border-none outline-none bg-[#8401A1] hover:bg-gradient-to-r from-[#30acc2] to-[#8401A1] text-white rounded-sm w-96 p-4"
