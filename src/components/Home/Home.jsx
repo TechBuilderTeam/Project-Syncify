@@ -6,7 +6,7 @@ import HomeEmailSection from "../Pages/Home/HomeEmailSection/HomeEmailSection";
 
 import CustomerSection from "../Pages/Home/CustomerSection/CustomerSection";
 // import Login from "../Pages/Login/login";
-import Banner from "./Banner";
+import Banner from "./banner";
 
 import Features from "../Pages/Home/Features/Features";
 const Home = () => {
