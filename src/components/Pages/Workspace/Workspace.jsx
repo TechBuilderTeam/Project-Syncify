@@ -30,6 +30,7 @@ const Workspace = () => {
         console.log("response data -> ", response.data)
         setWorkspaces(response.data);
         setError(null);
+        
         console.log('out try block')
       } catch (err) {
         setError("Feting workspaces failed");
@@ -39,6 +40,8 @@ const Workspace = () => {
     };
 
     fetchWorkspaces();
+    //sabrina setted setLoading(false) here 
+    setLoading(false);
     console.log("workspace data -> ", workspaces)
   }, []);
 

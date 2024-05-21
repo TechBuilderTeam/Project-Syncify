@@ -92,6 +92,7 @@ const Login = () => {
           localStorage.setItem("user",JSON.stringify(user))
           localStorage.setItem('access',JSON.stringify(response.access_token))
           localStorage.setItem('refresh',JSON.stringify(response.refresh_token))
+          setLoading(false)
           navigate("/workspace")
           toast.success(response.message)
         }

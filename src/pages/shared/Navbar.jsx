@@ -63,7 +63,7 @@ const Navbar = ({ handleThemeChange }) => {
 
             { user?.email &&
            <>  
-              <NavLink
+              {/* <NavLink
         to="/dashboard"
         className={({ isActive }) =>
           isActive
@@ -72,7 +72,7 @@ const Navbar = ({ handleThemeChange }) => {
         }
       >
         Dashboard
-      </NavLink>
+      </NavLink> */}
       {/* <NavLink */}
       {/* workspace dropdown  */}
            <div className="dropdown dropdown-bottom">
