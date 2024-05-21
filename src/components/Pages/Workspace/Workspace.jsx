@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import DeleteWorkspace from "./DeleteWorkspace";
@@ -26,7 +26,7 @@ const Workspace = () => {
         );
         setWorkspaces(response.data);
       } catch (err) {
-        setError();
+        setError("Feting workspaces failed");
       } finally {
         setLoading(false);
       }
@@ -50,7 +50,7 @@ const Workspace = () => {
   if (error) {
     return <div>{error}</div>;
   }
-  if (workspaces.length === 0 || setError) {
+  if (workspaces.length === 0 ) {
     return (
       <div className="flex justify-center items-center my-10">
         <h1 className="text-2xl">
