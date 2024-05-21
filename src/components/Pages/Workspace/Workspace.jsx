@@ -40,6 +40,7 @@ const Workspace = () => {
     console.log("workspace data -> ", workspaces)
   }, []);
 
+
   const handleDeleteWorkspace = (workspaceId) => {
     setWorkspaces((prevWorkspaces) =>
       prevWorkspaces.filter((workspace) => workspace.id !== workspaceId)

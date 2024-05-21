@@ -95,7 +95,11 @@ const CreateWorkspace = () => {
             <input
               type="text"
               id="workspaceManager"
+<<<<<<< HEAD
               value={user?.userId}
+=======
+              value={user.userId}
+>>>>>>> 102f801e21b87666f2a2e442c6e9ba5413eae4c3
               readOnly
               className="border-2 p-4 w-96 mt-3 bg-slate-100 dark:bg-slate-900 "
             />
