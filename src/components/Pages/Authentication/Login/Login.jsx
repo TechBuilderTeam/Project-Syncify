@@ -173,16 +173,16 @@ const Login = () => {
             onChange={handleChange}
           />
           <br />
-            {/* <input
+            <input
               type="password"
               placeholder="Password"
               name="password"
               className="w-full  px-8 py-4 bg-[#EEF5F3] rounded-full"
               value={logindata.password}
               onChange={handleChange}
-            /> */}
+            />
 
-<div className="relative">
+{/* <div className="relative">
       <input
         type={passwordVisible ? 'text' : 'password'}
         className=" outline-none border-2 w-full  mt-4 px-8 py-4 bg-[#EEF5F3]  rounded-full"
@@ -239,7 +239,7 @@ const Login = () => {
           )}
         </button>
       </div>
-    </div>
+    </div> */}
 
 
           <button

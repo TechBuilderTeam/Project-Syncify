@@ -3,10 +3,16 @@ import AuthProviders from '../../../Providers/AuthProviders/AuthProviders';
 import { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import Sidebar from "./Sidebar";
-import { Outlet } from "react-router-dom";
+import { Outlet, useLoaderData, useParams } from "react-router-dom";
 import Workspace from "../Workspace/Workspace";
 
 const Dashboard = ({ sidebarToggle, setSidebarToggle }) => {
+  // const workspaceData = useLoaderData();
+  // console.log({workspaceData})
+
+  const {id} = useParams()
+  console.log('dashboard id -> ', id)
+
   const [theme, setTheme] = useState("light");
   useEffect(() => {
     if (theme === "dark") {
@@ -36,7 +42,6 @@ const Dashboard = ({ sidebarToggle, setSidebarToggle }) => {
                   <Outlet />
                 </div>
               </div>
-              {/* <Navbar handleThemeChange={handleThemeChange} /> */}
             </div>
         </AuthProviders>
         

@@ -21,6 +21,8 @@ import "react-toastify/dist/ReactToastify.css";
 import "react-calendar/dist/Calendar.css";
 import Calendarui from "./components/Pages/Dashboard/Calendarui/Calendarui";
 import EditWorkspace from "./components/Pages/Workspace/EditWorkspace";
+import DynamicDashboard from "./components/Pages/DynamicDashboard/DynamicDashboard";
+import Member from "./components/Pages/DynamicDashboard/Member";
 
 const router = createBrowserRouter([
   {
@@ -71,16 +73,36 @@ const router = createBrowserRouter([
         path: "/editworkspace/:workspaceId",
         element: <EditWorkspace />,
       },
+      // {
+      //   path: "workspace/:id",
+      //   element: <DynamicDashboard></DynamicDashboard>, 
+      //   // loader: ({params}) => fetch(`https://projectsyncifyapi.onrender.com/workspace/list/${params.id}`)
+      // },
     ],
+  },
+  {
+    path: "/workspace/:id",
+    element: <DynamicDashboard/>,
+    // loader: ({params}) => fetch(`https://projectsyncifyapi.onrender.com/workspace/list/${params.id}`),
+    children: [
+        {
+          path: "/workspace/:id",
+          element: <Member/>,
+        },
+        {
+          path: "/workspace/:id/profile",
+          element: <Profile/>,
+        }
+    ]
   },
   {
     path: "/dashboard",
     element: <Dashboard />,
     children: [
-      {
-        path: "/dashboard/profile",
-        element: <Profile />,
-      },
+      // {
+      //   path: "/dashboard/profile",
+      //   element: <Profile />,
+      // },
       {
         path: "/dashboard/calendar",
         element: <Calendarui />,

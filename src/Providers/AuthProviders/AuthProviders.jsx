@@ -1,172 +1,11 @@
-// import React, { useEffect } from 'react';
-// import { createContext } from "react";
-// import {getAuth,createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, GoogleAuthProvider, signInWithPopup, GithubAuthProvider} from 'firebase/auth';
-// import app from "../../Firebase/Firebase.config";
-// import { useState } from 'react';
-// import axios from 'axios';
+
+
 
 import { createContext, useEffect, useState } from "react";
 import axiosInstance from "../../Utils/axiosInstance";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-// export const AuthContext = createContext(null);
-
-// const auth = getAuth(app);
-
-// const AuthProviders = ({children}) => {
-
-//     const [user,setUser] = useState('');
-//     const [loading,setLoading] = useState(true);
-
-//     const provider = new GoogleAuthProvider();
-//     const githubProvider = new GithubAuthProvider();
-    
-//     const createUser = (email,password) =>{
-//         setLoading(true)
-//         return createUserWithEmailAndPassword(auth,email,password)
-//     }
-
-//     const SignIn = (email,password) =>{
-//         setLoading(true);
-//         return signInWithEmailAndPassword(auth,email,password);
-//     }
-
-//     const GoogleSignIn = () =>{
-//         setLoading(true);
-//         return signInWithPopup(auth,provider);
-//     }
-
-//     const GithubSignIn = () => {
-//         setLoading(true);
-//         return signInWithPopup(auth, githubProvider)
-//     }
-
-//     const Logout = () =>{
-//         setLoading(true)
-//         return signOut(auth);
-//     }
-
-//     const updateUserProfile = (name,photo) =>{
-//         setLoading(true)
-//         return updateProfile(auth.currentUser, {
-//             displayName: name, photoURL: photo
-//         });
-//     }
-
-//      //observe user auth state
-//      useEffect( () =>{
-//         const unsubscribe = onAuthStateChanged(auth, currentUser =>{
-//             setUser(currentUser);
-            
-//             console.log(currentUser)
-//             //get and set token
-//             if(currentUser){
-//                 axios.post('https://bistro-boss-restaurant-server-lovat.vercel.app/jwt', {email: currentUser.email})
-//                 .then(data => {
-//                     console.log(data.data.token)
-//                     localStorage.setItem('access-token', data.data.token)
-//                     setLoading(false);
-//                 })
-//             }
-//             else{
-//                 localStorage.removeItem('access-token')
-//             }
-
-            
-//         })
-
-//         return () =>{
-//             return unsubscribe();
-//         }
-//     },[])
-
-//     const AuthInfo = {
-//         user,
-//         loading,
-//         createUser,
-//         SignIn,
-//         GoogleSignIn,
-//         GithubSignIn,
-//         Logout,
-//         updateUserProfile
-//     }
-
-//     return (
-//         <AuthContext.Provider value={AuthInfo}>
-//             {children}
-//         </AuthContext.Provider>
-//     );
-// };
-
-// export default AuthProviders;
-
-// import React, { useEffect } from 'react';
-// import { createContext } from "react";
-// import {getAuth,createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile, GoogleAuthProvider, signInWithPopup, GithubAuthProvider} from 'firebase/auth';
-// import app from "../../Firebase/Firebase.config";
-// import { useState } from 'react';
-// import axios from 'axios';
-// import { useRouteLoaderData } from 'react-router-dom';
-
-
-
-// const auth = getAuth(app);
-
-// const AuthProviders = ({children}) => {
-
-//     const [user,setUser] = useState(null);
-//     const [loading,setLoading] = useState(true);
-
-
-//      //observe user auth state
-//      useEffect( () =>{
-//         const unsubscribe = onAuthStateChanged(auth, currentUser =>{
-//             setUser(currentUser);
-            
-//             console.log(currentUser)
-//             //get and set token
-//             if(currentUser){
-//                 axios.post('https://bistro-boss-restaurant-server-lovat.vercel.app/jwt', {email: currentUser.email})
-//                 .then(data => {
-//                     console.log(data.data.token)
-//                     localStorage.setItem('access-token', data.data.token)
-//                     setLoading(false);
-//                 })
-//             }
-//             else{
-//                 localStorage.removeItem('access-token')
-//             }
-
-            
-//         })
-    
-       
-
-
-//         return () =>{
-//             return unsubscribe();
-//         }
-//     },[])
-
-//     const AuthInfo = {
-//         user,
-//         loading,
-//         createUser,
-//         SignIn,
-//         GoogleSignIn,
-//         GithubSignIn,
-//         Logout,
-//         updateUserProfile
-//     }
-
-//     return (
-//         <AuthContext.Provider value={AuthInfo}>
-//             {children}
-//         </AuthContext.Provider>
-//     );
-// };
-
-// export default AuthProviders;
 
 
 export const AuthContext = createContext(null);
@@ -188,7 +27,7 @@ const AuthProviders = ({children}) => {
              localStorage.removeItem('user')
              localStorage.removeItem('userId')
              navigate('/login')
-             toast.warning("logout successful")
+             toast.success("logout successful")
         }
       }
 
@@ -211,6 +50,7 @@ const AuthProviders = ({children}) => {
         }
 
         unsubscribe()
+        // console.log("user data show from authproviders -> ", user)
     },[])
 
     const AuthInfo = {

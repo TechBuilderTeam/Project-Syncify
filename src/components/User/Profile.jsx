@@ -55,9 +55,9 @@ const Profile = () => {
     <div className=" h-screen px-10 py-10">
       <h1 className="text-3xl text-center">hi {user && user?.names}</h1>
       <p>email: {user && user.email}</p>
-      <button className="px-4 py-10" onClick={handleLogout}>
+      {/* <button className="px-4 py-10" onClick={handleLogout}>
         Logout
-      </button>
+      </button> */}
     </div>
   );
 };
