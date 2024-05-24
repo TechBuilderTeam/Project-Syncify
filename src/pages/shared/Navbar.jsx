@@ -5,6 +5,8 @@ import { HiMenuAlt2 } from "react-icons/hi";
 import { IoLogOutSharp } from "react-icons/io5";
 import { FaXmark } from "react-icons/fa6";
 import { AuthContext } from "../../Providers/AuthProviders/AuthProviders";
+
+
 const Navbar = ({ handleThemeChange }) => {
     const {user, handleLogout} = useContext(AuthContext);
     console.log({user})
