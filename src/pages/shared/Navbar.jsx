@@ -4,6 +4,8 @@ import { Link, NavLink } from "react-router-dom";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { FaXmark } from "react-icons/fa6";
 import { AuthContext } from "../../Providers/AuthProviders/AuthProviders";
+
+
 const Navbar = ({ handleThemeChange }) => {
     const {user, handleLogout} = useContext(AuthContext);
     console.log({user})

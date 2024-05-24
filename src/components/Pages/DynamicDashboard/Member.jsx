@@ -9,6 +9,8 @@ const Member = () => {
     const {id} = useParams();
     console.log({id})
 
+   
+    
 
     const newMember = {
       "workspace_Name": '',
@@ -16,8 +18,8 @@ const Member = () => {
       "email": '',
   }
     
-    const handleCloseModelButton = () => {
-        document.getElementById('my_modal_3').close()
+    const handleCloseModelButton = (value) => {
+        document.getElementById(value).close()
     }
 
     const handleAddUserButton = async (e) => {
@@ -27,22 +29,35 @@ const Member = () => {
       newMember.role = e.target.userType.value;
       newMember.email = e.target.email.value;
 
-      console.log({newMember})
-
       try {
-        const result = await axios.post(`https://projectsyncifyapi.onrender.com/api/v2/workspace/members/add/`,  {
-          workspace_Name: id,
-          role: newMember.role,
-          email: newMember.email 
-        })
+        const result = await axios.post(`https://projectsyncifyapi.onrender.com/api/v2/workspace/members/add/`, newMember)
         console.log('result -> ', result)
         setChange(!change);
-        toast.success("Member Successfully added")
-        handleCloseModelButton()
+        handleCloseModelButton("my_modal_3")
       } catch (error) {
         console.log('error -> ',error)
       }
 
+    }
+
+    const handleUpdateButton = async (e) => {
+        e.preventDefault()
+        const updateMember = {
+            "workspace_id": id,
+            "new_role": e.target.userType.value,
+            "user_id": e.target.user_id.value
+        }
+
+        try {
+            const result = await axios.patch(`https://projectsyncifyapi.onrender.com/api/v2/workspace/members/change-role/`, updateMember
+            )
+
+            console.log('result -> ', result)
+            setChange(!change);
+            handleCloseModelButton("edit")
+        } catch (error) {
+            console.log('error -> ',error)
+        }
     }
 
     const handleDeleteMember = async (user_id) => {
@@ -103,7 +118,7 @@ const Member = () => {
                                         <button id="closeBtn" className="btn btn-sm btn-circle  absolute right-2 top-2">✕</button>
                                     </form>
                                     <div className="max-w-lg mx-auto bg-white p-8 rounded-md shadow-md">
-                                        <h2 className="text-2xl font-semibold mb-4 text-[#8401A1]">Add New User</h2>
+                                        <h2 className="text-2xl font-bold mb-4 text-black text-center">New Member Create</h2>
                                         <form onSubmit={handleAddUserButton}>
                                             
                                             <div className="mb-4">
@@ -163,8 +178,46 @@ const Member = () => {
                                 <td>{member.role}</td>
                         <th>
                             {/* <Link to= {`/admin/admin/userDetails`} state={user} className="btn btn-accent  p-2 m-2">details</Link> */}
-                            <button className=" px-4 py-2 bg-purple-500 dark:bg-cyan-600  text-white text-sm rounded mr-10">Edit</button>
-                            <button className=" px-4 py-2 bg-red-500 text-white text-sm rounded" onClick={() => handleDeleteMember(member.user_id)}>Delete</button>
+                            {/* <button className="btn btn-neutral px-4  py-2">Edit</button> */}
+
+                            {/** Member edit button and model start */}
+                            <button className='btn-ghost'>  </button>
+                            {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                            <button className="btn btn-neutral px-4 py-2" onClick={() => document.getElementById('edit').showModal()}>Edit</button>
+                            <dialog id="edit" className="modal">
+                                <div className="modal-box">
+                                    <form method="dialog">
+                                        {/* if there is a button in form, it will close the modal */}
+                                        <button id="closeBtn" className="btn btn-sm btn-circle btn-error absolute right-2 top-2">✕</button>
+                                    </form>
+                                    <div className="max-w-lg mx-auto bg-white p-8 rounded-md shadow-md">
+                                        <h2 className="text-2xl font-bold mb-4 text-black text-center">Update Member Role</h2>
+                                        <form onSubmit={handleUpdateButton}>
+                                            
+                                            <div className="mb-4">
+                                                <label htmlFor="email" className="block text-gray-700 font-semibold mb-2">User Id</label>
+                                                <input type="text" id="user_id" name="user_id" value={member.user_id} readOnly userclassName="w-full text-black border-2 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500" placeholder="Enter User Id" />
+                
+                                            </div>
+                                            <div className="mb-4">
+                                                <label htmlFor="userType" className="block text-gray-700 font-semibold mb-2">Role</label>
+                                                <select id="userType" name="userType" className="w-full border-2 rounded-md px-4 py-2 focus:outline-none focus:border-blue-500 text-black text-1xl">
+                                                    <option value="Associate Manager">Associate Manager</option>
+                                                    <option value="Team Leader">Team Leader</option>
+                                                    <option value="Member">Member</option>
+                                                </select>
+                                            </div>
+                                            <div className="flex justify-between mb-4">
+                                                
+                                                <button type="submit" className="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition duration-300 ease-in-out">Update Member</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </dialog>
+                            {/** Member edit button and model end */}
+                            <button className="btn btn-secondary  p2 m-2" onClick={() => handleDeleteMember(member.user_id)}>Delete</button>
                         </th>
                     </tr>
                             )
