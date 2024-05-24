@@ -80,7 +80,7 @@ const Member = () => {
 
 
     return (
-        <div className='ml-20 h-screen'>
+        <div className=" h-screen">
       {/* <h2 className='m-4 text-5xl text-center '>User List </h2> */}
       <div className="overflow-x-auto shadow-xl rounded w-full m-4">
             <table className="table">

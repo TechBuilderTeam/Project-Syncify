@@ -23,6 +23,7 @@ import Calendarui from "./components/Pages/Dashboard/Calendarui/Calendarui";
 import EditWorkspace from "./components/Pages/Workspace/EditWorkspace";
 import DynamicDashboard from "./components/Pages/DynamicDashboard/DynamicDashboard";
 import Member from "./components/Pages/DynamicDashboard/Member";
+import Board from "./components/Pages/Board/Board";
 
 const router = createBrowserRouter([
   {
@@ -92,7 +93,11 @@ const router = createBrowserRouter([
         {
           path: "/workspace/:id/profile",
           element: <Profile/>,
-        }
+        },
+        {
+          path: "/workspace/:id/board",
+          element: <Board/>,
+        },
     ]
   },
   {
