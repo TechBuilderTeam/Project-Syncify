@@ -1,13 +1,16 @@
-import React, { useContext, useState } from "react";
+import  { useContext, useState } from "react";
 import axios from "axios";
 import { AuthContext } from './../../../Providers/AuthProviders/AuthProviders';
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const CreateWorkspace = () => {
   const [workspaceName, setWorkspaceName] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const navigate = useNavigate()
+
+  
   const {user, loading, setLoading } = useContext(AuthContext)
   
   console.log({user})
@@ -43,6 +46,8 @@ const CreateWorkspace = () => {
       );
 
       if (response.status === 201) {
+        toast.success("Workspace created successfully!");
+        navigate("/workspace");
         setSuccess("Workspace created successfully!");
         setError("");
 
@@ -100,8 +105,12 @@ const CreateWorkspace = () => {
 <<<<<<< HEAD
               value={user?.userId}
 =======
+<<<<<<< HEAD
+              value={user?.userId}
+=======
               value={user.userId}
 >>>>>>> 102f801e21b87666f2a2e442c6e9ba5413eae4c3
+>>>>>>> 71df910a4acbff313c5f305be32cd42685b24c90
               readOnly
               className="border-2 p-4 w-96 mt-3 bg-slate-100 dark:bg-slate-900 "
             />

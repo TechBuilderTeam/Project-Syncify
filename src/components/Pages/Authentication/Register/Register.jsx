@@ -116,7 +116,7 @@ const Register = () => {
           localStorage.setItem('user', JSON.stringify(user))
           localStorage.setItem('access', JSON.stringify(result.access_token))
           localStorage.setItem('refresh', JSON.stringify(result.refresh_token))
-          navigate("/dashboard");
+          navigate("/workspace");
           toast.success("login successfull")
         }
       } catch (error) {
@@ -260,7 +260,7 @@ useEffect(() => {
 
             <h3 className="mt-4">
               Already have an account? Please{" "}
-              <Link to="login" className="underline">
+              <Link to="/login" className="underline">
                 Sign in
               </Link>
             </h3>

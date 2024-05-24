@@ -39,12 +39,12 @@ const Navbar = ({ sidebarToggle, setSidebarToggle, handleThemeChange }) => {
             </div>
 
             <div className='flex items-center gap-x-5'>
-                <div className='relative md:w-65'>
+                {/* <div className='relative md:w-65'>
                     <span className='relative md:absolute inset-y-0 left-0 flex items-center pl-2'>
                         <button className='p-1 focus:outline-none  md:text-black'><FaSearch /></button>
                     </span>
                     <input type="text" className='w-full px-4 py-1 pl-12 rounded shadow outline-none hidden md:block' placeholder='Search' />
-                </div>
+                </div> */}
                 <div className='mt-1'>
                     <label className="swap swap-rotate ">
 
@@ -62,10 +62,10 @@ const Navbar = ({ sidebarToggle, setSidebarToggle, handleThemeChange }) => {
 
                 <div className='relative'>
                     {
-                        user ? <> <button className='text-white group '>
+                        user ? <> <button className=' group '>
                         <FaUserCircle className='w-6 h-6 mt-1'/>
-                        <div className='z-10 absolute hidden bg-white rounded-lg shadow w-32 group-focus:block top-full right-0'>
-                            <ul className='py-2 text-sm text-gray-950'>
+                        <div className='z-10 absolute hidden bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-32 group-focus:block top-full right-0'>
+                            <ul className='py-2 text-sm'>
                                 <li><a href="">Profile</a></li>
                                 <li><a href="">Setting</a></li>
                                 <li onClick={handleLogout}>Logout</li>
