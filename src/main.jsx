@@ -23,8 +23,9 @@ import Calendarui from "./components/Pages/Dashboard/Calendarui/Calendarui";
 import EditWorkspace from "./components/Pages/Workspace/EditWorkspace";
 import DynamicDashboard from "./components/Pages/DynamicDashboard/DynamicDashboard";
 import Member from "./components/Pages/DynamicDashboard/Member";
+import router from "./Route/Route";
 
-const router = createBrowserRouter([
+const routers = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
