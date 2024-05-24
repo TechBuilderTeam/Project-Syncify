@@ -15,6 +15,7 @@ import Member from "../components/Pages/DynamicDashboard/Member";
 import Dashboard from "../components/Pages/Dashboard/Dashboard";
 import Calendarui from "../components/Pages/Dashboard/Calendarui/Calendarui";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Board from "../components/Pages/Board/Board";
 
 const router = createBrowserRouter([
     {
@@ -72,15 +73,24 @@ const router = createBrowserRouter([
         // },
       ],
     },
+  
     {
       path: "/workspace/:id",
-      element: <PrivateRoute><DynamicDashboard/></PrivateRoute>,
+      element: <DynamicDashboard/>,
       // loader: ({params}) => fetch(`https://projectsyncifyapi.onrender.com/workspace/list/${params.id}`),
       children: [
           {
             path: "/workspace/:id",
             element: <Member/>,
-          }
+          },
+          {
+            path: "/workspace/:id/profile",
+            element: <Profile/>,
+          },
+          {
+            path: "/workspace/:id/board",
+            element: <Board/>,
+          },
       ]
     },
     {

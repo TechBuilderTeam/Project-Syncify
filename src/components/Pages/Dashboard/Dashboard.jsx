@@ -42,7 +42,6 @@ const Dashboard = ({ sidebarToggle, setSidebarToggle }) => {
                   <Outlet />
                 </div>
               </div>
-              {/* <Navbar handleThemeChange={handleThemeChange} /> */}
             </div>
         </AuthProviders>
         
