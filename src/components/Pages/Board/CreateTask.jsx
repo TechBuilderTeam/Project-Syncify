@@ -95,7 +95,7 @@ const CreateTask = ({ updateTasks }) => {
                                 </select>
                             </div>
                             <div className="flex justify-center mt-6">
-                                <button className="border-none outline-none bg-[#8401A1] hover:bg-gradient-to-r from-[#30acc2] to-[#8401A1] text-white rounded w-full px-4 py-2" type="submit">Create</button>
+                                <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-2" type="submit">Create</button>
                             </div>
                         </form>
                     </div>
