@@ -1,3 +1,12 @@
+<h1 align="center" style="font-weight: bold;">ProjectSyncify 💻</h1>
+
+<p align="center">
+<a href="#tech">Technologies</a>
+<a href="#started">Getting Started</a>
+<a href="#routes">API Endpoints</a>
+<a href="#colab">Collaborators</a>
+<a href="#contribute">Contribute</a> 
+</p>
 
 <p align="center">ProjectSyncify is a Project Management Application.</p>
 <a href="https://project-syncify.netlify.app" align="center">Live Site.</a>
