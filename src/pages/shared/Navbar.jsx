@@ -4,6 +4,8 @@ import { Link, NavLink } from "react-router-dom";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { FaXmark } from "react-icons/fa6";
 import { AuthContext } from "../../Providers/AuthProviders/AuthProviders";
+
+
 const Navbar = ({ handleThemeChange }) => {
     const {user, handleLogout} = useContext(AuthContext);
     console.log({user})
@@ -63,7 +65,7 @@ const Navbar = ({ handleThemeChange }) => {
 
             { user?.email &&
            <>  
-              <NavLink
+              {/* <NavLink
         to="/dashboard"
         className={({ isActive }) =>
           isActive
@@ -72,8 +74,8 @@ const Navbar = ({ handleThemeChange }) => {
         }
       >
         Dashboard
-      </NavLink>
-      {/* <NavLink */}
+      </NavLink> */}
+    
       {/* workspace dropdown  */}
            <div className="dropdown dropdown-bottom">
              <div

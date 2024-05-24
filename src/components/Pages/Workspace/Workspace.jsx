@@ -5,19 +5,19 @@ import DeleteWorkspace from "./DeleteWorkspace";
 import { FaRegEdit } from "react-icons/fa";
 import { AuthContext } from "../../../Providers/AuthProviders/AuthProviders";
 import { FaCirclePlus } from "react-icons/fa6";
-import { TbListDetails } from "react-icons/tb";
 
 const Workspace = () => {
 
   const [workspaces, setWorkspaces] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  const { user, loading, setLoading } = useContext(AuthContext)
+  const [loading, setLoading] = useState(true);
+  const {user} = useContext(AuthContext)
   const [error, setError] = useState(null);
   // const user = JSON.parse(localStorage.getItem("user"));
 
   console.log('user data show from workspace -> ', { user })
 
   useEffect(() => {
+
     const fetchWorkspaces = async () => {
       setLoading(true);
       setError(null);
@@ -29,17 +29,20 @@ const Workspace = () => {
         );
         console.log("response data -> ", response.data)
         setWorkspaces(response.data);
-        setError(null);
+        setLoading(false);
         console.log('out try block')
+        setError("")
       } catch (err) {
-        setError("Feting workspaces failed");
-      } finally {
+        setError("error");
         setLoading(false);
       }
     };
 
     fetchWorkspaces();
+    //sabrina setted setLoading(false) here 
+    setLoading(false);
     console.log("workspace data -> ", workspaces)
+
   }, []);
 
 
@@ -49,14 +52,15 @@ const Workspace = () => {
     );
   };
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
+  
   // if (error) {
   //   return <div>{error}</div>;
   // }
-  if (workspaces.length === 0) {
+  if(loading){
+    return <div>{loading && <div className="flex justify-center items-center"><span className="loading loading-ring loading-md"></span>Workspace Loading....</div>}</div>
+
+  }
+  else if (workspaces.length === 0) {
     return (
       <div className="flex justify-center items-center my-10">
         <h1 className="text-2xl">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import AuthProviders from '../../../Providers/AuthProviders/AuthProviders';
 import DynamicSidebar from './DynamicSidebar';
 import { Outlet, useLoaderData, useParams } from 'react-router-dom';
@@ -30,7 +30,7 @@ const DynamicDashboard = () => {
           <div className="w-1/4 ">
             <DynamicSidebar id={id} />
           </div>
-          <div className="w-3/4 ml-32 md:ml-56 relative h-full mt-20">
+          <div className="w-3/4 ml-32 md:ml-64 relative h-full">
             <Outlet />
           </div>
         </div>
