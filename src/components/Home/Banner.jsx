@@ -2,10 +2,10 @@ import { Link } from "react-router-dom";
 
 const Banner = () => {
     return (
-        <div className="relative bg-gradient-to-b from-[#73e9fe] dark:from-[#542e77] to-[#78118f] dark:to-[#44b4e0] text-[#8401A1] dark:text-[#73e9fe]">
+        <div className="relative bg-gradient-to-b from-[#73e9fe] to-[#78118f] text-[#8401A1]">
             <div className="h-[85vh] flex flex-col justify-center items-center space-y-4 space-x-4 md:space-x-0">
                 <div>
-                    <h1 className="text-center text-5xl font-bold ">
+                    <h1 className="text-center text-5xl font-bold">
                         A smarter way to work
                     </h1>
                 </div>
@@ -23,7 +23,7 @@ const Banner = () => {
                         </button>
                     </Link>
 
-                    <button className="px-4 py-2 border border-[#73e9fe] dark:border-[#8401A1] text-[#73e9fe] dark:text-white hover:bg-[#73e9fe] hover:text-[#8401A1] hover:dark:text-[#8401A1] font-bold rounded-sm">
+                    <button className="px-4 py-2 border border-[#73e9fe] text-[#73e9fe] hover:bg-[#73e9fe] hover:text-[#8401A1] hover:font-bold rounded-sm">
                         See how it works
                     </button>
                 </div>

@@ -1,7 +1,32 @@
+import React, { useContext } from 'react';
+// import { FaBars, FaBell, FaSearch, FaUserCircle } from 'react-icons/fa';
+import axiosInstance from './../../../Utils/axiosInstance';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../Providers/AuthProviders/AuthProviders';
+import { toast } from 'react-toastify';
 
 import { FaBell, FaSearch, FaUserCircle } from 'react-icons/fa';
 
 const Navbar = ({ sidebarToggle, setSidebarToggle, handleThemeChange }) => {
+    const navigate = useNavigate();
+    const {user} = useContext(AuthContext);
+    console.log({user})
+    
+    const handleLogout = async ()=>{
+
+        const refresh=JSON.parse(localStorage.getItem('refresh'))
+        console.log('refresh token -> ',refresh)
+        const res = await axiosInstance.post('auth/logout/', {'refresh_token':refresh})
+        console.log("response after login -> ", res)
+        if (res.status === 200) {
+             localStorage.removeItem('access')
+             localStorage.removeItem('refresh')
+             localStorage.removeItem('user')
+             navigate('/login')
+             toast.warning("logout successful")
+        }
+      }
+      
     return (
         <nav className='flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl  w-full h-20 px-3 bg-gradient-to-t from-[#73e9fe] dark:from-[#8401A1] to-[#cef8ff] dark:to-[#140518]'>
             <div className='flex items-center text-xl'>
@@ -14,12 +39,12 @@ const Navbar = ({ sidebarToggle, setSidebarToggle, handleThemeChange }) => {
             </div>
 
             <div className='flex items-center gap-x-5'>
-                <div className='relative md:w-65'>
+                {/* <div className='relative md:w-65'>
                     <span className='relative md:absolute inset-y-0 left-0 flex items-center pl-2'>
                         <button className='p-1 focus:outline-none  md:text-black'><FaSearch /></button>
                     </span>
                     <input type="text" className='w-full px-4 py-1 pl-12 rounded shadow outline-none hidden md:block' placeholder='Search' />
-                </div>
+                </div> */}
                 <div className='mt-1'>
                     <label className="swap swap-rotate ">
 
@@ -36,16 +61,19 @@ const Navbar = ({ sidebarToggle, setSidebarToggle, handleThemeChange }) => {
                 <div className=''><FaBell className='w-6 h-6 ' /></div>
 
                 <div className='relative'>
-                    <button className=' group '>
-                        <FaUserCircle className='w-6 h-6 mt-1' />
-                        <div className='z-10 absolute hidden bg-white rounded-lg shadow w-32 group-focus:block top-full right-0'>
-                            <ul className='py-2 text-sm text-gray-950'>
+                    {
+                        user ? <> <button className=' group '>
+                        <FaUserCircle className='w-6 h-6 mt-1'/>
+                        <div className='z-10 absolute hidden bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-32 group-focus:block top-full right-0'>
+                            <ul className='py-2 text-sm'>
                                 <li><a href="">Profile</a></li>
                                 <li><a href="">Setting</a></li>
-                                <li><a href="">Log Out</a></li>
+                                <li onClick={handleLogout}>Logout</li>
                             </ul>
                         </div>
-                    </button>
+                    </button></>
+                      : <><Link to={'/login'} className='text-white'><FaUserCircle className='w-6 h-6 mt-1'/></Link></> 
+                    }
                 </div>
             </div>
         </nav>
