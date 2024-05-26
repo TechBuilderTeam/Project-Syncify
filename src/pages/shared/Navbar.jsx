@@ -64,19 +64,8 @@ const Navbar = ({ handleThemeChange }) => {
             </NavLink> */}
 
             { user?.email &&
-           <>  
-              {/* <NavLink
-        to="/dashboard"
-        className={({ isActive }) =>
-          isActive
-            ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
-            : "text-[#8401A1] dark:text-[#73e9fe]"
-        }
-      >
-        Dashboard
-      </NavLink> */}
-    
-      {/* workspace dropdown  */}
+           <> 
+           {/* workspace dropdown  */}
            <div className="dropdown dropdown-bottom">
              <div
                tabIndex={0}

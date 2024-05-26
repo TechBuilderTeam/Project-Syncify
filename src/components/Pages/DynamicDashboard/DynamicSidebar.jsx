@@ -6,8 +6,13 @@ import { FaListUl } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
 import { IoHomeSharp, IoPeopleSharp } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
-const DynamicSidebar = ({ sidebarToggle, id }) => {
+const DynamicSidebar = ({ sidebarToggle, id}) => {
+  const [workspaceDetails, setWorkspaceDetails] = useState(null)
+  const [loading, setLoading] = useState(true);
+  const [error, setError ] = useState(null);
   const location = useLocation();
 
   const getLinkClass = (path) => {
@@ -16,13 +21,37 @@ const DynamicSidebar = ({ sidebarToggle, id }) => {
       : "text-black dark:text-white";
   };
 
+  useEffect( () => {
+    const fetchWorkspaces = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await axios.get(
+          `https://projectsyncifyapi.onrender.com/api/v2/workspace/${id}/details/`
+        );
+        setWorkspaceDetails(response.data)
+        console.log("workspace details data -> ", response.data)
+      } catch (err) {
+        console.log("workspace details error data -> ",  err)
+      }
+    };
+
+    fetchWorkspaces();
+    //sabrina setted setLoading(false) here 
+    setLoading(false);
+    console.log("workspace data -> ", workspaceDetails)
+  },[])
+
+  console.log('sidebar toggle from dynamic sidebar -> ', sidebarToggle)
+
   return (
     <div
-      className={`${sidebarToggle ? "hidden" : "block"
-        }w-40 md:w-60  bg-gradient-to-b from-[#73e9fe] dark:from-[#8401A1] to-[#78118f] dark:to-[#73e9fe] absolute top-20 left-0 h-full px-4 py-2`}
+      className={`${sidebarToggle ? "hidden w-0" : "block w-20 md:w-60 "
+        }  bg-gradient-to-b from-[#73e9fe] dark:from-[#8401A1] to-[#78118f] dark:to-[#73e9fe] absolute top-20 left-0 h-full px-4 py-2`}
     >
       <div className="my-2 mb-4">
-        <h1 className="text-xl font-bold text-center">Project Dashboard</h1>
+        <h1 className="text-xl sm:text-sm font-bold text-center">{workspaceDetails?.name}</h1>
       </div>
       <hr />
       <ul className="mt-3 font-bold">
