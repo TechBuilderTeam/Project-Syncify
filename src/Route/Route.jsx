@@ -61,11 +61,11 @@ const router = createBrowserRouter([
         },
         {
           path: "/createworkspace",
-          element: <CreateWorkspace />,
+          element:  <PrivateRoute><CreateWorkspace /></PrivateRoute>,
         },
         {
           path: "/editworkspace/:workspaceId",
-          element: <EditWorkspace />,
+          element:  <PrivateRoute><EditWorkspace /></PrivateRoute>,
         },
         // {
         //   path: "workspace/:id",
@@ -82,19 +82,19 @@ const router = createBrowserRouter([
       children: [
           {
             path: "/workspace/:id",
-            element: <Member/>,
+            element:  <PrivateRoute><Member/></PrivateRoute>,
           },
           {
             path: "/workspace/:id/profile",
-            element: <Profile/>,
+            element: <PrivateRoute> <Profile/> </PrivateRoute>,
           },
           {
             path: "/workspace/:id/boards",
-            element: <Board/>,
+            element:<PrivateRoute> <Board/> </PrivateRoute>,
           },
           {
             path: "/workspace/:id/tasks",
-            element: <Tasks/>,
+            element:<PrivateRoute> <Tasks/> </PrivateRoute>,
           },
       ]
     },
