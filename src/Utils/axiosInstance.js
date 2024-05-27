@@ -86,7 +86,7 @@ axiosInstance.interceptors.request.use(async req => {
         req.headers.Authorization = `Bearer ${resp.data.access}`;
         return req;
     } else {
-        req.headers.Authorization = localStorage.getItem('token') ? `Bearer ${JSON.parse(localStorage.getItem('access'))}` : " ";
+        req.headers.Authorization = localStorage.getItem('access') ? `Bearer ${JSON.parse(localStorage.getItem('access'))}` : " ";
         return req;
     }
 });

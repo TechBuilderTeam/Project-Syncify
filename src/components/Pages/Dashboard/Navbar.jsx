@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 // import { FaBars, FaBell, FaSearch, FaUserCircle } from 'react-icons/fa';
+import { FaBars } from 'react-icons/fa';
 import axiosInstance from './../../../Utils/axiosInstance';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProviders/AuthProviders';
@@ -36,7 +37,10 @@ const Navbar = ({ sidebarToggle, setSidebarToggle, handleThemeChange }) => {
                 <a href="/">
                     <h1 className="text-2xl  font-bold italic ">Project Syncify</h1>
                 </a>
+                <FaBars className='text-white me-4 text-2xl cursor-pointer mx-2' onClick={()=> setSidebarToggle(!sidebarToggle)}/>
             </div>
+
+            
 
             <div className='flex items-center gap-x-5'>
                 {/* <div className='relative md:w-65'>

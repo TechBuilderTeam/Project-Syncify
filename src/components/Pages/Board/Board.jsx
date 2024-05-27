@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders/AuthProviders";
 import CreateTask from "./CreateTask";
-import DragNDrop from "./DragNDrop";
-import EditDeleteTask from "./EditDeleteTask";
+import DragNDrop from "../Tasks/DragNDrop";
+import EditDeleteTask from "../Tasks/EditDeleteTask";
 
 const Board = () => {
     const { user } = useContext(AuthContext);
@@ -28,31 +28,11 @@ const Board = () => {
             })
             .catch(error => console.log(error));
     };
-
-    const handleShowModal = (task) => {
-        setCurrentTask(task);
-        document.getElementById("my_modal_5").showModal();
-    };
-
-    const handleUpdateTask = (updatedTask) => {
-        setTasks(prevTasks => prevTasks.map(task =>
-            task._id === updatedTask._id ? { ...task, ...updatedTask } : task
-        ));
-    };
     
     return (
         <div className="h-screen">
             <CreateTask updateTasks={updateTasks} />
-            <DragNDrop
-                tasks={tasks}
-                setTasks={setTasks}
-                handleShowModal={handleShowModal}
-            />
-            <EditDeleteTask
-                currentTask={currentTask}
-
-                handleUpdateTask={handleUpdateTask}
-            />
+          
         </div>
     );
 };
