@@ -9,10 +9,10 @@ import { CgProfile } from "react-icons/cg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const DynamicSidebar = ({ sidebarToggle, id}) => {
+const DynamicSidebar = ({ sidebarToggle, id }) => {
   const [workspaceDetails, setWorkspaceDetails] = useState(null)
   const [loading, setLoading] = useState(true);
-  const [error, setError ] = useState(null);
+  const [error, setError] = useState(null);
   const location = useLocation();
 
   const getLinkClass = (path) => {
@@ -21,7 +21,7 @@ const DynamicSidebar = ({ sidebarToggle, id}) => {
       : "text-black dark:text-white";
   };
 
-  useEffect( () => {
+  useEffect(() => {
     const fetchWorkspaces = async () => {
       setLoading(true);
       setError(null);
@@ -33,7 +33,7 @@ const DynamicSidebar = ({ sidebarToggle, id}) => {
         setWorkspaceDetails(response.data)
         console.log("workspace details data -> ", response.data)
       } catch (err) {
-        console.log("workspace details error data -> ",  err)
+        console.log("workspace details error data -> ", err)
       }
     };
 
@@ -41,7 +41,7 @@ const DynamicSidebar = ({ sidebarToggle, id}) => {
     //sabrina setted setLoading(false) here 
     setLoading(false);
     console.log("workspace data -> ", workspaceDetails)
-  },[])
+  }, [])
 
   console.log('sidebar toggle from dynamic sidebar -> ', sidebarToggle)
 
@@ -67,8 +67,9 @@ const DynamicSidebar = ({ sidebarToggle, id}) => {
             Profile
           </Link>
         </li>
-        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/board`)}`}>
-          <Link to={`/board`} className="px-3">
+        {/* for board link */}
+        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/boards`)}`}>
+          <Link to={`/workspace/${id}/boards`} className="px-3">
             <FaChalkboard className="inline-block w-6 h-6 mr-2 -mt-2" />
             Boards
           </Link>
@@ -79,9 +80,9 @@ const DynamicSidebar = ({ sidebarToggle, id}) => {
             Members
           </Link>
         </li>
-
-        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/board`)}`}>
-          <Link to={`/workspace/${id}/board`} className="px-3">
+        {/* for tasks link */}
+        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/tasks`)}`}>
+          <Link to={`/workspace/${id}/tasks`} className="px-3">
             <FaListUl className="inline-block w-6 h-6 mr-2 -mt-2" />
             Tasks
           </Link>

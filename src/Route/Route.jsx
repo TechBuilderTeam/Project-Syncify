@@ -16,6 +16,7 @@ import Dashboard from "../components/Pages/Dashboard/Dashboard";
 import Calendarui from "../components/Pages/Dashboard/Calendarui/Calendarui";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Board from "../components/Pages/Board/Board";
+import Tasks from "../components/Pages/Tasks/Tasks";
 
 const router = createBrowserRouter([
     {
@@ -88,8 +89,12 @@ const router = createBrowserRouter([
             element: <Profile/>,
           },
           {
-            path: "/workspace/:id/board",
+            path: "/workspace/:id/boards",
             element: <Board/>,
+          },
+          {
+            path: "/workspace/:id/tasks",
+            element: <Tasks/>,
           },
       ]
     },
