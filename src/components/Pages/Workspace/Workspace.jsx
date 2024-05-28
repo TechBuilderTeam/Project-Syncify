@@ -14,7 +14,7 @@ const Workspace = () => {
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext)
   const [error, setError] = useState(null);
-  
+
   // const user = JSON.parse(localStorage.getItem("user"));
 
   console.log('user data show from workspace -> ', { user })
@@ -65,31 +65,36 @@ const Workspace = () => {
   }
   else if (workspaces.length === 0) {
     return (
-      <div className="flex justify-center items-center my-10">
+      <div className="flex justify-center items-center my-10 px-10">
         <h1 className="text-2xl">
           No workspaces available for your account. <br />
-          <div className="flex items-center  gap-2 my-2">
+          {/* <div className="flex items-center  gap-2 my-2">
             <Link to="/createworkspace" className="">
               <FaCirclePlus />
             </Link>
             <Link to="/createworkspace" className="hover:underline">
               Create a new workspace
             </Link>
-          </div>
+          </div> */}
 
         </h1>
       </div>
     );
   }
   return (
-    <div>
-      
+    <div className="px-10 py-10">
+
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {workspaces.map((workspace) => (
           <div key={workspace.id} className="border dark:border-gray-700 rounded-lg shadow-lg shadow-gray-400 p-6">
-            <h2 className="text-lg font-semibold mb-2">{workspace.name}</h2>
-            <p className="text-gray-600">Manager: {user?.name}</p>
-            <p className="text-gray-600">Email: {user?.email}</p>
+            <h2 className="text-2xl font-semibold mb-2">{workspace.name.slice(0, 20)}</h2>
+            <div className="text-sm">
+              <p>Manager: <span className="text-gray-800">{workspace.workspace_manager_name }</span> </p>
+              <p >Email:  <span className="text-gray-800">{workspace.workspace_manager_email}</span></p>
+              <p >Members:  <span className="text-gray-800">{workspace.workspace_total_members}</span> </p>
+              <p>Date:  <span className="text-gray-800">{workspace.created_at}</span> </p>
+            </div>
+
             <div className="flex justify-between mt-4">
               <div className="flex justify-center items-center gap-1">
                 <Link to={`${workspace.id}`}>
