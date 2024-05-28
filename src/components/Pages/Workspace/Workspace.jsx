@@ -89,10 +89,10 @@ const Workspace = () => {
           <div key={workspace.id} className="border dark:border-gray-700 rounded-lg shadow-lg shadow-gray-400 p-6">
             <h2 className="text-2xl font-semibold mb-2">{workspace.name.slice(0, 20)}</h2>
             <div className="text-sm">
-              <p>Manager: <span className="text-gray-600">{workspace.workspace_manager_name }</span> </p>
-              <p >Email:  <span className="text-gray-600">{workspace.workspace_manager_email}</span></p>
-              <p >Members:  <span className="text-gray-600">{workspace.workspace_total_members}</span> </p>
-              <p>Date:  <span className="text-gray-600">{workspace.created_at}</span> </p>
+              <p>Manager: <span className="text-gray-800">{workspace.workspace_manager_name }</span> </p>
+              <p >Email:  <span className="text-gray-800">{workspace.workspace_manager_email}</span></p>
+              <p >Members:  <span className="text-gray-800">{workspace.workspace_total_members}</span> </p>
+              <p>Date:  <span className="text-gray-800">{workspace.created_at}</span> </p>
             </div>
 
             <div className="flex justify-between mt-4">
