@@ -1,5 +1,5 @@
 
-import { FaBoxTissue, FaChalkboard } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaBoxTissue, FaChalkboard } from "react-icons/fa";
 import { CiViewTimeline } from "react-icons/ci";
 import { SlCalender } from "react-icons/sl";
 import { FaListUl } from "react-icons/fa6";
@@ -9,7 +9,8 @@ import { CgProfile } from "react-icons/cg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const DynamicSidebar = ({ sidebarToggle, id}) => {
+const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id}) => {
+  const [open, setOpen] = useState(false);
   const [workspaceDetails, setWorkspaceDetails] = useState(null)
   const [loading, setLoading] = useState(true);
   const [error, setError ] = useState(null);
@@ -20,6 +21,8 @@ const DynamicSidebar = ({ sidebarToggle, id}) => {
       ? "bg-blue-500 text-white dark:text-[#8401A1] dark:bg-white"
       : "text-black dark:text-white";
   };
+  
+  
 
   useEffect( () => {
     const fetchWorkspaces = async () => {
@@ -47,9 +50,10 @@ const DynamicSidebar = ({ sidebarToggle, id}) => {
 
   return (
     <div
-      className={`${sidebarToggle ? "hidden w-0" : "block w-20 md:w-60 "
+      className={`${open ? " w-20" : "block w-20 md:w-60 "
         }  bg-gradient-to-b from-[#73e9fe] dark:from-[#8401A1] to-[#78118f] dark:to-[#73e9fe] absolute top-20 left-0 h-full px-4 py-2`}
     >
+      {open ? <FaArrowRight onClick={() => {setOpen(!open); setSidebarToggle(!sidebarToggle)}} className="absolute cursor-pointer rounded-full -right-3 top-9 w-7 border-2 border-dark-purple " /> : <FaArrowLeft  onClick={() => {setOpen(!open); setSidebarToggle(!sidebarToggle)}}  className="absolute cursor-pointer rounded-full -right-3 top-9 w-7 border-2 border-dark-purple " /> }
       <div className="my-2 mb-4">
         <h1 className="text-xl sm:text-sm font-bold text-center">{workspaceDetails?.name}</h1>
       </div>
@@ -87,7 +91,7 @@ const DynamicSidebar = ({ sidebarToggle, id}) => {
           </Link>
         </li>
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/timeline")}`}>
-          <Link to="/timeline" className="px-3">
+          <Link to={`/workspace/${id}/plans`} className="px-3">
             <CiViewTimeline className="inline-block w-6 h-6 mr-2 -mt-2" />
             Plans
           </Link>

@@ -25,7 +25,7 @@ const CreateWorkspace = () => {
 
     const newWorkspace = {
       name: workspaceName,
-      workSpace_manager: user.userId.toString(),
+      workSpace_manager: user?.userId.toString(),
     };
 
     console.log({newWorkspace})
@@ -58,13 +58,16 @@ const CreateWorkspace = () => {
       } else {
         setError("Failed to create the workspace.");
         setSuccess("");
-        setLoading(false)
+        setLoading(false);
       }
     } catch (error) {
       console.error("There was an error creating the workspace!", error);
       setError("There was an error creating the workspace!");
       setSuccess("");
-      setLoading(false)
+      setLoading(false);
+      if(error.response.data.workSpace_manager[0]){
+         toast.warning("Please reload this")
+      }
     }
   };
   return (

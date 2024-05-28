@@ -75,7 +75,7 @@ const Member = () => {
             const result = await axios.delete("https://projectsyncifyapi.onrender.com/api/v2/workspace/members/remove/", { data }
             )
             console.log("delete member -> ", result)
-            toast.success("Successfully deleted")
+            toast.success("Successfully deleted member")
             setChange(!change)
 
         } catch (error) {
