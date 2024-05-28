@@ -4,7 +4,9 @@ import { AuthContext } from './../../../Providers/AuthProviders/AuthProviders';
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FaCirclePlus } from "react-icons/fa6";
-
+import TitlePages from "../../../pages/shared/TitlePages";
+import Lottie from "lottie-react";
+import AniTask from "../../../../public/tasks.json"
 const CreateWorkspace = () => {
   const [workspaceName, setWorkspaceName] = useState("");
   const [error, setError] = useState("");
@@ -73,9 +75,10 @@ const CreateWorkspace = () => {
     }
   };
   return (
-    <div>
-      <div className=" ">
-        
+    <div className="">
+       <TitlePages title="Projects" subTitle="Maintain your project with our project manager website.Start by creating a new project or select an existing project to track your progress. Easily assign tasks to team members and set deadlines to stay on schedule. Monitor real-time updates and generate comprehensive reports with just a few clicks. Collaborate seamlessly with your team through integrated messaging and file sharing. Customize your workflow with flexible tools designed to fit your unique project needs. " />
+      <div className="px-10">
+
 
         {/* {loading && <div className="flex justify-center items-center"><span className="loading loading-ring loading-md"></span>Please wait! Creating new workspace.....</div>} */}
 
@@ -83,7 +86,15 @@ const CreateWorkspace = () => {
           {error && <p style={{ color: "red" }}>{error}</p>}
           {success && <p style={{ color: "green" }}>{success}</p>}
         </div> */}
-        <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold px-20 py-16 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}><FaCirclePlus className="text-7xl"/></button>
+      
+         
+            <div className="flex items-center justify-left gap-5" >
+              <h1 className="text-xl md:text-2xl  font-bold ">Create a new project or select an existing project to track your progress.</h1>
+              <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold  rounded-md px-4 py-2" onClick={() => document.getElementById('my_modal_3').showModal()}>
+                {/* <FaCirclePlus className="text-7xl" /> */} Create
+                </button>
+            </div>
+
         {/* modal open */}
         <dialog id="my_modal_3" className="modal">
           <div className="modal-box bg-white dark:bg-black">
@@ -102,14 +113,14 @@ const CreateWorkspace = () => {
                   placeholder="Enter Workspace Name"
                 />
               </div>
-            
+
               <div className="flex justify-center mt-6">
                 <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-2" type="submit">Create</button>
               </div>
             </form>
           </div>
         </dialog>
-       
+
       </div>
     </div>
   );
