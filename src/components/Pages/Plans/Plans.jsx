@@ -14,7 +14,8 @@ const Plans = () => {
     const [reload, setReload] = useState(false)
     const [selectedStatus, setSelectedStatus] = useState({});
     const [isOpen, setIsOpen] = useState({}); 
-
+    
+    console.log('data from plan component -> ', data)
 
     const toggleDropdown = (id) => {
         setIsOpen((prevState) => ({
@@ -23,11 +24,20 @@ const Plans = () => {
         }));
       };
 
-  const refactorStatus = async () => {
-    const result = await axios.patch(`https://projectsyncifyapi.onrender.com/workspace/timelines/update/status/${id}/`, {status: 'In Progress'})
-      
+  const refactorStatus = async (timelineId, statusValue) => {
+
+    const newStatus = {
+      status: statusValue
+    }
+    console.log({newStatus})
+    const result = await axios.patch(`https://projectsyncifyapi.onrender.com/workspace/timelines/update/status/${timelineId}/`,
+     newStatus
+    )
+    
+    console.log('result after status update -> ', result)
     if(result){
       toast.success("Successfully updated status");
+      toggleDropdown(timelineId)
       setReload(!reload);
     }
     else(
@@ -41,24 +51,39 @@ const Plans = () => {
       [id]: status,
     }));
 
+    console.log({selectedStatus})
+
     if(status === "To Do"){
-        refactorStatus()
+        refactorStatus(id,"To Do")
     }
     else if (status === 'In Progress') {
       console.log('Progress button clicked for timeline with id:', id);
     
-      refactorStatus()
+    //   const result = await axios.patch(`https://projectsyncifyapi.onrender.com/workspace/timelines/update/status/${id}/`,
+    //  {status: "In Progress"}
+    // )
+    
+    // console.log('result after status update -> ', result)
+    // if(result){
+    //   toast.success("Successfully updated status");
+    //   setReload(!reload);
+    // }
+    // else(
+    //   console.log('Something went wrong')
+    // )
+
+    refactorStatus(id,"In Progress")
       
     }
     else if(status === 'Testing'){
       console.log('Testing button clicked for timeline with id:', id);
 
-      refactorStatus()
+      refactorStatus(id,'Testing')
     }
     else if(status === 'Done'){
         console.log('Done button clicked for timeline with id:', id);
         
-        refactorStatus()
+        refactorStatus(id, 'Done')
     }
     else{
         
@@ -78,7 +103,7 @@ const Plans = () => {
             end_Date: ''
         }
 
-        newTimeline.workspace_Name = "6"
+        newTimeline.workspace_Name = id;
         newTimeline.name = e.target.name.value;
         newTimeline.details = e.target.details.value;
         newTimeline.start_Date = e.target.startDate.value;
@@ -92,6 +117,7 @@ const Plans = () => {
             toast.success('Successfully created timeline')
             setReload(!reload);
             handleCloseModelButton("add")
+            console.log('result data show after add timeline -> ',result)
         }
         else{
             console.log('timeline post result -> ',result)
@@ -187,6 +213,7 @@ const Plans = () => {
       const fetchData = async () => {
         setLoading(true)
         setError('')
+        console.log({id})
         try {
           const response = await axios.get(`https://projectsyncifyapi.onrender.com/workspace/singleworkspace/${id}/timelines/list/`);
           setData(response.data); // Update state with the fetched data
