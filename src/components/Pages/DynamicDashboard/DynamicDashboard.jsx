@@ -23,7 +23,7 @@ const DynamicDashboard = () => {
   const handleThemeChange = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
-
+  
   
   return (
     <AuthProviders>
@@ -31,10 +31,10 @@ const DynamicDashboard = () => {
         <div className="flex flex-col">
           <Navbar handleThemeChange={handleThemeChange} sidebarToggle={sidebarToggle} setSidebarToggle={setSidebarToggle}/>
           {/* <Navbar/> */}
-          <div className={`${sidebarToggle ? "" : "w-1/4"}`}>
-            <DynamicSidebar id={id} sidebarToggle={sidebarToggle}/>
+          <div className={`${sidebarToggle ? "w-20" : "w-1/4"}`}>
+            <DynamicSidebar id={id} sidebarToggle={sidebarToggle} setSidebarToggle={setSidebarToggle}/>
           </div>
-          <div className={`${sidebarToggle ? "w-full px-4 " : "w-3/4 ml-32 md:ml-64"}  relative h-full ` }>
+          <div className={`${sidebarToggle ? "w-full px-4 ml-20" : "w-3/4 ml-32 md:ml-64"}  relative h-full ` }>
             <Outlet />
           </div>
         </div>
