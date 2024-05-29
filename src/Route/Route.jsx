@@ -17,6 +17,7 @@ import Calendarui from "../components/Pages/Dashboard/Calendarui/Calendarui";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Board from "../components/Pages/Board/Board";
 import Plans from "../components/Pages/Plans/Plans";
+import Tasks from "../components/Pages/Tasks/Tasks";
 
 const router = createBrowserRouter([
     {
@@ -61,11 +62,11 @@ const router = createBrowserRouter([
         },
         {
           path: "/createworkspace",
-          element: <CreateWorkspace />,
+          element:  <PrivateRoute><CreateWorkspace /></PrivateRoute>,
         },
         {
           path: "/editworkspace/:workspaceId",
-          element: <EditWorkspace />,
+          element:  <PrivateRoute><EditWorkspace /></PrivateRoute>,
         },
         // {
         //   path: "workspace/:id",
@@ -82,15 +83,19 @@ const router = createBrowserRouter([
       children: [
           {
             path: "/workspace/:id",
-            element: <Member/>,
+            element:  <PrivateRoute><Member/></PrivateRoute>,
           },
           {
             path: "/workspace/:id/profile",
-            element: <Profile/>,
+            element: <PrivateRoute> <Profile/> </PrivateRoute>,
           },
           {
-            path: "/workspace/:id/board",
-            element: <Board/>,
+            path: "/workspace/:id/boards",
+            element:<PrivateRoute> <Board/> </PrivateRoute>,
+          },
+          {
+            path: "/workspace/:id/tasks",
+            element:<PrivateRoute> <Tasks/> </PrivateRoute>,
           },
           {
             path: "/workspace/:id/plans",

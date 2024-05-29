@@ -347,7 +347,7 @@ const Plans = () => {
        </td>
         <th>
 
-          <Link to={`/workspace/${id}/board`} state={timeline} className="btn btn-info px-4  py-2 text-xl" >
+          <Link to={`/workspace/${id}/boards`} state={timeline} className="btn btn-info px-4  py-2 text-xl" >
             <TbListDetails />
           </Link>
 

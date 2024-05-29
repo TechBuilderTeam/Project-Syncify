@@ -66,7 +66,7 @@ const Navbar = ({ handleThemeChange }) => {
             { user?.email &&
            <> 
            {/* workspace dropdown  */}
-           <div className="dropdown dropdown-bottom">
+           {/* <div className="dropdown dropdown-bottom">
              <div
                tabIndex={0}
                role="button"
@@ -89,7 +89,18 @@ const Navbar = ({ handleThemeChange }) => {
                  <a href="/createworkspace">Create New</a>
                </li>
              </ul>
-           </div>
+           </div> */}
+
+           <NavLink
+                to="/workspace"
+                className={({ isActive }) =>
+                    isActive
+                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
+                        : "text-[#8401A1] dark:text-[#73e9fe]"
+                }
+            >
+                Projects
+            </NavLink>
 
            </>
             }

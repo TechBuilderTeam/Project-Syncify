@@ -5,13 +5,16 @@ import DeleteWorkspace from "./DeleteWorkspace";
 import { FaRegEdit } from "react-icons/fa";
 import { AuthContext } from "../../../Providers/AuthProviders/AuthProviders";
 import { FaCirclePlus } from "react-icons/fa6";
+import { IoIosOpen } from "react-icons/io";
+import { MdOutlineFileOpen } from "react-icons/md";
 
 const Workspace = () => {
 
   const [workspaces, setWorkspaces] = useState([]);
   const [loading, setLoading] = useState(true);
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const [error, setError] = useState(null);
+  
   // const user = JSON.parse(localStorage.getItem("user"));
 
   console.log('user data show from workspace -> ', { user })
@@ -52,11 +55,11 @@ const Workspace = () => {
     );
   };
 
-  
+
   // if (error) {
   //   return <div>{error}</div>;
   // }
-  if(loading){
+  if (loading) {
     return <div>{loading && <div className="flex justify-center items-center"><span className="loading loading-ring loading-md"></span>Workspace Loading....</div>}</div>
 
   }
@@ -80,45 +83,39 @@ const Workspace = () => {
   }
   return (
     <div>
-      <h1 className="text-center text-4xl font-semibold mt-4 mb-10">Workspaces</h1>
-      <div className="overflow-x-auto">
-        <table className="table border-separate ">
-          <thead className="">
-            <tr className="text-center text-[#8401A1] dark:text-[#73e9fe] text-xl ">
-              <th>Id</th>
-              <th>Name</th>
-              <th>Manager</th>
-              <th>Email</th>
-              <th>More Details</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {workspaces.map((workspace) => (
-              <tr key={workspace.id} className="text-center">
-                <th><Link to={`${workspace.id}`}>{workspace.id}</Link></th>
-                <td>{workspace.name}</td>
-                <td>{user?.name}</td>
-                <td>{user?.email}</td>
-                <td>   <Link to={`${workspace.id}`}>
+      
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {workspaces.map((workspace) => (
+          <div key={workspace.id} className="border dark:border-gray-700 rounded-lg shadow-lg shadow-gray-400 p-6">
+            <h2 className="text-lg font-semibold mb-2">{workspace.name}</h2>
+            <p className="text-gray-600">Manager: {user?.name}</p>
+            <p className="text-gray-600">Email: {user?.email}</p>
+            <div className="flex justify-between mt-4">
+              <div className="flex justify-center items-center gap-1">
+                <Link to={`${workspace.id}`}>
+                  <MdOutlineFileOpen
+                    className="text-xl" />
+                </Link>
+                <Link to={`${workspace.id}`}>
                   Visit
-                </Link></td>
-                <th className="flex justify-between">
-                  {/* <Link to={`${workspace.id}`}>
-                    <TbListDetails className="text-xl" />
-                  </Link> */}
-                  <Link to={`/editworkspace/${workspace.id}`}>
-                    <FaRegEdit className="text-xl" />
-                  </Link>
-                  <DeleteWorkspace
-                    workspaceId={workspace.id}
-                    onDelete={handleDeleteWorkspace}
-                  />
-                </th>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                </Link>
+
+              </div>
+              <div className="flex justify-center items-center gap-1">
+                <Link to={`/editworkspace/${workspace.id}`}>
+                  <FaRegEdit className="text-xl" />
+                </Link>
+                <DeleteWorkspace
+                  workspaceId={workspace.id}
+                  onDelete={handleDeleteWorkspace}
+                />
+              </div>
+
+            </div>
+
+          </div>
+        ))}
+
       </div>
     </div>
   );
