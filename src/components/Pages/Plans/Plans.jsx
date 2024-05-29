@@ -23,6 +23,18 @@ const Plans = () => {
         }));
       };
 
+  const refactorStatus = async () => {
+    const result = await axios.patch(`https://projectsyncifyapi.onrender.com/workspace/timelines/update/status/${id}/`, {status: 'In Progress'})
+      
+    if(result){
+      toast.success("Successfully updated status");
+      setReload(!reload);
+    }
+    else(
+      console.log('Something went wrong')
+    )
+  }
+
   const handleStatusUpdateButton = async (id, status) => {
     setSelectedStatus((prevStatus) => ({
       ...prevStatus,
@@ -30,55 +42,23 @@ const Plans = () => {
     }));
 
     if(status === "To Do"){
-        const result = await axios.patch(`https://projectsyncifyapi.onrender.com/workspace/timelines/update/status/${id}/`, {status: 'In Progress'})
-      
-        if(result){
-          toast.success("Successfully updated status");
-          setReload(!reload);
-        }
-        else(
-          console.log('Something went wrong')
-        )
+        refactorStatus()
     }
     else if (status === 'In Progress') {
       console.log('Progress button clicked for timeline with id:', id);
     
-      const result = await axios.patch(`https://projectsyncifyapi.onrender.com/workspace/timelines/update/status/${id}/`, {status: 'In Progress'})
-      
-      if(result){
-        toast.success("Successfully updated status");
-        setReload(!reload);
-      }
-      else(
-        console.log('Something went wrong')
-      )
+      refactorStatus()
       
     }
     else if(status === 'Testing'){
       console.log('Testing button clicked for timeline with id:', id);
 
-      const result = await axios.patch(`https://projectsyncifyapi.onrender.com/workspace/timelines/update/status/${id}/`, {status: 'In Progress'})
-    
-      if(result){
-        toast.success("Successfully updated status");
-        setReload(!reload);
-      }
-      else(
-        console.log('Something went wrong')
-      )
+      refactorStatus()
     }
     else if(status === 'Done'){
         console.log('Done button clicked for timeline with id:', id);
         
-        const result = await axios.patch(`https://projectsyncifyapi.onrender.com/workspace/timelines/update/status/${id}/`, {status: 'In Progress'})
-    
-        if(result){
-          toast.success("Successfully updated status");
-          setReload(!reload);
-        }
-        else(
-          console.log('Something went wrong')
-        )
+        refactorStatus()
     }
     else{
         
@@ -340,21 +320,21 @@ const Plans = () => {
                           <div className="py-1" role="none">
                           
                             <button
-                              onClick={() => handleStatusChange1(timeline.id, 'In Progress')}
+                              onClick={() => handleStatusUpdateButton(timeline.id, 'In Progress')}
                               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                               role="menuitem"
                             >
                               In Progress
                             </button>
                             <button
-                              onClick={() => handleStatusChange1(timeline.id, 'Testing')}
+                              onClick={() => handleStatusUpdateButton(timeline.id, 'Testing')}
                               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                               role="menuitem"
                             >
                               Testing
                             </button>
                             <button
-                              onClick={() => handleStatusChange1(timeline.id, 'Done')}
+                              onClick={() => handleStatusUpdateButton(timeline.id, 'Done')}
                               className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                               role="menuitem"
                             >
@@ -367,9 +347,9 @@ const Plans = () => {
        </td>
         <th>
 
-          <button className="btn btn-info px-4  py-2 text-xl" >
+          <Link to={`/workspace/${id}/board`} state={timeline} className="btn btn-info px-4  py-2 text-xl" >
             <TbListDetails />
-          </button>
+          </Link>
 
             {/** Member edit button and model start */}
             <button className='btn-ghost'>  </button>
@@ -497,21 +477,21 @@ const Plans = () => {
                       <div className="py-1" role="none">
                       
                         <button
-                          onClick={() => handleStatusChange1(timeline.id, "To Do")}
+                          onClick={() => handleStatusUpdateButton(timeline.id, "To Do")}
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                           role="menuitem"
                         >
                           To Do
                         </button>
                         <button
-                          onClick={() => handleStatusChange1(timeline.id, 'Testing')}
+                          onClick={() => handleStatusUpdateButton(timeline.id, 'Testing')}
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                           role="menuitem"
                         >
                           Testing
                         </button>
                         <button
-                          onClick={() => handleStatusChange1(timeline.id, 'Done')}
+                          onClick={() => handleStatusUpdateButton(timeline.id, 'Done')}
                           className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                           role="menuitem"
                         >
@@ -656,21 +636,21 @@ const Plans = () => {
                                             <div className="py-1" role="none">
                                             
                                               <button
-                                                onClick={() => handleStatusChange1(timeline.id, "To Do")}
+                                                onClick={() => handleStatusUpdateButton(timeline.id, "To Do")}
                                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                                 role="menuitem"
                                               >
                                                 To Do
                                               </button>
                                               <button
-                                                onClick={() => handleStatusChange1(timeline.id, 'In Progress')}
+                                                onClick={() => handleStatusUpdateButton(timeline.id, 'In Progress')}
                                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                                 role="menuitem"
                                               >
                                                 In Progress
                                               </button>
                                               <button
-                                                onClick={() => handleStatusChange1(timeline.id, 'Testing')}
+                                                onClick={() => handleStatusUpdateButton(timeline.id, 'Testing')}
                                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                                                 role="menuitem"
                                               >

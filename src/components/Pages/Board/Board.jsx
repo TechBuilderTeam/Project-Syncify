@@ -3,8 +3,13 @@ import { AuthContext } from "../../../Providers/AuthProviders/AuthProviders";
 import CreateTask from "./CreateTask";
 import DragNDrop from "./DragNDrop";
 import EditDeleteTask from "./EditDeleteTask";
+import { useLocation } from "react-router-dom";
 
 const Board = () => {
+    const location = useLocation();
+
+    const timelineData = location.state;
+    console.log('timeline data recive in doard from location state -> ',timelineData);
     const { user } = useContext(AuthContext);
     const [tasks, setTasks] = useState([]);
     const [currentTask, setCurrentTask] = useState(null);
@@ -42,6 +47,8 @@ const Board = () => {
     
     return (
         <div className="h-screen">
+            {/** timeline all data exist in timelineData variable */}
+            <div>Timeline Details: {timelineData.name} </div>
             <CreateTask updateTasks={updateTasks} />
             <DragNDrop
                 tasks={tasks}
