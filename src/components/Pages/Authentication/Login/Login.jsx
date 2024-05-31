@@ -4,9 +4,7 @@ import { TiArrowBackOutline } from "react-icons/ti";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import useAxios from "../../../../hooks/useAxios";
-import { TiEyeOutline } from "react-icons/ti";
-import { IoIosEyeOff } from "react-icons/io";
-import { FcGoogle } from "react-icons/fc";
+
 import { FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../../../Providers/AuthProviders/AuthProviders";
 const Login = () => {
@@ -94,6 +92,7 @@ const Login = () => {
           localStorage.setItem("user",JSON.stringify(user))
           localStorage.setItem('access',JSON.stringify(response.access_token))
           localStorage.setItem('refresh',JSON.stringify(response.refresh_token))
+          setLoading(false)
           navigate("/workspace")
           toast.success(response.message)
         }

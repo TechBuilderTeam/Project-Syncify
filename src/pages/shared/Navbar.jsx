@@ -1,10 +1,10 @@
 // import { VscGraph } from "react-icons/vsc";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { HiMenuAlt2 } from "react-icons/hi";
-import { IoLogOutSharp } from "react-icons/io5";
 import { FaXmark } from "react-icons/fa6";
 import { AuthContext } from "../../Providers/AuthProviders/AuthProviders";
+
 const Navbar = ({ handleThemeChange }) => {
   const { user, handleLogout } = useContext(AuthContext);
   console.log({ user });
@@ -74,31 +74,16 @@ const Navbar = ({ handleThemeChange }) => {
           >
             Dashboard
           </NavLink>
-          {/* workspace dropdown  */}
-          <div className="dropdown dropdown-bottom">
-            <div
-              tabIndex={0}
-              role="button"
-              className={({ isActive }) =>
-                isActive
-                  ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
-                  : "text-[#8401A1] underline-offset-0 dark:text-[#73e9fe]"
-              }
-            >
-              Project
-            </div>
-            <ul
-              tabIndex={0}
-              className="dropdown-content z-[1] menu p-2 shadow-2xl  rounded-box w-52"
-            >
-              <li>
-                <Link to="/workspace">View All</Link>
-              </li>
-              <li>
-                <a href="/createworkspace">Create New</a>
-              </li>
-            </ul>
-          </div>
+          <NavLink
+            to="/workspace"
+            className={({ isActive }) =>
+              isActive
+                ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
+                : "text-[#8401A1] dark:text-[#73e9fe]"
+            }
+          >
+            Project
+          </NavLink>
         </>
       )}
 
