@@ -64,16 +64,32 @@ const Navbar = ({ handleThemeChange }) => {
 
       {user?.email && (
         <>
-          <NavLink
-            to="/dashboard/profile"
-            className={({ isActive }) =>
-              isActive
-                ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
-                : "text-[#8401A1] dark:text-[#73e9fe]"
-            }
-          >
-            Dashboard
-          </NavLink>
+          {/* workspace dropdown  */}
+          {/* <div className="dropdown dropdown-bottom">
+             <div
+               tabIndex={0}
+               role="button"
+               className={({ isActive }) =>
+                 isActive
+                   ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
+                   : "text-[#8401A1] underline-offset-0 dark:text-[#73e9fe]"
+               }
+             >
+               Projects
+             </div>
+             <ul
+               tabIndex={0}
+               className="dropdown-content z-[1] menu p-2 shadow-2xl  rounded-box w-52"
+             >
+               <li>
+                 <Link to="/workspace">View All</Link>
+               </li>
+               <li>
+                 <a href="/createworkspace">Create New</a>
+               </li>
+             </ul>
+           </div> */}
+
           <NavLink
             to="/workspace"
             className={({ isActive }) =>
@@ -82,7 +98,7 @@ const Navbar = ({ handleThemeChange }) => {
                 : "text-[#8401A1] dark:text-[#73e9fe]"
             }
           >
-            Project
+            Projects
           </NavLink>
         </>
       )}
@@ -171,7 +187,9 @@ const Navbar = ({ handleThemeChange }) => {
             <a href="contact">Contact</a>
             {user ? (
               <>
-                <div onClick={handleLogout}>LogOut</div>
+                <div onClick={handleLogout} className="cursor-pointer">
+                  LogOut
+                </div>
               </>
             ) : (
               <Link to="/login">Log In</Link>

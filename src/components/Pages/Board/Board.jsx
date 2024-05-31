@@ -1,16 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProviders/AuthProviders";
 import CreateTask from "./CreateTask";
-import DragNDrop from "./DragNDrop";
-import EditDeleteTask from "./EditDeleteTask";
+import DragNDrop from "../Tasks/DragNDrop";
+import EditDeleteTask from "../Tasks/EditDeleteTask";
+import { useLocation } from "react-router-dom";
+import CreateBoard from "./CreateBoard";
 
 const Board = () => {
+    const location = useLocation();
+
+    const timelineData = location.state;
+    console.log('timeline data recive in board from location state -> ',timelineData);
     const { user } = useContext(AuthContext);
     const [tasks, setTasks] = useState([]);
     const [currentTask, setCurrentTask] = useState(null);
 
     useEffect(() => {
-        fetch(`https://task-backend-azure.vercel.app/tasks`)
+        fetch(`https://projectsyncifyapi.onrender.com/workspace/tasks/${timelineData?._id}`)
             .then(res => res.json())
             .then(data => {
                 const filteredTasks = data.filter(task => task.email === user?.email);
@@ -28,31 +34,16 @@ const Board = () => {
             })
             .catch(error => console.log(error));
     };
-
-    const handleShowModal = (task) => {
-        setCurrentTask(task);
-        document.getElementById("my_modal_5").showModal();
-    };
-
-    const handleUpdateTask = (updatedTask) => {
-        setTasks(prevTasks => prevTasks.map(task =>
-            task._id === updatedTask._id ? { ...task, ...updatedTask } : task
-        ));
-    };
     
     return (
         <div className="h-screen">
+            {/** timeline all data exist in timelineData variable */}
+            <div>
+                <CreateBoard timelineData={timelineData} />
+            </div>
+            <div>Timeline Details: {timelineData?.name} </div>
             <CreateTask updateTasks={updateTasks} />
-            <DragNDrop
-                tasks={tasks}
-                setTasks={setTasks}
-                handleShowModal={handleShowModal}
-            />
-            <EditDeleteTask
-                currentTask={currentTask}
-
-                handleUpdateTask={handleUpdateTask}
-            />
+          
         </div>
     );
 };

@@ -8,13 +8,17 @@ import ForgetPassword from "../components/Pages/Authentication/ForgetPassword/Fo
 import Profile from "../components/User/Profile";
 import ResetPassword from "../components/Pages/Authentication/ResetPassword/ResetPassword";
 import UserWorkspace from "../components/Pages/Workspace/UserWorkspace";
+import CreateWorkspace from "../components/Pages/Workspace/CreateWorkspace";
+import EditWorkspace from "../components/Pages/Workspace/EditWorkspace";
 import DynamicDashboard from "../components/Pages/DynamicDashboard/DynamicDashboard";
 import Member from "../components/Pages/DynamicDashboard/Member";
 import Dashboard from "../components/Pages/Dashboard/Dashboard";
 import Calendarui from "../components/Pages/Dashboard/Calendarui/Calendarui";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Board from "../components/Pages/Board/Board";
-
+import Plans from "../components/Pages/Plans/Plans";
+import Tasks from "../components/Pages/Tasks/Tasks";
+import Features from "../components/Pages/Features/Features";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "/features",
+        element: <Features />,
       },
       {
         path: "/login",
@@ -60,7 +68,22 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-
+      {
+        path: "/createworkspace",
+        element: (
+          <PrivateRoute>
+            <CreateWorkspace />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/editworkspace/:workspaceId",
+        element: (
+          <PrivateRoute>
+            <EditWorkspace />
+          </PrivateRoute>
+        ),
+      },
       // {
       //   path: "workspace/:id",
       //   element: <DynamicDashboard></DynamicDashboard>,
@@ -76,15 +99,42 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/workspace/:id",
-        element: <Member />,
+        element: (
+          <PrivateRoute>
+            <Member />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/workspace/:id/profile",
-        element: <Profile />,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Profile />{" "}
+          </PrivateRoute>
+        ),
       },
       {
-        path: "/workspace/:id/board",
-        element: <Board />,
+        path: "/workspace/:id/boards",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Board />{" "}
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/workspace/:id/tasks",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Tasks />{" "}
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/workspace/:id/plans",
+        element: <Plans />,
       },
     ],
   },

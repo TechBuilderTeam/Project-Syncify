@@ -5,12 +5,14 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import MemberAni from "../../../../public/member.json";
 import { MdDeleteForever } from "react-icons/md";
-import { FaRegEdit } from "react-icons/fa";
+import { FaRegEdit, FaSearch } from "react-icons/fa";
+import TitlePages from "../../../pages/shared/TitlePages";
 const Member = () => {
   const [members, setMembers] = useState([]);
   const [change, setChange] = useState(false);
   const { id } = useParams();
   console.log({ id });
+
   const newMember = {
     workspace_Name: "",
     role: "",
@@ -77,7 +79,7 @@ const Member = () => {
         { data }
       );
       console.log("delete member -> ", result);
-      toast.success("Successfully deleted");
+      toast.success("Successfully deleted member");
       setChange(!change);
     } catch (error) {
       console.log("delete member error -> ", error);
@@ -103,38 +105,21 @@ const Member = () => {
   const memberLength = members.length;
 
   return (
-    <div className=" h-screen ">
-      <div className=" flex justify-center items-center gap-6">
-        <div className="w-80 h-80">
-          <Lottie animationData={MemberAni} loop={true} />
-        </div>
-        <div className=" dark:text-[#73e9fe] text-[#8401A1] mt-6">
-          <p className="text-3xl font-bold mb-1">
-            Wanna Add New <br />
-            Member?
-          </p>
-          <p className="text-sm mb-4 text-black dark:text-white">
-            For maintain your project progress. <br />
-            Add your member and track your progress... <br />
-            Click below
-            <span className="font-extrabold font-2xl text-[#8401A1] dark:text-[#73e9fe]">
-              {" "}
-              ↓↓{" "}
-            </span>{" "}
-            and explore more.
-          </p>
-          <button
-            className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold px-4 py-2 rounded-md"
-            onClick={() => document.getElementById("my_modal_3").showModal()}
-          >
-            Add Member
-          </button>
-        </div>
-      </div>
+    <div className="h-screen ">
+      {/* <div className=" flex justify-center items-center gap-6">
+                <div className="w-80 h-80">
+                    <Lottie animationData={MemberAni} loop={true} />
+                </div>
+                <div className=" dark:text-[#73e9fe] text-[#8401A1] mt-6">
+                    <p className="text-3xl font-bold mb-1">Wanna Add New <br />Member?</p>
+                    <p className="text-sm mb-4 text-black dark:text-white">For maintain your project progress. <br />Add your member and track your progress... <br />Click below<span className="font-extrabold font-2xl text-[#8401A1] dark:text-[#73e9fe]"> ↓↓ </span>  and explore more.</p>
+                    <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
+                </div>
+
+            </div> */}
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box bg-white dark:bg-black">
           <form onSubmit={handleAddUserButton}>
-            {/* if there is a button in form, it will close the modal */}
             <button
               id="closeBtn"
               className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]"
@@ -187,6 +172,42 @@ const Member = () => {
           </form>
         </div>
       </dialog>
+      <div className="dark:text-[#73e9fe] text-[#8401A1] ">
+        {/* <p className="text-3xl font-bold mb-1">Member</p> */}
+        <TitlePages title="Member" />
+      </div>
+      <div className="flex flex-col md:flex-row justify-between items-center my-6 gap-2">
+        {/** search bar */}
+        {/* <div className='flex w-2/5 flex-wrap sm:w-full rounded bg-white'>
+                    <input 
+                      type="search"
+                      name="search"
+                      id="search"
+                      placeholder='search'
+                      className='w-[300px] border rounded-md  bg-transparent px-4 text-gray-900 outline-none focus:outline-none' />
+
+                    <button className='m-2 rounded bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white px-4 py-2'>Search</button>
+                </div> */}
+
+        <div className="relative md:w-65 flex items-center">
+          <input
+            type="text"
+            className="w-full px-4 py-1 rounded shadow outline-none "
+            placeholder="Search"
+          />
+          <button className="p-1 m-2 focus:outline-none  md:text-black">
+            <FaSearch />
+          </button>
+        </div>
+        <div>
+          <button
+            className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold px-4 py-2 rounded-md"
+            onClick={() => document.getElementById("my_modal_3").showModal()}
+          >
+            Add Member
+          </button>
+        </div>
+      </div>
       {/* <h2 className='m-4 text-5xl text-center '>User List </h2> */}
       {memberLength === 0 && (
         <h2 className="m-4 text-2xl text-center ">
@@ -231,7 +252,19 @@ const Member = () => {
                                     <div className="text-sm opacity-50">{user.birthDate}</div>
                                 </div>
                             </div> */}
-                    {member.user_name}
+                    <div className="flex items-center gap-3">
+                      <div className="avatar">
+                        <div className="mask mask-squircle w-12 h-12">
+                          <img
+                            src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png"
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
+                      </div>
+                      <div>
+                        <div className="font-bold">{member.user_name}</div>
+                      </div>
+                    </div>
                   </td>
                   <td>
                     {member.user_email}
