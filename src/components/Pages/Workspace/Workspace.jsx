@@ -109,7 +109,7 @@ const Workspace = () => {
               </div>
               <div className="flex justify-center items-center ">
               
-                <EditWorkspace workspaceId={workspace} />
+                <EditWorkspace workspace={ workspace} />
                 <DeleteWorkspace
                   workspaceId={workspace.id}
                   onDelete={handleDeleteWorkspace}
