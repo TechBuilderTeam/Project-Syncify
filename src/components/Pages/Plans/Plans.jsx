@@ -3,9 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { FaCaretDown, FaCaretSquareDown, FaRegEdit } from 'react-icons/fa';
 import { GiGameConsole } from 'react-icons/gi';
 import { MdDeleteForever } from 'react-icons/md';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import { TbListDetails } from "react-icons/tb";
+import { CiSquarePlus } from "react-icons/ci";
+import { MdDeveloperBoard } from "react-icons/md";
+
 const Plans = () => {
   const { id } = useParams();
   const [data, setData] = useState(null); // State to store fetched data
@@ -14,6 +17,8 @@ const Plans = () => {
   const [reload, setReload] = useState(false)
   const [selectedStatus, setSelectedStatus] = useState({});
   const [isOpen, setIsOpen] = useState({});
+  const [members, setMembers] = useState(null);
+  const navigate = useNavigate();
 
   console.log('data from plan component -> ', data)
 
@@ -121,7 +126,7 @@ const Plans = () => {
 
   const [selectedTimeline, setSelectedTimeline] = useState(null);
 
-  const handleOpenDialog = (timeline) => {
+  const handleOpenDialog = (timeline, modalName) => {
     setSelectedTimeline(timeline);
     setFormData({
       timelineId: timeline.id,
@@ -131,7 +136,7 @@ const Plans = () => {
       start_Date: timeline.start_Date || '',
       end_Date: timeline.end_Date || ''
     });
-    document.getElementById('edit').showModal();
+    document.getElementById(modalName).showModal();
   };
 
   const handleChange = (e) => {
@@ -194,6 +199,64 @@ const Plans = () => {
     document.getElementById(value).close()
   }
 
+  {/** start handle assign button */}
+  const handleAssignButton = async (e) => {
+    e.preventDefault()
+    
+    const timelineId = Number(e.target.timelineId.value);
+    const email = e.target.leaderEmail.value;
+    console.log({timelineId, email})
+
+    if(timelineId && email){
+      try {
+        const result = await axios.patch(`https://projectsyncifyapi.onrender.com/workspace/timelines/update/assign/${timelineId}/
+        `, {"email": email})
+        console.log('result -> ', result)
+        toast.success("Assign Successfully");
+        setChange(!change);
+        handleCloseModelButton("assign")
+    } catch (error) {
+        console.log('error -> ', error)
+    }
+
+    }
+
+
+}
+
+  {/** end handle assign button */}
+
+  {/** start handle create board button */}
+  const handleCreateBoardButton = async (e) => {
+    e.preventDefault();
+    
+    const timelineId = Number(e.target.timelineId.value);
+    const boardName = e.target.name.value;
+    const boardDetails = e.target.details.value;
+
+    console.log({timelineId, boardName, boardDetails})
+
+    if(timelineId && boardName && boardDetails){
+      try {
+        const result = await axios.post(`https://projectsyncifyapi.onrender.com/workspace/scrum/create/
+        `, {
+          "timeline_name": timelineId,
+          "name": "boardName",
+          "details": "boardDetails"
+        })
+        console.log('result -> ', result)
+        toast.success("Board Created Successfully");
+        handleCloseModelButton("board")
+        navigate(`/workspace/${id}/boards`)
+    } catch (error) {
+        console.log('error -> ', error)
+    }
+
+    }
+
+  }
+  {/** end handle create board button */}
+
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true)
@@ -212,6 +275,17 @@ const Plans = () => {
 
     };
 
+    const getSpecificMembers = async () => {
+      try {
+          const result = await axios.get(`https://projectsyncifyapi.onrender.com/api/v2/workspace/${id}/members/`)
+          console.log("get member -> ", result.data)
+          setMembers(result.data)
+      } catch (error) {
+          console.log("get member error -> ", error)
+      }
+  }
+    
+    getSpecificMembers()
     fetchData(); // Call the function to fetch data
 
   }, [reload]); // Empty dependency array means this effect runs once when the component mounts
@@ -278,6 +352,7 @@ const Plans = () => {
                   <th>Timeline Name</th>
                   <th>Timeline</th>
                   <th>Status</th>
+                  <th>Assign</th>
                   <th>Action</th>
                   <th> <button className='btn-ghost'>  </button>
                     {/* You can open the modal using document.getElementById('ID').showModal() method */}
@@ -357,6 +432,13 @@ const Plans = () => {
                         )}
                       </div>
                     </td>
+                    
+                    <td>
+                      {(timeline.assign) == null && <button onClick={() => handleOpenDialog(timeline, "assign")}><CiSquarePlus className='text-4xl cursor-pointer' /></button>}
+
+                      
+                    </td>
+
                     <th>
 
                       <Link to={`/workspace/${id}/boards`} state={timeline} className="btn btn-info px-4  py-2 text-xl" >
@@ -366,7 +448,7 @@ const Plans = () => {
                       {/** Member edit button and model start */}
                       <button className='btn-ghost'>  </button>
                       {/* You can open the modal using document.getElementById('ID').showModal() method */}
-                      <button className="btn btn-success px-4  py-2" onClick={() => handleOpenDialog(timeline)}>
+                      <button className="btn btn-success px-4  py-2" onClick={() => handleOpenDialog(timeline, "edit")}>
                         <FaRegEdit className="text-xl" />
                       </button>
                       <dialog id="edit" className="modal">
@@ -411,11 +493,91 @@ const Plans = () => {
                         <MdDeleteForever className="text-xl cursor-pointer " onClick={() => handleDeleteTimeline(timeline.id)} />
                       </button>
                     </th>
+
+                    <td>{timeline.assign && <MdDeveloperBoard className='text-4xl cursor-pointer' onClick={() => handleOpenDialog(timeline, 'board')} />}</td>
+{/** start create board modal for specefic timeline */}
+<dialog id="board" className="modal">
+    <div className="modal-box bg-white dark:bg-black">
+    <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => document.getElementById('board').close()}>✕</button>
+            <h2 className="font-bold text-2xl text-center my-3">Create Board</h2>
+        
+        <form onSubmit={handleCreateBoardButton}>
+              
+          <div className='form-control'>
+                                                                            <label htmlFor="email" className="label">Timeline  Id</label>
+              <input type="text" id="timelineId" name="timelineId" value={formData.timelineId} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
+          </div>
+
+          <div className="form-control">
+              <label className="label">
+                  <span className="label-text">Board Name</span>
+              </label>
+              <input
+                  type="text"
+                  placeholder="Enter Board Name"
+                  className="input input-bordered"
+                  name="name"
+              />
+          </div>
+          <div className="form-control">
+              <label className="label">
+                  <span className="label-text">Board Details</span>
+              </label>
+              <input
+                  type="text"
+                  name="details"
+                  placeholder="Write Board Details"
+                  className="input input-bordered"
+              />
+          </div>
+
+          <div className="flex justify-center mt-6">
+              <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-2" type="submit">Create</button>
+          </div>
+
+
+        </form>
+    </div>
+</dialog>
+{/** end create board modal for specefic timeline */}
                   </tr>
                 ))}
 
               </tbody>
             </table>
+
+{/** start modal layout for assign */}
+<dialog id="assign" className="modal">
+    <div className="modal-box bg-white dark:bg-black">
+    <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => document.getElementById('assign').close()}>✕</button>
+            <h2 className="font-bold text-2xl text-center my-3">Assign Member</h2>
+        
+        <form onSubmit={handleAssignButton}>
+            
+            <div className='form-control'>
+                                                                          <label htmlFor="email" className="label">Timeline Id</label>
+            <input type="text" id="timelineId" name="timelineId" value={formData.timelineId} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
+            </div>
+
+            <div className="form-control">
+                <label className="label" htmlFor="email">
+                    <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">Email</span>
+                </label>
+                <select id="leaderEmail" name="leaderEmail" className="select select-bordered bg-slate-200 dark:bg-black">
+                  {members?.filter(member => member.role === 'Team Leader').map((member,idx) => <option value={member.user_email} key={idx}>{member.user_email}</option>)}
+                </select>
+            </div>
+
+            <div className="flex justify-center mt-6">
+                <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-2" type="submit">Assign Member</button>
+            </div>
+
+
+        </form>
+    </div>
+</dialog>
+{/** end modal layout for assign */}
+
           </div>
         </div>
       </div>
