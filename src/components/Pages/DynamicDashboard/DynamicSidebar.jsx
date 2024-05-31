@@ -48,7 +48,7 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
 
   return (
     <div
-      className={`${open ? "w-20" : "block w-20 md:w-60"
+      className={`${open ? "w-20" : "block w-20 md:w-56"
         } absolute top-20 left-0 h-full px-4 py-2 border-r border-gray-300`}
     >
       {open ? (
@@ -63,8 +63,8 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
         />
       )}
       <div className="my-2 mb-4">
-        <h1 className={`${open? "text-xs font-semibold " : "text-sm md:text-lg font-bold text-center"}`}> 
-        {open ? workspaceDetails?.name.slice(0, 10) : workspaceDetails?.name}
+        <h1 className={`${open? "text-xs font-semibold " : "text-xs md:text-lg font-bold text-center"}`}> 
+        {open ? workspaceDetails?.name.slice(0, 20) : workspaceDetails?.name}
         </h1>
       </div>
       <hr />
@@ -72,49 +72,49 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/")}`}>
           <Link to="/" className="px-3">
             <IoHomeSharp className="inline-block w-6 h-6 mr-2 -mt-2" />
-            {!open && <span>Home</span>}
+            {!open && <span className="hidden md:inline">Home</span>}
           </Link>
         </li>
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/profile`)}`}>
           <Link to={`/workspace/${id}/profile`} className="px-3">
             <CgProfile className="inline-block w-6 h-6 mr-2 -mt-2" />
-            {!open && <span>Profile</span>}
+            {!open && <span className="hidden md:inline">Profile</span>}
           </Link>
         </li>
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}`)}`}>
           <Link to={`/workspace/${id}`} className="px-3">
             <IoPeopleSharp className="inline-block w-6 h-6 mr-2 -mt-2" />
-            {!open && <span>Members</span>}
+            {!open && <span className="hidden md:inline" >Members</span>}
           </Link>
         </li>
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/timeline")}`}>
           <Link to={`/workspace/${id}/plans`} className="px-3">
             <CiViewTimeline className="inline-block w-6 h-6 mr-2 -mt-2" />
-            {!open && <span>Plans</span>}
+            {!open && <span className="hidden md:inline">Plans</span>}
           </Link>
         </li>
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/boards`)}`}>
           <Link to={`/workspace/${id}/boards`} className="px-3">
             <FaChalkboard className="inline-block w-6 h-6 mr-2 -mt-2" />
-            {!open && <span>Boards</span>}
+            {!open && <span className="hidden md:inline">Boards</span>}
           </Link>
         </li>
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/tasks`)}`}>
           <Link to={`/workspace/${id}/tasks`} className="px-3">
             <GoTasklist className="inline-block w-6 h-6 mr-2 -mt-2" />
-            {!open && <span>Tasks</span>}
+            {!open && <span className="hidden md:inline">Tasks</span>}
           </Link>
         </li>
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/export`)}`}>
           <Link to={`/workspace/${id}/export`} className="px-3">
             <AiFillPrinter className="inline-block w-6 h-6 mr-2 -mt-2" />
-            {!open && <span>Export</span>}
+            {!open && <span className="hidden md:inline">Export</span>}
           </Link>
         </li>
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/calendar`)}`}>
           <Link to={`/workspace/${id}/calendar`} className="px-3">
             <SlCalender className="inline-block w-6 h-6 mr-2 -mt-2" />
-            {!open && <span>Calendar</span>}
+            {!open && <span className="hidden md:inline">Calendar</span>}
           </Link>
         </li>
       </ul>
