@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import MemberAni from "../../../../public/member.json";
 import { MdDeleteForever } from 'react-icons/md';
 import { FaRegEdit, FaSearch } from 'react-icons/fa';
+import TitlePages from '../../../pages/shared/TitlePages';
 const Member = () => {
     const [members, setMembers] = useState([]);
     const [change, setChange] = useState(false)
@@ -147,8 +148,9 @@ const Member = () => {
                 </div>
 
             </dialog>
-            <div className='dark:text-[#73e9fe] text-[#8401A1] mt-6'>
-               <p className="text-3xl font-bold mb-1">Member</p>
+            <div className='dark:text-[#73e9fe] text-[#8401A1] '>
+               {/* <p className="text-3xl font-bold mb-1">Member</p> */}
+               <TitlePages title="Member" />
             </div>
             <div className='flex flex-col md:flex-row justify-between items-center my-6 gap-2'>
                 {/** search bar */}
