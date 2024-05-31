@@ -1,4 +1,3 @@
-
 import { FaArrowLeft, FaArrowRight, FaBoxTissue, FaChalkboard } from "react-icons/fa";
 import { CiViewTimeline } from "react-icons/ci";
 import { SlCalender } from "react-icons/sl";
@@ -8,21 +7,21 @@ import { IoHomeSharp, IoPeopleSharp } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { AiFillPrinter } from "react-icons/ai";
+import { GoTasklist } from "react-icons/go";
 
-const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id}) => {
+const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
   const [open, setOpen] = useState(false);
-  const [workspaceDetails, setWorkspaceDetails] = useState(null)
+  const [workspaceDetails, setWorkspaceDetails] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const location = useLocation();
 
   const getLinkClass = (path) => {
     return location.pathname === path
-      ? "bg-blue-500 text-white dark:text-[#8401A1] dark:bg-white  "
+      ? "bg-blue-500 text-white dark:text-[#8401A1] dark:bg-white"
       : "text-black dark:text-white";
   };
-  
-  
 
   useEffect(() => {
     const fetchWorkspaces = async () => {
@@ -33,89 +32,91 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id}) => {
         const response = await axios.get(
           `https://projectsyncifyapi.onrender.com/api/v2/workspace/${id}/details/`
         );
-        setWorkspaceDetails(response.data)
-        console.log("workspace details data -> ", response.data)
+        setWorkspaceDetails(response.data);
+        console.log("workspace details data -> ", response.data);
       } catch (err) {
-        console.log("workspace details error data -> ", err)
+        console.log("workspace details error data -> ", err);
       }
     };
 
     fetchWorkspaces();
-    //sabrina setted setLoading(false) here 
     setLoading(false);
-    console.log("workspace data -> ", workspaceDetails)
-  }, [])
+    console.log("workspace data -> ", workspaceDetails);
+  }, [id]);
 
-  console.log('sidebar toggle from dynamic sidebar -> ', sidebarToggle)
+  console.log('sidebar toggle from dynamic sidebar -> ', sidebarToggle);
 
   return (
     <div
-      className={`${open ? " w-20 md:w-28" : "block w-20 md:w-60 "
-        }   absolute top-20 left-0 h-full px-4 py-2 border-r border-gray-300`}
+      className={`${open ? "w-20" : "block w-20 md:w-60"
+        } absolute top-20 left-0 h-full px-4 py-2 border-r border-gray-300`}
     >
-      
-      {open ? <FaArrowRight onClick={() => {setOpen(!open); setSidebarToggle(!sidebarToggle)}} className="absolute cursor-pointer rounded-full -right-3 top-9 w-5 h-5 border-2  " /> : <FaArrowLeft  onClick={() => {setOpen(!open); setSidebarToggle(!sidebarToggle)}}  className="absolute cursor-pointer rounded-full -right-3 top-9 w-5 h-5 border-2 text-xs  " /> }
+      {open ? (
+        <FaArrowRight
+          onClick={() => { setOpen(!open); setSidebarToggle(!sidebarToggle) }}
+          className="absolute cursor-pointer rounded-full -right-3 top-9 w-5 h-5 border-2"
+        />
+      ) : (
+        <FaArrowLeft
+          onClick={() => { setOpen(!open); setSidebarToggle(!sidebarToggle) }}
+          className="absolute cursor-pointer rounded-full -right-3 top-9 w-5 h-5 border-2 text-xs"
+        />
+      )}
       <div className="my-2 mb-4">
-        <h1 className="text-sm md:text-lg font-bold text-center">{workspaceDetails?.name}</h1>
+        <h1 className={`${open? "text-xs font-semibold " : "text-sm md:text-lg font-bold text-center"}`}> 
+        {open ? workspaceDetails?.name.slice(0, 10) : workspaceDetails?.name}
+        </h1>
       </div>
       <hr />
-      <ul className="mt-3 font-bold text-sm  text-center md:text-start md:px-2">
+      <ul className={`${open ? "text-start" : "mt-3 font-bold text-sm text-center md:text-start md:px-2 "}`}>
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/")}`}>
           <Link to="/" className="px-3">
             <IoHomeSharp className="inline-block w-6 h-6 mr-2 -mt-2" />
-            Home
+            {!open && <span>Home</span>}
           </Link>
         </li>
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/profile`)}`}>
           <Link to={`/workspace/${id}/profile`} className="px-3">
             <CgProfile className="inline-block w-6 h-6 mr-2 -mt-2" />
-            Profile
-          </Link>
-        </li>
-        {/* for board link */}
-        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/boards`)}`}>
-          <Link to={`/workspace/${id}/boards`} className="px-3">
-            <FaChalkboard className="inline-block w-6 h-6 mr-2 -mt-2" />
-            Boards
+            {!open && <span>Profile</span>}
           </Link>
         </li>
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}`)}`}>
           <Link to={`/workspace/${id}`} className="px-3">
             <IoPeopleSharp className="inline-block w-6 h-6 mr-2 -mt-2" />
-            Members
-          </Link>
-        </li>
-        {/* for tasks link */}
-        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/tasks`)}`}>
-          <Link to={`/workspace/${id}/tasks`} className="px-3">
-            <FaListUl className="inline-block w-6 h-6 mr-2 -mt-2" />
-            Tasks
+            {!open && <span>Members</span>}
           </Link>
         </li>
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/timeline")}`}>
           <Link to={`/workspace/${id}/plans`} className="px-3">
             <CiViewTimeline className="inline-block w-6 h-6 mr-2 -mt-2" />
-            Plans
+            {!open && <span>Plans</span>}
           </Link>
         </li>
-        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/dashboard/calendar")}`}>
-          <Link to="/dashboard/calendar" className="px-3">
+        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/boards`)}`}>
+          <Link to={`/workspace/${id}/boards`} className="px-3">
+            <FaChalkboard className="inline-block w-6 h-6 mr-2 -mt-2" />
+            {!open && <span>Boards</span>}
+          </Link>
+        </li>
+        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/tasks`)}`}>
+          <Link to={`/workspace/${id}/tasks`} className="px-3">
+            <GoTasklist className="inline-block w-6 h-6 mr-2 -mt-2" />
+            {!open && <span>Tasks</span>}
+          </Link>
+        </li>
+        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/export`)}`}>
+          <Link to={`/workspace/${id}/export`} className="px-3">
+            <AiFillPrinter className="inline-block w-6 h-6 mr-2 -mt-2" />
+            {!open && <span>Export</span>}
+          </Link>
+        </li>
+        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/calendar`)}`}>
+          <Link to={`/workspace/${id}/calendar`} className="px-3">
             <SlCalender className="inline-block w-6 h-6 mr-2 -mt-2" />
-            Calendar
+            {!open && <span>Calendar</span>}
           </Link>
         </li>
-        {/* <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/list")}`}>
-          <Link to="/list" className="px-3">
-            <FaListUl className="inline-block w-6 h-6 mr-2 -mt-2" />
-            List
-          </Link>
-        </li>
-        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/issues")}`}>
-          <Link to="/issues" className="px-3">
-            <FaBoxTissue className="inline-block w-6 h-6 mr-2 -mt-2" />
-            Issues
-          </Link>
-        </li> */}
       </ul>
     </div>
   );

@@ -32,7 +32,7 @@ const Navbar = ({ sidebarToggle, setSidebarToggle, handleThemeChange }) => {
         <div className ="mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl p-4" >       
         <nav className='flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50  w-full h-20 px-3'>
             <div className='flex items-center text-xl'>
-                <FaBars className=' me-4 text-2xl cursor-pointer mx-2' onClick={() => setSidebarToggle(!sidebarToggle)} />
+               
                 <a href="/">
                     <img src={"https://i.ibb.co/T4FSNsb/Justlogo.png"} className="w-14 h-12 " alt="logo" />
                 </a>

@@ -152,7 +152,7 @@ const Member = () => {
                {/* <p className="text-3xl font-bold mb-1">Member</p> */}
                <TitlePages title="Member" />
             </div>
-            <div className='flex flex-col md:flex-row justify-between items-center my-6 gap-2'>
+            <div className='flex flex-col md:flex-row justify-between items-center my-6 gap-2 '>
                 {/** search bar */}
                 {/* <div className='flex w-2/5 flex-wrap sm:w-full rounded bg-white'>
                     <input 
@@ -165,9 +165,9 @@ const Member = () => {
                     <button className='m-2 rounded bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white px-4 py-2'>Search</button>
                 </div> */}
 
-                <div className='relative md:w-65 flex items-center'>
-                    <input type="text" className='w-full px-4 py-1 rounded shadow outline-none ' placeholder='Search' />            
-                    <button className='p-1 m-2 focus:outline-none  md:text-black'><FaSearch /></button>
+                <div className='relative md:w-65 flex items-center '>
+                    <input type="text" className='w-full px-4 py-1 rounded shadow outline-none bg-white dark:bg-black ' placeholder='Search' />            
+                    <button className='p-1 m-2 focus:outline-none  '><FaSearch /></button>
                 </div>
                 <div>
                   <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
@@ -177,7 +177,7 @@ const Member = () => {
             {memberLength === 0 && <h2 className='m-4 text-2xl text-center '>No Member Found, Add Member!</h2>}
             {
                 memberLength > 0 && (
-                    <div className="overflow-x-auto shadow-xl rounded w-full m-4">
+                    <div className="overflow-x-auto shadow-xl rounded w-full ">
                         <table className="table">
                             {/* head */}
                             <thead className=' text-lg text-[#8401A1] dark:text-[#73e9fe]'>

@@ -100,6 +100,10 @@ const router = createBrowserRouter([
           {
             path: "/workspace/:id/plans",
             element: <Plans/>
+          },
+          {
+            path: "/workspace/:id/calendar",
+            element: <Calendarui/>
           }
       ]
     },
@@ -111,10 +115,7 @@ const router = createBrowserRouter([
           path: "/dashboard/profile",
           element: <Profile />,
         },
-        {
-          path: "/dashboard/calendar",
-          element: <Calendarui />,
-        },
+       
       ],
     },
   ]);
