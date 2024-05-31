@@ -4,18 +4,19 @@ import CreateTask from "./CreateTask";
 import DragNDrop from "../Tasks/DragNDrop";
 import EditDeleteTask from "../Tasks/EditDeleteTask";
 import { useLocation } from "react-router-dom";
+import CreateBoard from "./CreateBoard";
 
 const Board = () => {
     const location = useLocation();
 
     const timelineData = location.state;
-    console.log('timeline data recive in doard from location state -> ',timelineData);
+    console.log('timeline data recive in board from location state -> ',timelineData);
     const { user } = useContext(AuthContext);
     const [tasks, setTasks] = useState([]);
     const [currentTask, setCurrentTask] = useState(null);
 
     useEffect(() => {
-        fetch(`https://task-backend-azure.vercel.app/tasks`)
+        fetch(`https://projectsyncifyapi.onrender.com/workspace/tasks/${timelineData?._id}`)
             .then(res => res.json())
             .then(data => {
                 const filteredTasks = data.filter(task => task.email === user?.email);
@@ -37,6 +38,9 @@ const Board = () => {
     return (
         <div className="h-screen">
             {/** timeline all data exist in timelineData variable */}
+            <div>
+                <CreateBoard timelineData={timelineData} />
+            </div>
             <div>Timeline Details: {timelineData?.name} </div>
             <CreateTask updateTasks={updateTasks} />
           

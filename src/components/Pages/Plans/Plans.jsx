@@ -72,9 +72,7 @@ const Plans = () => {
         
         refactorStatus(id, 'Done')
     }
-    else{
-        
-    }
+   
   };
 
   

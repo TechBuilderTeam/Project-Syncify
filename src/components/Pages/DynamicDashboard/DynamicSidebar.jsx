@@ -18,7 +18,7 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id}) => {
 
   const getLinkClass = (path) => {
     return location.pathname === path
-      ? "bg-blue-500 text-white dark:text-[#8401A1] dark:bg-white"
+      ? "bg-blue-500 text-white dark:text-[#8401A1] dark:bg-white  "
       : "text-black dark:text-white";
   };
   
@@ -50,15 +50,16 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id}) => {
 
   return (
     <div
-      className={`${open ? " w-20" : "block w-20 md:w-60 "
-        }  bg-gradient-to-b from-[#73e9fe] dark:from-[#8401A1] to-[#78118f] dark:to-[#73e9fe] absolute top-20 left-0 h-full px-4 py-2`}
+      className={`${open ? " w-20 md:w-28" : "block w-20 md:w-60 "
+        }   absolute top-20 left-0 h-full px-4 py-2 border-r border-gray-300`}
     >
-      {open ? <FaArrowRight onClick={() => {setOpen(!open); setSidebarToggle(!sidebarToggle)}} className="absolute cursor-pointer rounded-full -right-3 top-9 w-7 border-2 border-dark-purple " /> : <FaArrowLeft  onClick={() => {setOpen(!open); setSidebarToggle(!sidebarToggle)}}  className="absolute cursor-pointer rounded-full -right-3 top-9 w-7 border-2 border-dark-purple " /> }
+      
+      {open ? <FaArrowRight onClick={() => {setOpen(!open); setSidebarToggle(!sidebarToggle)}} className="absolute cursor-pointer rounded-full -right-3 top-9 w-5 h-5 border-2  " /> : <FaArrowLeft  onClick={() => {setOpen(!open); setSidebarToggle(!sidebarToggle)}}  className="absolute cursor-pointer rounded-full -right-3 top-9 w-5 h-5 border-2 text-xs  " /> }
       <div className="my-2 mb-4">
-        <h1 className="text-xl sm:text-sm font-bold text-center">{workspaceDetails?.name}</h1>
+        <h1 className="text-sm md:text-lg font-bold text-center">{workspaceDetails?.name}</h1>
       </div>
       <hr />
-      <ul className="mt-3 font-bold">
+      <ul className="mt-3 font-bold text-sm  text-center md:text-start md:px-2">
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/")}`}>
           <Link to="/" className="px-3">
             <IoHomeSharp className="inline-block w-6 h-6 mr-2 -mt-2" />
