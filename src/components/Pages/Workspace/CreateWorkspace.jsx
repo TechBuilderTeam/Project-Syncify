@@ -52,6 +52,8 @@ const CreateWorkspace = () => {
         }
       );
 
+      console.log({response})
+
       if (response.status === 201) {
         toast.success("Workspace created successfully!");
         setSuccess("Workspace created successfully!");
@@ -72,7 +74,7 @@ const CreateWorkspace = () => {
       setError("There was an error creating the workspace!");
       setSuccess("");
       setLoading(false);
-      if(error.response.data.workSpace_manager[0]){
+      if(error?.response?.data?.workSpace_manager[0]){
          toast.warning("Please reload this")
       }
     }
