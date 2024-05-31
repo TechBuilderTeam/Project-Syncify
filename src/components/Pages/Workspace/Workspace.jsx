@@ -7,6 +7,7 @@ import { AuthContext } from "../../../Providers/AuthProviders/AuthProviders";
 import { FaCirclePlus } from "react-icons/fa6";
 import { IoIosOpen } from "react-icons/io";
 import { MdOutlineFileOpen } from "react-icons/md";
+import EditWorkspace from "./EditWorkspace";
 
 const Workspace = () => {
 
@@ -89,7 +90,7 @@ const Workspace = () => {
           <div key={workspace.id} className="border dark:border-gray-700 rounded-lg shadow-lg shadow-gray-400 p-6">
             <h2 className="text-2xl font-semibold mb-2">{workspace.name.slice(0, 20)}</h2>
             <div className="text-sm">
-              <p>Manager: <span className="text-gray-800">{workspace.workspace_manager_name }</span> </p>
+              <p>Manager: <span className="text-gray-800">{workspace.workspace_manager_name}</span> </p>
               <p >Email:  <span className="text-gray-800">{workspace.workspace_manager_email}</span></p>
               <p >Members:  <span className="text-gray-800">{workspace.workspace_total_members}</span> </p>
               <p>Date:  <span className="text-gray-800">{workspace.created_at}</span> </p>
@@ -106,10 +107,9 @@ const Workspace = () => {
                 </Link>
 
               </div>
-              <div className="flex justify-center items-center gap-1">
-                <Link to={`/editworkspace/${workspace.id}`}>
-                  <FaRegEdit className="text-xl" />
-                </Link>
+              <div className="flex justify-center items-center ">
+              
+                <EditWorkspace workspaceId={workspace} />
                 <DeleteWorkspace
                   workspaceId={workspace.id}
                   onDelete={handleDeleteWorkspace}

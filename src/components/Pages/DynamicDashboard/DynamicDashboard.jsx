@@ -29,12 +29,12 @@ const DynamicDashboard = () => {
     <AuthProviders>
       <div className="bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]">
         <div className="flex flex-col">
-          <Navbar handleThemeChange={handleThemeChange} sidebarToggle={sidebarToggle} setSidebarToggle={setSidebarToggle}/>
+          <Navbar handleThemeChange={handleThemeChange} sidebarToggle={sidebarToggle} setSidebarToggle={setSidebarToggle} />
           {/* <Navbar/> */}
           <div className={`${sidebarToggle ? "w-20" : "w-1/4"}`}>
             <DynamicSidebar id={id} sidebarToggle={sidebarToggle} setSidebarToggle={setSidebarToggle}/>
           </div>
-          <div className={`${sidebarToggle ? "w-10/12 md:w-11/12 px-4 ml-20 md:ml-24 " : "w-9/12 md:w-3/4 ml-24 md:ml-64"}  relative  pt-10` }>
+          <div className={`${sidebarToggle ? "w-10/12 md:w-11/12 px-4 ml-20 md:ml-24 " : "w-9/12 md:w-3/4 ml-24 md:ml-64"}  relative  pt-16` }>
             <Outlet />
           </div>
         </div>

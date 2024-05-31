@@ -52,7 +52,7 @@ const CreateWorkspace = () => {
         }
       );
 
-      console.log({response})
+      console.log({ response })
 
       if (response.status === 201) {
         toast.success("Workspace created successfully!");
@@ -74,14 +74,30 @@ const CreateWorkspace = () => {
       setError("There was an error creating the workspace!");
       setSuccess("");
       setLoading(false);
-      if(error?.response?.data?.workSpace_manager[0]){
-         toast.warning("Please reload this")
+      if (error?.response?.data?.workSpace_manager[0]) {
+        toast.warning("Please reload this")
       }
     }
   };
   return (
     <div className="">
-       <TitlePages title="Projects" subTitle="Maintain your project with our project manager website.Start by creating a new project or select an existing project to track your progress. Easily assign tasks to team members and set deadlines to stay on schedule. Monitor real-time updates and generate comprehensive reports with just a few clicks. Collaborate seamlessly with your team through integrated messaging and file sharing. Customize your workflow with flexible tools designed to fit your unique project needs. " />
+       <div className="px-10 pt-10 md:pt-14 pb-4">
+       <div className="flex justify-between items-center pb-2">
+          <h1 className="text-3xl   pb-2 font-semibold ">
+           Projects
+          </h1>
+          <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold  rounded-md px-4 py-2" onClick={() => document.getElementById('my_modal_3').showModal()}>
+             Create Project
+          </button>
+        </div>
+
+        <hr className="w-full h-1 bg-gradient-to-r from-[#9d11bd] to-[#73e9fe] " />
+        <p className="text-sm  font-semibold mt-2 text-black dark:text-white ">
+        Maintain your project with our project manager website.Start by creating a new project or select an existing project to track your progress. Easily assign tasks to team members and set deadlines to stay on schedule. Monitor real-time updates and generate comprehensive reports with just a few clicks. Collaborate seamlessly with your team through integrated messaging and file sharing. Customize your workflow with flexible tools designed to fit your unique project needs.
+        </p>
+        </div>
+     
+      
       <div className="px-10">
 
 
@@ -91,14 +107,9 @@ const CreateWorkspace = () => {
           {error && <p style={{ color: "red" }}>{error}</p>}
           {success && <p style={{ color: "green" }}>{success}</p>}
         </div> */}
-      
-         
-            <div className="flex items-center justify-left gap-5" >
-              <h1 className="text-xl md:text-2xl  font-bold ">Create a new project or select an existing project to track your progress.</h1>
-              <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold  rounded-md px-4 py-2" onClick={() => document.getElementById('my_modal_3').showModal()}>
-                {/* <FaCirclePlus className="text-7xl" /> */} Create
-                </button>
-            </div>
+
+
+        
 
         {/* modal open */}
         <dialog id="my_modal_3" className="modal">

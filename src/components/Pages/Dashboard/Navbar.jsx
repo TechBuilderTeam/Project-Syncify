@@ -2,35 +2,35 @@ import React, { useContext } from 'react';
 // import { FaBars, FaBell, FaSearch, FaUserCircle } from 'react-icons/fa';
 import { FaBars } from 'react-icons/fa';
 import axiosInstance from './../../../Utils/axiosInstance';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProviders/AuthProviders';
 import { toast } from 'react-toastify';
 
 import { FaBell, FaSearch, FaUserCircle } from 'react-icons/fa';
 
 const Navbar = ({ sidebarToggle, setSidebarToggle, handleThemeChange }) => {
-    const navigate = useNavigate();
-    const { user } = useContext(AuthContext);
+   
+    const { user , handleLogout } = useContext(AuthContext);
     console.log({ user })
 
-    const handleLogout = async () => {
+    // const handleLogout = async () => {
 
-        const refresh = JSON.parse(localStorage.getItem('refresh'))
-        console.log('refresh token -> ', refresh)
-        const res = await axiosInstance.post('auth/logout/', { 'refresh_token': refresh })
-        console.log("response after login -> ", res)
-        if (res.status === 200) {
-            localStorage.removeItem('access')
-            localStorage.removeItem('refresh')
-            localStorage.removeItem('user')
-            navigate('/login')
-            toast.warning("logout successful")
-        }
-    }
+    //     const refresh = JSON.parse(localStorage.getItem('refresh'))
+    //     console.log('refresh token -> ', refresh)
+    //     const res = await axiosInstance.post('auth/logout/', { 'refresh_token': refresh })
+    //     console.log("response after login -> ", res)
+    //     if (res.status === 200) {
+    //         localStorage.removeItem('access')
+    //         localStorage.removeItem('refresh')
+    //         localStorage.removeItem('user')
+    //         navigate('/login')
+    //         toast.warning("logout successful")
+    //     }
+    // }
 
     return (
         <div className ="mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl p-4" >       
-        <nav className='flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50  w-full h-20 px-3'>
+        <nav className='flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50  w-full h-20 px-3 border-b'>
             <div className='flex items-center text-xl'>
                
                 <a href="/">
@@ -82,7 +82,9 @@ const Navbar = ({ sidebarToggle, setSidebarToggle, handleThemeChange }) => {
                     }
                 </div>
             </div>
+           
         </nav>
+        
         </div>
     );
 };

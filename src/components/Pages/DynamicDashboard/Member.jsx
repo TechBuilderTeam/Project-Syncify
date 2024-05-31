@@ -218,7 +218,7 @@ const Member = () => {
                                     members?.map(member =>
                                         <tr key={member.user_id} className="text-center">
                                             <td>
-                                                <div className="flex items-center gap-3 justify-center">
+                                                <div className="flex items-center gap-3 ">
                                                     <div className="avatar">
                                                         <div className="rounded-full w-8 h-8">
                                                             <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="member image" />
