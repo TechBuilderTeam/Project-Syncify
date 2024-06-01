@@ -86,6 +86,7 @@ const Member = () => {
     } catch (error) {
       console.log("delete member error -> ", error);
     }
+  };
     function getBackgroundColor(role) {
         switch (role) {
             case 'Associate Manager':
@@ -98,7 +99,7 @@ const Member = () => {
                 return 'bg-gray-400 text-black';
         }
     }
-
+  
 
   useEffect(() => {
     const getSpecificMembers = async () => {
