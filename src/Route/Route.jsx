@@ -19,6 +19,7 @@ import Board from "../components/Pages/Board/Board";
 import Plans from "../components/Pages/Plans/Plans";
 import Tasks from "../components/Pages/Tasks/Tasks";
 import Features from "../components/Pages/Features/Features";
+import Export from "../components/Pages/Export/Export";
 const router = createBrowserRouter([
     {
       path: "/",
@@ -103,7 +104,11 @@ const router = createBrowserRouter([
           },
           {
             path: "/workspace/:id/plans",
-            element: <Plans/>
+            element: <PrivateRoute> <Plans/> </PrivateRoute>,
+          },
+          {
+            path: "/workspace/:id/export",
+            element: <PrivateRoute> <Export/> </PrivateRoute>,
           },
           {
             path: "/workspace/:id/calendar",

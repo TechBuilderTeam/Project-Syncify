@@ -59,7 +59,7 @@ const Workspace = () => {
       <div>
         {loading && (
           <div className="flex justify-center items-center">
-            <span className="loading loading-ring loading-md"></span>Workspace
+            <span className="loading loading-ring loading-md"></span>Project
             Loading....
           </div>
         )}
@@ -69,7 +69,7 @@ const Workspace = () => {
     return (
       <div className="flex justify-center items-center my-10 px-10">
         <h1 className="text-2xl">
-          No workspaces available for your account. <br />
+          No project available for your account. <br />
           {/* <div className="flex items-center  gap-2 my-2">
             <Link to="/createworkspace" className="">
               <FaCirclePlus />
