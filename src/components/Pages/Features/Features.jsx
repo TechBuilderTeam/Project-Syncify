@@ -10,7 +10,10 @@ import { FaUserCheck } from "react-icons/fa";
 import { FaChalkboardUser } from "react-icons/fa6";
 import { MdAddTask } from "react-icons/md";
 import { GrStatusUnknown } from "react-icons/gr";
-
+import { FaFolderPlus } from "react-icons/fa";
+import { CiSquareMore } from "react-icons/ci";
+import { LuClipboardSignature } from "react-icons/lu";
+import { MdOutlineTask } from "react-icons/md";
 const Features = () => {
   return (
     <div className="px-10 py-20">
@@ -174,6 +177,79 @@ const Features = () => {
         <div className="card flex justify-center gap-y-3 items-center rounded-lg shadow-md py-14 px-10 bg-gray-100 dark:bg-black">
           <GrStatusUnknown className="font-bold text-3xl" />
           <h1 className="text-lg">Task status</h1>
+        </div>
+      </div>
+      {/* cards  */}
+      <div className="my-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="px-8 py-5  border-2 rounded-md space-y-2 h-[300px]">
+          <div className="flex justify-end">
+            <FaFolderPlus className=" text-4xl font-bold" />
+          </div>
+          <div className="flex flex-col justify-end items-start space-y-2 h-[120px]">
+            <h1 className="text-xl  font-semibold">Project Title</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut,
+              adipisci!
+            </p>
+          </div>
+        </div>
+        <div className="px-8 py-5  border-2 rounded-md space-y-2 h-[300px]">
+          <div className="flex justify-end">
+            <CiSquareMore className=" text-4xl font-bold" />
+          </div>
+          <div className="flex flex-col justify-end items-start space-y-2 h-[120px]">
+            <h1 className="text-xl  font-semibold">Project Details</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut,
+              adipisci!
+            </p>
+          </div>
+        </div>
+        <div className="px-8 py-5  border-2 rounded-md space-y-2 h-[300px]">
+          <div className="flex justify-end">
+            <LuClipboardSignature className=" text-4xl font-bold" />
+          </div>
+          <div className="flex flex-col justify-end items-start space-y-2 h-[120px]">
+            <h1 className="text-xl  font-semibold">Plans Create</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut,
+              adipisci!
+            </p>
+          </div>
+        </div>
+        <div className="px-8 py-5  border-2 rounded-md space-y-2 h-[300px]">
+          <div className="flex justify-end">
+            <MdOutlineTask className=" text-4xl font-bold" />
+          </div>
+          <div className="flex flex-col justify-end items-start space-y-2 h-[120px]">
+            <h1 className="text-xl  font-semibold">Task Assign</h1>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut,
+              adipisci!
+            </p>
+          </div>
+        </div>
+
+        <div className="flex justify-center items-center border-gray-100 border-4 rounded-md space-y-2 h-[300px]">
+          <img
+            src="https://i.ibb.co/FxVSWKN/report-line-black-icon-vector.jpg"
+            className="w-full h-full"
+            alt=""
+          />
+        </div>
+        <div className="flex justify-center items-center border-gray-100 border-4 rounded-md space-y-2 h-[300px]">
+          <img
+            src="https://i.ibb.co/LpBM4Fv/Screenshot-7.png"
+            className="w-full h-full"
+            alt=""
+          />
+        </div>
+        <div className="flex justify-center items-center border-gray-100 border-4 rounded-md space-y-2 h-[300px]">
+          <img
+            src="https://i.ibb.co/N3tnhZ6/Screenshot-8.png"
+            className="w-full h-full"
+            alt=""
+          />
         </div>
       </div>
     </div>
