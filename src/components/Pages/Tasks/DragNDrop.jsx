@@ -14,7 +14,7 @@ const DragNDrop = ({ tasks, setTasks, handleShowModal }) => {
     };
 
     const handleUpdateStatus = async (taskId, newStatus) => {
-        await axios.patch(`https://task-backend-azure.vercel.app/tasks/${taskId}`, { status: newStatus });
+        await axios.patch(`https://projectsyncifyapi.onrender.com/workspace/tasks/update/${taskId}/`, { status: newStatus });
     };
 
     const handleDrop = async (e, newStatus) => {

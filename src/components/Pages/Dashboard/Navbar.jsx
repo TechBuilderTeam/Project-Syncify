@@ -1,42 +1,48 @@
 import React, { useContext } from 'react';
 // import { FaBars, FaBell, FaSearch, FaUserCircle } from 'react-icons/fa';
+import { FaBars } from 'react-icons/fa';
 import axiosInstance from './../../../Utils/axiosInstance';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../Providers/AuthProviders/AuthProviders';
 import { toast } from 'react-toastify';
 
 import { FaBell, FaSearch, FaUserCircle } from 'react-icons/fa';
 
 const Navbar = ({ sidebarToggle, setSidebarToggle, handleThemeChange }) => {
-    const navigate = useNavigate();
-    const {user} = useContext(AuthContext);
-    console.log({user})
-    
-    const handleLogout = async ()=>{
+   
+    const { user , handleLogout } = useContext(AuthContext);
+    console.log({ user })
 
-        const refresh=JSON.parse(localStorage.getItem('refresh'))
-        console.log('refresh token -> ',refresh)
-        const res = await axiosInstance.post('auth/logout/', {'refresh_token':refresh})
-        console.log("response after login -> ", res)
-        if (res.status === 200) {
-             localStorage.removeItem('access')
-             localStorage.removeItem('refresh')
-             localStorage.removeItem('user')
-             navigate('/login')
-             toast.warning("logout successful")
-        }
-      }
-      
+    // const handleLogout = async () => {
+
+    //     const refresh = JSON.parse(localStorage.getItem('refresh'))
+    //     console.log('refresh token -> ', refresh)
+    //     const res = await axiosInstance.post('auth/logout/', { 'refresh_token': refresh })
+    //     console.log("response after login -> ", res)
+    //     if (res.status === 200) {
+    //         localStorage.removeItem('access')
+    //         localStorage.removeItem('refresh')
+    //         localStorage.removeItem('user')
+    //         navigate('/login')
+    //         toast.warning("logout successful")
+    //     }
+    // }
+
     return (
-        <nav className='flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl  w-full h-20 px-3 bg-gradient-to-t from-[#73e9fe] dark:from-[#8401A1] to-[#cef8ff] dark:to-[#140518]'>
+        <div className ="mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl p-4" >       
+        <nav className='flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50  w-full h-20 px-3 border-b'>
             <div className='flex items-center text-xl'>
+               
                 <a href="/">
                     <img src={"https://i.ibb.co/T4FSNsb/Justlogo.png"} className="w-14 h-12 " alt="logo" />
                 </a>
                 <a href="/">
                     <h1 className="text-2xl  font-bold italic ">Project Syncify</h1>
                 </a>
+
             </div>
+
+
 
             <div className='flex items-center gap-x-5'>
                 {/* <div className='relative md:w-65'>
@@ -58,25 +64,28 @@ const Navbar = ({ sidebarToggle, setSidebarToggle, handleThemeChange }) => {
                     </label>
                 </div>
 
-                <div className=''><FaBell className='w-6 h-6 ' /></div>
+                {/* <div className=''><FaBell className='w-6 h-6 ' /></div> */}
 
                 <div className='relative'>
                     {
                         user ? <> <button className=' group '>
-                        <FaUserCircle className='w-6 h-6 mt-1'/>
-                        <div className='z-10 absolute hidden bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-32 group-focus:block top-full right-0'>
-                            <ul className='py-2 text-sm'>
-                                <li><a href="">Profile</a></li>
-                                <li><a href="">Setting</a></li>
-                                <li onClick={handleLogout}>Logout</li>
-                            </ul>
-                        </div>
-                    </button></>
-                      : <><Link to={'/login'} className='text-white'><FaUserCircle className='w-6 h-6 mt-1'/></Link></> 
+                            <FaUserCircle className='w-6 h-6 mt-1' />
+                            <div className='z-10 absolute hidden bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-32 group-focus:block top-full right-0'>
+                                <ul className='py-2 text-sm'>
+                                    <li><a href="">Profile</a></li>
+                                    <li><a href="">Setting</a></li>
+                                    <li onClick={handleLogout}>Logout</li>
+                                </ul>
+                            </div>
+                        </button></>
+                            : <><Link to={'/login'} className='text-white'><FaUserCircle className='w-6 h-6 mt-1' /></Link></>
                     }
                 </div>
             </div>
+           
         </nav>
+        
+        </div>
     );
 };
 

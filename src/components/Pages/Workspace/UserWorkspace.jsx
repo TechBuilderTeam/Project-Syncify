@@ -1,10 +1,16 @@
-import React from "react";
+
 import Workspace from "./Workspace";
+import CreateWorkspace from "./CreateWorkspace";
 const UserWorkspace = () => {
   return (
-    <div className="px-10 py-20">
+    <div className="">
+     
+      
+      <CreateWorkspace  className=""/>
       <Workspace />
-    </div>
+      </div>
+     
+    
   );
 };
 

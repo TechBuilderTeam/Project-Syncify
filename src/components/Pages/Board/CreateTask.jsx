@@ -8,27 +8,29 @@ const CreateTask = ({ updateTasks }) => {
     const { user } = useContext(AuthContext);
 
     const handleCloseModelButton = () => {
-        document.getElementById('my_modal_3').close()
+        document.getElementById('my_modal_5').close()
     }
 
     const handleCreateTask = (event) => {
         event.preventDefault();
 
         const form = event.target;
-        const title = form.title.value;
-        const deadline = form.deadline.value;
+        const scrum_Name = form.scrum_Name.value;
+        const name = form.name.value;
+        const details = form.details.value;
+        const assign = form.assign.value;
         const priority = form.priority.value;
 
-        if (!title || !deadline || !priority) {
+        if (!scrum_Name || !name || !details || !priority) {
             toast.error('Please fill in all required fields');
             return;
         }
 
-        const email = user?.email;
+    
         const status = 'To-Do';
-        const newTask = { title, deadline, priority, email, status };
+        const newTask = { scrum_Name , name , details, assign,status,priority };
 
-        fetch('https://task-backend-azure.vercel.app/tasks', {
+        fetch('https://projectsyncifyapi.onrender.com/workspace/tasks/create/', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -59,29 +61,41 @@ const CreateTask = ({ updateTasks }) => {
                     <div className=" dark:text-[#73e9fe] text-[#8401A1] mt-6">
                         <p className="text-3xl font-bold mb-1">Wanna Create Task?</p>
                         <p className="text-sm mb-4 text-black dark:text-white">For maintain your project progress. <br />Create your task and track your progress... <br />Click below<span className="font-extrabold font-2xl text-[#8401A1] dark:text-[#73e9fe]"> ↓↓ </span>  and explore more</p>
-                        <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Task</button>
+                        <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_5').showModal()}>Add Task</button>
                     </div>
                     <div className="w-80 h-80">
                         <Lottie animationData={TaskAni} loop={true} />
                     </div>
                 </div>
 
-                <dialog id="my_modal_3" className="modal">
+                <dialog id="my_modal_5" className="modal">
                     <div className="modal-box bg-white dark:bg-black">
                         <form onSubmit={handleCreateTask} >
                             <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={handleCloseModelButton}>✕</button>
                             <h3 className="font-bold text-2xl text-center">Create Task</h3>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">Title</span>
+                                    <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">Board Name</span>
                                 </label>
-                                <input type="text" name="title" placeholder="Title" className="input input-bordered bg-slate-200 dark:bg-black" />
+                                <input type="text" name="scrum_Name" placeholder="Board Name" className="input input-bordered bg-slate-200 dark:bg-black" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">Deadline</span>
+                                    <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">Task Name</span>
                                 </label>
-                                <input type="date" name="deadline" placeholder="Deadline" className="input input-bordered bg-slate-200 dark:bg-black dark:text-[#73e9fe] text-[#8401A1]" />
+                                <input type="text" name="name" placeholder="Name" className="input input-bordered bg-slate-200 dark:bg-black dark:text-[#73e9fe] text-[#8401A1]" />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">Task Details</span>
+                                </label>
+                                <input type="text" name="details" placeholder="Text Details" className="input input-bordered bg-slate-200 dark:bg-black dark:text-[#73e9fe] text-[#8401A1]" />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">Assign</span>
+                                </label>
+                                <input type="text" name="assign" placeholder="Assign Task" className="input input-bordered bg-slate-200 dark:bg-black dark:text-[#73e9fe] text-[#8401A1]" />
                             </div>
                             <div className="form-control">
                                 <label className="label">

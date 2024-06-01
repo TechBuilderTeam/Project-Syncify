@@ -5,7 +5,10 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import MemberAni from "../../../../public/member.json";
 import { MdDeleteForever } from 'react-icons/md';
-import { FaRegEdit } from 'react-icons/fa';
+import { IoPeopleSharp } from "react-icons/io5";
+import { FaRegEdit, FaSearch } from 'react-icons/fa';
+import TitlePages from '../../../pages/shared/TitlePages';
+import TitleDynamic from '../../../pages/shared/TitleDynamic';
 const Member = () => {
     const [members, setMembers] = useState([]);
     const [change, setChange] = useState(false)
@@ -75,7 +78,7 @@ const Member = () => {
             const result = await axios.delete("https://projectsyncifyapi.onrender.com/api/v2/workspace/members/remove/", { data }
             )
             console.log("delete member -> ", result)
-            toast.success("Successfully deleted")
+            toast.success("Successfully deleted member")
             setChange(!change)
 
         } catch (error) {
@@ -83,6 +86,19 @@ const Member = () => {
             console.log("delete member error -> ", error)
         }
     }
+    function getBackgroundColor(role) {
+        switch (role) {
+            case 'Associate Manager':
+                return 'bg-[#8401A1] text-white';
+            case 'Member':
+                return 'bg-[#007BFF] text-white';
+            case 'Team Leader':
+                return 'bg-[#28A745] text-white';
+            default:
+                return 'bg-gray-400 text-black';
+        }
+    }
+
 
     useEffect(() => {
         const getSpecificMembers = async () => {
@@ -103,8 +119,9 @@ const Member = () => {
 
 
     return (
-        <div className=" h-screen ">
-            <div className=" flex justify-center items-center gap-6">
+        <div className="h-screen ">
+
+            {/* <div className=" flex justify-center items-center gap-6">
                 <div className="w-80 h-80">
                     <Lottie animationData={MemberAni} loop={true} />
                 </div>
@@ -114,11 +131,10 @@ const Member = () => {
                     <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
                 </div>
 
-            </div>
+            </div> */}
             <dialog id="my_modal_3" className="modal">
                 <div className="modal-box bg-white dark:bg-black">
                     <form onSubmit={handleAddUserButton}>
-                        {/* if there is a button in form, it will close the modal */}
                         <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => document.getElementById('my_modal_3').close()}>✕</button>
                         <h2 className="font-bold text-2xl text-center my-3">Create New Member</h2>
                         <div className="form-control">
@@ -147,27 +163,53 @@ const Member = () => {
                 </div>
 
             </dialog>
+            <div className='dark:text-[#73e9fe] text-[#8401A1] '>
+                <div className=" py-2">
+                    <div className="flex justify-between items-center pb-2">
+                    <h1 className="text-3xl   pb-2 font-semibold ">
+                        Member
+                    </h1>
+                    <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
+                    </div>
+                    
+                    <hr className="w-full h-1 bg-gradient-to-r from-[#9d11bd] to-[#73e9fe] " />
+                    <p className="text-sm  font-semibold mt-2 text-black dark:text-white ">
+                        To ensure seamless progress tracking and maintenance of your project, incorporate team members into your project structure. Assign distinct roles to each member to streamline collaboration and enhance accountability throughout the project lifecycle. Add member and explore more.
+                    </p>
+                </div>
+                {/* <TitleDynamic title="Member" subTitle="To ensure seamless progress tracking and maintenance of your project, incorporate team members into your project structure. Assign distinct roles to each member to streamline collaboration and enhance accountability throughout the project lifecycle. Add member and explore more. " /> */}
+            </div>
+            <div className='flex flex-col md:flex-row justify-between items-center my-6 gap-2 '>
+                <div>
+                {memberLength === 0 && <><div className='flex justify-center items-center gap-2'>
+                    <IoPeopleSharp className='text-3xl text-[#8401A1] dark:text-[#73e9fe]'/>
+                    <h2 className='text-xl font-bold  '>  No Member Found, Add Member!</h2>
+                    </div></>}
+                </div>
+                <div className='relative md:w-65 flex items-center '>
+                    <input type="text" className='w-full px-4 py-1 rounded shadow outline-none bg-white dark:bg-black ' placeholder='Search' />
+                    <button className='p-1 m-2 focus:outline-none  '><FaSearch /></button>
+                </div>
+                {/* <div>
+                    <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
+                </div> */}
+            </div>
             {/* <h2 className='m-4 text-5xl text-center '>User List </h2> */}
-            {memberLength === 0 && <h2 className='m-4 text-2xl text-center '>No Member Found, Add Member!</h2>}
+            
             {
                 memberLength > 0 && (
-                    <div className="overflow-x-auto shadow-xl rounded w-full m-4">
+                    <div className="overflow-x-auto shadow-xl rounded w-full ">
                         <table className="table">
                             {/* head */}
-                            <thead className=' text-lg text-[#8401A1] dark:text-[#73e9fe]'>
+                            <thead className=' text-sm text-[#8401A1] dark:text-[#73e9fe]'>
                                 <tr className='text-center'>
-                                    {/* <th>
-                           Checkbox
-                        </th> */}
+
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Role</th>
-                                    <th>Action</th>
-                                    <th> <button className='btn-ghost'>  </button>
-                                        {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                                    <th>Edit Member</th>
+                                    <th>Delete Member</th>
 
-
-                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -175,21 +217,17 @@ const Member = () => {
                                 {
                                     members?.map(member =>
                                         <tr key={member.user_id} className="text-center">
-                                            {/* <th>
-                            <label>
-                                <input type="checkbox" className="checkbox" />
-                            </label>
-                        </th> */}
                                             <td>
-                                                {/* <div className="flex items-center gap-3">
-                                
-                                <div>
-                                    <div className="font-bold">{user.firstName} {user.lastName}</div>
-                                    <div className="text-sm opacity-50">{user.gender}</div>
-                                    <div className="text-sm opacity-50">{user.birthDate}</div>
-                                </div>
-                            </div> */}
-                                                {member.user_name}
+                                                <div className="flex items-center gap-3 ">
+                                                    <div className="avatar">
+                                                        <div className="rounded-full w-8 h-8">
+                                                            <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="member image" />
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div className="font-bold">{member.user_name}</div>
+                                                    </div>
+                                                </div>
                                             </td>
                                             <td>
                                                 {member.user_email}
@@ -200,7 +238,12 @@ const Member = () => {
                                             {/* <td>{user.roll === 'admin' ? <button onClick={() => handleMakeUser(user)} className="btn btn-ghost bg-red-600 text-white ">Admin</button> 
                                 : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-red-600 text-white ">User</button>}</td> */}
 
-                                            <td>{member.role}</td>
+                                            <td className="">
+                                                <p className={`px-1 py-1 rounded ${getBackgroundColor(member.role)}`}>
+                                                    {member.role}
+                                                </p>
+                                            </td>
+
                                             <th>
                                                 {/* <Link to= {`/admin/admin/userDetails`} state={user} className="btn btn-accent  p-2 m-2">details</Link> */}
                                                 {/* <button className="btn btn-neutral px-4  py-2">Edit</button> */}
@@ -223,7 +266,7 @@ const Member = () => {
                                                             </div>
                                                             <div className="form-control mb-4">
                                                                 <label htmlFor="email" className="label">User Id</label>
-                                                                <input type="text" id="user_id" name="user_id" value={member.user_id} readOnly  className="input input-bordered bg-slate-200 dark:bg-black" />
+                                                                <input type="text" id="user_id" name="user_id" value={member.user_id} readOnly className="input input-bordered bg-slate-200 dark:bg-black" />
 
                                                             </div>
                                                             <div className="form-control mb-4">
@@ -240,6 +283,8 @@ const Member = () => {
                                                         </form>
                                                     </div>
                                                 </dialog>
+                                            </th>
+                                            <th>
                                                 {/** Member edit button and model end */}
                                                 <button className="mx-4" onClick={() => handleDeleteMember(member.user_id)}>
                                                     <MdDeleteForever className="text-xl " />
