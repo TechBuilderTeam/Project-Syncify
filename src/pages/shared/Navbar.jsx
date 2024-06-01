@@ -5,43 +5,42 @@ import { HiMenuAlt2 } from "react-icons/hi";
 import { FaXmark } from "react-icons/fa6";
 import { AuthContext } from "../../Providers/AuthProviders/AuthProviders";
 
-
 const Navbar = ({ handleThemeChange }) => {
-    const {user, handleLogout} = useContext(AuthContext);
-    console.log({user})
-    const navlinks = (
-        <>
-            <NavLink
-                to="/"
-                className={({ isActive }) =>
-                    isActive
-                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
-                        : "text-[#8401A1] dark:text-[#73e9fe]"
-                }
-            >
-                Home
-            </NavLink>
-            <NavLink
-                to="/features"
-                className={({ isActive }) =>
-                    isActive
-                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
-                        : "text-[#8401A1] dark:text-[#73e9fe]"
-                }
-            >
-                Features
-            </NavLink>
-            <NavLink
-                to="/solutions"
-                className={({ isActive }) =>
-                    isActive
-                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
-                        : "text-[#8401A1] dark:text-[#73e9fe]"
-                }
-            >
-                Solutions
-            </NavLink>
-            {/* <NavLink
+  const { user, handleLogout } = useContext(AuthContext);
+  console.log({ user });
+  const navlinks = (
+    <>
+      <NavLink
+        to="/"
+        className={({ isActive }) =>
+          isActive
+            ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+            : "text-[#8401A1] dark:text-[#73e9fe]"
+        }
+      >
+        Home
+      </NavLink>
+      <NavLink
+        to="/features"
+        className={({ isActive }) =>
+          isActive
+            ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+            : "text-[#8401A1] dark:text-[#73e9fe]"
+        }
+      >
+        Features
+      </NavLink>
+      <NavLink
+        to="/solutions"
+        className={({ isActive }) =>
+          isActive
+            ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
+            : "text-[#8401A1] dark:text-[#73e9fe]"
+        }
+      >
+        Solutions
+      </NavLink>
+      {/* <NavLink
             {/* <NavLink
                 to="/login"
                 className={({ isActive }) =>
@@ -63,10 +62,10 @@ const Navbar = ({ handleThemeChange }) => {
                 Register
             </NavLink> */}
 
-            { user?.email &&
-           <> 
-           {/* workspace dropdown  */}
-           {/* <div className="dropdown dropdown-bottom">
+      {user?.email && (
+        <>
+          {/* workspace dropdown  */}
+          {/* <div className="dropdown dropdown-bottom">
              <div
                tabIndex={0}
                role="button"
@@ -91,21 +90,18 @@ const Navbar = ({ handleThemeChange }) => {
              </ul>
            </div> */}
 
-           <NavLink
-                to="/workspace"
-                className={({ isActive }) =>
-                    isActive
-                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
-                        : "text-[#8401A1] dark:text-[#73e9fe]"
-                }
-            >
-                Projects
-            </NavLink>
-
-           </>
+          <NavLink
+            to="/workspace"
+            className={({ isActive }) =>
+              isActive
+                ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
+                : "text-[#8401A1] dark:text-[#73e9fe]"
             }
-
-   
+          >
+            Projects
+          </NavLink>
+        </>
+      )}
 
       {/* dropdown 
       <div className="dropdown dropdown-bottom">
@@ -140,8 +136,6 @@ const Navbar = ({ handleThemeChange }) => {
   const toggleMenu = () => {
     setOpen(!open);
   };
-
-  
 
   return (
     <div className=" mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl p-4 ">
@@ -191,7 +185,15 @@ const Navbar = ({ handleThemeChange }) => {
             <hr className="w-[3px] h-[36px] bg-[#8401A1] dark:bg-[#73e9fe]" />
 
             <a href="contact">Contact</a>
-            {user ? <><div onClick={handleLogout}>LogOut</div></>: <Link to="/login">Log In</Link>}
+            {user ? (
+              <>
+                <div onClick={handleLogout} className="cursor-pointer">
+                  LogOut
+                </div>
+              </>
+            ) : (
+              <Link to="/login">Log In</Link>
+            )}
             <Link to="/register">
               <button className="px-3 py-1 hidden md:flex bg-[#8401A1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#8401A1] rounded text-white">
                 Get Started

@@ -18,7 +18,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Board from "../components/Pages/Board/Board";
 import Plans from "../components/Pages/Plans/Plans";
 import Tasks from "../components/Pages/Tasks/Tasks";
-
+import Features from "../components/Pages/Features/Features";
 const router = createBrowserRouter([
     {
       path: "/",

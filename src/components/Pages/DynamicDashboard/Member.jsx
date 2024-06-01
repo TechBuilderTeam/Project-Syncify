@@ -1,8 +1,8 @@
-import axios from 'axios';
-import Lottie from 'lottie-react';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import axios from "axios";
+import Lottie from "lottie-react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import MemberAni from "../../../../public/member.json";
 import { MdDeleteForever } from 'react-icons/md';
 import { IoPeopleSharp } from "react-icons/io5";
@@ -10,81 +10,81 @@ import { FaRegEdit, FaSearch } from 'react-icons/fa';
 import TitlePages from '../../../pages/shared/TitlePages';
 import TitleDynamic from '../../../pages/shared/TitleDynamic';
 const Member = () => {
-    const [members, setMembers] = useState([]);
-    const [change, setChange] = useState(false)
-    const { id } = useParams();
-    console.log({ id })
+  const [members, setMembers] = useState([]);
+  const [change, setChange] = useState(false);
+  const { id } = useParams();
+  console.log({ id });
 
+  const newMember = {
+    workspace_Name: "",
+    role: "",
+    email: "",
+  };
 
+  const handleCloseModelButton = (value) => {
+    document.getElementById(value).close();
+  };
 
+  const handleAddUserButton = async (e) => {
+    e.preventDefault();
 
-    const newMember = {
-        "workspace_Name": '',
-        "role": '',
-        "email": '',
+    newMember.workspace_Name = id;
+    newMember.role = e.target.userType.value;
+    newMember.email = e.target.email.value;
+
+    try {
+      const result = await axios.post(
+        `https://projectsyncifyapi.onrender.com/api/v2/workspace/members/add/`,
+        newMember
+      );
+      console.log("result -> ", result);
+      toast.success("Member Successfully Added");
+      setChange(!change);
+      handleCloseModelButton("my_modal_3");
+    } catch (error) {
+      console.log("error -> ", error);
     }
+  };
 
-    const handleCloseModelButton = (value) => {
-        document.getElementById(value).close()
+  const handleUpdateButton = async (e) => {
+    e.preventDefault();
+    const updateMember = {
+      workspace_id: id,
+      new_role: e.target.userType.value,
+      user_id: e.target.user_id.value,
+    };
+
+    try {
+      const result = await axios.patch(
+        `https://projectsyncifyapi.onrender.com/api/v2/workspace/members/change-role/`,
+        updateMember
+      );
+
+      console.log("result -> ", result);
+      toast.success("Member Successfully Updated");
+      setChange(!change);
+      handleCloseModelButton("edit");
+    } catch (error) {
+      console.log("error -> ", error);
     }
+  };
 
-    const handleAddUserButton = async (e) => {
-        e.preventDefault()
-
-        newMember.workspace_Name = id;
-        newMember.role = e.target.userType.value;
-        newMember.email = e.target.email.value;
-
-        try {
-            const result = await axios.post(`https://projectsyncifyapi.onrender.com/api/v2/workspace/members/add/`, newMember)
-            console.log('result -> ', result)
-            toast.success("Member Successfully Added");
-            setChange(!change);
-            handleCloseModelButton("my_modal_3")
-        } catch (error) {
-            console.log('error -> ', error)
-        }
-
-    }
-
-    const handleUpdateButton = async (e) => {
-        e.preventDefault()
-        const updateMember = {
-            "workspace_id": id,
-            "new_role": e.target.userType.value,
-            "user_id": e.target.user_id.value
-        }
-
-        try {
-            const result = await axios.patch(`https://projectsyncifyapi.onrender.com/api/v2/workspace/members/change-role/`, updateMember
-            )
-
-            console.log('result -> ', result)
-            toast.success("Member Successfully Updated");
-            setChange(!change);
-            handleCloseModelButton("edit")
-        } catch (error) {
-            console.log('error -> ', error)
-        }
-    }
-
-    const handleDeleteMember = async (user_id) => {
-        console.log("user id -> ", user_id)
-        const convertIdToSring = id.toString()
-        console.log(typeof convertIdToSring)
-        const data = { workspace_id: convertIdToSring, user_id: user_id }
-        console.log("data -> ", data)
-        try {
-            const result = await axios.delete("https://projectsyncifyapi.onrender.com/api/v2/workspace/members/remove/", { data }
-            )
-            console.log("delete member -> ", result)
-            toast.success("Successfully deleted member")
-            setChange(!change)
-
-        } catch (error) {
-
-            console.log("delete member error -> ", error)
-        }
+  const handleDeleteMember = async (user_id) => {
+    console.log("user id -> ", user_id);
+    const convertIdToSring = id.toString();
+    console.log(typeof convertIdToSring);
+    const data = { workspace_id: convertIdToSring, user_id: user_id };
+    console.log("data -> ", data);
+    try {
+      const result = await axios.delete(
+        "https://projectsyncifyapi.onrender.com/api/v2/workspace/members/remove/",
+        { data }
+      );
+      console.log("delete member -> ", result);
+      toast.success("Successfully deleted member");
+      setChange(!change);
+    } catch (error) {
+      console.log("delete member error -> ", error);
     }
     function getBackgroundColor(role) {
         switch (role) {
@@ -100,23 +100,23 @@ const Member = () => {
     }
 
 
-    useEffect(() => {
-        const getSpecificMembers = async () => {
-            try {
-                const result = await axios.get(`https://projectsyncifyapi.onrender.com/api/v2/workspace/${id}/members/`)
-                console.log("get member -> ", result.data)
-                setMembers(result.data)
-            } catch (error) {
-                console.log("get member error -> ", error)
-            }
-        }
+  useEffect(() => {
+    const getSpecificMembers = async () => {
+      try {
+        const result = await axios.get(
+          `https://projectsyncifyapi.onrender.com/api/v2/workspace/${id}/members/`
+        );
+        console.log("get member -> ", result.data);
+        setMembers(result.data);
+      } catch (error) {
+        console.log("get member error -> ", error);
+      }
+    };
 
-        getSpecificMembers()
-    }, [change])
+    getSpecificMembers();
+  }, [change]);
 
-
-    const memberLength = members.length;
-
+  const memberLength = members.length;
 
     return (
         <div className="h-screen ">
@@ -132,27 +132,49 @@ const Member = () => {
                 </div>
 
             </div> */}
-            <dialog id="my_modal_3" className="modal">
-                <div className="modal-box bg-white dark:bg-black">
-                    <form onSubmit={handleAddUserButton}>
-                        <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => document.getElementById('my_modal_3').close()}>✕</button>
-                        <h2 className="font-bold text-2xl text-center my-3">Create New Member</h2>
-                        <div className="form-control">
-                            <label className="label" htmlFor="email">
-                                <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">Email</span>
-                            </label>
-                            <input type="email" id="email" name="email" placeholder="Enter Email Address" className="input input-bordered bg-slate-200 dark:bg-black" />
-                        </div>
-                        <div className="form-control">
-                            <label className="label" htmlFor="userType">
-                                <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">Role</span>
-                            </label>
-                            <select id="userType" name="userType" className="select select-bordered bg-slate-200 dark:bg-black">
-                                <option value="Associate Manager">Associate Manager</option>
-                                <option value="Team Leader">Team Leader</option>
-                                <option value="Member">Member</option>
-                            </select>
-                        </div>
+      <dialog id="my_modal_3" className="modal">
+        <div className="modal-box bg-white dark:bg-black">
+          <form onSubmit={handleAddUserButton}>
+            <button
+              id="closeBtn"
+              className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]"
+              onClick={() => document.getElementById("my_modal_3").close()}
+            >
+              ✕
+            </button>
+            <h2 className="font-bold text-2xl text-center my-3">
+              Create New Member
+            </h2>
+            <div className="form-control">
+              <label className="label" htmlFor="email">
+                <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">
+                  Email
+                </span>
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter Email Address"
+                className="input input-bordered bg-slate-200 dark:bg-black"
+              />
+            </div>
+            <div className="form-control">
+              <label className="label" htmlFor="userType">
+                <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">
+                  Role
+                </span>
+              </label>
+              <select
+                id="userType"
+                name="userType"
+                className="select select-bordered bg-slate-200 dark:bg-black"
+              >
+                <option value="Associate Manager">Associate Manager</option>
+                <option value="Team Leader">Team Leader</option>
+                <option value="Member">Member</option>
+              </select>
+            </div>
 
                         <div className="flex justify-center mt-6">
                             <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-2" type="submit">Add Member</button>
@@ -234,8 +256,8 @@ const Member = () => {
                                                 {/* <br />
                             <span className="badge badge-ghost badge-sm">{user.phone}</span>
                             <span className="badge badge-ghost badge-sm">{user.email}</span> */}
-                                            </td>
-                                            {/* <td>{user.roll === 'admin' ? <button onClick={() => handleMakeUser(user)} className="btn btn-ghost bg-red-600 text-white ">Admin</button> 
+                  </td>
+                  {/* <td>{user.roll === 'admin' ? <button onClick={() => handleMakeUser(user)} className="btn btn-ghost bg-red-600 text-white ">Admin</button> 
                                 : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-red-600 text-white ">User</button>}</td> */}
 
                                             <td className="">
@@ -305,15 +327,11 @@ const Member = () => {
                         <th>Action</th>
                     </tr>
                 </tfoot> */}
-
-                        </table>
-
-                    </div>
-                )
-            }
-
-        </div >
-    );
+          </table>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default Member;
