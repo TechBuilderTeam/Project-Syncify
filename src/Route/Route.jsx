@@ -20,142 +20,109 @@ import Plans from "../components/Pages/Plans/Plans";
 import Tasks from "../components/Pages/Tasks/Tasks";
 import Features from "../components/Pages/Features/Features";
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Root />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/features",
-        element: <Features />,
-      },
-      {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
-      },
-      {
-        path: "/otp/verify",
-        element: <VerifyEmail />,
-      },
-      {
-        path: "/forgotpassword",
-        element: <ForgetPassword />,
-      },
-      {
-        path: "/profile",
-        element: <Profile />,
-      },
-      {
-        path: "/forget",
-        element: <ForgetPassword />,
-      },
-      {
-        path: "/password-reset-confirm/:uid/:token",
-        element: <ResetPassword />,
-      },
-      {
-        path: "/workspace",
-        element: (
-          <PrivateRoute>
-            <UserWorkspace />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/createworkspace",
-        element: (
-          <PrivateRoute>
-            <CreateWorkspace />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/editworkspace/:workspaceId",
-        element: (
-          <PrivateRoute>
-            <EditWorkspace />
-          </PrivateRoute>
-        ),
-      },
-      // {
-      //   path: "workspace/:id",
-      //   element: <DynamicDashboard></DynamicDashboard>,
-      //   // loader: ({params}) => fetch(`https://projectsyncifyapi.onrender.com/workspace/list/${params.id}`)
-      // },
-    ],
-  },
+    {
+      path: "/",
+      element: <Root />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "/features",
+          element: <Features />,
+        },
+        {
+          path: "/login",
+          element: <Login />,
+        },
+        {
+          path: "/register",
+          element: <Register />,
+        },
+        {
+          path: "/otp/verify",
+          element: <VerifyEmail />,
+        },
+        {
+          path: "/forgotpassword",
+          element: <ForgetPassword />,
+        },
+        {
+          path: "/profile",
+          element:<Profile/>
+        },
+        {
+          path: "/forget",
+          element: <ForgetPassword/>
+        },
+        {
+          path: "/password-reset-confirm/:uid/:token",
+          element: <ResetPassword/>
+        },
+        {
+          path: "/workspace",
+          element: <PrivateRoute><UserWorkspace /></PrivateRoute>,
+        },
+        {
+          path: "/createworkspace",
+          element:  <PrivateRoute><CreateWorkspace /></PrivateRoute>,
+        },
+        {
+          path: "/editworkspace/:workspaceId",
+          element:  <PrivateRoute><EditWorkspace /></PrivateRoute>,
+        },
+        // {
+        //   path: "workspace/:id",
+        //   element: <DynamicDashboard></DynamicDashboard>, 
+        //   // loader: ({params}) => fetch(`https://projectsyncifyapi.onrender.com/workspace/list/${params.id}`)
+        // },
+      ],
+    },
+  
+    {
+      path: "/workspace/:id",
+      element: <DynamicDashboard/>,
+      // loader: ({params}) => fetch(`https://projectsyncifyapi.onrender.com/workspace/list/${params.id}`),
+      children: [
+          {
+            path: "/workspace/:id",
+            element:  <PrivateRoute><Member/></PrivateRoute>,
+          },
+          {
+            path: "/workspace/:id/profile",
+            element: <PrivateRoute> <Profile/> </PrivateRoute>,
+          },
+          {
+            path: "/workspace/:id/boards",
+            element:<PrivateRoute> <Board/> </PrivateRoute>,
+          },
+          {
+            path: "/workspace/:id/tasks",
+            element:<PrivateRoute> <Tasks/> </PrivateRoute>,
+          },
+          {
+            path: "/workspace/:id/plans",
+            element: <Plans/>
+          },
+          {
+            path: "/workspace/:id/calendar",
+            element: <Calendarui/>
+          }
+      ]
+    },
+    {
+      path: "/dashboard",
+      element: <PrivateRoute><Dashboard /></PrivateRoute>,
+      children: [
+        {
+          path: "/dashboard/profile",
+          element: <Profile />,
+        },
+       
+      ],
+    },
+  ]);
 
-  {
-    path: "/workspace/:id",
-    element: <DynamicDashboard />,
-    // loader: ({params}) => fetch(`https://projectsyncifyapi.onrender.com/workspace/list/${params.id}`),
-    children: [
-      {
-        path: "/workspace/:id",
-        element: (
-          <PrivateRoute>
-            <Member />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/workspace/:id/profile",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <Profile />{" "}
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/workspace/:id/boards",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <Board />{" "}
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/workspace/:id/tasks",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <Tasks />{" "}
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/workspace/:id/plans",
-        element: <Plans />,
-      },
-    ],
-  },
-  {
-    path: "/dashboard",
-    element: (
-      <PrivateRoute>
-        <Dashboard />
-      </PrivateRoute>
-    ),
-    children: [
-      {
-        path: "/dashboard/profile",
-        element: <Profile />,
-      },
-      {
-        path: "/dashboard/calendar",
-        element: <Calendarui />,
-      },
-    ],
-  },
-]);
 
-export default router;
+  export default router;
