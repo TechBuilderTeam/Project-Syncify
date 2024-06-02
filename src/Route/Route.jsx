@@ -111,15 +111,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "/workspace/:id/profile",
-        element: (
-          <PrivateRoute>
-            {" "}
-            <Profile />{" "}
-          </PrivateRoute>
-        ),
-      },
+     
       {
         path: "/workspace/:id/boards",
         element: (
