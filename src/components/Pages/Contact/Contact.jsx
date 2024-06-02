@@ -58,7 +58,7 @@ const Contact = () => {
           <div className="flex justify-center items-center">
             <a
               href="#contact"
-              className="px-3 py-2 flex justify-between items-center gap-3 dark:bg-white dark:text-black  rounded-xl hover:bg-black hover:text-white outline-none border-2 "
+              className="px-3 py-2 flex justify-between items-center gap-3 dark:bg-white dark:text-black  rounded-md hover:bg-black hover:text-white outline-none border-2 "
             >
               Contact <MdOutlineContactSupport className="text-lg" />
             </a>
@@ -73,7 +73,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <section id="contact">
+      <section>
         <div className="flex flex-col md:flex-row justify-center items-center mt-10">
           <div className="w-full md:w-1/2 h-[300px] md:h-[350px] flex justify-center ">
             <img
