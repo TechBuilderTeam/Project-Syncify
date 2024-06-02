@@ -19,6 +19,7 @@ import Board from "../components/Pages/Board/Board";
 import Plans from "../components/Pages/Plans/Plans";
 import Tasks from "../components/Pages/Tasks/Tasks";
 import Features from "../components/Pages/Features/Features";
+import Contact from "../components/Pages/Contact/Contact";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
       },
       {
         path: "/otp/verify",
