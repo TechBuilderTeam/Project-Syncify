@@ -7,7 +7,7 @@ const Calendarui = () => {
     setDate(date);
   };
   return (
-    <div className="flex justify-center items-center mt-10">
+    <div className="flex justify-center items-center mt-10 h-screen">
       <Calendar onChange={onChange} value={date} />
     </div>
   );

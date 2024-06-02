@@ -14,7 +14,7 @@ const DragNDrop = ({ tasks, setTasks, handleShowModal }) => {
     };
 
     const handleUpdateStatus = async (taskId, newStatus) => {
-        await axios.patch(`https://task-backend-azure.vercel.app/tasks/${taskId}`, { status: newStatus });
+        await axios.patch(`https://projectsyncifyapi.onrender.com/workspace/tasks/update/${taskId}/`, { status: newStatus });
     };
 
     const handleDrop = async (e, newStatus) => {
@@ -31,32 +31,7 @@ const DragNDrop = ({ tasks, setTasks, handleShowModal }) => {
         }
     };
 
-    const handleDelete = (taskId) => {
-        Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                fetch(`https://task-backend-azure.vercel.app/tasks/${taskId}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.deletedCount > 0) {
-                            toast.success('Task deleted successfully');
-                            const remainingTasks = tasks.filter(task => task._id !== taskId);
-                            setTasks(remainingTasks);
-                        }
-                    })
-                    .catch(error => console.log(error));
-            }
-        });
-    };
+   
 
     return (
         <div className="task-dashboard">
@@ -78,20 +53,7 @@ const DragNDrop = ({ tasks, setTasks, handleShowModal }) => {
                             >
                                 <div className="flex justify-between items-center">
                                     <div><p>{task.title}</p></div>
-                                    <div className="flex gap-2">
-                                        <button
-                                            className="text-[#8401A1] dark:text-[#73e9fe]"
-                                            onClick={() => handleShowModal(task)}
-                                        >
-                                            <CiEdit className="text-[#8401A1] dark:text-[#73e9fe]" />
-                                        </button>
-                                        <button
-                                            className="text-[#8401A1] dark:text-[#73e9fe]"
-                                            onClick={() => handleDelete(task._id)}
-                                        >
-                                            <MdDelete className="text-[#8401A1] dark:text-[#73e9fe]" />
-                                        </button>
-                                    </div>
+                                  
                                 </div>
                             </div>
                         ))}
