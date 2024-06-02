@@ -4,6 +4,8 @@ import { FaRegEdit } from "react-icons/fa";
 import { HiMiniChevronUpDown } from "react-icons/hi2";
 import { IoChatbubblesOutline } from "react-icons/io5";
 import { MdAddTask, MdDeleteForever } from "react-icons/md";
+import CreateTask from "../CreateTask";
+import EditDeleteTask from "../../Tasks/EditDeleteTask";
 
 const NewBoard = () => {
     const [showTasks, setShowTasks] = useState(false);
@@ -41,9 +43,10 @@ const NewBoard = () => {
                             </button>
                         </td>
                         <td>
-                            <button className="mx-4">
+                            <CreateTask />
+                            {/* <button className="mx-4">
                                 <MdAddTask className="text-xl" />
-                            </button>
+                            </button> */}
                         </td>
                         <td>
                             <button className="mx-4">
@@ -69,8 +72,11 @@ const NewBoard = () => {
                                                 <th>Status</th>
                                                 <th>Type</th>
                                                 <th>Priority</th>
-                                                <th>Edit</th>
-                                                <th>Delete</th>
+                                                <th>
+                                                   
+
+                                                </th>
+                                               
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -81,14 +87,10 @@ const NewBoard = () => {
                                                 <td>I don't know what type it is, ask nazim vai</td>
                                                 <td>Priority</td>
                                                 <td>
-                                                    <button className="mx-4">
+                                                    {/* <button className="mx-4">
                                                         <FaRegEdit className="text-xl" />
-                                                    </button>
-                                                </td>
-                                                <td>
-                                                    <button className="mx-4">
-                                                        <MdDeleteForever className="text-xl" />
-                                                    </button>
+                                                    </button> */}
+                                                    <EditDeleteTask />
                                                 </td>
                                             </tr>
                                             {/* Add more tasks as needed */}
