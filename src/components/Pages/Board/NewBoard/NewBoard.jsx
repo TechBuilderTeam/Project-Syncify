@@ -6,6 +6,7 @@ import { IoChatbubblesOutline } from "react-icons/io5";
 import { MdAddTask, MdDeleteForever } from "react-icons/md";
 import CreateTask from "../CreateTask";
 import EditDeleteTask from "../../Tasks/EditDeleteTask";
+import BoardDelete from "./BoardDelete";
 
 const NewBoard = () => {
     const [showTasks, setShowTasks] = useState(false);
@@ -38,9 +39,10 @@ const NewBoard = () => {
                         <td>assigned person</td>
 
                         <td>
-                            <button className="mx-4">
+                            <BoardDelete />
+                            {/* <button className="mx-4">
                                 <MdDeleteForever className="text-xl" />
-                            </button>
+                            </button> */}
                         </td>
                         <td>
                             <CreateTask />
