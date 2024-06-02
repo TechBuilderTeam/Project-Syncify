@@ -21,6 +21,11 @@ import Tasks from "../components/Pages/Tasks/Tasks";
 import Features from "../components/Pages/Features/Features";
 import Export from "../components/Pages/Export/Export";
 import Contact from "../components/Pages/Contact/Contact";
+import MarketingDetails from "../components/Pages/Home/DifferentTypeOfTabSection/TabPages/MarketingDetails";
+import OperationDetails from "../components/Pages/Home/DifferentTypeOfTabSection/TabPages/OperationDetails";
+import ItDetials from "../components/Pages/Home/DifferentTypeOfTabSection/TabPages/ItDetials";
+import ProductDetails from "../components/Pages/Home/DifferentTypeOfTabSection/TabPages/ProductDetails";
+import CompanyDetails from "../components/Pages/Home/DifferentTypeOfTabSection/TabPages/CompanyDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -65,6 +70,26 @@ const router = createBrowserRouter([
       {
         path: "/password-reset-confirm/:uid/:token",
         element: <ResetPassword />,
+      },
+      {
+        path: "/marketingDetails",
+        element: <MarketingDetails />,
+      },
+      {
+        path: "/operationDetails",
+        element: <OperationDetails />,
+      },
+      {
+        path: "/itDetails",
+        element: <ItDetials />,
+      },
+      {
+        path: "/productDetails",
+        element: <ProductDetails />,
+      },
+      {
+        path: "/companyDetails",
+        element: <CompanyDetails />,
       },
       {
         path: "/workspace",
