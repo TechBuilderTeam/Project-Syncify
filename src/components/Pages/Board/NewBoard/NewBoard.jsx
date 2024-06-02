@@ -7,6 +7,7 @@ import { MdAddTask, MdDeleteForever } from "react-icons/md";
 import CreateTask from "../CreateTask";
 import EditDeleteTask from "../../Tasks/EditDeleteTask";
 import BoardDelete from "./BoardDelete";
+import ChatUI from "../../Chat/ChatUI";
 
 const NewBoard = () => {
     const [showTasks, setShowTasks] = useState(false);
@@ -51,9 +52,8 @@ const NewBoard = () => {
                             </button> */}
                         </td>
                         <td>
-                            <button className="mx-4">
-                                <IoChatbubblesOutline className="text-xl" />
-                            </button>
+                            <ChatUI />
+                           
                         </td>
                         <td>
                             <button onClick={handleToggle} className="mx-4 px-2 py-1 rounded">
