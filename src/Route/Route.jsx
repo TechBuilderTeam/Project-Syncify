@@ -19,6 +19,7 @@ import Board from "../components/Pages/Board/Board";
 import Plans from "../components/Pages/Plans/Plans";
 import Tasks from "../components/Pages/Tasks/Tasks";
 import Features from "../components/Pages/Features/Features";
+import Export from "../components/Pages/Export/Export";
 import Contact from "../components/Pages/Contact/Contact";
 const router = createBrowserRouter([
   {
@@ -34,16 +35,16 @@ const router = createBrowserRouter([
         element: <Features />,
       },
       {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
         path: "/login",
         element: <Login />,
       },
       {
         path: "/register",
         element: <Register />,
-      },
-      {
-        path: "/contact",
-        element: <Contact />,
       },
       {
         path: "/otp/verify",
@@ -139,7 +140,25 @@ const router = createBrowserRouter([
       },
       {
         path: "/workspace/:id/plans",
-        element: <Plans />,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Plans />{" "}
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/workspace/:id/export",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Export />{" "}
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/workspace/:id/calendar",
+        element: <Calendarui />,
       },
     ],
   },
@@ -154,10 +173,6 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/profile",
         element: <Profile />,
-      },
-      {
-        path: "/dashboard/calendar",
-        element: <Calendarui />,
       },
     ],
   },
