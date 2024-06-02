@@ -45,6 +45,71 @@ const Member = () => {
 
     }
 
+    {/** start update member form functionlity */ }
+  const [formData, setFormData] = useState({
+    workspace_id: '',
+    user_email: '',
+    new_role: '',
+    user_id:  ''
+});
+
+  const [selectedTimeline, setSelectedTimeline] = useState(null);
+
+  const handleOpenDialog = (member, modalName) => {
+    setSelectedTimeline(member);
+    setFormData({
+            workspace_id: id,
+            user_email: member.user_email || '',
+            new_role: member.role || '',
+            user_id: member.user_id || ''
+        });
+    document.getElementById(modalName).showModal();
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log('event list -> ',e.target)
+    setFormData(prevState => ({
+        
+      ...prevState,
+      [name]: value
+    }));
+    console.log({formData})
+  };
+
+//   const handleEditTimelineButton = async (e) => {
+//     e.preventDefault()
+
+//     const updateTimeline = {
+//       workspace_Name: '',
+//       name: '',
+//       details: '',
+//       start_Date: '',
+//       end_Date: ''
+//     }
+
+//     updateTimeline.workspace_Name = id;
+//     updateTimeline.name = e.target.name.value;
+//     updateTimeline.details = e.target.details.value;
+//     updateTimeline.start_Date = e.target.startDate.value;
+//     updateTimeline.end_Date = e.target.endDate.value;
+
+//     console.log({ updateTimeline })
+
+//     const result = await axios.put(`https://projectsyncifyapi.onrender.com/workspace/timelines/update/${formData.timelineId}/`, updateTimeline)
+
+//     if (result) {
+//       toast.success('Successfully Updated timeline');
+
+//       setReload(!reload);
+//       handleCloseModelButton('edit')
+//     }
+//     else {
+//       console.log('timeline post result -> ', result)
+//     }
+//   }
+  {/** end update timeline form functionlity */ }
+
     const handleUpdateButton = async (e) => {
         e.preventDefault()
         const updateMember = {
@@ -52,6 +117,8 @@ const Member = () => {
             "new_role": e.target.userType.value,
             "user_id": e.target.user_id.value
         }
+
+        console.log({updateMember})
 
         try {
             const result = await axios.patch(`https://projectsyncifyapi.onrender.com/api/v2/workspace/members/change-role/`, updateMember
@@ -197,92 +264,92 @@ const Member = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {/* row 1 */}
-                                {
-                                    members?.map(member =>
-                                        <tr key={member.user_id} className="text-center">
-                                            {/* <th>
-                            <label>
-                                <input type="checkbox" className="checkbox" />
-                            </label>
-                        </th> */}
-                                            <td>
-                                                {/* <div className="flex items-center gap-3">
-                                
-                                <div>
-                                    <div className="font-bold">{user.firstName} {user.lastName}</div>
-                                    <div className="text-sm opacity-50">{user.gender}</div>
-                                    <div className="text-sm opacity-50">{user.birthDate}</div>
-                                </div>
-                            </div> */}
-                                                <div className="flex items-center gap-3">
-                                                    <div className="avatar">
-                                                    <div className="mask mask-squircle w-12 h-12">
-                                                        <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
-                                                    </div>
-                                                    </div>
-                                                    <div>
-                                                    <div className="font-bold">{member.user_name}</div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                {member.user_email}
-                                                {/* <br />
-                            <span className="badge badge-ghost badge-sm">{user.phone}</span>
-                            <span className="badge badge-ghost badge-sm">{user.email}</span> */}
-                                            </td>
-                                            {/* <td>{user.roll === 'admin' ? <button onClick={() => handleMakeUser(user)} className="btn btn-ghost bg-red-600 text-white ">Admin</button> 
-                                : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-red-600 text-white ">User</button>}</td> */}
+        {/* row 1 */}
+        {
+            members?.map(member =>
+                <tr key={member.user_id} className="text-center">
+                    {/* <th>
+    <label>
+        <input type="checkbox" className="checkbox" />
+    </label>
+</th> */}
+                    <td>
+                        {/* <div className="flex items-center gap-3">
+        
+        <div>
+            <div className="font-bold">{user.firstName} {user.lastName}</div>
+            <div className="text-sm opacity-50">{user.gender}</div>
+            <div className="text-sm opacity-50">{user.birthDate}</div>
+        </div>
+    </div> */}
+                        <div className="flex items-center gap-3">
+                            <div className="avatar">
+                            <div className="mask mask-squircle w-12 h-12">
+                                <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
+                            </div>
+                            </div>
+                            <div>
+                            <div className="font-bold">{member.user_name}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        {member.user_email}
+                        {/* <br />
+    <span className="badge badge-ghost badge-sm">{user.phone}</span>
+    <span className="badge badge-ghost badge-sm">{user.email}</span> */}
+                    </td>
+                    {/* <td>{user.roll === 'admin' ? <button onClick={() => handleMakeUser(user)} className="btn btn-ghost bg-red-600 text-white ">Admin</button> 
+        : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-red-600 text-white ">User</button>}</td> */}
 
-                                            <td>{member.role}</td>
-                                            <th>
-                                                {/* <Link to= {`/admin/admin/userDetails`} state={user} className="btn btn-accent  p-2 m-2">details</Link> */}
-                                                {/* <button className="btn btn-neutral px-4  py-2">Edit</button> */}
+                    <td>{member.role}</td>
+    <th>
+        {/* <Link to= {`/admin/admin/userDetails`} state={user} className="btn btn-accent  p-2 m-2">details</Link> */}
+        {/* <button className="btn btn-neutral px-4  py-2">Edit</button> */}
 
-                                                {/** Member edit button and model start */}
-                                                <button className='btn-ghost'>  </button>
-                                                {/* You can open the modal using document.getElementById('ID').showModal() method */}
-                                                <button className="mx-4" onClick={() => document.getElementById('edit').showModal()}>
-                                                    <FaRegEdit className="text-xl" />
-                                                </button>
-                                                <dialog id="edit" className="modal">
-                                                    <div className="modal-box bg-white dark:bg-black">
-                                                        <form onSubmit={handleUpdateButton}>
-                                                            <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => document.getElementById('edit').close()}>✕</button>
-                                                            <h2 className="text-2xl font-bold mb-4 text-center">Update Member Role</h2>
+        {/** Member edit button and model start */}
+        <button className='btn-ghost'>  </button>
+        {/* You can open the modal using document.getElementById('ID').showModal() method */}
+        <button className="mx-4" onClick={() => handleOpenDialog(member, 'edit')}>
+            <FaRegEdit className="text-xl" />
+        </button>
+        <dialog id="edit" className="modal">
+            <div className="modal-box bg-white dark:bg-black">
+                
+                    <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => document.getElementById('edit').close()}>✕</button>
+                    <h2 className="text-2xl font-bold mb-4 text-center">Update Member Role</h2>
+                <form onSubmit={handleUpdateButton}>
+                    <div className='form-control'>
+                        <label htmlFor="email" className="label">Email</label>
+                        <input type="email" id="email" name="email" value={formData.user_email} onChange={handleChange} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
+                    </div>
+                    <div className="form-control mb-4">
+                        <label htmlFor="email" className="label">User Id</label>
+                        <input type="text" id="user_id" name="user_id" value={formData.user_id} readOnly onChange={handleChange}   className="input input-bordered bg-slate-200 dark:bg-black" />
 
-                                                            <div className='form-control'>
-                                                                <label htmlFor="email" className="label">Email</label>
-                                                                <input type="email" id="email" name="email" value={member.user_email} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
-                                                            </div>
-                                                            <div className="form-control mb-4">
-                                                                <label htmlFor="email" className="label">User Id</label>
-                                                                <input type="text" id="user_id" name="user_id" value={member.user_id} readOnly  className="input input-bordered bg-slate-200 dark:bg-black" />
-
-                                                            </div>
-                                                            <div className="form-control mb-4">
-                                                                <label htmlFor="userType" className="label">Role</label>
-                                                                <select id="userType" name="userType" className="select select-bordered bg-slate-200 dark:bg-black">
-                                                                    <option value="Associate Manager">Associate Manager</option>
-                                                                    <option value="Team Leader">Team Leader</option>
-                                                                    <option value="Member">Member</option>
-                                                                </select>
-                                                            </div>
-                                                            <div className="flex justify-between my-4">
-                                                                <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-3">Update Member</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </dialog>
-                                                {/** Member edit button and model end */}
-                                                <button className="mx-4" onClick={() => handleDeleteMember(member.user_id)}>
-                                                    <MdDeleteForever className="text-xl " />
-                                                </button>
-                                            </th>
-                                        </tr>
-                                    )
-                                }
+                    </div>
+                    <div className="form-control mb-4">
+                        <label htmlFor="userType" className="label">Role</label>
+                        <select id="userType" name="userType" value={formData.new_role} onChange={handleChange} className="select select-bordered bg-slate-200 dark:bg-black">
+                            <option value="Associate Manager">Associate Manager</option>
+                            <option value="Team Leader">Team Leader</option>
+                            <option value="Member">Member</option>
+                        </select>
+                    </div>
+                    <div className="flex justify-between my-4">
+                        <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-3">Update Member</button>
+                    </div>
+                </form>
+            </div>
+        </dialog>
+        {/** Member edit button and model end */}
+        <button className="mx-4" onClick={() => handleDeleteMember(member.user_id)}>
+            <MdDeleteForever className="text-xl " />
+        </button>
+    </th>
+                </tr>
+            )
+        }
 
                             </tbody>
                             {/* foot */}
