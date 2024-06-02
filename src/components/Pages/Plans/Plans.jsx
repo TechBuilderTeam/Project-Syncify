@@ -213,15 +213,15 @@ const Plans = () => {
         `, {"email": email})
         console.log('result -> ', result)
         toast.success("Assign Successfully");
+
         setReload(!reload)
+
         handleCloseModelButton("assign")
     } catch (error) {
         console.log('error -> ', error)
     }
 
     }
-
-
 }
 
   {/** end handle assign button */}
@@ -231,23 +231,26 @@ const Plans = () => {
     e.preventDefault();
     
     const timelineId = Number(e.target.timelineId.value);
+    console.log('data type of timeline id -> ',typeof timelineId)
     const boardName = e.target.name.value;
     const boardDetails = e.target.details.value;
 
-    console.log({timelineId, boardName, boardDetails})
+    const newBoard = {
+      "timeline_Name": timelineId,
+      "name": boardName,
+      "details": boardDetails
+    }
+
+    console.log('form data before post api hit -> ', newBoard)
 
     if(timelineId && boardName && boardDetails){
       try {
         const result = await axios.post(`https://projectsyncifyapi.onrender.com/workspace/scrum/create/
-        `, {
-          "timeline_name": timelineId,
-          "name": "boardName",
-          "details": "boardDetails"
-        })
-        console.log('result -> ', result)
+        `, newBoard)
+        console.log('this result show after post in create boared api  -> ', result)
         toast.success("Board Created Successfully");
         handleCloseModelButton("board")
-        navigate(`/workspace/${id}/boards`)
+        navigate(`/workspace/${id}/boards`,  { state: { timelineId } })
     } catch (error) {
         console.log('error -> ', error)
     }
@@ -262,6 +265,8 @@ const Plans = () => {
       setLoading(true)
       setError('')
       console.log({ id })
+
+
       try {
         const response = await axios.get(`https://projectsyncifyapi.onrender.com/workspace/singleworkspace/${id}/timelines/list/`);
         setData(response.data); // Update state with the fetched data
@@ -276,6 +281,7 @@ const Plans = () => {
     };
 
     const getSpecificMembers = async () => {
+
       try {
           const result = await axios.get(`https://projectsyncifyapi.onrender.com/api/v2/workspace/${id}/members/`)
           console.log("get member -> ", result.data)

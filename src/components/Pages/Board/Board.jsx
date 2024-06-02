@@ -1,11 +1,13 @@
 
+
 import NewBoard from "./NewBoard/NewBoard";
 
 const Board = () => {
-   
+  
 
     return (
         <div className="h-screen">
+
 
             <div className=" py-2">
                 <div className="flex justify-between items-center pb-2">
@@ -23,6 +25,7 @@ const Board = () => {
 
     <NewBoard />
         </div >
+
     );
 };
 
