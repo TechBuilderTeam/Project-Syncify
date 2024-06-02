@@ -3,12 +3,13 @@ import { AuthContext } from "../../../Providers/AuthProviders/AuthProviders";
 import { toast } from "react-toastify";
 import TaskAni from "../../../../public/tasks.json";
 import Lottie from "lottie-react";
+import { MdAddTask } from "react-icons/md";
 
 const CreateTask = ({ updateTasks }) => {
     const { user } = useContext(AuthContext);
 
     const handleCloseModelButton = () => {
-        document.getElementById('my_modal_3').close()
+        document.getElementById('my_modal_5').close()
     }
 
     const handleCreateTask = (event) => {
@@ -28,7 +29,7 @@ const CreateTask = ({ updateTasks }) => {
 
     
         const status = 'To-Do';
-        const newTask = { scrum_Name , name , details,assign,status,priority };
+        const newTask = { scrum_Name , name , details, assign,status,priority };
 
         fetch('https://projectsyncifyapi.onrender.com/workspace/tasks/create/', {
             method: 'POST',
@@ -55,51 +56,54 @@ const CreateTask = ({ updateTasks }) => {
 
     return (
         <div>
-            <div className="flex justify-center">
-                <div className="flex items-center gap-6">
+            <button className="  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_5').showModal()}>
+            <MdAddTask className="text-xl" />
+            </button>
+            {/* <div className="flex justify-center"> */}
+                {/* <div className="flex items-center gap-6">
 
-                    <div className=" dark:text-[#73e9fe] text-[#8401A1] mt-6">
+                    <div className=" dark:text-[#73e9fe] text-[#2c01a1] mt-6">
                         <p className="text-3xl font-bold mb-1">Wanna Create Task?</p>
-                        <p className="text-sm mb-4 text-black dark:text-white">For maintain your project progress. <br />Create your task and track your progress... <br />Click below<span className="font-extrabold font-2xl text-[#8401A1] dark:text-[#73e9fe]"> ↓↓ </span>  and explore more</p>
-                        <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Task</button>
+                        <p className="text-sm mb-4 text-black dark:text-white">For maintain your project progress. <br />Create your task and track your progress... <br />Click below<span className="font-extrabold font-2xl text-[#2c01a1] dark:text-[#73e9fe]"> ↓↓ </span>  and explore more</p>
+                        <button className="bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_5').showModal()}>Add Task</button>
                     </div>
                     <div className="w-80 h-80">
                         <Lottie animationData={TaskAni} loop={true} />
                     </div>
-                </div>
+                </div> */}
 
-                <dialog id="my_modal_3" className="modal">
+                <dialog id="my_modal_5" className="modal">
                     <div className="modal-box bg-white dark:bg-black">
                         <form onSubmit={handleCreateTask} >
-                            <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={handleCloseModelButton}>✕</button>
-                            <h3 className="font-bold text-2xl text-center">Create Task</h3>
+                            <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#2c01a1] dark:text-[#73e9fe]" onClick={handleCloseModelButton}>✕</button>
+                            <h3 className="font-bold text-2xl text-center dark:text-[#73e9fe] text-[#2c01a1]">Create Task</h3>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">Board Name</span>
+                                    <span className="label-text dark:text-[#73e9fe] text-[#2c01a1]">Board Name</span>
                                 </label>
                                 <input type="text" name="scrum_Name" placeholder="Board Name" className="input input-bordered bg-slate-200 dark:bg-black" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">Task Name</span>
+                                    <span className="label-text dark:text-[#73e9fe] text-[#2c01a1]">Task Name</span>
                                 </label>
-                                <input type="text" name="name" placeholder="Name" className="input input-bordered bg-slate-200 dark:bg-black dark:text-[#73e9fe] text-[#8401A1]" />
+                                <input type="text" name="name" placeholder="Name" className="input input-bordered bg-slate-200 dark:bg-black dark:text-[#73e9fe] text-[#2c01a1]" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">Task Details</span>
+                                    <span className="label-text dark:text-[#73e9fe] text-[#2c01a1]">Task Details</span>
                                 </label>
-                                <input type="text" name="details" placeholder="Text Details" className="input input-bordered bg-slate-200 dark:bg-black dark:text-[#73e9fe] text-[#8401A1]" />
+                                <input type="text" name="details" placeholder="Text Details" className="input input-bordered bg-slate-200 dark:bg-black dark:text-[#73e9fe] text-[#2c01a1]" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">Assign</span>
+                                    <span className="label-text dark:text-[#73e9fe] text-[#2c01a1]">Assign</span>
                                 </label>
-                                <input type="text" name="assign" placeholder="Assign Task" className="input input-bordered bg-slate-200 dark:bg-black dark:text-[#73e9fe] text-[#8401A1]" />
+                                <input type="text" name="assign" placeholder="Assign Task" className="input input-bordered bg-slate-200 dark:bg-black dark:text-[#73e9fe] text-[#2c01a1]" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">Priority</span>
+                                    <span className="label-text dark:text-[#73e9fe] text-[#2c01a1]">Priority</span>
                                 </label>
                                 <select name="priority" className="select select-bordered bg-slate-200 dark:bg-black">
                                     <option disabled selected>Priority</option>
@@ -109,12 +113,12 @@ const CreateTask = ({ updateTasks }) => {
                                 </select>
                             </div>
                             <div className="flex justify-center mt-6">
-                                <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-2" type="submit">Create</button>
+                                <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white rounded w-full px-4 py-2" type="submit">Create</button>
                             </div>
                         </form>
                     </div>
                 </dialog>
-            </div>
+            {/* </div> */}
         </div>
     );
 };

@@ -4,7 +4,7 @@ import { FaCaretDown, FaCaretSquareDown, FaRegEdit } from 'react-icons/fa';
 import { GiGameConsole } from 'react-icons/gi';
 import { MdDeleteForever } from 'react-icons/md';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import { TbListDetails } from "react-icons/tb";
 import { CiSquarePlus } from "react-icons/ci";
 import { MdDeveloperBoard } from "react-icons/md";
@@ -215,7 +215,9 @@ const Plans = () => {
         `, {"email": email})
         console.log('result -> ', result)
         toast.success("Assign Successfully");
-        setReload(!reload);
+
+        setReload(!reload)
+
         handleCloseModelButton("assign")
     } catch (error) {
         console.log('error -> ', error)
@@ -562,13 +564,13 @@ const Plans = () => {
 {/** start modal layout for assign */}
 <dialog id="assign" className="modal">
     <div className="modal-box bg-white dark:bg-black">
-    <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => document.getElementById('assign').close()}>✕</button>
+    <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton("assign")}>✕</button>
             <h2 className="font-bold text-2xl text-center my-3">Assign Member</h2>
         
         <form onSubmit={handleAssignButton}>
             
             <div className='form-control'>
-                                                                          <label htmlFor="email" className="label">Timeline Id</label>
+            <label htmlFor="email" className="label">Timeline Id</label>
             <input type="text" id="timelineId" name="timelineId" value={formData.timelineId} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
             </div>
 
