@@ -59,7 +59,7 @@ const Workspace = () => {
       <div>
         {loading && (
           <div className="flex justify-center items-center">
-            <span className="loading loading-ring loading-md"></span>Workspace
+            <span className="loading loading-ring loading-md"></span>Project
             Loading....
           </div>
         )}
@@ -69,7 +69,7 @@ const Workspace = () => {
     return (
       <div className="flex justify-center items-center my-10 px-10">
         <h1 className="text-2xl">
-          No workspaces available for your account. <br />
+          No project available for your account. <br />
           {/* <div className="flex items-center  gap-2 my-2">
             <Link to="/createworkspace" className="">
               <FaCirclePlus />
@@ -96,25 +96,25 @@ const Workspace = () => {
             <div className="text-sm">
               <p>
                 Manager:{" "}
-                <span className="text-gray-800">
+                <span className="text-gray-800 dark:text-gray-100">
                   {workspace.workspace_manager_name}
                 </span>{" "}
               </p>
               <p>
                 Email:{" "}
-                <span className="text-gray-800">
+                <span className="text-gray-800 dark:text-gray-100">
                   {workspace.workspace_manager_email}
                 </span>
               </p>
               <p>
                 Members:{" "}
-                <span className="text-gray-800">
+                <span className="text-gray-800 dark:text-gray-100">
                   {workspace.workspace_total_members}
                 </span>{" "}
               </p>
               <p>
                 Date:{" "}
-                <span className="text-gray-800">{workspace.created_at}</span>{" "}
+                <span className="text-gray-800 dark:text-gray-100">{workspace.created_at}</span>{" "}
               </p>
             </div>
 

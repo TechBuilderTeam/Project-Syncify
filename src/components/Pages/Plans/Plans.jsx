@@ -1,10 +1,10 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaCaretDown, FaCaretSquareDown, FaRegEdit } from 'react-icons/fa';
 import { GiGameConsole } from 'react-icons/gi';
 import { MdDeleteForever } from 'react-icons/md';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import {  toast } from 'react-toastify';
 import { TbListDetails } from "react-icons/tb";
 import { CiSquarePlus } from "react-icons/ci";
 import { MdDeveloperBoard } from "react-icons/md";
@@ -213,15 +213,15 @@ const Plans = () => {
         `, {"email": email})
         console.log('result -> ', result)
         toast.success("Assign Successfully");
-        setChange(!change);
+
+        setReload(!reload)
+
         handleCloseModelButton("assign")
     } catch (error) {
         console.log('error -> ', error)
     }
 
     }
-
-
 }
 
   {/** end handle assign button */}
@@ -231,23 +231,26 @@ const Plans = () => {
     e.preventDefault();
     
     const timelineId = Number(e.target.timelineId.value);
+    console.log('data type of timeline id -> ',typeof timelineId)
     const boardName = e.target.name.value;
     const boardDetails = e.target.details.value;
 
-    console.log({timelineId, boardName, boardDetails})
+    const newBoard = {
+      "timeline_Name": timelineId,
+      "name": boardName,
+      "details": boardDetails
+    }
+
+    console.log('form data before post api hit -> ', newBoard)
 
     if(timelineId && boardName && boardDetails){
       try {
         const result = await axios.post(`https://projectsyncifyapi.onrender.com/workspace/scrum/create/
-        `, {
-          "timeline_name": timelineId,
-          "name": "boardName",
-          "details": "boardDetails"
-        })
-        console.log('result -> ', result)
+        `, newBoard)
+        console.log('this result show after post in create boared api  -> ', result)
         toast.success("Board Created Successfully");
         handleCloseModelButton("board")
-        navigate(`/workspace/${id}/boards`)
+        navigate(`/workspace/${id}/boards`,  { state: { timelineId } })
     } catch (error) {
         console.log('error -> ', error)
     }
@@ -262,6 +265,8 @@ const Plans = () => {
       setLoading(true)
       setError('')
       console.log({ id })
+
+
       try {
         const response = await axios.get(`https://projectsyncifyapi.onrender.com/workspace/singleworkspace/${id}/timelines/list/`);
         setData(response.data); // Update state with the fetched data
@@ -276,6 +281,7 @@ const Plans = () => {
     };
 
     const getSpecificMembers = async () => {
+
       try {
           const result = await axios.get(`https://projectsyncifyapi.onrender.com/api/v2/workspace/${id}/members/`)
           console.log("get member -> ", result.data)
@@ -549,13 +555,13 @@ const Plans = () => {
 {/** start modal layout for assign */}
 <dialog id="assign" className="modal">
     <div className="modal-box bg-white dark:bg-black">
-    <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => document.getElementById('assign').close()}>✕</button>
+    <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton("assign")}>✕</button>
             <h2 className="font-bold text-2xl text-center my-3">Assign Member</h2>
         
         <form onSubmit={handleAssignButton}>
             
             <div className='form-control'>
-                                                                          <label htmlFor="email" className="label">Timeline Id</label>
+            <label htmlFor="email" className="label">Timeline Id</label>
             <input type="text" id="timelineId" name="timelineId" value={formData.timelineId} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
             </div>
 

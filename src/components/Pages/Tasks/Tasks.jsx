@@ -5,12 +5,13 @@ import DragNDrop from "./DragNDrop";
 import EditDeleteTask from "./EditDeleteTask";
 
 const Tasks = () => {
+
     const { user } = useContext(AuthContext);
     const [tasks, setTasks] = useState([]);
     const [currentTask, setCurrentTask] = useState(null);
 
     useEffect(() => {
-        fetch(`https://task-backend-azure.vercel.app/tasks`)
+        fetch(`https://projectsyncifyapi.onrender.com/workspace/tasks/list/${tasks.id}`)
             .then(res => res.json())
             .then(data => {
                 const filteredTasks = data.filter(task => task.email === user?.email);
