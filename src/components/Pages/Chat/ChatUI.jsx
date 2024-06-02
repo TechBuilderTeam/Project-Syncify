@@ -33,12 +33,13 @@ const ChatUI = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="p-4">
+                    <div className="p-4 flex items-center justify-center">
                         <input
                             type="text"
                             placeholder="Type a message..."
-                            className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-100 dark:bg-gray-800"
                         />
+                        <button className="ml-2 bg-[#0154a1] text-white px-4 py-2 rounded-md">Send</button>
                     </div>
                 </div>
             )}
