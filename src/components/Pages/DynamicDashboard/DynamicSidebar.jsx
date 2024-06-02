@@ -75,12 +75,12 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
             {!open && <span className="hidden md:inline">Home</span>}
           </Link>
         </li>
-        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/profile`)}`}>
+        {/* <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/profile`)}`}>
           <Link to={`/workspace/${id}/profile`} className="px-3">
             <CgProfile className="inline-block w-6 h-6 mr-2 -mt-2" />
             {!open && <span className="hidden md:inline">Profile</span>}
           </Link>
-        </li>
+        </li> */}
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}`)}`}>
           <Link to={`/workspace/${id}`} className="px-3">
             <IoPeopleSharp className="inline-block w-6 h-6 mr-2 -mt-2" />

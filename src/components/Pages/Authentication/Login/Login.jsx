@@ -48,7 +48,8 @@ const Login = () => {
       const user = {
         "email": server_res.data.email,
         "name": server_res.data.full_name,
-        "userId": server_res.data.user_id 
+        "userId": server_res.data.user_id,
+      
       }
 
       if(server_res.status === 200){
@@ -83,11 +84,14 @@ const Login = () => {
         const response = res.data
         console.log('response from login  -> ',response)
         setLoading(false)
+        console.log({response})
         const user = {
           "email" : response.email,
           "names" : response.full_name,
-          "userId" : response.user_id
+          "userId" : response.user_id,
+         
         }
+        console.log({user})
         if(res.status === 200){
           localStorage.setItem("user",JSON.stringify(user))
           localStorage.setItem('access',JSON.stringify(response.access_token))

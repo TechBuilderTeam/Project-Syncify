@@ -90,10 +90,7 @@ const router = createBrowserRouter([
             path: "/workspace/:id",
             element:  <PrivateRoute><Member/></PrivateRoute>,
           },
-          {
-            path: "/workspace/:id/profile",
-            element: <PrivateRoute> <Profile/> </PrivateRoute>,
-          },
+         
           {
             path: "/workspace/:id/boards",
             element:<PrivateRoute> <Board/> </PrivateRoute>,
