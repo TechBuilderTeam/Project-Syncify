@@ -87,19 +87,19 @@ const Member = () => {
       console.log("delete member error -> ", error);
     }
   };
-    function getBackgroundColor(role) {
-        switch (role) {
-            case 'Associate Manager':
-                return 'bg-[#8401A1] text-white';
-            case 'Member':
-                return 'bg-[#007BFF] text-white';
-            case 'Team Leader':
-                return 'bg-[#28A745] text-white';
-            default:
-                return 'bg-gray-400 text-black';
-        }
+  function getBackgroundColor(role) {
+    switch (role) {
+      case 'Associate Manager':
+        return 'bg-[#AF47D2] text-white';
+      case 'Member':
+        return 'bg-[#007BFF] text-white';
+      case 'Team Leader':
+        return 'bg-[#006769] text-white';
+      default:
+        return 'bg-gray-400 text-black';
     }
-  
+  }
+
 
   useEffect(() => {
     const getSpecificMembers = async () => {
@@ -119,17 +119,17 @@ const Member = () => {
 
   const memberLength = members.length;
 
-    return (
-        <div className="h-screen ">
+  return (
+    <div className="h-screen text-black dark:text-white">
 
-            {/* <div className=" flex justify-center items-center gap-6">
+      {/* <div className=" flex justify-center items-center gap-6">
                 <div className="w-80 h-80">
                     <Lottie animationData={MemberAni} loop={true} />
                 </div>
-                <div className=" dark:text-[#73e9fe] text-[#8401A1] mt-6">
+                <div className=" dark:text-[#73e9fe] text-[#2c01a1] mt-6">
                     <p className="text-3xl font-bold mb-1">Wanna Add New <br />Member?</p>
-                    <p className="text-sm mb-4 text-black dark:text-white">For maintain your project progress. <br />Add your member and track your progress... <br />Click below<span className="font-extrabold font-2xl text-[#8401A1] dark:text-[#73e9fe]"> ↓↓ </span>  and explore more.</p>
-                    <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
+                    <p className="text-sm mb-4 text-black dark:text-white">For maintain your project progress. <br />Add your member and track your progress... <br />Click below<span className="font-extrabold font-2xl text-[#2c01a1] dark:text-[#73e9fe]"> ↓↓ </span>  and explore more.</p>
+                    <button className="bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
                 </div>
 
             </div> */}
@@ -138,17 +138,17 @@ const Member = () => {
           <form onSubmit={handleAddUserButton}>
             <button
               id="closeBtn"
-              className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]"
+              className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#2c01a1] dark:text-[#73e9fe]"
               onClick={() => document.getElementById("my_modal_3").close()}
             >
               ✕
             </button>
-            <h2 className="font-bold text-2xl text-center my-3">
+            <h2 className="font-bold text-2xl text-center my-3 dark:text-[#73e9fe] text-[#2c01a1]">
               Create New Member
             </h2>
             <div className="form-control">
               <label className="label" htmlFor="email">
-                <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">
+                <span className="label-text dark:text-[#73e9fe] text-[#2c01a1]">
                   Email
                 </span>
               </label>
@@ -162,7 +162,7 @@ const Member = () => {
             </div>
             <div className="form-control">
               <label className="label" htmlFor="userType">
-                <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">
+                <span className="label-text dark:text-[#73e9fe] text-[#2c01a1]">
                   Role
                 </span>
               </label>
@@ -177,149 +177,149 @@ const Member = () => {
               </select>
             </div>
 
-                        <div className="flex justify-center mt-6">
-                            <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-2" type="submit">Add Member</button>
-                        </div>
-
-
-                    </form>
-                </div>
-
-            </dialog>
-            <div className='dark:text-[#73e9fe] text-[#8401A1] '>
-                <div className=" py-2">
-                    <div className="flex justify-between items-center pb-2">
-                    <h1 className="text-3xl   pb-2 font-semibold ">
-                        Member
-                    </h1>
-                    <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
-                    </div>
-                    
-                    <hr className="w-full h-1 bg-gradient-to-r from-[#9d11bd] to-[#73e9fe] " />
-                    <p className="text-sm  font-semibold mt-2 text-black dark:text-white ">
-                        To ensure seamless progress tracking and maintenance of your project, incorporate team members into your project structure. Assign distinct roles to each member to streamline collaboration and enhance accountability throughout the project lifecycle. Add member and explore more.
-                    </p>
-                </div>
-                {/* <TitleDynamic title="Member" subTitle="To ensure seamless progress tracking and maintenance of your project, incorporate team members into your project structure. Assign distinct roles to each member to streamline collaboration and enhance accountability throughout the project lifecycle. Add member and explore more. " /> */}
+            <div className="flex justify-center mt-6">
+              <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white rounded w-full px-4 py-2" type="submit">Add Member</button>
             </div>
-            <div className='flex flex-col md:flex-row justify-between items-center my-6 gap-2 '>
-                <div>
-                {memberLength === 0 && <><div className='flex justify-center items-center gap-2'>
-                    <IoPeopleSharp className='text-3xl text-[#8401A1] dark:text-[#73e9fe]'/>
-                    <h2 className='text-xl font-bold  '>  No Member Found, Add Member!</h2>
-                    </div></>}
-                </div>
-                <div className='relative md:w-65 flex items-center '>
-                    <input type="text" className='w-full px-4 py-1 rounded shadow outline-none bg-white dark:bg-black ' placeholder='Search' />
-                    <button className='p-1 m-2 focus:outline-none  '><FaSearch /></button>
-                </div>
-                {/* <div>
-                    <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
+
+
+          </form>
+        </div>
+
+      </dialog>
+      <div className='dark:text-[#73e9fe] text-[#2c01a1] '>
+        <div className=" py-2">
+          <div className="flex justify-between items-center pb-2">
+            <h1 className="text-3xl   pb-2 font-semibold ">
+              Member
+            </h1>
+            <button className="bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
+          </div>
+
+          <hr className="w-full h-1 bg-gradient-to-r from-[#2c01a1] to-[#73e9fe] " />
+          <p className="text-sm  font-semibold mt-2 text-black dark:text-white ">
+            To ensure seamless progress tracking and maintenance of your project, incorporate team members into your project structure. Assign distinct roles to each member to streamline collaboration and enhance accountability throughout the project lifecycle. Add member and explore more.
+          </p>
+        </div>
+        {/* <TitleDynamic title="Member" subTitle="To ensure seamless progress tracking and maintenance of your project, incorporate team members into your project structure. Assign distinct roles to each member to streamline collaboration and enhance accountability throughout the project lifecycle. Add member and explore more. " /> */}
+      </div>
+      <div className='flex flex-col md:flex-row justify-between items-center my-6 gap-2 '>
+        <div>
+          {memberLength === 0 && <><div className='flex justify-center items-center gap-2'>
+            <IoPeopleSharp className='text-3xl text-[#2c01a1] dark:text-[#73e9fe]' />
+            <h2 className='text-xl font-bold  '>  No Member Found, Add Member!</h2>
+          </div></>}
+        </div>
+        <div className='relative md:w-65 flex items-center '>
+          <input type="text" className='w-full px-4 py-1 rounded shadow outline-none bg-white dark:bg-black ' placeholder='Search' />
+          <button className='p-1 m-2 focus:outline-none  '><FaSearch /></button>
+        </div>
+        {/* <div>
+                    <button className="bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
                 </div> */}
-            </div>
-            {/* <h2 className='m-4 text-5xl text-center '>User List </h2> */}
-            
-            {
-                memberLength > 0 && (
-                    <div className="overflow-x-auto shadow-xl rounded w-full ">
-                        <table className="table">
-                            {/* head */}
-                            <thead className=' text-sm text-[#8401A1] dark:text-[#73e9fe]'>
-                                <tr className='text-center'>
+      </div>
+      {/* <h2 className='m-4 text-5xl text-center '>User List </h2> */}
 
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>Edit Member</th>
-                                    <th>Delete Member</th>
+      {
+        memberLength > 0 && (
+          <div className="overflow-x-auto shadow-xl rounded w-full ">
+            <table className="table">
+              {/* head */}
+              <thead className=' text-sm text-[#2c01a1] dark:text-[#73e9fe]'>
+                <tr className='text-center'>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {/* row 1 */}
-                                {
-                                    members?.map(member =>
-                                        <tr key={member.user_id} className="text-center">
-                                            <td>
-                                                <div className="flex items-center gap-3 justify-center">
-                                                    <div className="avatar">
-                                                        <div className="rounded-full w-8 h-8">
-                                                            <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="member image" />
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div className="font-bold">{member.user_name}</div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                {member.user_email}
-                                                {/* <br />
+                  <th>Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Edit Member</th>
+                  <th>Delete Member</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                {/* row 1 */}
+                {
+                  members?.map(member =>
+                    <tr key={member.user_id} className="text-center">
+                      <td>
+                        <div className="flex items-center gap-3 ">
+                          <div className="avatar">
+                            <div className="rounded-full w-8 h-8">
+                              <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="member image" />
+                            </div>
+                          </div>
+                          <div>
+                            <div className="">{member.user_name}</div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        {member.user_email}
+                        {/* <br />
                             <span className="badge badge-ghost badge-sm">{user.phone}</span>
                             <span className="badge badge-ghost badge-sm">{user.email}</span> */}
-                  </td>
-                  {/* <td>{user.roll === 'admin' ? <button onClick={() => handleMakeUser(user)} className="btn btn-ghost bg-red-600 text-white ">Admin</button> 
+                      </td>
+                      {/* <td>{user.roll === 'admin' ? <button onClick={() => handleMakeUser(user)} className="btn btn-ghost bg-red-600 text-white ">Admin</button> 
                                 : <button onClick={() => handleMakeAdmin(user)} className="btn btn-ghost bg-red-600 text-white ">User</button>}</td> */}
 
-                                            <td className="">
-                                                <p className={`px-1 py-1 rounded ${getBackgroundColor(member.role)}`}>
-                                                    {member.role}
-                                                </p>
-                                            </td>
+                      <td className="">
+                        <p className={`px-1 py-1 rounded ${getBackgroundColor(member.role)}`}>
+                          {member.role}
+                        </p>
+                      </td>
 
-                                            <th>
-                                                {/* <Link to= {`/admin/admin/userDetails`} state={user} className="btn btn-accent  p-2 m-2">details</Link> */}
-                                                {/* <button className="btn btn-neutral px-4  py-2">Edit</button> */}
+                      <th>
+                        {/* <Link to= {`/admin/admin/userDetails`} state={user} className="btn btn-accent  p-2 m-2">details</Link> */}
+                        {/* <button className="btn btn-neutral px-4  py-2">Edit</button> */}
 
-                                                {/** Member edit button and model start */}
-                                                <button className='btn-ghost'>  </button>
-                                                {/* You can open the modal using document.getElementById('ID').showModal() method */}
-                                                <button className="mx-4" onClick={() => document.getElementById('edit').showModal()}>
-                                                    <FaRegEdit className="text-xl" />
-                                                </button>
-                                                <dialog id="edit" className="modal">
-                                                    <div className="modal-box bg-white dark:bg-black">
-                                                        <form onSubmit={handleUpdateButton}>
-                                                            <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => document.getElementById('edit').close()}>✕</button>
-                                                            <h2 className="text-2xl font-bold mb-4 text-center">Update Member Role</h2>
+                        {/** Member edit button and model start */}
+                        <button className='btn-ghost'>  </button>
+                        {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                        <button className="mx-4" onClick={() => document.getElementById('edit').showModal()}>
+                          <FaRegEdit className="text-xl" />
+                        </button>
+                        <dialog id="edit" className="modal">
+                          <div className="modal-box bg-white dark:bg-black dark:text-[#73e9fe] text-[#2c01a1]">
+                            <form onSubmit={handleUpdateButton}>
+                              <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#2c01a1] dark:text-[#73e9fe]" onClick={() => document.getElementById('edit').close()}>✕</button>
+                              <h2 className="text-2xl font-bold mb-4 text-center">Update Member Role</h2>
 
-                                                            <div className='form-control'>
-                                                                <label htmlFor="email" className="label">Email</label>
-                                                                <input type="email" id="email" name="email" value={member.user_email} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
-                                                            </div>
-                                                            <div className="form-control mb-4">
-                                                                <label htmlFor="email" className="label">User Id</label>
-                                                                <input type="text" id="user_id" name="user_id" value={member.user_id} readOnly className="input input-bordered bg-slate-200 dark:bg-black" />
+                              <div className='form-control'>
+                                <label htmlFor="email" className="label">Email</label>
+                                <input type="email" id="email" name="email" value={member.user_email} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
+                              </div>
+                              <div className="form-control mb-4">
+                                <label htmlFor="email" className="label">User Id</label>
+                                <input type="text" id="user_id" name="user_id" value={member.user_id} readOnly className="input input-bordered bg-slate-200 dark:bg-black" />
 
-                                                            </div>
-                                                            <div className="form-control mb-4">
-                                                                <label htmlFor="userType" className="label">Role</label>
-                                                                <select id="userType" name="userType" className="select select-bordered bg-slate-200 dark:bg-black">
-                                                                    <option value="Associate Manager">Associate Manager</option>
-                                                                    <option value="Team Leader">Team Leader</option>
-                                                                    <option value="Member">Member</option>
-                                                                </select>
-                                                            </div>
-                                                            <div className="flex justify-between my-4">
-                                                                <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-3">Update Member</button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </dialog>
-                                            </th>
-                                            <th>
-                                                {/** Member edit button and model end */}
-                                                <button className="mx-4" onClick={() => handleDeleteMember(member.user_id)}>
-                                                    <MdDeleteForever className="text-xl " />
-                                                </button>
-                                            </th>
-                                        </tr>
-                                    )
-                                }
+                              </div>
+                              <div className="form-control mb-4">
+                                <label htmlFor="userType" className="label">Role</label>
+                                <select id="userType" name="userType" className="select select-bordered bg-slate-200 dark:bg-black">
+                                  <option value="Associate Manager">Associate Manager</option>
+                                  <option value="Team Leader">Team Leader</option>
+                                  <option value="Member">Member</option>
+                                </select>
+                              </div>
+                              <div className="flex justify-between my-4">
+                                <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white rounded w-full px-4 py-3">Update Member</button>
+                              </div>
+                            </form>
+                          </div>
+                        </dialog>
+                      </th>
+                      <th>
+                        {/** Member edit button and model end */}
+                        <button className="mx-4" onClick={() => handleDeleteMember(member.user_id)}>
+                          <MdDeleteForever className="text-xl " />
+                        </button>
+                      </th>
+                    </tr>
+                  )
+                }
 
-                            </tbody>
-                            {/* foot */}
-                            {/* <tfoot>
+              </tbody>
+              {/* foot */}
+              {/* <tfoot>
                     <tr >
                         <th></th>
                         <th>Name</th>
@@ -328,9 +328,9 @@ const Member = () => {
                         <th>Action</th>
                     </tr>
                 </tfoot> */}
-          </table>
-        </div>
-      )}
+            </table>
+          </div>
+        )}
     </div>
   );
 };

@@ -79,7 +79,7 @@ const Register = () => {
         localStorage.setItem('user', JSON.stringify(user))
         localStorage.setItem('access', JSON.stringify(server_res.data.access_token))
         localStorage.setItem('refresh', JSON.stringify(server_res.data.refresh_token))
-        navigate("/dashboard");
+        navigate("/workspace");
         toast.success("login successfull")
       }   
     }
@@ -93,9 +93,9 @@ const Register = () => {
 
   };
 
-  const handleSignInWithGithub = async (response) => {
-    window.location.assign(`https://github.com/login/oauth/authorize/?client_id=${import.meta.env.VITE_GITHU_ID}`)
-  }
+  // const handleSignInWithGithub = async (response) => {
+  //   window.location.assign(`https://github.com/login/oauth/authorize/?client_id=${import.meta.env.VITE_GITHU_ID}`)
+  // }
 
   const send_code_to_backend = async () => {
     if(searchparams){
@@ -187,9 +187,9 @@ useEffect(() => {
                 <FcGoogle className="w-8 h-8" />
               </button> */}
               <div id='signInDiv'></div>
-              <button onClick={handleSignInWithGithub}>
+              {/* <button onClick={handleSignInWithGithub}>
                 <FaGithub className="w-8 h-8" />
-              </button>
+              </button> */}
             </div> 
             
 

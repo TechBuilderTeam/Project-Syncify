@@ -27,7 +27,7 @@ const DynamicDashboard = () => {
   
   return (
     <AuthProviders>
-      <div className="bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]">
+      <div className="bg-white dark:bg-gray-950 text-[#2c01a1] dark:text-[#73e9fe]">
         <div className="flex flex-col">
           <Navbar handleThemeChange={handleThemeChange} sidebarToggle={sidebarToggle} setSidebarToggle={setSidebarToggle}/>
           {/* <Navbar/> */}

@@ -19,7 +19,7 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
 
   const getLinkClass = (path) => {
     return location.pathname === path
-      ? "bg-blue-500 text-white dark:text-[#8401A1] dark:bg-white"
+      ? "bg-[#2c01a1] text-white dark:text-[#2c01a1] dark:bg-[#73e9fe]"
       : "text-black dark:text-white";
   };
 
@@ -62,7 +62,7 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
           className="absolute cursor-pointer rounded-full -right-3 top-9 w-5 h-5 border-2 text-xs"
         />
       )}
-      <div className="my-2 mb-4">
+      <div className="my-2 mb-2">
         <h1 className={`${open? "text-xs font-semibold " : "text-xs md:text-lg font-bold text-center"}`}> 
         {open ? workspaceDetails?.name.slice(0, 20) : workspaceDetails?.name}
         </h1>
@@ -87,7 +87,7 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
             {!open && <span className="hidden md:inline" >Members</span>}
           </Link>
         </li>
-        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass("/timeline")}`}>
+        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/plans`)}`}>
           <Link to={`/workspace/${id}/plans`} className="px-3">
             <CiViewTimeline className="inline-block w-6 h-6 mr-2 -mt-2" />
             {!open && <span className="hidden md:inline">Plans</span>}
