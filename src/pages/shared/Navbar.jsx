@@ -31,14 +31,14 @@ const Navbar = ({ handleThemeChange }) => {
         Features
       </NavLink>
       <NavLink
-        to="/solutions"
+        to="/profile"
         className={({ isActive }) =>
           isActive
             ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
             : "text-[#8401A1] dark:text-[#73e9fe]"
         }
       >
-        Solutions
+      Profile 
       </NavLink>
       {/* <NavLink
             {/* <NavLink
