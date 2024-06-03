@@ -22,7 +22,7 @@ const ChatUI = () => {
                             <IoClose className="text-2xl" />
                         </button>
                     </div>
-                    <div className="flex-1 p-4 overflow-y-auto">
+                    <div className="flex-1 p-4 overflow-y-auto bg-red-500">
                         <div className="flex flex-col space-y-2">
                             {/* Chat messages will go here */}
                             <div className="self-start bg-gray-200 p-2 rounded-md dark:bg-gray-800">
@@ -33,7 +33,7 @@ const ChatUI = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="p-4 flex items-center justify-center">
+                    <div className="p-4 flex items-center justify-center bg-red-500">
                         <input
                             type="text"
                             placeholder="Type a message..."
