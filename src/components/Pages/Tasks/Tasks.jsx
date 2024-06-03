@@ -87,14 +87,14 @@ const Tasks = () => {
                             onDrop={(e) => handleDrop(e, status)}
                             onDragOver={handleDragOver}
                         >
-                            <h3 className="text-xl text-center font-semibold mb-2">{status}</h3>
+                            <h3 className="text-xl text-center font-semibold mb-2 hover:font-extrabold ">{status}</h3>
                             <hr className="h-1 mb-4" />
                             {tasks.filter(task => task.status === status).map((task) => (
                                 <div
                                     key={task.id}
                                     draggable
                                     onDragStart={(e) => handleDragStart(e, task.id)}
-                                    className="task-item border-2 border-gray-300 dark:border-sky-200 p-2 hover:p-3 rounded mb-2 font-medium hover:border-2 hover:border-sky-800 hover:cursor-grabbing  hover:shadow-lg hover:shadow-sky-800 hover:bg-[#0c01a1] hover:text-white"
+                                    className="task-item border-2 border-gray-300 dark:border-sky-200 p-2 hover:p-3 rounded mb-2 font-medium hover:border-2 hover:border-sky-800 hover:cursor-grabbing  hover:shadow-lg hover:shadow-sky-800 hover:bg-[#0c01a1] dark:hover:bg-[#73e9fe] dark:hover:text-[#0c01a1] hover:text-white"
                                 >
                                     <div className="flex justify-between items-center">
                                         <div className="hover:font-bold"><p className="">{task.name}</p></div>
