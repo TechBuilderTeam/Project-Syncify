@@ -15,7 +15,7 @@ const ItDetials = () => {
             without compromising security.
           </p>
           <Link to="/login">
-            <button className=" bg-purple-800 text-white font-bold px-4 py-3 rounded-sm">
+            <button className="mt-5 dark:bg-cyan-600 bg-purple-800 text-white font-bold px-4 py-3 rounded-sm">
               Get Started
             </button>
           </Link>
