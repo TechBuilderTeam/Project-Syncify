@@ -42,32 +42,32 @@ const EditDeleteTask = () => {
     };
 
     return (
-        <div className="flex justify-center items-center gap-4">
+        <div className="">
             <div>
                 <button className="  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_2').showModal()}> <FaRegEdit className="text-xl" /></button>
                 <dialog id="my_modal_2" className="modal modal-bottom sm:modal-middle">
                     <div className="modal-box bg-white dark:bg-black">
                         <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => document.getElementById("my_modal_2").close()}>✕</button>
-                        <h3 className="font-bold text-2xl text-center dark:text-[#73e9fe] text-[#2c01a1] ">Update Task</h3>
+                        <h3 className="font-bold text-2xl text-center dark:text-[#73e9fe] text-[#0c01a1] ">Update Task</h3>
                         <form onSubmit={handleUpdate}>
 
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text dark:text-[#73e9fe] text-[#2c01a1]">Task Name</span>
+                                    <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">Task Name</span>
                                 </label>
                                 <input type="text" name="name" className="input input-bordered bg-slate-200 dark:bg-black" required />
                             </div>
 
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text dark:text-[#73e9fe] text-[#2c01a1]">Details</span>
+                                    <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">Details</span>
                                 </label>
                                 <textarea name="details" className="textarea textarea-bordered bg-slate-200 dark:bg-black" required></textarea>
                             </div>
                             <div className="flex gap-2">
                                 <div className="form-control w-1/2">
                                     <label className="label">
-                                        <span className="label-text dark:text-[#73e9fe] text-[#2c01a1]">Priority</span>
+                                        <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">Priority</span>
                                     </label>
                                     <select name="priority" className="select select-bordered w-full max-w-xs bg-slate-200 dark:bg-black" required>l
                                         <option value="Low">Low</option>
@@ -78,7 +78,7 @@ const EditDeleteTask = () => {
 
                                 <div className="form-control w-1/2">
                                     <label className="label">
-                                        <span className="label-text dark:text-[#73e9fe] text-[#2c01a1]">Status </span>
+                                        <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">Status </span>
                                     </label>
                                     <select name="status" className="select select-bordered w-full max-w-xs bg-slate-200 dark:bg-black" required>
                                         <option value="To-Do">To-Do</option>
@@ -90,7 +90,7 @@ const EditDeleteTask = () => {
                             </div>
 
                             <div className="modal-action">
-                                <button type="submit" className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white  font-bold rounded w-full ">Update Task</button>
+                                <button type="submit" className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white  font-bold rounded w-full ">Update Task</button>
                             </div>
                         </form>
                     </div>

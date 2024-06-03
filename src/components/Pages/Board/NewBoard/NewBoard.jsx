@@ -20,7 +20,7 @@ const NewBoard = () => {
         <div className="overflow-x-auto shadow-xl rounded w-full">
             <table className="table w-full">
                 <thead>
-                    <tr className="text-center text-sm text-[#2c01a1] dark:text-[#73e9fe]">
+                    <tr className="text-center text-sm text-[#0c01a1] dark:text-[#73e9fe]">
                         <th> Plans Name </th>
                         <th>Board Name</th>
 
@@ -68,7 +68,7 @@ const NewBoard = () => {
                                 <div className="overflow-x-auto w-full shadow-xl rounded">
                                     <table className="table w-full">
                                         <thead>
-                                            <tr className="text-center text-sm text-[#2c01a1] dark:text-[#73e9fe] bg-cyan-50 dark:bg-gray-900">
+                                            <tr className="text-center text-sm text-[#0c01a1] dark:text-[#73e9fe] bg-cyan-50 dark:bg-gray-900">
                                                 <th>Task Name</th>
                                                 <th>Assigned To</th>
                                                 <th>Status</th>

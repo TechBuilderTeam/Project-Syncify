@@ -19,7 +19,7 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
 
   const getLinkClass = (path) => {
     return location.pathname === path
-      ? "bg-[#2c01a1] text-white dark:text-[#2c01a1] dark:bg-[#73e9fe]"
+      ? "bg-[#0c01a1] text-white dark:text-[#0c01a1] dark:bg-[#73e9fe]"
       : "text-black dark:text-white";
   };
 
