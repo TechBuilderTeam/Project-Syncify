@@ -1,13 +1,17 @@
 // import { VscGraph } from "react-icons/vsc";
-import { useContext, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { HiMenuAlt2 } from "react-icons/hi";
 import { FaXmark } from "react-icons/fa6";
 import { AuthContext } from "../../Providers/AuthProviders/AuthProviders";
 
 const Navbar = ({ handleThemeChange }) => {
   const { user, handleLogout } = useContext(AuthContext);
+  const [profile, setProfile] = useState(null);
   console.log({ user });
+  const navigate = useNavigate();
+
+
   const navlinks = (
     <>
       <NavLink
@@ -30,7 +34,7 @@ const Navbar = ({ handleThemeChange }) => {
       >
         Features
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to="/profile"
         className={({ isActive }) =>
           isActive
@@ -39,7 +43,7 @@ const Navbar = ({ handleThemeChange }) => {
         }
       >
         Profile
-      </NavLink>
+      </NavLink> */}
       {/* <NavLink
             {/* <NavLink
                 to="/login"
@@ -137,6 +141,30 @@ const Navbar = ({ handleThemeChange }) => {
     setOpen(!open);
   };
 
+
+  const handleProfile = () => {
+    console.log("profile button clicked");
+    navigate("/profile");
+  };
+
+  useEffect(() => {
+    if (user && user.userId) {
+      fetch(`https://projectsyncifyapi.onrender.com/api/v1/user/details/${user.userId}/`)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data);
+          setProfile(data);
+        })
+        .catch((error) => {
+          console.error('Error fetching profile:', error);
+        });
+    }
+  }, [user]);
   return (
     <div className=" mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl p-4 ">
       <div className="flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50 w-full h-20 px-6 bg-gradient-to-r from-blue-200 dark:from-blue-900 to-blue-50 dark:to-blue-950">
@@ -161,7 +189,7 @@ const Navbar = ({ handleThemeChange }) => {
           </div>
 
           {/** toggle section */}
-          <div className="w-1/4 flex justify-between items-center gap-1 text-[#0c01a1] dark:text-[#73e9fe] font-semibold text-lg">
+          <div className="w-1/4 flex justify-end items-center gap-4 text-[#0c01a1] dark:text-[#73e9fe] font-semibold text-lg">
             <label className="swap swap-rotate ">
               <input type="checkbox" onChange={handleThemeChange} />
 
@@ -184,22 +212,43 @@ const Navbar = ({ handleThemeChange }) => {
             </label>
             <hr className="w-[3px] h-[36px] bg-[#0c01a1] dark:bg-[#73e9fe]" />
 
-            <a href="contact">Contact</a>
+            <Link to="/contact">Contact</Link>
             {user ? (
               <>
-                <div onClick={handleLogout} className="cursor-pointer">
+                <button className=' group '>
+
+                  <img src={user && profile?.image} alt="" className='w-10 h-10 rounded-full' />
+                  {/* <FaUserCircle  /> */}
+                  <div className='z-10 absolute hidden bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-24 group-focus:block top-full right-0'>
+                    <ul className='py-4 text-sm'>
+
+                      {/* <li>
+                        
+                        <button>
+                          <a href="/profile">Profile</a>
+                        </button>
+
+                      </li> */}
+
+                      <li onClick={handleProfile}>Profile</li>
+                      <li onClick={handleLogout}>Logout</li>
+                    </ul>
+                  </div>
+                </button>
+                {/* <div onClick={handleLogout} className="cursor-pointer">
                   LogOut
-                </div>
+                </div> */}
               </>
             ) : (
               <>
-                <div>
+                <div className="flex gap-3 justify-center items-center">
+                  <Link to="/login">Log In</Link>
                   <Link to="/register">
-                    <button className="px-3 py-1 hidden md:flex bg-[#0c01a1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] rounded text-white">
+                    <button className="px-2 py-1 hidden md:flex bg-[#0c01a1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] rounded text-white">
                       Get Started
                     </button>
                   </Link>
-                  <Link to="/login">Log In</Link>
+
                 </div>
               </>
 
