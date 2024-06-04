@@ -156,9 +156,9 @@ const Login = () => {
           <FcGoogle className="w-8 h-8" />
           </button> */}
           <div id='signInDiv'></div>
-          <button>
+          {/* <button>
           <FaGithub className="w-8 h-8" />
-          </button>
+          </button> */}
           </div>
           <span className="my-5 hidden md:flex">
             __________________________________or__________________________________
