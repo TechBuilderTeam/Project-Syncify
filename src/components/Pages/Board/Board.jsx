@@ -265,7 +265,7 @@ const Board = () => {
                 </td>
 
                 <td className="absolute">
-                    <ChatUI boardId={board.id} User={user}/>
+                    <ChatUI boardId={board.id} User={user} board={board}/>
                     
                 </td>
 

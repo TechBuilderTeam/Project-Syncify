@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { IoChatbubblesOutline, IoClose } from "react-icons/io5";
 
-const ChatUI = ({ boardId, User }) => {
-    console.log({ boardId, User });
+const ChatUI = ({ boardId, User, board }) => {
+    console.log({ boardId, User, board });
     const [showChat, setShowChat] = useState(false);
     const [userName, setUserName] = useState(null);
     const [userGroup, setUserGroup] = useState(null);
@@ -22,6 +22,7 @@ const ChatUI = ({ boardId, User }) => {
         setShowChat(!showChat);
         handleChat(groupId, userName);
     };
+
 
     const loadMessage=()=>{
         fetch(` https://projectsyncifyapi.onrender.com/api/v1/chat/${userGroup}/`)
@@ -73,7 +74,7 @@ const ChatUI = ({ boardId, User }) => {
             {showChat && (
                 <div className="fixed bottom-10 right-4 w-96 h-96 bg-white dark:bg-gray-950 shadow-lg rounded-lg flex flex-col">
                 <div className="flex items-center justify-between p-4 bg-[#0154a1] text-white rounded-t-lg">
-                    <h3 className="text-lg font-semibold">Chat</h3>
+                    <h3 className="text-lg font-semibold">{board.name}</h3>
                     <button onClick={() => setShowChat(false)}>
                         <IoClose className="text-2xl" />
                     </button>
@@ -90,17 +91,17 @@ const ChatUI = ({ boardId, User }) => {
 
 <div
     key={index}
-    className={`p-2 rounded-md ${message.user.id === userName ? 'self-end bg-[#0154a1] text-white' : 'self-start bg-gray-200'}`}
+    className={`p-2 rounded-md ${message.user?.id === userName ? 'self-end bg-[#0154a1] text-white' : (message.user === userName) ? 'self-end bg-[#0154a1] text-white' : 'self-start bg-gray-200'}`}
 >
-    {/* {message.user.id !== userName &&  */}
+    
     <div className="flex items-center">
         <img
-            src={message.user_image ? `${message.user_image}` : `https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg`}
+            src={message.user.image ? `${message.user.image}` : `${message.user_image}`}
             alt={message.user_first_name}
             className="w-4 h-4 rounded-full mr-2"
         />
-        <span style={{ color: message.user.id == userName ? 'green' : 'red' }}>
-            {message.user_first_name}
+        <span style={{ color: message.user.id == userName ? 'green' : {color: message.user === userName ? "green" :'red' }}}>
+            {message.user_first_name ? message.user_first_name : message.user.first_name  }
         </span>
     </div>
     <div>{message.message}</div>

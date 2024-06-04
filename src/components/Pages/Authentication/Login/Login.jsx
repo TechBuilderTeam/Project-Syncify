@@ -262,12 +262,12 @@ const Login = () => {
         <div
           className="w-full md:w-[40%] text-white flex flex-col justify-center items-center text-center gap-y-2 md:gap-y-3 px-10 py-24 rounded md:p-0"
           style={{
-            background: "linear-gradient(135deg, #5AA6E1, #D939F5)",
+            background: "lineadient(135deg, #5AA6E1, #D939F5)",
           }}
         >
           <h1 className="text-3xl md:text-5xl font-bold">New Here ?</h1>
           <h3 className="text-lg md:text-xl md:px-16">
-            Sign up and discover a grea amount of opportunities
+            Sir-gragn up and discover a grea amount of opportunities
           </h3>
           <Link to="/register">
             <button className="hover:bg-gradient-to-r from-[#9d11bd] to-[#73e9fe] text-white font-bold  px-10 py-2 rounded-full  border-2">
