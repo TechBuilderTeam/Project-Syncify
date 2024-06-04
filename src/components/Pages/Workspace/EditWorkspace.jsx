@@ -105,7 +105,7 @@ const EditWorkspace = () => {
               className="border-2 p-4 w-96 mt-3"
             />
           </div> */}
-          <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-96 px-4 py-2" type="submit">Update Project</button>
+          <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-96 px-4 py-2" type="submit">Update Project</button>
         </form>
       </div>
     </div>

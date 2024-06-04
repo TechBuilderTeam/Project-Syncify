@@ -12,7 +12,7 @@ const Sidebar = ({ sidebarToggle }) => {
     <div
       className={`${
         sidebarToggle ? "hidden" : "block"
-      } w-40 md:w-60  bg-gradient-to-b from-[#73e9fe] dark:from-[#8401A1] to-[#78118f] dark:to-[#73e9fe] absolute top-20 left-0 h-full px-4 py-2`}
+      } w-40 md:w-60  bg-gradient-to-b from-[#73e9fe] dark:from-[#0c01a1] to-[#78118f] dark:to-[#73e9fe] absolute top-20 left-0 h-full px-4 py-2`}
     >
       <img src="../../../assets/control.png" className="absolute cursor-pointer rounded-full -right-3 top-9 w-7 border-2 "/>
       <div className="my-2 mb-4">

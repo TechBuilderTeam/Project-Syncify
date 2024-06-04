@@ -14,8 +14,8 @@ const Navbar = ({ handleThemeChange }) => {
         to="/"
         className={({ isActive }) =>
           isActive
-            ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3 "
-            : "text-[#8401A1] dark:text-[#73e9fe]"
+            ? "text-[#0c01a1] dark:text-[#73e9fe] font-bold underline underline-offset-3 "
+            : "text-[#0c01a1] dark:text-[#73e9fe]"
         }
       >
         Home
@@ -24,8 +24,8 @@ const Navbar = ({ handleThemeChange }) => {
         to="/features"
         className={({ isActive }) =>
           isActive
-            ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
-            : "text-[#8401A1] dark:text-[#73e9fe]"
+            ? "text-[#0c01a1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
+            : "text-[#0c01a1] dark:text-[#73e9fe]"
         }
       >
         Features
@@ -34,8 +34,8 @@ const Navbar = ({ handleThemeChange }) => {
         to="/profile"
         className={({ isActive }) =>
           isActive
-            ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
-            : "text-[#8401A1] dark:text-[#73e9fe]"
+            ? "text-[#0c01a1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
+            : "text-[#0c01a1] dark:text-[#73e9fe]"
         }
       >
       Profile 
@@ -45,8 +45,8 @@ const Navbar = ({ handleThemeChange }) => {
                 to="/login"
                 className={({ isActive }) =>
                     isActive
-                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
-                        : "text-[#8401A1] dark:text-[#73e9fe]"
+                        ? "text-[#0c01a1] dark:text-[#73e9fe] font-bold"
+                        : "text-[#0c01a1] dark:text-[#73e9fe]"
                 }
             >
                 Login
@@ -55,8 +55,8 @@ const Navbar = ({ handleThemeChange }) => {
                 to="/register"
                 className={({ isActive }) =>
                     isActive
-                        ? "text-[#8401A1] dark:text-[#73e9fe] font-bold"
-                        : "text-[#8401A1] dark:text-[#73e9fe]"
+                        ? "text-[#0c01a1] dark:text-[#73e9fe] font-bold"
+                        : "text-[#0c01a1] dark:text-[#73e9fe]"
                 }
             >
                 Register
@@ -71,8 +71,8 @@ const Navbar = ({ handleThemeChange }) => {
                role="button"
                className={({ isActive }) =>
                  isActive
-                   ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
-                   : "text-[#8401A1] underline-offset-0 dark:text-[#73e9fe]"
+                   ? "text-[#0c01a1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
+                   : "text-[#0c01a1] underline-offset-0 dark:text-[#73e9fe]"
                }
              >
                Projects
@@ -94,8 +94,8 @@ const Navbar = ({ handleThemeChange }) => {
             to="/workspace"
             className={({ isActive }) =>
               isActive
-                ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
-                : "text-[#8401A1] dark:text-[#73e9fe]"
+                ? "text-[#0c01a1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
+                : "text-[#0c01a1] dark:text-[#73e9fe]"
             }
           >
             Projects
@@ -110,8 +110,8 @@ const Navbar = ({ handleThemeChange }) => {
           role="button"
           className={({ isActive }) =>
             isActive
-              ? "text-[#8401A1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
-              : "text-[#8401A1] underline-offset-0 dark:text-[#73e9fe]"
+              ? "text-[#0c01a1] dark:text-[#73e9fe] font-bold underline underline-offset-3"
+              : "text-[#0c01a1] underline-offset-0 dark:text-[#73e9fe]"
           }
         >
           Project
@@ -142,11 +142,11 @@ const Navbar = ({ handleThemeChange }) => {
       <div className="flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50 w-full h-20 px-6">
         <div className="hidden lg:flex justify-between items-center w-full">
           {/** logo and name section */}
-          <div className="w-1/4 flex justify-start items-center text-[#8401A1] dark:text-[#73e9fe]">
+          <div className="w-1/4 flex justify-start items-center text-[#0c01a1] dark:text-[#73e9fe]">
             <a href="/">
               <img
                 src={"https://i.ibb.co/T4FSNsb/Justlogo.png"}
-                className="w-14 h-12 text-[#8401A1] dark:text-[#73e9fe]"
+                className="w-14 h-12 text-[#0c01a1] dark:text-[#73e9fe]"
                 alt="logo"
               />
             </a>
@@ -156,17 +156,17 @@ const Navbar = ({ handleThemeChange }) => {
           </div>
 
           {/** nav list section */}
-          <div className="w-2/4 flex justify-start items-center gap-4 font-semibold text-lg text-[#8401A1] dark:text-[#73e9fe]">
+          <div className="w-2/4 flex justify-start items-center gap-4 font-semibold text-lg text-[#0c01a1] dark:text-[#73e9fe]">
             {navlinks}
           </div>
 
           {/** toggle section */}
-          <div className="w-1/4 flex justify-between items-center gap-1 text-[#8401A1] dark:text-[#73e9fe] font-semibold text-lg">
+          <div className="w-1/4 flex justify-between items-center gap-1 text-[#0c01a1] dark:text-[#73e9fe] font-semibold text-lg">
             <label className="swap swap-rotate ">
               <input type="checkbox" onChange={handleThemeChange} />
 
               <svg
-                className="swap-on fill-current w-6 h-6 md:w-8 md:h-8 text-[#8401A1] dark:text-[#73e9fe]"
+                className="swap-on fill-current w-6 h-6 md:w-8 md:h-8 text-[#0c01a1] dark:text-[#73e9fe]"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
               >
@@ -175,14 +175,14 @@ const Navbar = ({ handleThemeChange }) => {
 
               {/* moon icon */}
               <svg
-                className="swap-off fill-current w-6 h-6 md:w-8 md:h-8 text-[#8401A1] dark:text-[#73e9fe]"
+                className="swap-off fill-current w-6 h-6 md:w-8 md:h-8 text-[#0c01a1] dark:text-[#73e9fe]"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
               >
                 <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
               </svg>
             </label>
-            <hr className="w-[3px] h-[36px] bg-[#8401A1] dark:bg-[#73e9fe]" />
+            <hr className="w-[3px] h-[36px] bg-[#0c01a1] dark:bg-[#73e9fe]" />
 
             <a href="contact">Contact</a>
             {user ? (
@@ -195,7 +195,7 @@ const Navbar = ({ handleThemeChange }) => {
               <Link to="/login">Log In</Link>
             )}
             <Link to="/register">
-              <button className="px-3 py-1 hidden md:flex bg-[#8401A1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#8401A1] rounded text-white">
+              <button className="px-3 py-1 hidden md:flex bg-[#0c01a1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] rounded text-white">
                 Get Started
               </button>
             </Link>
@@ -205,11 +205,11 @@ const Navbar = ({ handleThemeChange }) => {
         {/** toggle bar button */}
         <div className="flex lg:hidden w-full">
           <div className="flex justify-between items-center w-full">
-            <div className=" flex  text-[#8401A1] dark:text-[#73e9fe]">
+            <div className=" flex  text-[#0c01a1] dark:text-[#73e9fe]">
               <a href="/">
                 <img
                   src={"https://i.ibb.co/T4FSNsb/Justlogo.png"}
-                  className="w-14 h-12 text-[#8401A1] dark:text-[#73e9fe]"
+                  className="w-14 h-12 text-[#0c01a1] dark:text-[#73e9fe]"
                   alt="logo"
                 />
               </a>
@@ -223,7 +223,7 @@ const Navbar = ({ handleThemeChange }) => {
                   <input type="checkbox" onChange={handleThemeChange} />
 
                   <svg
-                    className="swap-on fill-current w-8 h-8 text-[#8401A1] dark:text-[#73e9fe]"
+                    className="swap-on fill-current w-8 h-8 text-[#0c01a1] dark:text-[#73e9fe]"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                   >
@@ -232,7 +232,7 @@ const Navbar = ({ handleThemeChange }) => {
 
                   {/* moon icon */}
                   <svg
-                    className="swap-off fill-current w-8 h-8 text-[#8401A1] dark:text-[#73e9fe]"
+                    className="swap-off fill-current w-8 h-8 text-[#0c01a1] dark:text-[#73e9fe]"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
                   >
@@ -240,7 +240,7 @@ const Navbar = ({ handleThemeChange }) => {
                   </svg>
                 </label>
               </div>
-              <hr className="w-[3px] h-[36px] bg-[#8401A1] dark:bg-[#73e9fe]" />
+              <hr className="w-[3px] h-[36px] bg-[#0c01a1] dark:bg-[#73e9fe]" />
               <div onClick={toggleMenu}>
                 {open ? (
                   <FaXmark className=" text-3xl cursor-pointer" />
@@ -258,7 +258,7 @@ const Navbar = ({ handleThemeChange }) => {
                   {navlinks}
                   <a href="contact">Contact</a>
                   <Link to="/login">Log In</Link>
-                  {/* <button className="px-4 py-2 flex bg-[#8401A1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#8401A1] rounded text-white">Get Started</button> */}
+                  {/* <button className="px-4 py-2 flex bg-[#0c01a1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] rounded text-white">Get Started</button> */}
                 </div>
               </div>
             </div>

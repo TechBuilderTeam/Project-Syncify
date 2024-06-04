@@ -158,7 +158,7 @@ const TopCompanySlider = () => {
     <div className="w-full  h-fit px-10 py-10 my-6">
       {/* <h1 className='text-5xl mt-[50px] mb-[50px] '>The world’s top companies trust Synify</h1> */}
       <Title title="The world’s top companies trust Synify" />
-      <div className="flex gap-2 items-center dark:hover:text-[#8401A1] hover:text-cyan-600 font-semibold py-2 px-4 mt-2">
+      <div className="flex gap-2 items-center dark:hover:text-[#0c01a1] hover:text-cyan-600 font-semibold py-2 px-4 mt-2">
         <p className="my-2">See all case studies </p>{" "}
         <span>
           <FaArrowRight />
