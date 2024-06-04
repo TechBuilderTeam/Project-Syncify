@@ -8,7 +8,7 @@ const Work = () => {
     const [isPresentEnd, setIsPresentEnd] = useState(false);
 
     const handleModalClose = () => {
-        document.getElementById('my_modal_2').close();
+        document.getElementById('work').close();
     }
 
     const handleAddWork = () => {
@@ -21,13 +21,13 @@ const Work = () => {
                 <div className="flex justify-between mb-4">
                     <h1 className="text-3xl font-bold">Work</h1>
 
-                    <button className=" text-4xl   font-bold rounded" onClick={() => document.getElementById('my_modal_2').showModal()}>
+                    <button className=" text-4xl   font-bold rounded" onClick={() => document.getElementById('work').showModal()}>
                         <FaPlus />
                     </button>
-                    <dialog id="my_modal_2" className="modal modal-bottom sm:modal-middle">
+                    <dialog id="work" className="modal modal-bottom sm:modal-middle">
                         <div className="modal-box bg-white dark:bg-black">
-                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => document.getElementById("my_modal_2").close()}>✕</button>
-                            <h3 className="font-bold text-2xl text-center dark:text-[#73e9fe] text-[#0c01a1] ">Add Contact</h3>
+                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => document.getElementById("work").close()}>✕</button>
+                            <h3 className="font-bold text-2xl text-center dark:text-[#73e9fe] text-[#0c01a1] ">Add Work</h3>
                             <form onSubmit={handleAddWork}>
 
                                 <div className="form-control">

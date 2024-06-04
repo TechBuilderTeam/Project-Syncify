@@ -27,7 +27,7 @@ const Education = () => {
                     <dialog id="my_modal_2" className="modal modal-bottom sm:modal-middle">
                         <div className="modal-box bg-white dark:bg-black">
                             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => document.getElementById("my_modal_2").close()}>✕</button>
-                            <h3 className="font-bold text-2xl text-center dark:text-[#73e9fe] text-[#0c01a1] ">Add Contact</h3>
+                            <h3 className="font-bold text-2xl text-center dark:text-[#73e9fe] text-[#0c01a1] ">Add Education</h3>
                             <form onSubmit={handleAddEducation}>
 
                                 <div className="form-control">
