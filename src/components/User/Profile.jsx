@@ -29,7 +29,7 @@ const Profile = () => {
   }
   useEffect(() => {
     if (user && user.userId) {
-      fetch(`https://projectsyncifyapi.onrender.com/api/v1/user/details/${user.userId}/`)
+      fetch(`https://projectsyncifyapi.onrender.com/api/v1/user/details/${user?.userId}/`)
         .then((res) => {
           if (!res.ok) {
             throw new Error('Network response was not ok');
