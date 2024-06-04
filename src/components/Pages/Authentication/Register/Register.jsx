@@ -54,6 +54,7 @@ const Register = () => {
 
         }
       } catch (error) {
+        console.log("error -> ", error)
         console.log('error -> ',error.response.data.email[0])
         toast.warning(error.response.data.email[0])
       }
