@@ -81,12 +81,31 @@ const ChatUI = ({ boardId, User }) => {
                 <div className="flex-1 p-4 overflow-y-auto">
                     <div className="flex flex-col space-y-2">
                         {messages.map((message, index) => (
-                            <div
-                                key={index}
-                                className={`p-2 rounded-md ${message.user === userName ? 'self-end bg-[#0154a1] text-white' : 'self-start bg-gray-200'}`}
-                            >
-                                <span style={{ color: message.user === userName ? 'green' : 'red' }}>{message.user}</span>{message.message}
-                            </div>
+                            // <div
+                            //     key={index}
+                            //     className={`p-2 rounded-md ${message.user.id === userName ? 'self-end bg-[#0154a1] text-white' : 'self-start bg-gray-200'}`}
+                            // >
+                            //     <span style={{ color: message.user.id === userName ? 'green' : 'red' }}>{message.user.first_name}</span>{message.message}
+                            // </div>
+
+<div
+    key={index}
+    className={`p-2 rounded-md ${message.user.id === userName ? 'self-end bg-[#0154a1] text-white' : 'self-start bg-gray-200'}`}
+>
+    {/* {message.user.id !== userName &&  */}
+    <div className="flex items-center">
+        <img
+            src={message.user_image ? `${message.user_image}` : `https://img.freepik.com/free-vector/blue-circle-with-white-user_78370-4707.jpg`}
+            alt={message.user_first_name}
+            className="w-4 h-4 rounded-full mr-2"
+        />
+        <span style={{ color: message.user.id == userName ? 'green' : 'red' }}>
+            {message.user_first_name}
+        </span>
+    </div>
+    <div>{message.message}</div>
+</div>
+
                         ))}
                     </div>
                 </div>
