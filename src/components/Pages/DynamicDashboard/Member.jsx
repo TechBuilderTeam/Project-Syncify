@@ -256,6 +256,7 @@ const handleOpenDialog = (member, modalName) => {
             <h1 className="text-3xl   pb-2 font-semibold ">
               Member
             </h1>
+            
             <button className="bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
           </div>
 

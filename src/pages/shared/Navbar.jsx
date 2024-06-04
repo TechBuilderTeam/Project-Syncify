@@ -38,7 +38,7 @@ const Navbar = ({ handleThemeChange }) => {
             : "text-[#0c01a1] dark:text-[#73e9fe]"
         }
       >
-      Profile 
+        Profile
       </NavLink>
       {/* <NavLink
             {/* <NavLink
@@ -139,7 +139,7 @@ const Navbar = ({ handleThemeChange }) => {
 
   return (
     <div className=" mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl p-4 ">
-      <div className="flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50 w-full h-20 px-6">
+      <div className="flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50 w-full h-20 px-6 bg-gradient-to-r from-blue-200 dark:from-blue-900 to-blue-50 dark:to-blue-950">
         <div className="hidden lg:flex justify-between items-center w-full">
           {/** logo and name section */}
           <div className="w-1/4 flex justify-start items-center text-[#0c01a1] dark:text-[#73e9fe]">
@@ -192,13 +192,19 @@ const Navbar = ({ handleThemeChange }) => {
                 </div>
               </>
             ) : (
-              <Link to="/login">Log In</Link>
+              <>
+                <div>
+                  <Link to="/register">
+                    <button className="px-3 py-1 hidden md:flex bg-[#0c01a1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] rounded text-white">
+                      Get Started
+                    </button>
+                  </Link>
+                  <Link to="/login">Log In</Link>
+                </div>
+              </>
+
             )}
-            <Link to="/register">
-              <button className="px-3 py-1 hidden md:flex bg-[#0c01a1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] rounded text-white">
-                Get Started
-              </button>
-            </Link>
+
           </div>
         </div>
 
@@ -250,13 +256,12 @@ const Navbar = ({ handleThemeChange }) => {
               </div>
               {/** conditional show navlist items */}
               <div
-                className={`${
-                  open ? "flex" : "hidden"
-                } w-full h-fit bg-cyan-50 dark:bg-slate-800 bg-opacity-50 dark:bg-opacity-50 p-4 absolute top-[80px] left-0`}
+                className={`${open ? "flex" : "hidden"
+                  } w-full h-fit bg-cyan-50 dark:bg-slate-800 bg-opacity-50 dark:bg-opacity-50 p-4 absolute top-[80px] left-0`}
               >
                 <div className="flex flex-col justify-center items-center gap-4 w-full font-semibold ">
                   {navlinks}
-                  <a href="contact">Contact</a>
+                  <Link to="/contact">Contact</Link>
                   <Link to="/login">Log In</Link>
                   {/* <button className="px-4 py-2 flex bg-[#0c01a1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] rounded text-white">Get Started</button> */}
                 </div>
