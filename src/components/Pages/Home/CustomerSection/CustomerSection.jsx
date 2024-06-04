@@ -1,11 +1,11 @@
-import React from 'react';
+
 import logo1 from "../../../../assets/logo1.png";
 import logo2 from "../../../../assets/logo.jpg";
 const CustomerSection = () => {
     return (
-    <div className='bg-gradient-to-b from-[#73e9fe] to-[#78118f] w-full' >
-        <div className='flex sm:flex-col md:flex-row flex-wrap m-6 py-6 relative' >
-            {/** left side */}
+    <div className='bg-gradient-to-b from-[#3fe2ff] to-[#13118f] w-full' >
+        <div className='flex sm:flex-col md:flex-row flex-wrap m-10 py-10 px-6 relative' >
+            
             <div className="w-full md:w-4/6 p-8 flex flex-col justify-around">
                 <div>
                     <h2 className="text-white text-4xl  font-bold mb-4">We love our customers and they love us too.</h2>
