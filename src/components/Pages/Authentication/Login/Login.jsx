@@ -264,8 +264,10 @@ const Login = () => {
           <p className="text-start"><NavLink to='/forget'>Forget Password</NavLink></p>
         </div>
         <div
+
           className="w-full md:w-[40%] text-white flex flex-col justify-center items-center text-center gap-y-2 md:gap-y-3 px-10 py-24 rounded md:p-0 bg-gradient-to-r from-[#1711bd] to-[#73e9fe] dark:from-[#1133bd] dark:to-[#73e9fe] dark:bg-gradient-to-r"
         
+
         >
           <h1 className="text-3xl md:text-5xl font-bold">New Here ?</h1>
           <h3 className="text-lg md:text-xl md:px-16">
