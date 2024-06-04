@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { FaCaretDown, FaCaretSquareDown, FaRegEdit } from 'react-icons/fa';
 import { GiGameConsole } from 'react-icons/gi';
 import { MdDeleteForever } from 'react-icons/md';
@@ -8,9 +8,11 @@ import {  toast } from 'react-toastify';
 import { TbListDetails } from "react-icons/tb";
 import { CiSquarePlus } from "react-icons/ci";
 import { MdDeveloperBoard } from "react-icons/md";
+import { AuthContext } from '../../../Providers/AuthProviders/AuthProviders';
 
 const Plans = () => {
   const { id } = useParams();
+  const {user} = useContext(AuthContext);
   const [data, setData] = useState(null); // State to store fetched data
   const [loading, setLoading] = useState(false); // State for loading status
   const [error, setError] = useState(null); // State for error status
@@ -252,7 +254,12 @@ const Plans = () => {
         handleCloseModelButton("board")
         navigate(`/workspace/${id}/boards`,  { state: { timelineId } })
     } catch (error) {
-        console.log('error -> ', error)
+        console.log('error -> ', error);
+
+        console.log(error?.response?.data?.timeline_Name[0]);
+
+        toast.warning(error?.response?.data?.timeline_Name[0]);
+        handleCloseModelButton("board")
     }
 
     }
@@ -501,6 +508,8 @@ const Plans = () => {
                     </th>
 
                     <td>{timeline.assign && <MdDeveloperBoard className='text-4xl cursor-pointer' onClick={() => handleOpenDialog(timeline, 'board')} />}</td>
+                    {/* <td>{(timeline?.assign?.id == user.userId) && <MdDeveloperBoard className='text-4xl cursor-pointer' onClick={() => handleOpenDialog(timeline, 'board')} />}</td> */}
+
 {/** start create board modal for specefic timeline */}
 <dialog id="board" className="modal">
     <div className="modal-box bg-white dark:bg-black">

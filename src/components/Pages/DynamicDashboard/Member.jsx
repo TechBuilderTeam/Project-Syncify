@@ -46,13 +46,87 @@ const Member = () => {
     }
   };
 
+  const [formData, setFormData] = useState({
+    workspace_id: id,
+    userId: "",
+    user_email: "",
+    new_role: "",
+  }
+);
+
+const [selectedTimeline, setSelectedTimeline] = useState(null);
+
+const handleOpenDialog = (member, modalName) => {
+    
+    console.log({member})
+    setSelectedTimeline(member);
+     console.log(member.user_id)
+    setFormData({
+      workspace_id: id,
+      userId: member.user_id,
+      user_email: member.user_email,
+      new_role: "",
+      user_id: "",
+    });
+
+    console.log({formData})
+    document.getElementById("edit").showModal();
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log({name,value})
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleCreateTaskButton = async (e) => {
+    e.preventDefault()
+
+    const newTask = {
+        scrum_Name: formData.id,
+        name: "",
+        details: "",
+        assign: "",
+        which_Type: ""
+    }
+
+    newTask.scrum_Name = Number(formData.id);
+    newTask.name = e.target.taskName.value;
+    newTask.details = e.target.details.value;
+    newTask.assign = e.target.assign.value;
+    newTask.which_Type = e.target.which_type.value;
+
+    
+    console.log({ newTask })
+
+    const result = await axios.post(`https://projectsyncifyapi.onrender.com/workspace/tasks/create/`, newTask)
+
+    if (result) {
+      toast.success('Successfully Create successfully.');
+
+      setReload(!reload);
+      handleCloseModelButton('createTask')
+    }
+    else {
+      console.log('timeline post result -> ', result)
+    }
+  }
+  {/** end update timeline form functionlity */ }
+
+
+
   const handleUpdateButton = async (e) => {
     e.preventDefault();
     const updateMember = {
-      workspace_id: id,
+      workspace_id: Number(id),
       new_role: e.target.userType.value,
-      user_id: e.target.user_id.value,
+      user_id: formData.userId,
     };
+
+    console.log({updateMember})
 
     try {
       const result = await axios.patch(
@@ -261,41 +335,43 @@ const Member = () => {
                         {/* <Link to= {`/admin/admin/userDetails`} state={user} className="btn btn-accent  p-2 m-2">details</Link> */}
                         {/* <button className="btn btn-neutral px-4  py-2">Edit</button> */}
 
-                        {/** Member edit button and model start */}
-                        <button className='btn-ghost'>  </button>
-                        {/* You can open the modal using document.getElementById('ID').showModal() method */}
-                        <button className="mx-4" onClick={() => document.getElementById('edit').showModal()}>
-                          <FaRegEdit className="text-xl" />
-                        </button>
-                        <dialog id="edit" className="modal">
-                          <div className="modal-box bg-white dark:bg-black dark:text-[#73e9fe] text-[#0c01a1]">
-                            <form onSubmit={handleUpdateButton}>
-                              <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={() => document.getElementById('edit').close()}>✕</button>
-                              <h2 className="text-2xl font-bold mb-4 text-center">Update Member Role</h2>
+    {/** Member edit button and model start */}
+    <button className='btn-ghost'>  </button>
+    {/* You can open the modal using document.getElementById('ID').showModal() method */}
+    <button className="mx-4" onClick={() => handleOpenDialog(member,"edit")}>
+      <FaRegEdit className="text-xl" />
+    </button>
+    <dialog id="edit" className="modal">
+      <div className="modal-box bg-white dark:bg-black dark:text-[#73e9fe] text-[#2c01a1]">
+        
+          <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#2c01a1] dark:text-[#73e9fe]" onClick={() => document.getElementById('edit').close()}>✕</button>
+          <h2 className="text-2xl font-bold mb-4 text-center">Update Member Role</h2>
+          
+        <form onSubmit={handleUpdateButton}>
 
-                              <div className='form-control'>
-                                <label htmlFor="email" className="label">Email</label>
-                                <input type="email" id="email" name="email" value={member.user_email} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
-                              </div>
-                              <div className="form-control mb-4">
-                                <label htmlFor="email" className="label">User Id</label>
-                                <input type="text" id="user_id" name="user_id" value={member.user_id} readOnly className="input input-bordered bg-slate-200 dark:bg-black" />
+          <div className='form-control'>
+            <label htmlFor="email" className="label">Email</label>
+            <input type="email" id="email" name="email" value={formData.user_email} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
+          </div>
+          <div className="form-control mb-4">
+            <label htmlFor="email" className="label">User Id</label>
+            <input type="text" id="user_id" name="user_id" value={formData.userId} className="input input-bordered bg-slate-200 dark:bg-black" />
 
-                              </div>
-                              <div className="form-control mb-4">
-                                <label htmlFor="userType" className="label">Role</label>
-                                <select id="userType" name="userType" className="select select-bordered bg-slate-200 dark:bg-black">
-                                  <option value="Associate Manager">Associate Manager</option>
-                                  <option value="Team Leader">Team Leader</option>
-                                  <option value="Member">Member</option>
-                                </select>
-                              </div>
-                              <div className="flex justify-between my-4">
-                                <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-3">Update Member</button>
-                              </div>
-                            </form>
-                          </div>
-                        </dialog>
+          </div>
+          <div className="form-control mb-4">
+            <label htmlFor="userType" className="label">Role</label>
+            <select id="userType" name="userType" className="select select-bordered bg-slate-200 dark:bg-black">
+              <option value="Associate Manager">Associate Manager</option>
+              <option value="Team Leader">Team Leader</option>
+              <option value="Member">Member</option>
+            </select>
+          </div>
+          <div className="flex justify-between my-4">
+            <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white rounded w-full px-4 py-3">Update Member</button>
+          </div>
+        </form>
+      </div>
+    </dialog>
                       </th>
                       <th>
                         {/** Member edit button and model end */}
