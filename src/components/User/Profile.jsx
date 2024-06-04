@@ -10,6 +10,8 @@ import UserContact from "./UserContact";
 import UserAbout from "./UserAbout";
 import UserPortfolio from "./UserProtfolio";
 import UserSkills from "./UserSkills";
+import ProjectSlider from "./ProjectSlider";
+import { Element, ScrollLink } from "react-scroll";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
@@ -168,9 +170,8 @@ const Profile = () => {
                 </div>
               </dialog>
             </div>
-            <div title="Projects">
+           
               <AiOutlineProject />
-            </div>
             <div title="Members">
               <AiOutlineTeam />
             </div>
@@ -211,8 +212,9 @@ const Profile = () => {
 
 
       {/* project in slider start */}
-
-
+    
+        <ProjectSlider user={user} profile={profile} />
+     
 
 
 

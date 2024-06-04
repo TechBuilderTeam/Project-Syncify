@@ -41,7 +41,7 @@ const UserSkillls = () => {
         <div className="  px-10 md:px-32 py-10 ">
             <div className="flex justify-between mb-4">
                 <div>
-                    <h1 className="text-xl md:text-3xl font-bold">Skills</h1>
+                    <h1 className="text-3xl font-bold">Skills</h1>
                     <hr className="w-full border-2 border-[#0c01a1]" />
                 </div>
                 <button className=" text-4xl   font-bold rounded" title="Add skill" onClick={() => document.getElementById('Userskill').showModal()}>
@@ -98,7 +98,7 @@ const UserSkillls = () => {
                 <div className="flex flex-wrap gap-4">
 
                     {dummydata?.map((data) => (
-                        < div key={data.id} className="border-2 rounded-lg p-2 shadow-lg bg-white dark:bg-black">
+                        < div key={data.id} className="border rounded-sm px-2 py-1  text-sm shadow-lg dark:shadow-sky-900 bg-white dark:bg-black">
                             <p>{data.name}</p>
                         </div>
                     ))}
