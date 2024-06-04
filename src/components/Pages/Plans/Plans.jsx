@@ -312,13 +312,13 @@ const Plans = () => {
       {error && <div>Error...</div>}
 
       <div>
-        <button className="mx-4 my-4 text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded px-4 py-3" onClick={() => document.getElementById('add').showModal()}>
+        <button className="mx-4 my-4 text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded px-4 py-3" onClick={() => document.getElementById('add').showModal()}>
           Add timeline
         </button>
 
         <dialog id="add" className="modal">
           <div className="modal-box bg-white dark:bg-black">
-            <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton('add')}>✕</button>
+            <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton('add')}>✕</button>
             <h2 className="text-2xl font-bold mb-4 text-center">Create Timeline</h2>
 
             <form onSubmit={handleAddTimelineButton}>
@@ -345,7 +345,7 @@ const Plans = () => {
                 <input type="date" name="endDate" id="endDate" className="input input-bordered bg-slate-200 dark:bg-black" />
               </div>
               <div className="flex justify-between my-4">
-                <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-3">Add Timeline</button>
+                <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-3">Add Timeline</button>
               </div>
             </form>
           </div>
@@ -360,7 +360,7 @@ const Plans = () => {
           <div className="overflow-x-auto shadow-xl rounded w-6/7 m-4">
             <table className="table">
               {/* head */}
-              <thead className=' text-lg text-[#8401A1] dark:text-[#73e9fe]'>
+              <thead className=' text-lg text-[#0c01a1] dark:text-[#73e9fe]'>
                 <tr className='text-center'>
                   <th>Timeline Name</th>
                   <th>Timeline</th>
@@ -466,7 +466,7 @@ const Plans = () => {
                       </button>
                       <dialog id="edit" className="modal">
                         <div className="modal-box bg-white dark:bg-black">
-                          <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton('edit')}>✕</button>
+                          <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton('edit')}>✕</button>
                           <h2 className="text-2xl font-bold mb-4 text-center">Update Timeline</h2>
                           <form onSubmit={handleEditTimelineButton}>
                             <div className='form-control'>
@@ -496,7 +496,7 @@ const Plans = () => {
                                 onChange={handleChange} />
                             </div>
                             <div className="flex justify-between my-4">
-                              <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-3">Update</button>
+                              <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-3">Update</button>
                             </div>
                           </form>
                         </div>
@@ -513,7 +513,7 @@ const Plans = () => {
 {/** start create board modal for specefic timeline */}
 <dialog id="board" className="modal">
     <div className="modal-box bg-white dark:bg-black">
-    <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => document.getElementById('board').close()}>✕</button>
+    <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={() => document.getElementById('board').close()}>✕</button>
             <h2 className="font-bold text-2xl text-center my-3">Create Board</h2>
         
         <form onSubmit={handleCreateBoardButton}>
@@ -547,7 +547,7 @@ const Plans = () => {
           </div>
 
           <div className="flex justify-center mt-6">
-              <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-2" type="submit">Create</button>
+              <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-2" type="submit">Create</button>
           </div>
 
 
@@ -564,7 +564,7 @@ const Plans = () => {
 {/** start modal layout for assign */}
 <dialog id="assign" className="modal">
     <div className="modal-box bg-white dark:bg-black">
-    <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton("assign")}>✕</button>
+    <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton("assign")}>✕</button>
             <h2 className="font-bold text-2xl text-center my-3">Assign Member</h2>
         
         <form onSubmit={handleAssignButton}>
@@ -576,7 +576,7 @@ const Plans = () => {
 
             <div className="form-control">
                 <label className="label" htmlFor="email">
-                    <span className="label-text dark:text-[#73e9fe] text-[#8401A1]">Email</span>
+                    <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">Email</span>
                 </label>
                 <select id="leaderEmail" name="leaderEmail" className="select select-bordered bg-slate-200 dark:bg-black">
                   {members?.filter(member => member.role === 'Team Leader').map((member,idx) => <option value={member.user_email} key={idx}>{member.user_email}</option>)}
@@ -584,7 +584,7 @@ const Plans = () => {
             </div>
 
             <div className="flex justify-center mt-6">
-                <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-2" type="submit">Assign Member</button>
+                <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-2" type="submit">Assign Member</button>
             </div>
 
 
@@ -607,7 +607,7 @@ const Plans = () => {
           <div className="overflow-x-auto shadow-xl rounded w-6/7 m-4">
             <table className="table">
               {/* head */}
-              <thead className=' text-lg text-[#8401A1] dark:text-[#73e9fe]'>
+              <thead className=' text-lg text-[#0c01a1] dark:text-[#73e9fe]'>
                 <tr className='text-center'>
                   <th>Timeline Name</th>
                   <th>Timeline</th>
@@ -705,7 +705,7 @@ const Plans = () => {
                       </button>
                       <dialog id="edit" className="modal">
                         <div className="modal-box bg-white dark:bg-black">
-                          <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton('edit')}>✕</button>
+                          <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton('edit')}>✕</button>
                           <h2 className="text-2xl font-bold mb-4 text-center">Update Timeline</h2>
                           <form onSubmit={handleEditTimelineButton}>
                             <div className='form-control'>
@@ -735,7 +735,7 @@ const Plans = () => {
                                 onChange={handleChange} />
                             </div>
                             <div className="flex justify-between my-4">
-                              <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-3">Update</button>
+                              <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-3">Update</button>
                             </div>
                           </form>
                         </div>
@@ -765,7 +765,7 @@ const Plans = () => {
           <div className="overflow-x-auto shadow-xl rounded w-6/7 m-4">
             <table className="table">
               {/* table headline for Completed component */}
-              <thead className=' text-lg text-[#8401A1] dark:text-[#73e9fe]'>
+              <thead className=' text-lg text-[#0c01a1] dark:text-[#73e9fe]'>
                 <tr className='text-center'>
                   <th>Timeline Name</th>
                   <th>Timeline</th>
@@ -864,7 +864,7 @@ const Plans = () => {
                       </button>
                       <dialog id="edit" className="modal">
                         <div className="modal-box bg-white dark:bg-black">
-                          <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton('edit')}>✕</button>
+                          <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton('edit')}>✕</button>
                           <h2 className="text-2xl font-bold mb-4 text-center">Update Timeline</h2>
                           <form onSubmit={handleEditTimelineButton}>
                             <div className='form-control'>
@@ -894,7 +894,7 @@ const Plans = () => {
                                 onChange={handleChange} />
                             </div>
                             <div className="flex justify-between my-4">
-                              <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-3">Update</button>
+                              <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-3">Update</button>
                             </div>
                           </form>
                         </div>

@@ -94,7 +94,7 @@ const CreateWorkspace = () => {
       
             <div className="flex items-center justify-left gap-5" >
               <h1 className="text-xl md:text-2xl  font-bold ">Create a new project or select an existing project to track your progress.</h1>
-              <button className="bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white  font-bold  rounded-md px-4 py-2" onClick={() => document.getElementById('my_modal_3').showModal()}>
+              <button className="bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white  font-bold  rounded-md px-4 py-2" onClick={() => document.getElementById('my_modal_3').showModal()}>
                 {/* <FaCirclePlus className="text-7xl" /> */} Create
                 </button>
             </div>
@@ -103,7 +103,7 @@ const CreateWorkspace = () => {
         <dialog id="my_modal_3" className="modal">
           <div className="modal-box bg-white dark:bg-black">
             <form onSubmit={handleSubmit} >
-              <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]" onClick={handleCloseModelButton}>✕</button>
+              <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={handleCloseModelButton}>✕</button>
               <h3 className="font-bold text-2xl text-center mb-5">Create New Project</h3>
               <div className="form-control">
                 <label className="label">Project Name </label>
@@ -119,7 +119,7 @@ const CreateWorkspace = () => {
               </div>
 
               <div className="flex justify-center mt-6">
-                <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#8401A1] text-white rounded w-full px-4 py-2" type="submit">Create Project</button>
+                <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-2" type="submit">Create Project</button>
               </div>
             </form>
           </div>

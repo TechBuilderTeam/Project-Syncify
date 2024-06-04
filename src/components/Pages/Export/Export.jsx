@@ -35,14 +35,14 @@ const Export = () => {
                         Export Project Documentation
                     </h1>
                     <button
-                        className="bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white font-bold px-4 py-2 rounded-md"
+                        className="bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white font-bold px-4 py-2 rounded-md"
                         onClick={handleDownload}
                     >
                         Download
                     </button>
                 </div>
 
-                <hr className="w-full h-1 bg-gradient-to-r from-[#2c01a1] to-[#73e9fe]" />
+                <hr className="w-full h-1 bg-gradient-to-r from-[#0c01a1] to-[#73e9fe]" />
                 <p className="text-sm font-semibold mt-2 text-black dark:text-white">
                     Export all the data associated with your project. To keep a Documentation
                     of your project. With the workflow of your project. Thank you for

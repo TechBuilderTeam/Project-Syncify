@@ -109,7 +109,7 @@ const NewBoard = ({board,reload,setReload}) => {
         <div className="overflow-x-auto shadow-xl rounded w-full">
             <table className="table w-full">
                 <thead>
-                    <tr className="text-center text-sm text-[#2c01a1] dark:text-[#73e9fe]">
+                    <tr className="text-center text-sm text-[#0c01a1] dark:text-[#73e9fe]">
                         <th> Plans Name </th>
                         <th>Board Name</th>
 

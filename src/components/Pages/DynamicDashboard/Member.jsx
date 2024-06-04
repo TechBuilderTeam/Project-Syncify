@@ -196,33 +196,23 @@ const handleOpenDialog = (member, modalName) => {
   return (
     <div className="h-screen text-black dark:text-white">
 
-      {/* <div className=" flex justify-center items-center gap-6">
-                <div className="w-80 h-80">
-                    <Lottie animationData={MemberAni} loop={true} />
-                </div>
-                <div className=" dark:text-[#73e9fe] text-[#2c01a1] mt-6">
-                    <p className="text-3xl font-bold mb-1">Wanna Add New <br />Member?</p>
-                    <p className="text-sm mb-4 text-black dark:text-white">For maintain your project progress. <br />Add your member and track your progress... <br />Click below<span className="font-extrabold font-2xl text-[#2c01a1] dark:text-[#73e9fe]"> ↓↓ </span>  and explore more.</p>
-                    <button className="bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
-                </div>
-
-            </div> */}
+     
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box bg-white dark:bg-black">
           <form onSubmit={handleAddUserButton}>
             <button
               id="closeBtn"
-              className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#2c01a1] dark:text-[#73e9fe]"
+              className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]"
               onClick={() => document.getElementById("my_modal_3").close()}
             >
               ✕
             </button>
-            <h2 className="font-bold text-2xl text-center my-3 dark:text-[#73e9fe] text-[#2c01a1]">
+            <h2 className="font-bold text-2xl text-center my-3 dark:text-[#73e9fe] text-[#0c01a1]">
               Create New Member
             </h2>
             <div className="form-control">
               <label className="label" htmlFor="email">
-                <span className="label-text dark:text-[#73e9fe] text-[#2c01a1]">
+                <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">
                   Email
                 </span>
               </label>
@@ -236,7 +226,7 @@ const handleOpenDialog = (member, modalName) => {
             </div>
             <div className="form-control">
               <label className="label" htmlFor="userType">
-                <span className="label-text dark:text-[#73e9fe] text-[#2c01a1]">
+                <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">
                   Role
                 </span>
               </label>
@@ -252,7 +242,7 @@ const handleOpenDialog = (member, modalName) => {
             </div>
 
             <div className="flex justify-center mt-6">
-              <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white rounded w-full px-4 py-2" type="submit">Add Member</button>
+              <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-2" type="submit">Add Member</button>
             </div>
 
 
@@ -260,16 +250,17 @@ const handleOpenDialog = (member, modalName) => {
         </div>
 
       </dialog>
-      <div className='dark:text-[#73e9fe] text-[#2c01a1] '>
+      <div className='dark:text-[#73e9fe] text-[#010ca1] '>
         <div className=" py-2">
           <div className="flex justify-between items-center pb-2">
             <h1 className="text-3xl   pb-2 font-semibold ">
               Member
             </h1>
-            <button className="bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
+            
+            <button className="bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
           </div>
 
-          <hr className="w-full h-1 bg-gradient-to-r from-[#2c01a1] to-[#73e9fe] " />
+          <hr className="w-full h-1 bg-gradient-to-r from-[#0c01a1] to-[#73e9fe] " />
           <p className="text-sm  font-semibold mt-2 text-black dark:text-white ">
             To ensure seamless progress tracking and maintenance of your project, incorporate team members into your project structure. Assign distinct roles to each member to streamline collaboration and enhance accountability throughout the project lifecycle. Add member and explore more.
           </p>
@@ -279,7 +270,7 @@ const handleOpenDialog = (member, modalName) => {
       <div className='flex flex-col md:flex-row justify-between items-center my-6 gap-2 '>
         <div>
           {memberLength === 0 && <><div className='flex justify-center items-center gap-2'>
-            <IoPeopleSharp className='text-3xl text-[#2c01a1] dark:text-[#73e9fe]' />
+            <IoPeopleSharp className='text-3xl text-[#0c01a1] dark:text-[#73e9fe]' />
             <h2 className='text-xl font-bold  '>  No Member Found, Add Member!</h2>
           </div></>}
         </div>
@@ -288,7 +279,7 @@ const handleOpenDialog = (member, modalName) => {
           <button className='p-1 m-2 focus:outline-none  '><FaSearch /></button>
         </div>
         {/* <div>
-                    <button className="bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
+                    <button className="bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
                 </div> */}
       </div>
       {/* <h2 className='m-4 text-5xl text-center '>User List </h2> */}
@@ -298,7 +289,7 @@ const handleOpenDialog = (member, modalName) => {
           <div className="overflow-x-auto shadow-xl rounded w-full ">
             <table className="table">
               {/* head */}
-              <thead className=' text-sm text-[#2c01a1] dark:text-[#73e9fe]'>
+              <thead className=' text-sm text-[#0c01a1] dark:text-[#73e9fe]'>
                 <tr className='text-center'>
 
                   <th>Name</th>
