@@ -9,12 +9,13 @@ import Education from "./Education";
 import UserContact from "./UserContact";
 import UserAbout from "./UserAbout";
 import UserPortfolio from "./UserProtfolio";
+import UserSkills from "./UserSkills";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
   const [profile, setProfile] = useState(null);
   const [showComponent, setShowComponent] = useState("Info");
-  const [edit , setEdit] = useState(false);
+  const [edit, setEdit] = useState(false);
 
   const handleCloseModal = () => {
     document.getElementById("UserEdit").close();
@@ -202,7 +203,7 @@ const Profile = () => {
       <UserPortfolio />
 
       {/* skill section start */}
-
+      <UserSkills />
 
       {/* about section start */}
       <UserAbout />
