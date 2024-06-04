@@ -84,7 +84,7 @@ const Workspace = () => {
     );
   }
   return (
-    <div className="px-10 py-10">
+    <div className="px-10 py-16 md:py-10 ">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {workspaces.map((workspace) => (
           <div
