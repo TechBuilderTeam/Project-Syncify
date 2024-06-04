@@ -72,51 +72,7 @@ const TopCompanySlider = () => {
         "https://assets.asana.biz/transform/2fb67d4b-da8f-4720-a97e-194a511f4503/card-zoom-1x?io=transform:fill,width:1440&format=webp",
       title: "Zoom",
       paragraph:
-        "Mauris id augue odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed feugiat justo et leo dictum, a eleifend tortor ultrices.",
-    },
-    {
-      id: 6,
-      image:
-        "https://assets.asana.biz/transform/f55aec7c-911f-4002-90cf-fa911835ac7b/card-overstock-asana-customer?io=transform:fill,width:1440&format=webp",
-      title: "Overstock",
-      paragraph:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla convallis libero quis magna bibendum, at mollis quam vehicula.",
-    },
-    {
-      id: 7,
-
-      image:
-        "https://assets.asana.biz/transform/5162af5c-dc51-40b1-a6c5-762ac5893b0e/card-hubspot?io=transform:fill,width:1440&format=webp",
-      title: "Hubspot",
-      paragraph:
-        "Pellentesque ac bibendum ipsum. Proin consectetur aliquet tortor, at tristique arcu tempor a. Nullam blandit turpis nec felis tincidunt.",
-    },
-    {
-      id: 8,
-
-      image:
-        "https://assets.asana.biz/transform/df2510ec-14de-4e4e-80a1-cfe041bd142b/card-figma-asana-customer?io=transform:fill,width:1440&format=webp",
-      title: "Figma",
-      paragraph:
-        "Fusce vehicula eget ligula nec faucibus. Duis nec tempor ipsum, eget dictum enim. Donec at tellus purus.",
-    },
-    {
-      id: 9,
-
-      image:
-        "https://assets.asana.biz/transform/cc2baf08-d92c-4470-acbf-8859e5aa423a/card-sony-music-asana-customer?io=transform:fill,width:1440&format=webp",
-      title: "Sony Music",
-      paragraph:
-        "Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Ut vitae sem sed quam ultrices rhoncus. Donec ac quam euismod, lobortis odio vel, molestie metus.",
-    },
-    {
-      id: 10,
-
-      image:
-        "https://assets.asana.biz/transform/2fb67d4b-da8f-4720-a97e-194a511f4503/card-zoom-1x?io=transform:fill,width:1440&format=webp",
-      title: "Zoom",
-      paragraph:
-        "Mauris id augue odio. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed feugiat justo et leo dictum, a eleifend tortor ultrices.",
+        "Zoom, the popular video conferencing platform, integrates project management systems to enhance collaboration and productivity for its users. ",
     },
   ];
 
