@@ -80,7 +80,7 @@ const CreateWorkspace = () => {
     }
   };
   return (
-    <div className="">
+    <div className="pt-10 md:pt-0">
        <TitlePages title="Projects" subTitle="Maintain your project with our project manager website.Start by creating a new project or select an existing project to track your progress. Easily assign tasks to team members and set deadlines to stay on schedule. Monitor real-time updates and generate comprehensive reports with just a few clicks. Collaborate seamlessly with your team through integrated messaging and file sharing. Customize your workflow with flexible tools designed to fit your unique project needs. " />
       <div className="px-10">
 
