@@ -13,11 +13,14 @@ const Home = () => {
   return (
     <div>
       <Banner />
-      <Sponsors />
+      
       <DifferentTypeOfTabSection />
-      <Features />
+      <Sponsors />
       <CustomerSection />
+      <Features />
       <TopCompanySlider />
+     
+      
       <HomeEmailSection />
     </div>
   );

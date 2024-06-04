@@ -46,13 +46,87 @@ const Member = () => {
     }
   };
 
+  const [formData, setFormData] = useState({
+    workspace_id: id,
+    userId: "",
+    user_email: "",
+    new_role: "",
+  }
+);
+
+const [selectedTimeline, setSelectedTimeline] = useState(null);
+
+const handleOpenDialog = (member, modalName) => {
+    
+    console.log({member})
+    setSelectedTimeline(member);
+     console.log(member.user_id)
+    setFormData({
+      workspace_id: id,
+      userId: member.user_id,
+      user_email: member.user_email,
+      new_role: "",
+      user_id: "",
+    });
+
+    console.log({formData})
+    document.getElementById("edit").showModal();
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log({name,value})
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleCreateTaskButton = async (e) => {
+    e.preventDefault()
+
+    const newTask = {
+        scrum_Name: formData.id,
+        name: "",
+        details: "",
+        assign: "",
+        which_Type: ""
+    }
+
+    newTask.scrum_Name = Number(formData.id);
+    newTask.name = e.target.taskName.value;
+    newTask.details = e.target.details.value;
+    newTask.assign = e.target.assign.value;
+    newTask.which_Type = e.target.which_type.value;
+
+    
+    console.log({ newTask })
+
+    const result = await axios.post(`https://projectsyncifyapi.onrender.com/workspace/tasks/create/`, newTask)
+
+    if (result) {
+      toast.success('Successfully Create successfully.');
+
+      setReload(!reload);
+      handleCloseModelButton('createTask')
+    }
+    else {
+      console.log('timeline post result -> ', result)
+    }
+  }
+  {/** end update timeline form functionlity */ }
+
+
+
   const handleUpdateButton = async (e) => {
     e.preventDefault();
     const updateMember = {
-      workspace_id: id,
+      workspace_id: Number(id),
       new_role: e.target.userType.value,
-      user_id: e.target.user_id.value,
+      user_id: formData.userId,
     };
+
+    console.log({updateMember})
 
     try {
       const result = await axios.patch(
@@ -122,33 +196,23 @@ const Member = () => {
   return (
     <div className="h-screen text-black dark:text-white">
 
-      {/* <div className=" flex justify-center items-center gap-6">
-                <div className="w-80 h-80">
-                    <Lottie animationData={MemberAni} loop={true} />
-                </div>
-                <div className=" dark:text-[#73e9fe] text-[#2c01a1] mt-6">
-                    <p className="text-3xl font-bold mb-1">Wanna Add New <br />Member?</p>
-                    <p className="text-sm mb-4 text-black dark:text-white">For maintain your project progress. <br />Add your member and track your progress... <br />Click below<span className="font-extrabold font-2xl text-[#2c01a1] dark:text-[#73e9fe]"> ↓↓ </span>  and explore more.</p>
-                    <button className="bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
-                </div>
-
-            </div> */}
+     
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box bg-white dark:bg-black">
           <form onSubmit={handleAddUserButton}>
             <button
               id="closeBtn"
-              className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#2c01a1] dark:text-[#73e9fe]"
+              className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]"
               onClick={() => document.getElementById("my_modal_3").close()}
             >
               ✕
             </button>
-            <h2 className="font-bold text-2xl text-center my-3 dark:text-[#73e9fe] text-[#2c01a1]">
+            <h2 className="font-bold text-2xl text-center my-3 dark:text-[#73e9fe] text-[#0c01a1]">
               Create New Member
             </h2>
             <div className="form-control">
               <label className="label" htmlFor="email">
-                <span className="label-text dark:text-[#73e9fe] text-[#2c01a1]">
+                <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">
                   Email
                 </span>
               </label>
@@ -162,7 +226,7 @@ const Member = () => {
             </div>
             <div className="form-control">
               <label className="label" htmlFor="userType">
-                <span className="label-text dark:text-[#73e9fe] text-[#2c01a1]">
+                <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">
                   Role
                 </span>
               </label>
@@ -178,7 +242,7 @@ const Member = () => {
             </div>
 
             <div className="flex justify-center mt-6">
-              <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white rounded w-full px-4 py-2" type="submit">Add Member</button>
+              <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-2" type="submit">Add Member</button>
             </div>
 
 
@@ -186,16 +250,17 @@ const Member = () => {
         </div>
 
       </dialog>
-      <div className='dark:text-[#73e9fe] text-[#2c01a1] '>
+      <div className='dark:text-[#73e9fe] text-[#010ca1] '>
         <div className=" py-2">
           <div className="flex justify-between items-center pb-2">
             <h1 className="text-3xl   pb-2 font-semibold ">
               Member
             </h1>
-            <button className="bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
+            
+            <button className="bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
           </div>
 
-          <hr className="w-full h-1 bg-gradient-to-r from-[#2c01a1] to-[#73e9fe] " />
+          <hr className="w-full h-1 bg-gradient-to-r from-[#0c01a1] to-[#73e9fe] " />
           <p className="text-sm  font-semibold mt-2 text-black dark:text-white ">
             To ensure seamless progress tracking and maintenance of your project, incorporate team members into your project structure. Assign distinct roles to each member to streamline collaboration and enhance accountability throughout the project lifecycle. Add member and explore more.
           </p>
@@ -205,7 +270,7 @@ const Member = () => {
       <div className='flex flex-col md:flex-row justify-between items-center my-6 gap-2 '>
         <div>
           {memberLength === 0 && <><div className='flex justify-center items-center gap-2'>
-            <IoPeopleSharp className='text-3xl text-[#2c01a1] dark:text-[#73e9fe]' />
+            <IoPeopleSharp className='text-3xl text-[#0c01a1] dark:text-[#73e9fe]' />
             <h2 className='text-xl font-bold  '>  No Member Found, Add Member!</h2>
           </div></>}
         </div>
@@ -214,7 +279,7 @@ const Member = () => {
           <button className='p-1 m-2 focus:outline-none  '><FaSearch /></button>
         </div>
         {/* <div>
-                    <button className="bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
+                    <button className="bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
                 </div> */}
       </div>
       {/* <h2 className='m-4 text-5xl text-center '>User List </h2> */}
@@ -224,7 +289,7 @@ const Member = () => {
           <div className="overflow-x-auto shadow-xl rounded w-full ">
             <table className="table">
               {/* head */}
-              <thead className=' text-sm text-[#2c01a1] dark:text-[#73e9fe]'>
+              <thead className=' text-sm text-[#0c01a1] dark:text-[#73e9fe]'>
                 <tr className='text-center'>
 
                   <th>Name</th>
@@ -271,41 +336,43 @@ const Member = () => {
                         {/* <Link to= {`/admin/admin/userDetails`} state={user} className="btn btn-accent  p-2 m-2">details</Link> */}
                         {/* <button className="btn btn-neutral px-4  py-2">Edit</button> */}
 
-                        {/** Member edit button and model start */}
-                        <button className='btn-ghost'>  </button>
-                        {/* You can open the modal using document.getElementById('ID').showModal() method */}
-                        <button className="mx-4" onClick={() => document.getElementById('edit').showModal()}>
-                          <FaRegEdit className="text-xl" />
-                        </button>
-                        <dialog id="edit" className="modal">
-                          <div className="modal-box bg-white dark:bg-black dark:text-[#73e9fe] text-[#2c01a1]">
-                            <form onSubmit={handleUpdateButton}>
-                              <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#2c01a1] dark:text-[#73e9fe]" onClick={() => document.getElementById('edit').close()}>✕</button>
-                              <h2 className="text-2xl font-bold mb-4 text-center">Update Member Role</h2>
+    {/** Member edit button and model start */}
+    <button className='btn-ghost'>  </button>
+    {/* You can open the modal using document.getElementById('ID').showModal() method */}
+    <button className="mx-4" onClick={() => handleOpenDialog(member,"edit")}>
+      <FaRegEdit className="text-xl" />
+    </button>
+    <dialog id="edit" className="modal">
+      <div className="modal-box bg-white dark:bg-black dark:text-[#73e9fe] text-[#2c01a1]">
+        
+          <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#2c01a1] dark:text-[#73e9fe]" onClick={() => document.getElementById('edit').close()}>✕</button>
+          <h2 className="text-2xl font-bold mb-4 text-center">Update Member Role</h2>
+          
+        <form onSubmit={handleUpdateButton}>
 
-                              <div className='form-control'>
-                                <label htmlFor="email" className="label">Email</label>
-                                <input type="email" id="email" name="email" value={member.user_email} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
-                              </div>
-                              <div className="form-control mb-4">
-                                <label htmlFor="email" className="label">User Id</label>
-                                <input type="text" id="user_id" name="user_id" value={member.user_id} readOnly className="input input-bordered bg-slate-200 dark:bg-black" />
+          <div className='form-control'>
+            <label htmlFor="email" className="label">Email</label>
+            <input type="email" id="email" name="email" value={formData.user_email} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
+          </div>
+          <div className="form-control mb-4">
+            <label htmlFor="email" className="label">User Id</label>
+            <input type="text" id="user_id" name="user_id" value={formData.userId} className="input input-bordered bg-slate-200 dark:bg-black" />
 
-                              </div>
-                              <div className="form-control mb-4">
-                                <label htmlFor="userType" className="label">Role</label>
-                                <select id="userType" name="userType" className="select select-bordered bg-slate-200 dark:bg-black">
-                                  <option value="Associate Manager">Associate Manager</option>
-                                  <option value="Team Leader">Team Leader</option>
-                                  <option value="Member">Member</option>
-                                </select>
-                              </div>
-                              <div className="flex justify-between my-4">
-                                <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white rounded w-full px-4 py-3">Update Member</button>
-                              </div>
-                            </form>
-                          </div>
-                        </dialog>
+          </div>
+          <div className="form-control mb-4">
+            <label htmlFor="userType" className="label">Role</label>
+            <select id="userType" name="userType" className="select select-bordered bg-slate-200 dark:bg-black">
+              <option value="Associate Manager">Associate Manager</option>
+              <option value="Team Leader">Team Leader</option>
+              <option value="Member">Member</option>
+            </select>
+          </div>
+          <div className="flex justify-between my-4">
+            <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white rounded w-full px-4 py-3">Update Member</button>
+          </div>
+        </form>
+      </div>
+    </dialog>
                       </th>
                       <th>
                         {/** Member edit button and model end */}

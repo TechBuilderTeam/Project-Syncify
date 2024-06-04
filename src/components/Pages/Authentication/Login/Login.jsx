@@ -48,7 +48,8 @@ const Login = () => {
       const user = {
         "email": server_res.data.email,
         "name": server_res.data.full_name,
-        "userId": server_res.data.user_id 
+        "userId": server_res.data.user_id,
+      
       }
 
       if(server_res.status === 200){
@@ -83,11 +84,14 @@ const Login = () => {
         const response = res.data
         console.log('response from login  -> ',response)
         setLoading(false)
+        console.log({response})
         const user = {
           "email" : response.email,
           "names" : response.full_name,
-          "userId" : response.user_id
+          "userId" : response.user_id,
+         
         }
+        console.log({user})
         if(res.status === 200){
           localStorage.setItem("user",JSON.stringify(user))
           localStorage.setItem('access',JSON.stringify(response.access_token))
@@ -131,7 +135,7 @@ const Login = () => {
   },[])
 
   return (
-    <div className="py-10 px-10 text-[#8401A1] dark:text-[#73e9fe]">
+    <div className="py-10 px-10 text-[#0c01a1] dark:text-[#73e9fe]">
       {loading && <div className="flex justify-center items-center"><span className="loading loading-ring loading-md"></span>Loging Processing....</div>}
       <div className="flex gap-3 justify-center md:justify-normal items-center">
         <Link to={'/'} className="text-2xl font-bold">
@@ -143,7 +147,7 @@ const Login = () => {
       </div>
       <div className="min-h-[600px] md:min-h-[600px] flex flex-col md:flex-row justify-between gap-3 md:gap-5">
         <div className="w-full md:w-[60%] flex flex-col items-center justify-center md:p-0">
-          <h1 className="text-3xl md:text-5xl font-bold text-transparent bg-gradient-to-r from-[#8401A1] to-[#73e9fe] bg-clip-text py-3">
+          <h1 className="text-3xl md:text-5xl font-bold text-transparent bg-gradient-to-r from-[#0c01a1] to-[#73e9fe] bg-clip-text py-3">
             Login
           </h1>
           <p className="mt-6 text-lg">Login with your social account</p>
@@ -152,9 +156,9 @@ const Login = () => {
           <FcGoogle className="w-8 h-8" />
           </button> */}
           <div id='signInDiv'></div>
-          <button>
+          {/* <button>
           <FaGithub className="w-8 h-8" />
-          </button>
+          </button> */}
           </div>
           <span className="my-5 hidden md:flex">
             __________________________________or__________________________________
@@ -262,12 +266,12 @@ const Login = () => {
         <div
           className="w-full md:w-[40%] text-white flex flex-col justify-center items-center text-center gap-y-2 md:gap-y-3 px-10 py-24 rounded md:p-0"
           style={{
-            background: "linear-gradient(135deg, #5AA6E1, #D939F5)",
+            background: "lineadient(135deg, #5AA6E1, #D939F5)",
           }}
         >
           <h1 className="text-3xl md:text-5xl font-bold">New Here ?</h1>
           <h3 className="text-lg md:text-xl md:px-16">
-            Sign up and discover a grea amount of opportunities
+            Sir-gragn up and discover a grea amount of opportunities
           </h3>
           <Link to="/register">
             <button className="hover:bg-gradient-to-r from-[#9d11bd] to-[#73e9fe] text-white font-bold  px-10 py-2 rounded-full  border-2">

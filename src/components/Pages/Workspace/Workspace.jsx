@@ -20,6 +20,7 @@ const Workspace = () => {
 
   useEffect(() => {
     const fetchWorkspaces = async () => {
+      console.log('loading data ')
       setLoading(true);
       setError(null);
 
@@ -43,7 +44,7 @@ const Workspace = () => {
     //sabrina setted setLoading(false) here
     setLoading(false);
     console.log("workspace data -> ", workspaces);
-  }, []);
+  }, [user?.userId]);
 
   const handleDeleteWorkspace = (workspaceId) => {
     setWorkspaces((prevWorkspaces) =>
@@ -83,7 +84,7 @@ const Workspace = () => {
     );
   }
   return (
-    <div className="px-10 py-10">
+    <div className="px-10 py-16 md:py-10 ">
       <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {workspaces.map((workspace) => (
           <div

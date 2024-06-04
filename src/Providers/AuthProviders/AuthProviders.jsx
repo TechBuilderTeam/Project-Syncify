@@ -2,7 +2,7 @@
 
 
 import { createContext, useEffect, useState } from "react";
-import axiosInstance from "../../Utils/axiosInstance";
+
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -10,8 +10,9 @@ import { toast } from "react-toastify";
 
 export const AuthContext = createContext(null);
 
-const AuthProviders = ({children}) => {
+const AuthProviders = ({children, workspaceId }) => {
     const [user, setUser] = useState(null);
+    const [workspaceDetails, setWorkspaceDetails] = useState(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     
@@ -54,6 +55,7 @@ const AuthProviders = ({children}) => {
             }
         }
 
+
         unsubscribe()
         // console.log("user data show from authproviders -> ", user)
     },[])
@@ -63,6 +65,7 @@ const AuthProviders = ({children}) => {
         handleLogout,
         loading,
         setLoading,
+        workspaceDetails,
     }
     
     return (
