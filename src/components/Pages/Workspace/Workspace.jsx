@@ -20,6 +20,7 @@ const Workspace = () => {
 
   useEffect(() => {
     const fetchWorkspaces = async () => {
+      console.log('loading data ')
       setLoading(true);
       setError(null);
 
@@ -43,7 +44,7 @@ const Workspace = () => {
     //sabrina setted setLoading(false) here
     setLoading(false);
     console.log("workspace data -> ", workspaces);
-  }, []);
+  }, [user?.userId]);
 
   const handleDeleteWorkspace = (workspaceId) => {
     setWorkspaces((prevWorkspaces) =>

@@ -12,7 +12,7 @@ import CreateWorkspace from "../components/Pages/Workspace/CreateWorkspace";
 import EditWorkspace from "../components/Pages/Workspace/EditWorkspace";
 import DynamicDashboard from "../components/Pages/DynamicDashboard/DynamicDashboard";
 import Member from "../components/Pages/DynamicDashboard/Member";
-import Dashboard from "../components/Pages/Dashboard/Dashboard";
+// import Dashboard from "../components/Pages/Dashboard/Dashboard";
 import Calendarui from "../components/Pages/Dashboard/Calendarui/Calendarui";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import Board from "../components/Pages/Board/Board";
@@ -141,8 +141,8 @@ const router = createBrowserRouter([
         path: "/workspace/:id/boards",
         element: (
           <PrivateRoute>
-            {" "}
-            <Board />{" "}
+       
+            <Board />
           </PrivateRoute>
         ),
       },
@@ -150,8 +150,8 @@ const router = createBrowserRouter([
         path: "/workspace/:id/tasks",
         element: (
           <PrivateRoute>
-            {" "}
-            <Tasks />{" "}
+      
+            <Tasks />
           </PrivateRoute>
         ),
       },
@@ -159,8 +159,8 @@ const router = createBrowserRouter([
         path: "/workspace/:id/plans",
         element: (
           <PrivateRoute>
-            {" "}
-            <Plans />{" "}
+          
+            <Plans />
           </PrivateRoute>
         ),
       },
@@ -179,20 +179,20 @@ const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: "/dashboard",
-    element: (
-      <PrivateRoute>
-        <Dashboard />
-      </PrivateRoute>
-    ),
-    children: [
-      {
-        path: "/dashboard/profile",
-        element: <Profile />,
-      },
-    ],
-  },
+  // {
+  //   path: "/dashboard",
+  //   element: (
+  //     <PrivateRoute>
+  //       <Dashboard />
+  //     </PrivateRoute>
+  //   ),
+  //   children: [
+  //     {
+  //       path: "/dashboard/profile",
+  //       element: <Profile />,
+  //     },
+  //   ],
+  // },
 ]);
 
 export default router;

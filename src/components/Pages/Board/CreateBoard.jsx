@@ -54,7 +54,7 @@ const CreateBoard = ({ timelineData }) => {
                     <div className="modal-box">
                         <button
                             id="closeBtn"
-                            className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#8401A1] dark:text-[#73e9fe]"
+                            className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]"
                             onClick={handleCloseModal}
                         >
                             ✕

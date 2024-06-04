@@ -135,7 +135,7 @@ const Login = () => {
   },[])
 
   return (
-    <div className="py-10 px-10 text-[#8401A1] dark:text-[#73e9fe]">
+    <div className="py-10 px-10 text-[#0c01a1] dark:text-[#73e9fe]">
       {loading && <div className="flex justify-center items-center"><span className="loading loading-ring loading-md"></span>Loging Processing....</div>}
       <div className="flex gap-3 justify-center md:justify-normal items-center">
         <Link to={'/'} className="text-2xl font-bold">
@@ -147,7 +147,7 @@ const Login = () => {
       </div>
       <div className="min-h-[600px] md:min-h-[600px] flex flex-col md:flex-row justify-between gap-3 md:gap-5">
         <div className="w-full md:w-[60%] flex flex-col items-center justify-center md:p-0">
-          <h1 className="text-3xl md:text-5xl font-bold text-transparent bg-gradient-to-r from-[#8401A1] to-[#73e9fe] bg-clip-text py-3">
+          <h1 className="text-3xl md:text-5xl font-bold text-transparent bg-gradient-to-r from-[#0c01a1] to-[#73e9fe] bg-clip-text py-3">
             Login
           </h1>
           <p className="mt-6 text-lg">Login with your social account</p>
@@ -156,9 +156,9 @@ const Login = () => {
           <FcGoogle className="w-8 h-8" />
           </button> */}
           <div id='signInDiv'></div>
-          <button>
+          {/* <button>
           <FaGithub className="w-8 h-8" />
-          </button>
+          </button> */}
           </div>
           <span className="my-5 hidden md:flex">
             __________________________________or__________________________________

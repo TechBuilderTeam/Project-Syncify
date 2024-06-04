@@ -26,7 +26,7 @@ const Company = () => {
           Report on progress and address bottlenecks{" "}
         </p>
         <Link to="/companyDetails">
-          <button className="border-solid border border-slate-400 rounded py-2 px-8 my-4 bg-[#8401A1] dark:bg-[#73e9fe]  text-white dark:text-black font-semibold hover:bg-cyan-600 hover:text-black dark:hover:bg-[#8401A1] dark:hover:text-white">
+          <button className="border-solid border border-slate-400 rounded py-2 px-8 my-4 bg-[#0c01a1] dark:bg-[#73e9fe]  text-white dark:text-black font-semibold hover:bg-cyan-600 hover:text-black dark:hover:bg-[#0c01a1] dark:hover:text-white">
             See how it works
           </button>
         </Link>

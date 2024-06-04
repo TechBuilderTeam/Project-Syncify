@@ -147,7 +147,7 @@ const Register = () => {
           />
         </div>
         <div className="w-full md:w-1/2  rounded-lg">
-          <h1 className="text-center text-3xl md:text-5xl font-bold text-transparent bg-gradient-to-r from-[#8401A1] to-[#73e9fe] bg-clip-text py-3">
+          <h1 className="text-center text-3xl md:text-5xl font-bold text-transparent bg-gradient-to-r from-[#0c01a1] to-[#73e9fe] bg-clip-text py-3">
             Register
           </h1>
           <div className="text-center flex flex-col items-center">
