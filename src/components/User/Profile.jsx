@@ -176,7 +176,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
-      <div className=" absolute bg-gradient-to-r from-sky-200 dark:from-sky-700  to-sky-600 dark:to-black text-[#0c01a1] dark:text-white   -bottom-4 md:bottom-0  w-[80%]  left-1/2 -translate-x-1/2 translate-y-10 rounded">
+      <div className=" absolute bg-gradient-to-r from-sky-200 dark:from-sky-700  to-sky-600 dark:to-black text-[#0c01a1] dark:text-white   -bottom-4 md:bottom-0  w-[80%]  left-1/2 -translate-x-1/2 translate-y-20 rounded">
         {showComponent === "Info" ? (
           <Info user={user} profile={profile} />
           // ) : showComponent === "Work" ? (
