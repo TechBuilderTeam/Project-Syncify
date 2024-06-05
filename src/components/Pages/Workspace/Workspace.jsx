@@ -20,7 +20,7 @@ const Workspace = () => {
 
   useEffect(() => {
     const fetchWorkspaces = async () => {
-      console.log('loading data ')
+      console.log("loading data ");
       setLoading(true);
       setError(null);
 
@@ -115,7 +115,9 @@ const Workspace = () => {
               </p>
               <p>
                 Date:{" "}
-                <span className="text-gray-800 dark:text-gray-100">{workspace.created_at}</span>{" "}
+                <span className="text-gray-800 dark:text-gray-100">
+                  {workspace.created_at}
+                </span>{" "}
               </p>
             </div>
 

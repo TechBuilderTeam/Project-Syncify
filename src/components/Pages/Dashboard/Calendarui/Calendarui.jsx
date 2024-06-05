@@ -1,14 +1,23 @@
-import React, { useState } from "react";
-import Calendar from "react-calendar";
-
+import React, { useState, useContext, useEffect } from "react";
+import Sidebar from "./Sidebar";
+import CalendarHeader from "./CalendarHeader";
+import Month from "./Month";
+import { getMonth } from "../../../../Utils/Util";
+import GlobalContext from "../../../../context/GlobalContext";
 const Calendarui = () => {
-  const [date, setDate] = useState(new Date());
-  const onChange = (date) => {
-    setDate(date);
-  };
+  console.log("getmonth", getMonth(3));
+  const [currentMonth, setCurrentMonth] = useState(getMonth());
+  const { monthIndex } = useContext(GlobalContext);
+  useEffect(() => {
+    setCurrentMonth(getMonth(monthIndex));
+  }, [monthIndex]);
   return (
-    <div className="flex justify-center items-center mt-10 h-screen">
-      <Calendar onChange={onChange} value={date} />
+    <div className="h-screen flex flex-col">
+      <CalendarHeader />
+      <flex className="flex-1">
+        <Sidebar />
+        <Month month={currentMonth} />
+      </flex>
     </div>
   );
 };
