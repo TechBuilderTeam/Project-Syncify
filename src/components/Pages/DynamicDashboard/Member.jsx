@@ -298,7 +298,7 @@ const handleOpenDialog = (member, modalName) => {
                         <div className="flex items-center gap-3 ">
                           <div className="avatar">
                             <div className="rounded-full w-8 h-8">
-                              <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="member image" />
+                              <img src={member.user_image} alt="member image" />
                             </div>
                           </div>
                           <div>
