@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import  { useState } from "react";
 import Marketing from "./Marketing";
 import Operations from "./Operations";
 import IT from "./IT";

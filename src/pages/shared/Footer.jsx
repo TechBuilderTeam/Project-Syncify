@@ -1,7 +1,9 @@
 const Footer = () => {
   return (
-    <div className="relative mt-40 text-purple-950 dark:text-cyan-100 font-bold">
-      {/* <div className="relative z-10 bottom-0">
+
+    <div className="relative mt-60 text-purple-950 dark:text-cyan-100 font-bold">
+      <div className="relative z-10 bottom-0">
+
         <footer className="footer px-10 py-10 ">
           <aside className="">
             <div className="flex flex-col justify-center items-center h-[100px]">

@@ -10,8 +10,21 @@ import ContextWrapper from "./context/ContextWrapper";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+
     <ContextWrapper>
-      <ToastContainer />
+    
+      <ToastContainer 
+        position="top-right"
+        autoClose={200}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      /> 
+
       <RouterProvider router={router} />
     </ContextWrapper>
   </React.StrictMode>
