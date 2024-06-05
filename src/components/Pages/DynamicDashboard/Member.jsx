@@ -1,7 +1,7 @@
 import axios from "axios";
 import Lottie from "lottie-react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import MemberAni from "../../../../public/member.json";
 import { MdDeleteForever } from 'react-icons/md';
@@ -13,7 +13,7 @@ const Member = () => {
   const [members, setMembers] = useState([]);
   const [change, setChange] = useState(false);
   const { id } = useParams();
-  console.log({ id });
+  // console.log({ id });
 
   const newMember = {
     workspace_Name: "",
@@ -32,17 +32,37 @@ const Member = () => {
     newMember.role = e.target.userType.value;
     newMember.email = e.target.email.value;
 
+    if(!newMember.workspace_Name){
+      toast.warning("not found workspace id,please reload page...");
+      return
+    }
+    else if(!newMember.role){
+      toast.warning("Please select role for this user...");
+      return;
+    }
+    else if(!newMember.email){
+      toast.warning("Write user email");
+      return
+    }
+
     try {
       const result = await axios.post(
         `https://projectsyncifyapi.onrender.com/api/v2/workspace/members/add/`,
         newMember
       );
-      console.log("result -> ", result);
+      // console.log("result -> ", result);
       toast.success("Member Successfully Added");
       setChange(!change);
       handleCloseModelButton("my_modal_3");
     } catch (error) {
-      console.log("error -> ", error);
+      if(error?.message === "Network Error"){
+        toast.warning("Network connection failed.Check this network");       
+      }
+      // console.log("error -> ", error);
+      let err = error?.response?.data?.non_field_errors[0]
+      if(err){
+         toast.warning(err)
+      }
     }
   };
 
@@ -58,9 +78,13 @@ const Member = () => {
 
   const handleOpenDialog = (member, modalName) => {
 
-    console.log({ member })
+
+const handleOpenDialog = (member, modalName) => {
+    
+    // console.log({member})
     setSelectedTimeline(member);
-    console.log(member.user_id)
+    //  console.log(member.user_id)
+
     setFormData({
       workspace_id: id,
       userId: member.user_id,
@@ -69,52 +93,21 @@ const Member = () => {
       user_id: "",
     });
 
-    console.log({ formData })
+
     document.getElementById("edit").showModal();
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log({ name, value })
+    // console.log({name,value})
+
     setFormData(prevState => ({
       ...prevState,
       [name]: value
     }));
   };
 
-  const handleCreateTaskButton = async (e) => {
-    e.preventDefault()
 
-    const newTask = {
-      scrum_Name: formData.id,
-      name: "",
-      details: "",
-      assign: "",
-      which_Type: ""
-    }
-
-    newTask.scrum_Name = Number(formData.id);
-    newTask.name = e.target.taskName.value;
-    newTask.details = e.target.details.value;
-    newTask.assign = e.target.assign.value;
-    newTask.which_Type = e.target.which_type.value;
-
-
-    console.log({ newTask })
-
-    const result = await axios.post(`https://projectsyncifyapi.onrender.com/workspace/tasks/create/`, newTask)
-
-    if (result) {
-      toast.success('Successfully Create successfully.');
-
-      setReload(!reload);
-      handleCloseModelButton('createTask')
-    }
-    else {
-      console.log('timeline post result -> ', result)
-    }
-  }
-  {/** end update timeline form functionlity */ }
 
 
 
@@ -126,7 +119,8 @@ const Member = () => {
       user_id: formData.userId,
     };
 
-    console.log({ updateMember })
+    // console.log({updateMember})
+
 
     try {
       const result = await axios.patch(
@@ -134,7 +128,7 @@ const Member = () => {
         updateMember
       );
 
-      console.log("result -> ", result);
+      // console.log("result -> ", result);
       toast.success("Member Successfully Updated");
       setChange(!change);
       handleCloseModelButton("edit");
@@ -144,17 +138,17 @@ const Member = () => {
   };
 
   const handleDeleteMember = async (user_id) => {
-    console.log("user id -> ", user_id);
+    // console.log("user id -> ", user_id);
     const convertIdToSring = id.toString();
-    console.log(typeof convertIdToSring);
+    // console.log(typeof convertIdToSring);
     const data = { workspace_id: convertIdToSring, user_id: user_id };
-    console.log("data -> ", data);
+    // console.log("data -> ", data);
     try {
       const result = await axios.delete(
         "https://projectsyncifyapi.onrender.com/api/v2/workspace/members/remove/",
         { data }
       );
-      console.log("delete member -> ", result);
+      // console.log("delete member -> ", result);
       toast.success("Successfully deleted member");
       setChange(!change);
     } catch (error) {
@@ -181,7 +175,7 @@ const Member = () => {
         const result = await axios.get(
           `https://projectsyncifyapi.onrender.com/api/v2/workspace/${id}/members/`
         );
-        console.log("get member -> ", result.data);
+        // console.log("get member -> ", result.data);
         setMembers(result.data);
       } catch (error) {
         console.log("get member error -> ", error);
@@ -199,8 +193,7 @@ const Member = () => {
 
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box bg-white dark:bg-black">
-          <form onSubmit={handleAddUserButton}>
-            <button
+           <button
               id="closeBtn"
               className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]"
               onClick={() => document.getElementById("my_modal_3").close()}
@@ -210,6 +203,8 @@ const Member = () => {
             <h2 className="font-bold text-2xl text-center my-3 dark:text-[#73e9fe] text-[#0c01a1]">
               Create New Member
             </h2>
+          <form onSubmit={handleAddUserButton}>
+            
             <div className="form-control">
               <label className="label" htmlFor="email">
                 <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">
@@ -309,11 +304,11 @@ const Member = () => {
                         <div className="flex items-center gap-3 ">
                           <div className="avatar">
                             <div className="rounded-full w-8 h-8">
-                              <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="member image" />
+                              <img src={member.user_image} alt="member image" />
                             </div>
                           </div>
                           <div>
-                            <div className="">{member.user_name}</div>
+                            <Link to={`/profile/${member.user_id}`}>{member.user_name}</Link>
                           </div>
                         </div>
                       </td>

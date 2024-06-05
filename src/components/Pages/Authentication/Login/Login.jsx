@@ -10,6 +10,7 @@ import { AuthContext } from "../../../../Providers/AuthProviders/AuthProviders";
 const Login = () => {
   const axiosData = useAxios();
   const navigate = useNavigate();
+  const [reload, setReload] = useState(false);
   const [logindata, setLogindata] = useState({
     email: "",
     password: "",
@@ -103,6 +104,7 @@ const Login = () => {
           setLoading(false);
           navigate("/workspace");
           toast.success(response.message);
+          setReload(!reload)
         }
         console.log(response);
       } catch (error) {
@@ -135,7 +137,7 @@ const Login = () => {
         width: 200, // Width should be a number, not a string
       }
     );
-  }, []);
+  }, [reload]);
 
   return (
     <div className="py-10 px-10 text-[#0c01a1] dark:text-[#73e9fe]">
