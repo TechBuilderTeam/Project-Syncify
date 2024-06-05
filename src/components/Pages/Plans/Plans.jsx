@@ -4,15 +4,16 @@ import { FaCaretDown, FaCaretSquareDown, FaRegEdit } from 'react-icons/fa';
 import { GiGameConsole } from 'react-icons/gi';
 import { MdDeleteForever } from 'react-icons/md';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { TbListDetails } from "react-icons/tb";
 import { CiSquarePlus } from "react-icons/ci";
 import { MdDeveloperBoard } from "react-icons/md";
 import { AuthContext } from '../../../Providers/AuthProviders/AuthProviders';
+import { IoPersonAddOutline } from 'react-icons/io5';
 
 const Plans = () => {
   const { id } = useParams();
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [data, setData] = useState(null); // State to store fetched data
   const [loading, setLoading] = useState(false); // State for loading status
   const [error, setError] = useState(null); // State for error status
@@ -201,39 +202,41 @@ const Plans = () => {
     document.getElementById(value).close()
   }
 
-  {/** start handle assign button */}
+  {/** start handle assign button */ }
   const handleAssignButton = async (e) => {
     e.preventDefault()
-    
+
     const timelineId = Number(e.target.timelineId.value);
     const email = e.target.leaderEmail.value;
-    console.log({timelineId, email})
+    console.log({ timelineId, email })
 
-    if(timelineId && email){
+    if (timelineId && email) {
       try {
         const result = await axios.patch(`https://projectsyncifyapi.onrender.com/workspace/timelines/update/assign/${timelineId}/
-        `, {"email": email})
+        `, { "email": email })
         console.log('result -> ', result)
         toast.success("Assign Successfully");
 
         setReload(!reload)
 
         handleCloseModelButton("assign")
-    } catch (error) {
+      } catch (error) {
         console.log('error -> ', error)
-    }
+      }
 
     }
-}
+  }
 
-  {/** end handle assign button */}
+  {/** end handle assign button */ }
 
-  {/** start handle create board button */}
+  {/** start handle create board button */ }
+
+
   const handleCreateBoardButton = async (e) => {
     e.preventDefault();
-    
+
     const timelineId = Number(e.target.timelineId.value);
-    console.log('data type of timeline id -> ',typeof timelineId)
+    console.log('data type of timeline id -> ', typeof timelineId)
     const boardName = e.target.name.value;
     const boardDetails = e.target.details.value;
 
@@ -245,27 +248,25 @@ const Plans = () => {
 
     console.log('form data before post api hit -> ', newBoard)
 
-    if(timelineId && boardName && boardDetails){
+    if (timelineId && boardName && boardDetails) {
       try {
         const result = await axios.post(`https://projectsyncifyapi.onrender.com/workspace/scrum/create/
         `, newBoard)
         console.log('this result show after post in create boared api  -> ', result)
         toast.success("Board Created Successfully");
         handleCloseModelButton("board")
-        navigate(`/workspace/${id}/boards`,  { state: { timelineId } })
-    } catch (error) {
+        navigate(`/workspace/${id}/boards`, { state: { timelineId } })
+      } catch (error) {
         console.log('error -> ', error);
-
         console.log(error?.response?.data?.timeline_Name[0]);
-
-        toast.warning(error?.response?.data?.timeline_Name[0]);
+        toast.warning("Already board is created");
         handleCloseModelButton("board")
-    }
+      }
 
     }
 
   }
-  {/** end handle create board button */}
+  {/** end handle create board button */ }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -290,14 +291,14 @@ const Plans = () => {
     const getSpecificMembers = async () => {
 
       try {
-          const result = await axios.get(`https://projectsyncifyapi.onrender.com/api/v2/workspace/${id}/members/`)
-          console.log("get member -> ", result.data)
-          setMembers(result.data)
+        const result = await axios.get(`https://projectsyncifyapi.onrender.com/api/v2/workspace/${id}/members/`)
+        console.log("get member -> ", result.data)
+        setMembers(result.data)
       } catch (error) {
-          console.log("get member error -> ", error)
+        console.log("get member error -> ", error)
       }
-  }
-    
+    }
+
     getSpecificMembers()
     fetchData(); // Call the function to fetch data
 
@@ -307,28 +308,41 @@ const Plans = () => {
 
   return (
     <div className=''>
+      <div className=" py-2 mt-4 ">
+        <div className="flex justify-between items-center pb-2">
+          <h1 className="text-3xl   pb-2 font-semibold ">
+            Plans
+          </h1>
 
-      {loading && <div>Loading...</div>}
-      {error && <div>Error...</div>}
+          <button className="bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('add').showModal()}>
+            Add Plan
+          </button>
+        </div>
+
+        <hr className="w-full h-1 bg-gradient-to-r from-[#0c01a1] to-[#73e9fe] " />
+        <p className="text-sm  font-semibold mt-2 text-black dark:text-white ">
+          To ensure seamless progress tracking and maintenance of your project, incorporate team members into your project structure. Assign distinct roles to each member to streamline collaboration and enhance accountability throughout the project lifecycle. Add member and explore more.
+        </p>
+      </div>
+      {/* {loading && <div>Loading...</div>}
+      {error && <div>Error...</div>} */}
 
       <div>
-        <button className="mx-4 my-4 text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded px-4 py-3" onClick={() => document.getElementById('add').showModal()}>
-          Add timeline
-        </button>
+
 
         <dialog id="add" className="modal">
           <div className="modal-box bg-white dark:bg-black">
             <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton('add')}>✕</button>
-            <h2 className="text-2xl font-bold mb-4 text-center">Create Timeline</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center">Create Plans</h2>
 
             <form onSubmit={handleAddTimelineButton}>
 
               <div className='form-control'>
-                <label htmlFor="text" className="label">Workspace Name</label>
+                <label htmlFor="text" className="label">Project Name</label>
                 <input type="text" id="WorkspaceName" name="WorkspaceName" className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Workspace Name" />
               </div>
               <div className="form-control mb-4">
-                <label htmlFor="name" className="label">Timeline Name</label>
+                <label htmlFor="name" className="label">Plan Name</label>
                 <input type="text" id="name" name="name" className="input input-bordered bg-slate-200 dark:bg-black" />
 
               </div>
@@ -337,11 +351,11 @@ const Plans = () => {
                 <textarea name="details" id="details" className="input input-bordered bg-slate-200 dark:bg-black" ></textarea>
               </div>
               <div className="form-control mb-4">
-                <label htmlFor="userType" className="label">StartDate</label>
+                <label htmlFor="userType" className="label">Start Date</label>
                 <input type="date" name="startDate" id="startDate" className="input input-bordered bg-slate-200 dark:bg-black" />
               </div>
               <div className="form-control mb-4">
-                <label htmlFor="userType" className="label">EndDate</label>
+                <label htmlFor="userType" className="label">End Date</label>
                 <input type="date" name="endDate" id="endDate" className="input input-bordered bg-slate-200 dark:bg-black" />
               </div>
               <div className="flex justify-between my-4">
@@ -353,20 +367,22 @@ const Plans = () => {
       </div>
 
       {/** Start To do component*/}
-      <div className='overflow-x-auto shadow-xl rounded w-full m-4'>
+      <div className='overflow-x-auto shadow-xl rounded-sm w-full mt-4'>
         <div>
-          <button className='font-bold text-4xl rounded bg-slate-400'>To Do</button>
+          <button className='font-bold text-md px-2 py-1 rounded-sm bg-sky-300 text-[#0c01a1]'>To Do</button>
 
-          <div className="overflow-x-auto shadow-xl rounded w-6/7 m-4">
+          <div className="overflow-x-auto shadow-xl rounded-sm w-6/7">
             <table className="table">
               {/* head */}
-              <thead className=' text-lg text-[#0c01a1] dark:text-[#73e9fe]'>
+              <thead className=' text-sm text-[#0c01a1] dark:text-[#73e9fe]'>
                 <tr className='text-center'>
-                  <th>Timeline Name</th>
-                  <th>Timeline</th>
-                  <th>Status</th>
+
+                  <th>Plans</th>
                   <th>Assign</th>
-                  <th>Action</th>
+                  <th>Status</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                  <th>Board</th>
                   <th> <button className='btn-ghost'>  </button>
                     {/* You can open the modal using document.getElementById('ID').showModal() method */}
 
@@ -380,20 +396,26 @@ const Plans = () => {
                   <tr key={index} className="text-center">
                     <td>
                       <div className="flex items-center gap-3">
+
                         <div className="avatar">
-                          <div className="mask mask-squircle w-12 h-12">
+                          <div className="rounded-full w-10 h-10">
                             <img src="https://img.daisyui.com/tailwind-css-component-profile-2@56w.png" alt="Avatar Tailwind CSS Component" />
                           </div>
                         </div>
                         <div>
-                          <div className="font-bold">{timeline.name}</div>
+                          <div className="font-bold">{timeline.name.slice(0, 16)}</div>
                         </div>
                       </div>
                     </td>
-                    <td>
-                      {timeline.name}
-                    </td>
 
+                    <td>
+                      {(timeline.assign) == null && <button onClick={() => handleOpenDialog(timeline, "assign")} className='rounded-full border border-[#0c01a1] px-1 py-1 '><IoPersonAddOutline className='text-lg cursor-pointer ' title="Assign" /></button>}
+
+                      {timeline.assign && (
+                          <p className="font-semibold">{timeline.assign.first_name + " " + timeline.assign.last_name}</p>
+                      )}
+
+                    </td>
                     <td>
                       <div className="relative inline-block text-left">
                         <div>
@@ -445,25 +467,15 @@ const Plans = () => {
                         )}
                       </div>
                     </td>
-                    
-                    <td>
-                      {(timeline.assign) == null && <button onClick={() => handleOpenDialog(timeline, "assign")}><CiSquarePlus className='text-4xl cursor-pointer' /></button>}
-
-                      
-                    </td>
 
                     <th>
-
-                      <Link to={`/workspace/${id}/boards`} state={timeline} className="btn btn-info px-4  py-2 text-xl" >
-                        <TbListDetails />
-                      </Link>
-
-                      {/** Member edit button and model start */}
-                      <button className='btn-ghost'>  </button>
-                      {/* You can open the modal using document.getElementById('ID').showModal() method */}
-                      <button className="btn btn-success px-4  py-2" onClick={() => handleOpenDialog(timeline, "edit")}>
+                      <button className=" px-4  py-2" onClick={() => handleOpenDialog(timeline, "edit")}>
                         <FaRegEdit className="text-xl" />
                       </button>
+                      {/** Member edit button and model start */}
+
+                      {/* You can open the modal using document.getElementById('ID').showModal() method */}
+
                       <dialog id="edit" className="modal">
                         <div className="modal-box bg-white dark:bg-black">
                           <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton('edit')}>✕</button>
@@ -502,96 +514,112 @@ const Plans = () => {
                         </div>
                       </dialog>
                       {/** Member edit button and model end */}
-                      <button className="btn btn-warning  p-2 m-2" >
+                    </th>
+                    <th>
+                      <button className=" p-2 m-2" >
                         <MdDeleteForever className="text-xl cursor-pointer " onClick={() => handleDeleteTimeline(timeline.id)} />
                       </button>
                     </th>
+                    <th>
 
-                    <td>{timeline.assign && <MdDeveloperBoard className='text-4xl cursor-pointer' onClick={() => handleOpenDialog(timeline, 'board')} />}</td>
+                      <button className='px-4  py-2'>
+                        <Link to={`/workspace/${id}/boards`} state={timeline} className="  text-xl cursor-pointer" title='Let&apos;s see the board' >
+                          <TbListDetails />
+                        </Link>
+                      </button>
+                    </th>
+
+
+
+                    <td>
+                      {timeline.assign && <MdDeveloperBoard className='text-xl cursor-pointer' title='Create Board' onClick={() => handleOpenDialog(timeline, 'board')} />}
+
+
+                    </td>
                     {/* <td>{(timeline?.assign?.id == user.userId) && <MdDeveloperBoard className='text-4xl cursor-pointer' onClick={() => handleOpenDialog(timeline, 'board')} />}</td> */}
 
-{/** start create board modal for specefic timeline */}
-<dialog id="board" className="modal">
-    <div className="modal-box bg-white dark:bg-black">
-    <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={() => document.getElementById('board').close()}>✕</button>
-            <h2 className="font-bold text-2xl text-center my-3">Create Board</h2>
-        
-        <form onSubmit={handleCreateBoardButton}>
-              
-          <div className='form-control'>
-                                                                            <label htmlFor="email" className="label">Timeline  Id</label>
-              <input type="text" id="timelineId" name="timelineId" value={formData.timelineId} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
-          </div>
+                    {/** start create board modal for specefic timeline */}
+                    <dialog id="board" className="modal">
+                      <div className="modal-box bg-white dark:bg-black">
+                        <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={() => document.getElementById('board').close()}>✕</button>
+                        <h2 className="font-bold text-2xl text-center my-3">Create Board</h2>
 
-          <div className="form-control">
-              <label className="label">
-                  <span className="label-text">Board Name</span>
-              </label>
-              <input
-                  type="text"
-                  placeholder="Enter Board Name"
-                  className="input input-bordered"
-                  name="name"
-              />
-          </div>
-          <div className="form-control">
-              <label className="label">
-                  <span className="label-text">Board Details</span>
-              </label>
-              <input
-                  type="text"
-                  name="details"
-                  placeholder="Write Board Details"
-                  className="input input-bordered"
-              />
-          </div>
+                        <form onSubmit={handleCreateBoardButton}>
 
-          <div className="flex justify-center mt-6">
-              <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-2" type="submit">Create</button>
-          </div>
+                          <div className='form-control'>
+                            <label htmlFor="email" className="label">Timeline  Id</label>
+                            <input type="text" id="timelineId" name="timelineId" value={formData.timelineId} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
+                          </div>
+
+                          <div className="form-control">
+                            <label className="label">
+                              <span className="label-text">Board Name</span>
+                            </label>
+                            <input
+                              type="text"
+                              placeholder="Enter Board Name"
+                              className="input input-bordered bg-white dark:bg-gray-950"
+                              name="name"
+                            />
+                          </div>
+                          <div className="form-control">
+                            <label className="label">
+                              <span className="label-text">Board Details</span>
+                            </label>
+                            <input
+                              type="text"
+                              name="details"
+                              placeholder="Write Board Details"
+                              className="input input-bordered bg-white dark:bg-gray-950"
+                            />
+                          </div>
+
+                          <div className="flex justify-center mt-6">
+                            <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-2" type="submit">Create</button>
+                          </div>
 
 
-        </form>
-    </div>
-</dialog>
-{/** end create board modal for specefic timeline */}
+                        </form>
+                      </div>
+                    </dialog>
+                    {/** end create board modal for specefic timeline */}
                   </tr>
                 ))}
 
               </tbody>
             </table>
 
-{/** start modal layout for assign */}
-<dialog id="assign" className="modal">
-    <div className="modal-box bg-white dark:bg-black">
-    <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton("assign")}>✕</button>
-            <h2 className="font-bold text-2xl text-center my-3">Assign Member</h2>
-        
-        <form onSubmit={handleAssignButton}>
-            
-            <div className='form-control'>
-            <label htmlFor="email" className="label">Timeline Id</label>
-            <input type="text" id="timelineId" name="timelineId" value={formData.timelineId} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
-            </div>
+            {/** start modal layout for assign */}
+            <dialog id="assign" className="modal">
+              <div className="modal-box bg-white dark:bg-black">
+                <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton("assign")}>✕</button>
+                <h2 className="font-bold text-2xl text-center my-3">Assign Member</h2>
 
-            <div className="form-control">
-                <label className="label" htmlFor="email">
-                    <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">Email</span>
-                </label>
-                <select id="leaderEmail" name="leaderEmail" className="select select-bordered bg-slate-200 dark:bg-black">
-                  {members?.filter(member => member.role === 'Team Leader').map((member,idx) => <option value={member.user_email} key={idx}>{member.user_email}</option>)}
-                </select>
-            </div>
+                <form onSubmit={handleAssignButton}>
 
-            <div className="flex justify-center mt-6">
-                <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-2" type="submit">Assign Member</button>
-            </div>
+                  <div className='form-control'>
+                    <label htmlFor="email" className="label">Timeline Id</label>
+                    <input type="text" id="timelineId" name="timelineId" value={formData.timelineId} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
+                  </div>
+
+                  <div className="form-control">
+                    <label className="label" htmlFor="email">
+                      <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">Email</span>
+                    </label>
+                    <select id="leaderEmail" name="leaderEmail" className="select select-bordered bg-slate-200 dark:bg-black">
+                      {members?.filter(member => member.role === 'Team Leader').map((member, idx) => <option value={member.user_email} key={idx}>{member.user_email}</option>)}
+                    </select>
+                  </div>
+
+                  <div className="flex justify-center mt-6">
+                    <button className="border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-2" type="submit">Assign Member</button>
+                  </div>
 
 
-        </form>
-    </div>
-</dialog>
-{/** end modal layout for assign */}
+                </form>
+              </div>
+            </dialog>
+            {/** end modal layout for assign */}
 
           </div>
         </div>
@@ -693,14 +721,13 @@ const Plans = () => {
                     </td>
                     <th>
 
-                      <Link to={`/workspace/${id}/boards`} state={timeline} className="btn btn-info px-4  py-2 text-xl" >
+                      <Link to={`/workspace/${id}/boards`} state={timeline} title='Let&s check the board' className=" px-4  py-2 text-xl" >
                         <TbListDetails />
                       </Link>
 
                       {/** Member edit button and model start */}
-                      <button className='btn-ghost'>  </button>
                       {/* You can open the modal using document.getElementById('ID').showModal() method */}
-                      <button className="btn btn-success px-4  py-2" onClick={() => handleOpenDialog(timeline)}>
+                      <button className="px-4  py-2" onClick={() => handleOpenDialog(timeline)}>
                         <FaRegEdit className="text-xl" />
                       </button>
                       <dialog id="edit" className="modal">
@@ -741,7 +768,7 @@ const Plans = () => {
                         </div>
                       </dialog>
                       {/** Member edit button and model end */}
-                      <button className="btn btn-warning  p-2 m-2" >
+                      <button className="  p-2 m-2" >
                         <MdDeleteForever className="text-xl cursor-pointer " onClick={() => handleDeleteTimeline(timeline.id)} />
                       </button>
                     </th>
