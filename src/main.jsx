@@ -12,7 +12,17 @@ import router from "./Route/Route";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     
-      <ToastContainer /> 
+      <ToastContainer 
+        position="top-right"
+        autoClose={200}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      /> 
       <RouterProvider router={router} />
   
   </React.StrictMode>
