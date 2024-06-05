@@ -61,7 +61,7 @@ const Tasks = () => {
 
     return (
         <div className="h-screen">
-            <div className="">
+            <div className="py-2 mt-4">
                 <div className="py-2">
                     <div className="flex justify-between items-center pb-2">
                         <h1 className="text-3xl pb-2 font-semibold">
@@ -74,6 +74,11 @@ const Tasks = () => {
                         To ensure seamless progress tracking and maintenance of your project, incorporate team members into your project structure. Keep the tasks organized by status, just like in a Kanban board. So you can easily find the tasks you need to complete. Just grab them and start working on them with the team. Ensure to use the drag and drop functionality to move tasks between statuses.
                     </p>
                 </div>
+                {tasks.length === 0 ? (
+                    <p className="text-2xl text-center font-bold mt-10">
+                        You don't have any tasks assigned yet .
+                    </p>
+                ) :(
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
                     {['To Do', 'In Progress', 'Done'].map((status) => (
                         <div
@@ -98,9 +103,9 @@ const Tasks = () => {
                             ))}
                         </div>
                     ))}
-                </div>
+                </div>)
+                }
             </div>
-
             {/* <DragNDrop reload={setLoad} load={load} tasks={tasks} setTasks={setTasks} /> */}
         </div>
     );
