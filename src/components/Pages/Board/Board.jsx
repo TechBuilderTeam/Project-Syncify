@@ -159,11 +159,14 @@ const Board = () => {
         }
     }, [reload])
 
+  
+
+
     return (
         <div className="h-screen">
 
 
-            <div className=" py-2">
+            <div className=" py-2 mt-4">
                 <div className="flex justify-between items-center pb-2">
                     <h1 className="text-3xl   pb-2 font-semibold ">
                         Board
@@ -177,8 +180,8 @@ const Board = () => {
                 </p>
             </div> 
 
-            {loading && <h3>Loading .... </h3>}
-
+            {/* {loading && <h3>Loading .... </h3>} */}
+{ !loading && boards?.length === 0 && <h3 className="text-center text-2xl font-bold">No Board Found, Go to Plan and Create New Board after assigning Team Leader</h3>}
         
             <div className="overflow-x-auto shadow-xl rounded w-full">
     <table className="table w-full">

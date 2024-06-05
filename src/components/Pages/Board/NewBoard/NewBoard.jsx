@@ -215,8 +215,7 @@ const NewBoard = ({board,reload,setReload}) => {
                         </td>
                        
                     </tr>
-                    {showTasks && 
-    tasks.map((task, idx) => (
+                    {showTasks && tasks?.map((task, idx) => (
         <tr key={idx} className="text-center text-sm text-black dark:text-white w-full">
             <td colSpan="8" className="w-full px-10">
                 <div className="overflow-x-auto w-full shadow-xl rounded">
