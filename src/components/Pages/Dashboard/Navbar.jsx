@@ -52,7 +52,7 @@ const Navbar = ({ sidebarToggle, setSidebarToggle, handleThemeChange }) => {
 
     return (
         <div className="mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl p-4" >
-            <nav className='flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50  w-full h-20 px-3'>
+            <nav className='flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50  w-full h-20 px-3 bg-gradient-to-r from-blue-200 dark:from-blue-900 to-blue-50 dark:to-black'>
                 <div className='flex items-center text-xl'>
 
                     <Link to="/">

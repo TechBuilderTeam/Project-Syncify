@@ -26,7 +26,6 @@ const CalendarHeader = () => {
           <hr className="w-full h-1 bg-gradient-to-r from-[#0c01a1] to-[#73e9fe] " />
         
         </div>
-        {/* <TitleDynamic title="Member" subTitle="To ensure seamless progress tracking and maintenance of your project, incorporate team members into your project structure. Assign distinct roles to each member to streamline collaboration and enhance accountability throughout the project lifecycle. Add member and explore more. " /> */}
       </div>
       <div className="px-4 py-2 flex justify-between items-center">
         < div className="flex items-center">

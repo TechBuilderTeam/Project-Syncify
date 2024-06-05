@@ -118,7 +118,7 @@ const Navbar = ({ handleThemeChange }) => {
   }, [user]);
   return (
     <div className=" mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl p-4 ">
-      <div className="flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50 w-full h-20 px-6 bg-gradient-to-r from-blue-200 dark:from-blue-900 to-blue-50 dark:to-blue-950">
+      <div className="flex justify-between items-center gap-10  backdrop-filter backdrop-blur-3xl mb-10 fixed top-0 left-0 z-50 w-full h-20 px-6 bg-gradient-to-r from-blue-200 dark:from-blue-900 to-blue-50 dark:to-black">
         <div className="hidden lg:flex justify-between items-center w-full">
           {/** logo and name section */}
           <div className="w-1/4 flex justify-start items-center text-[#0c01a1] dark:text-[#73e9fe]">
