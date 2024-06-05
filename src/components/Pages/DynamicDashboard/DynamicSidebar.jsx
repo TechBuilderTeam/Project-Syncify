@@ -118,6 +118,12 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
             {!open && <span className="hidden md:inline">Calendar</span>}
           </Link>
         </li>
+        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/calendar`)}`}>
+          <Link to={`/workspace/${id}/inside`} className="px-3">
+            <SlCalender className="inline-block w-6 h-6 mr-2 -mt-2" />
+            {!open && <span className="hidden md:inline">Inside</span>}
+          </Link>
+        </li>
       </ul>
     </div>
   );
