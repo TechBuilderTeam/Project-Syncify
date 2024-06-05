@@ -78,9 +78,9 @@ const [selectedTimeline, setSelectedTimeline] = useState(null);
 
 const handleOpenDialog = (member, modalName) => {
     
-    console.log({member})
+    // console.log({member})
     setSelectedTimeline(member);
-     console.log(member.user_id)
+    //  console.log(member.user_id)
     setFormData({
       workspace_id: id,
       userId: member.user_id,
@@ -89,13 +89,13 @@ const handleOpenDialog = (member, modalName) => {
       user_id: "",
     });
 
-    console.log({formData})
+    // console.log({formData})
     document.getElementById("edit").showModal();
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log({name,value})
+    // console.log({name,value})
     setFormData(prevState => ({
       ...prevState,
       [name]: value
@@ -122,7 +122,7 @@ const handleOpenDialog = (member, modalName) => {
         updateMember
       );
 
-      console.log("result -> ", result);
+      // console.log("result -> ", result);
       toast.success("Member Successfully Updated");
       setChange(!change);
       handleCloseModelButton("edit");
@@ -132,17 +132,17 @@ const handleOpenDialog = (member, modalName) => {
   };
 
   const handleDeleteMember = async (user_id) => {
-    console.log("user id -> ", user_id);
+    // console.log("user id -> ", user_id);
     const convertIdToSring = id.toString();
-    console.log(typeof convertIdToSring);
+    // console.log(typeof convertIdToSring);
     const data = { workspace_id: convertIdToSring, user_id: user_id };
-    console.log("data -> ", data);
+    // console.log("data -> ", data);
     try {
       const result = await axios.delete(
         "https://projectsyncifyapi.onrender.com/api/v2/workspace/members/remove/",
         { data }
       );
-      console.log("delete member -> ", result);
+      // console.log("delete member -> ", result);
       toast.success("Successfully deleted member");
       setChange(!change);
     } catch (error) {
