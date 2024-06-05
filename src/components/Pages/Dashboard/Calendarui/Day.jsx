@@ -11,8 +11,12 @@ const Day = ({ day, rowIdx }) => {
     <div className="border border-gray-200 flex flex-col">
       <header className="flex flex-col justify-center items-center">
         {rowIdx === 0 && (
-          <p className="text-sm mt-1">{day.format("ddd").toUpperCase()}</p>
+          <div className="w-full text-center">
+            <p className="text-sm mt-1 border-b border-gray-300">{day.format("ddd").toUpperCase()}</p>
+          </div>
         )}
+
+        
 
         <p className={`text-sm  p-1 my-1 text-center ${getCurrentDateClass()}`}>
           {day.format("DD")}
