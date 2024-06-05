@@ -60,7 +60,7 @@ const ProjectSlider = () => {
                 <Slider {...settings}>
                     {projects?.map(project => (
                         <div key={project?.id} className="w-[300px] mx-4 border-2 border-gray-300 dark:border-gray-900 rounded-lg py-6 px-8">
-                            <h3 className="text-lg font-semibold">{project?.name}</h3>
+                            <h3 className="text-lg font-semibold">{project?.name.slice(0, 20)}</h3>
                             <p className="text-sm text-gray-600 dark:text-white"> <span className="font-semibold text-[#0c01a1] dark:text-sky-400 ">Manager : </span> {project?.workspace_manager_name}</p>
                             <p className="text-sm text-gray-600 dark:text-white"><span className="font-semibold text-[#0c01a1] dark:text-sky-400 ">Manager Email : </span>{project?.workspace_manager_email}</p>
                             <p className="text-sm text-gray-600 dark:text-white"><span className="font-semibold text-[#0c01a1] dark:text-sky-400 ">Member : </span>{project?.workspace_total_members}</p>

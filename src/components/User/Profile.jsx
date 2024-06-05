@@ -63,8 +63,8 @@ const Profile = () => {
                 <img src={user && profile?.image} alt={user && user.name} className="w-28 md:w-40 h-28 md:h-40 rounded-full border-4 border-sky-900 dark:border-sky-300" />
               </div>
               <div className="flex flex-col justify-start">
-                <h1 className="text-xl md:text-3xl md:text-center"> {user && user.name}</h1>
-                <p className=""> {user && user.email}</p>
+                <h1 className="text-xl md:text-3xl font-bold"> {user && user.name.toUpperCase()}</h1>
+                {/* <p className=""> {user && user.email}</p> */}
               </div>
             </div>
 
@@ -108,7 +108,7 @@ const Profile = () => {
               >
                 Info
               </button>
-              <button
+              {/* <button
                 onClick={() => setShowComponent("Work")}
                 className={`rounded py-1 px-2  text-sm   hover:bg-sky-200 dark:hover:bg-sky-300 hover:text-sky-900 ${showComponent === "Work"
                   ? "bg-sky-50 dark:bg-sky-950 "
@@ -116,8 +116,8 @@ const Profile = () => {
                   }`}
               >
                 Work
-              </button>
-              <button
+              </button> */}
+              {/* <button
                 onClick={() => setShowComponent("Education")}
                 className={`rounded py-1 px-2  text-sm hover:bg-sky-200 dark:hover:bg-sky-300 hover:text-sky-900  ${showComponent === "Education"
                   ? "bg-sky-50 dark:bg-sky-950"
@@ -125,7 +125,7 @@ const Profile = () => {
                   }`}
               >
                 Education
-              </button>
+              </button> */}
               <button
                 onClick={() => setShowComponent("Contact")}
                 className={`rounded py-1 px-2  text-sm hover:bg-sky-200 dark:hover:bg-sky-300 hover:text-sky-900  ${showComponent === "Contact"
@@ -139,11 +139,11 @@ const Profile = () => {
             </div>
 
           </div>
-          <div className="flex items-center justify-end md:justify-center gap-6 text-2xl md:text-4xl w-full md:w-1/2 md:mt-28 mr-10 md:mr-0 mb-10 ">
+          <div className="flex items-center justify-end text-4xl w-full md:w-1/3 mt-0 md:mt-28 mr-10 md:mr-40 mb-10">
 
             <div title="Edit">
 
-              <button onClick={() => document.getElementById('UserEdit').showModal()}><CiEdit /></button>
+              <button onClick={() => document.getElementById('UserEdit').showModal()}><CiEdit className=""/></button>
               <dialog id="UserEdit" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box bg-white dark:bg-black">
                   <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2" onClick={() => document.getElementById("UserEdit").close()}>✕</button>
@@ -170,21 +170,19 @@ const Profile = () => {
                 </div>
               </dialog>
             </div>
-           
-              <AiOutlineProject />
-            <div title="Members">
-              <AiOutlineTeam />
-            </div>
+
+        
+            
           </div>
         </div>
       </div>
-      <div className=" absolute bg-gradient-to-r from-sky-200 dark:from-sky-700  to-sky-600 dark:to-black text-[#0c01a1] dark:text-white   -bottom-4 md:bottom-0 w-[80%] left-1/2 -translate-x-1/2 rounded ">
+      <div className=" absolute bg-gradient-to-r from-sky-200 dark:from-sky-700  to-sky-600 dark:to-black text-[#0c01a1] dark:text-white   -bottom-4 md:bottom-0  w-[80%]  left-1/2 -translate-x-1/2 translate-y-10 rounded">
         {showComponent === "Info" ? (
           <Info user={user} profile={profile} />
-        ) : showComponent === "Work" ? (
-          <Work />
-        ) : showComponent === "Education" ? (
-          <Education />
+          // ) : showComponent === "Work" ? (
+          //   <Work />
+          // ) : showComponent === "Education" ? (
+          //   <Education />
         ) : showComponent === "Contact" ? (
           <UserContact />
         )
@@ -198,6 +196,8 @@ const Profile = () => {
         <ChatOnetoOne />
       </div>
 
+      {/* about section start */}
+      <UserAbout />
 
 
       {/* portfolio section start */}
@@ -206,15 +206,18 @@ const Profile = () => {
       {/* skill section start */}
       <UserSkills />
 
-      {/* about section start */}
-      <UserAbout />
+      {/* education section start */}
 
+      <Education />
+
+      {/* work section start */}
+      <Work />
 
 
       {/* project in slider start */}
-    
-        <ProjectSlider user={user} profile={profile} />
-     
+
+      <ProjectSlider user={user} profile={profile} />
+
 
 
 

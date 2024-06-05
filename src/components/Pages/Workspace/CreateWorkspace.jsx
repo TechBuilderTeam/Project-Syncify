@@ -102,8 +102,9 @@ const CreateWorkspace = () => {
         {/* modal open */}
         <dialog id="my_modal_3" className="modal">
           <div className="modal-box bg-white dark:bg-black">
+          <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={handleCloseModelButton}>✕</button>
             <form onSubmit={handleSubmit} >
-              <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={handleCloseModelButton}>✕</button>
+           
               <h3 className="font-bold text-2xl text-center mb-5">Create New Project</h3>
               <div className="form-control">
                 <label className="label">Project Name </label>

@@ -17,9 +17,12 @@ const Education = () => {
     }
     return (
         <div>
-        <div className=" py-10 px-10 md:px-20  md:py-12 ">
+        <div className=" py-10 px-10 md:px-32  md:py-12 ">
             <div className="flex justify-between mb-4">
-                <h1 className="text-3xl font-bold">Education</h1>
+            <div>
+                    <h1 className="text-3xl font-bold">Education</h1>
+                    <hr className="w-full border-2 border-[#0c01a1]" />
+                </div>
 
                 <button className=" text-4xl   font-bold rounded" onClick={() => document.getElementById('my_modal_2').showModal()}>
                         <FaPlus />
