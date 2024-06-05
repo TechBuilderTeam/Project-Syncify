@@ -26,6 +26,8 @@ import OperationDetails from "../components/Pages/Home/DifferentTypeOfTabSection
 import ItDetials from "../components/Pages/Home/DifferentTypeOfTabSection/TabPages/ItDetials";
 import ProductDetails from "../components/Pages/Home/DifferentTypeOfTabSection/TabPages/ProductDetails";
 import CompanyDetails from "../components/Pages/Home/DifferentTypeOfTabSection/TabPages/CompanyDetails";
+import Inside from './../components/Pages/Inside/Inside';
+import DynamicProfile from "../components/User/DynamicProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -62,6 +64,10 @@ const router = createBrowserRouter([
       {
         path: "/profile",
         element: <PrivateRoute> <Profile /> </PrivateRoute>,
+      },
+      {
+        path: "/profile/:pId",
+        element: <DynamicProfile/>,
       },
       {
         path: "/forget",
@@ -141,6 +147,10 @@ const router = createBrowserRouter([
       {
         path: "/workspace/:id/calendar",
         element: <Calendarui />,
+      },
+      {
+        path: "/workspace/:id/inside",
+        element: <Inside/>,
       },
     ],
   },
