@@ -17,7 +17,7 @@ const UserAbout = () => {
 
 
     return (
-        <div className="  px-10 md:px-32 py-10 ">
+        <div className="  px-10 md:px-32 py-10 md:pt-16">
             <div className="flex justify-between mb-4">
                 <div>
                     <h1 className="text-3xl font-bold">About</h1>
