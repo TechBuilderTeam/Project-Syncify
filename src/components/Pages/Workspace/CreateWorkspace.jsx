@@ -80,7 +80,7 @@ const CreateWorkspace = () => {
     }
   };
   return (
-    <div className="">
+    <div className="pt-10 md:pt-0">
        <TitlePages title="Projects" subTitle="Maintain your project with our project manager website.Start by creating a new project or select an existing project to track your progress. Easily assign tasks to team members and set deadlines to stay on schedule. Monitor real-time updates and generate comprehensive reports with just a few clicks. Collaborate seamlessly with your team through integrated messaging and file sharing. Customize your workflow with flexible tools designed to fit your unique project needs. " />
       <div className="px-10">
 
@@ -102,8 +102,9 @@ const CreateWorkspace = () => {
         {/* modal open */}
         <dialog id="my_modal_3" className="modal">
           <div className="modal-box bg-white dark:bg-black">
+          <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={handleCloseModelButton}>✕</button>
             <form onSubmit={handleSubmit} >
-              <button className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={handleCloseModelButton}>✕</button>
+           
               <h3 className="font-bold text-2xl text-center mb-5">Create New Project</h3>
               <div className="form-control">
                 <label className="label">Project Name </label>
