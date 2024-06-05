@@ -52,15 +52,15 @@ const Member = () => {
     user_email: "",
     new_role: "",
   }
-);
+  );
 
-const [selectedTimeline, setSelectedTimeline] = useState(null);
+  const [selectedTimeline, setSelectedTimeline] = useState(null);
 
-const handleOpenDialog = (member, modalName) => {
-    
-    console.log({member})
+  const handleOpenDialog = (member, modalName) => {
+
+    console.log({ member })
     setSelectedTimeline(member);
-     console.log(member.user_id)
+    console.log(member.user_id)
     setFormData({
       workspace_id: id,
       userId: member.user_id,
@@ -69,13 +69,13 @@ const handleOpenDialog = (member, modalName) => {
       user_id: "",
     });
 
-    console.log({formData})
+    console.log({ formData })
     document.getElementById("edit").showModal();
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log({name,value})
+    console.log({ name, value })
     setFormData(prevState => ({
       ...prevState,
       [name]: value
@@ -86,11 +86,11 @@ const handleOpenDialog = (member, modalName) => {
     e.preventDefault()
 
     const newTask = {
-        scrum_Name: formData.id,
-        name: "",
-        details: "",
-        assign: "",
-        which_Type: ""
+      scrum_Name: formData.id,
+      name: "",
+      details: "",
+      assign: "",
+      which_Type: ""
     }
 
     newTask.scrum_Name = Number(formData.id);
@@ -99,7 +99,7 @@ const handleOpenDialog = (member, modalName) => {
     newTask.assign = e.target.assign.value;
     newTask.which_Type = e.target.which_type.value;
 
-    
+
     console.log({ newTask })
 
     const result = await axios.post(`https://projectsyncifyapi.onrender.com/workspace/tasks/create/`, newTask)
@@ -126,7 +126,7 @@ const handleOpenDialog = (member, modalName) => {
       user_id: formData.userId,
     };
 
-    console.log({updateMember})
+    console.log({ updateMember })
 
     try {
       const result = await axios.patch(
@@ -196,7 +196,7 @@ const handleOpenDialog = (member, modalName) => {
   return (
     <div className="h-screen text-black dark:text-white">
 
-     
+
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box bg-white dark:bg-black">
           <form onSubmit={handleAddUserButton}>
@@ -251,12 +251,12 @@ const handleOpenDialog = (member, modalName) => {
 
       </dialog>
       <div className='dark:text-[#73e9fe] text-[#010ca1] '>
-        <div className=" py-2">
+        <div className=" py-2 mt-4 ">
           <div className="flex justify-between items-center pb-2">
             <h1 className="text-3xl   pb-2 font-semibold ">
               Member
             </h1>
-            
+
             <button className="bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white  font-bold px-4 py-2 rounded-md" onClick={() => document.getElementById('my_modal_3').showModal()}>Add Member</button>
           </div>
 
@@ -336,43 +336,43 @@ const handleOpenDialog = (member, modalName) => {
                         {/* <Link to= {`/admin/admin/userDetails`} state={user} className="btn btn-accent  p-2 m-2">details</Link> */}
                         {/* <button className="btn btn-neutral px-4  py-2">Edit</button> */}
 
-    {/** Member edit button and model start */}
-    <button className='btn-ghost'>  </button>
-    {/* You can open the modal using document.getElementById('ID').showModal() method */}
-    <button className="mx-4" onClick={() => handleOpenDialog(member,"edit")}>
-      <FaRegEdit className="text-xl" />
-    </button>
-    <dialog id="edit" className="modal">
-      <div className="modal-box bg-white dark:bg-black dark:text-[#73e9fe] text-[#2c01a1]">
-        
-          <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#2c01a1] dark:text-[#73e9fe]" onClick={() => document.getElementById('edit').close()}>✕</button>
-          <h2 className="text-2xl font-bold mb-4 text-center">Update Member Role</h2>
-          
-        <form onSubmit={handleUpdateButton}>
+                        {/** Member edit button and model start */}
+                        <button className='btn-ghost'>  </button>
+                        {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                        <button className="mx-4" onClick={() => handleOpenDialog(member, "edit")}>
+                          <FaRegEdit className="text-xl" />
+                        </button>
+                        <dialog id="edit" className="modal">
+                          <div className="modal-box bg-white dark:bg-black dark:text-[#73e9fe] text-[#2c01a1]">
 
-          <div className='form-control'>
-            <label htmlFor="email" className="label">Email</label>
-            <input type="email" id="email" name="email" value={formData.user_email} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
-          </div>
-          <div className="form-control mb-4">
-            <label htmlFor="email" className="label">User Id</label>
-            <input type="text" id="user_id" name="user_id" value={formData.userId} className="input input-bordered bg-slate-200 dark:bg-black" />
+                            <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#2c01a1] dark:text-[#73e9fe]" onClick={() => document.getElementById('edit').close()}>✕</button>
+                            <h2 className="text-2xl font-bold mb-4 text-center">Update Member Role</h2>
 
-          </div>
-          <div className="form-control mb-4">
-            <label htmlFor="userType" className="label">Role</label>
-            <select id="userType" name="userType" className="select select-bordered bg-slate-200 dark:bg-black">
-              <option value="Associate Manager">Associate Manager</option>
-              <option value="Team Leader">Team Leader</option>
-              <option value="Member">Member</option>
-            </select>
-          </div>
-          <div className="flex justify-between my-4">
-            <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white rounded w-full px-4 py-3">Update Member</button>
-          </div>
-        </form>
-      </div>
-    </dialog>
+                            <form onSubmit={handleUpdateButton}>
+
+                              <div className='form-control'>
+                                <label htmlFor="email" className="label">Email</label>
+                                <input type="email" id="email" name="email" value={formData.user_email} className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Email" />
+                              </div>
+                              <div className="form-control mb-4">
+                                <label htmlFor="email" className="label">User Id</label>
+                                <input type="text" id="user_id" name="user_id" value={formData.userId} className="input input-bordered bg-slate-200 dark:bg-black" />
+
+                              </div>
+                              <div className="form-control mb-4">
+                                <label htmlFor="userType" className="label">Role</label>
+                                <select id="userType" name="userType" className="select select-bordered bg-slate-200 dark:bg-black">
+                                  <option value="Associate Manager">Associate Manager</option>
+                                  <option value="Team Leader">Team Leader</option>
+                                  <option value="Member">Member</option>
+                                </select>
+                              </div>
+                              <div className="flex justify-between my-4">
+                                <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#2c01a1] text-white rounded w-full px-4 py-3">Update Member</button>
+                              </div>
+                            </form>
+                          </div>
+                        </dialog>
                       </th>
                       <th>
                         {/** Member edit button and model end */}
