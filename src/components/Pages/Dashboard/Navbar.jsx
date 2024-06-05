@@ -31,6 +31,20 @@ const Navbar = ({ sidebarToggle, setSidebarToggle, handleThemeChange }) => {
         navigate("/profile");
     };
 
+
+    const [menuVisible, setMenuVisible] = useState(false);
+
+    const handleToggleMenu = () => {
+        setMenuVisible(!menuVisible);
+      };
+      
+
+    const handleMenuClick = (action) => {
+        action();
+        setMenuVisible(false);
+      };
+      
+
     useEffect(() => {
         if (user && user.userId) {
             fetch(`https://projectsyncifyapi.onrender.com/api/v1/user/details/${user.userId}/`)
@@ -90,16 +104,23 @@ const Navbar = ({ sidebarToggle, setSidebarToggle, handleThemeChange }) => {
 
                     <div className='relative'>
                         {
-                            user ? <> <button className=' group '>
+                            user ? <> <button className=' group ' onClick={handleToggleMenu}>
 
                                 <img src={profile?.image} alt="image" className='w-8 md:w-10 h-8  md:h-10 rounded-full' />
                                 {/* <FaUserCircle  /> */}
-                                <div className='z-10 absolute hidden bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-20 group-focus:block top-full right-0'>
-                                    <ul className='py-2 text-sm text-left px-4'>
-                                        <li onClick={handleProfile} className='hover:font-bold'>Profile</li>
-                                        <li onClick={handleLogout} className='hover:font-bold'>Logout</li>
-                                    </ul>
-                                </div>
+                                {menuVisible && (
+                                    <div className='z-10 absolute bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-20 top-full right-0'>
+                                        <ul className='py-2 text-sm text-left px-4'>
+                                            <li onClick={() => handleMenuClick(handleProfile)} className='hover:font-bold'>
+                                                Profile
+                                            </li>
+                                            <li onClick={() => handleMenuClick(handleLogout)} className='hover:font-bold'>
+                                                Logout
+                                            </li>
+                                        </ul>
+                                    </div>
+                                )}
+
                             </button></>
                                 : <><Link to='/login' className='text-white'><FaUserCircle className='w-6 h-6 mt-1' /></Link></>
                         }

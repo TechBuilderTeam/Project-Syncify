@@ -97,6 +97,18 @@ const Navbar = ({ handleThemeChange }) => {
     console.log("profile button clicked");
     navigate("/profile");
   };
+  const [menuVisible, setMenuVisible] = useState(false);
+
+  const handleToggleMenu = () => {
+    setMenuVisible(!menuVisible);
+  };
+
+
+  const handleMenuClick = (action) => {
+    action();
+    setMenuVisible(false);
+  };
+
 
   useEffect(() => {
     if (user && user.userId) {
@@ -166,118 +178,131 @@ const Navbar = ({ handleThemeChange }) => {
             <Link to="/contact">Contact</Link>
             {user ? (
               <>
-                <button className=' group '>
+                <button className=' group ' onClick={handleToggleMenu}>
 
-                  <img src={profile?.image} alt="image" className='w-10 h-10 rounded-full' />
-                  {/* <FaUserCircle  /> */}
-                  <div className='z-10 absolute hidden bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-20 group-focus:block top-full right-0 mr-2 '>
-                    <ul className='py-2 text-sm text-left px-4'>
-                      <li onClick={handleProfile} className='hover:font-bold'>Profile</li>
-                      <li onClick={handleLogout} className='hover:font-bold'>Logout</li>
-                    </ul>
-                  </div>
+                  <img src={profile?.image} alt="image" className='w-8 md:w-10 h-8  md:h-10 rounded-full' />
+
+                  {menuVisible && (
+                    <div className='z-10 absolute bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-20 top-full right-0'>
+                      <ul className='py-2 text-sm text-left px-4'>
+                        <li onClick={() => handleMenuClick(handleProfile)} className='hover:font-bold'>
+                          Profile
+                        </li>
+                        <li onClick={() => handleMenuClick(handleLogout)} className='hover:font-bold'>
+                          Logout
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+
                 </button>
 
               </>
-          ) : (
-          <>
-            <div className="flex gap-3 justify-center items-center">
-              <Link to="/login">Log In</Link>
-              <Link to="/register">
-                <button className="px-2 py-1 hidden md:flex bg-[#0c01a1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] rounded text-white">
-                  Get Started
-                </button>
-              </Link>
+            ) : (
+              <>
+                <div className="flex gap-3 justify-center items-center">
+                  <Link to="/login">Log In</Link>
+                  <Link to="/register">
+                    <button className="px-2 py-1 hidden md:flex bg-[#0c01a1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] rounded text-white">
+                      Get Started
+                    </button>
+                  </Link>
 
-            </div>
-          </>
+                </div>
+              </>
 
             )}
 
-        </div>
-      </div>
-
-      {/** toggle bar button */}
-      <div className="flex lg:hidden w-full ">
-        <div className="flex justify-between items-center w-full">
-          <div className=" flex  text-[#0c01a1] dark:text-[#73e9fe]">
-            <a href="/">
-              <img
-                src={"https://i.ibb.co/T4FSNsb/Justlogo.png"}
-                className="w-14 h-12 text-[#0c01a1] dark:text-[#73e9fe]"
-                alt="logo"
-              />
-            </a>
-            <a href="/">
-              <h1 className="text-2xl  font-bold italic ">Project Syncify</h1>
-            </a>
           </div>
-          <div className="flex gap-2">
-            <div className="font-extrabold">
-              <label className="swap swap-rotate ">
-                <input type="checkbox" onChange={handleThemeChange} />
+        </div>
 
-                <svg
-                  className="swap-on fill-current w-8 h-8 text-[#0c01a1] dark:text-[#73e9fe]"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
-                </svg>
+        {/** toggle bar button */}
+        <div className="flex lg:hidden w-full ">
+          <div className="flex justify-between items-center w-full">
+            <div className=" flex  text-[#0c01a1] dark:text-[#73e9fe]">
+              <a href="/">
+                <img
+                  src={"https://i.ibb.co/T4FSNsb/Justlogo.png"}
+                  className="w-14 h-12 text-[#0c01a1] dark:text-[#73e9fe]"
+                  alt="logo"
+                />
+              </a>
+              <a href="/">
+                <h1 className="text-2xl  font-bold italic ">Project Syncify</h1>
+              </a>
+            </div>
+            <div className="flex gap-2">
+              <div className="font-extrabold">
+                <label className="swap swap-rotate ">
+                  <input type="checkbox" onChange={handleThemeChange} />
 
-                {/* moon icon */}
-                <svg
-                  className="swap-off fill-current w-8 h-8 text-[#0c01a1] dark:text-[#73e9fe]"
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
-                </svg>
-              </label>
-            </div>
-            <hr className="w-[3px] h-[36px] bg-[#0c01a1] dark:bg-[#73e9fe]" />
-            <div>
-              <button className="group">
-              <img src={user && profile?.image} alt={user && user.name} className="w-8 h-8 rounded-full " />
-              <div className='z-10 absolute hidden bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-20 group-focus:block top-full right-0 mr-2 '>
-                    <ul className='py-2 text-sm text-left px-4'>
-                      <li onClick={handleProfile} className='hover:font-bold'>Profile</li>
-                    
-                    </ul>
-                  </div>
-              </button>
-            </div>
-           
-            <div onClick={toggleMenu}>
-              {open ? (
-                <FaXmark className=" text-3xl cursor-pointer" />
-              ) : (
-                <HiMenuAlt2 className=" text-3xl cursor-pointer" />
-              )}
-            </div>
-            {/** conditional show navlist items */}
-            <div
-              className={`${open ? "flex" : "hidden"
-                } w-full h-fit bg-cyan-50 dark:bg-slate-800 bg-opacity-50 dark:bg-opacity-50 p-4 absolute top-[80px] left-0`}
-            >
-              <div className="flex flex-col justify-center items-center gap-4 w-full font-semibold ">
-                {navlinks}
-                <Link to="/contact">Contact</Link>
-               {
-                user ? <>
-                <h1 onClick={handleLogout}>Log Out</h1>
-                </>:
-                 <Link to="/login">Log In</Link>
-               }
-                {/* <button className="px-4 py-2 flex bg-[#0c01a1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] rounded text-white">Get Started</button> */}
+                  <svg
+                    className="swap-on fill-current w-8 h-8 text-[#0c01a1] dark:text-[#73e9fe]"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+                  </svg>
+
+                  {/* moon icon */}
+                  <svg
+                    className="swap-off fill-current w-8 h-8 text-[#0c01a1] dark:text-[#73e9fe]"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
+                  </svg>
+                </label>
+              </div>
+              <hr className="w-[3px] h-[36px] bg-[#0c01a1] dark:bg-[#73e9fe]" />
+              <div>
+                <button className=' group ' onClick={handleToggleMenu}>
+
+                  <img src={profile?.image} alt="image" className='w-8 md:w-10 h-8  md:h-10 rounded-full' title = "profile" />
+                  {/* <FaUserCircle  /> */}
+                  {menuVisible && (
+                    <div className='z-10 absolute bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-20 top-full right-0'>
+                      <ul className='py-2 text-sm text-left px-4'>
+                        <li onClick={() => handleMenuClick(handleProfile)} className='hover:font-bold'>
+                          Profile
+                        </li>
+                      </ul>
+                    </div>
+                  )}
+
+                </button>
+              </div>
+
+              <div onClick={toggleMenu}>
+                {open ? (
+                  <FaXmark className=" text-3xl cursor-pointer" />
+                ) : (
+                  <HiMenuAlt2 className=" text-3xl cursor-pointer" />
+                )}
+              </div>
+              {/** conditional show navlist items */}
+              <div
+                className={`${open ? "flex" : "hidden"
+                  } w-full h-fit bg-cyan-100 dark:bg-sky-950 bg-opacity-80 dark:bg-opacity-90 p-4 absolute top-[80px] left-0`}
+              >
+                <div className="flex flex-col justify-center items-center gap-4 w-full font-semibold ">
+                  {navlinks}
+                  <Link to="/contact">Contact</Link>
+                  {
+                    user ? <>
+                      <h1 onClick={handleLogout}>Log Out</h1>
+                    </> :
+                      <Link to="/login">Log In</Link>
+                  }
+                  {/* <button className="px-4 py-2 flex bg-[#0c01a1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] rounded text-white">Get Started</button> */}
+                </div>
               </div>
             </div>
-          </div>
 
-          {/** end toggle section and navlist for mobile device */}
+            {/** end toggle section and navlist for mobile device */}
+          </div>
         </div>
       </div>
-    </div>
     </div >
   );
 };
