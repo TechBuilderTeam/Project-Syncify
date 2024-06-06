@@ -69,7 +69,7 @@ const ChatUI = ({ boardId, User, board }) => {
     return (
         <div className="">
             <button onClick={() => handleToggleChat(boardId, User?.userId)} className="font-bold px-4 py-2 rounded-md">
-                <IoChatbubblesOutline className="text-2xl" />
+                <IoChatbubblesOutline className="text-2xl" title="Chat" />
             </button>
             {showChat && (
                 <div className="fixed bottom-10 right-4 w-96 h-96 bg-white dark:bg-gray-950 shadow-lg rounded-lg flex flex-col">

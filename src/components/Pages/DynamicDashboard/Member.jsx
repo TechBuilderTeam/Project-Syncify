@@ -35,7 +35,7 @@ const Member = () => {
     newMember.email = e.target.email.value;
 
     if(!newMember.workspace_Name){
-      toast.warning("not found workspace id,please reload page...");
+      toast.warning("Please reload page...");
       return
     }
     else if(!newMember.role){

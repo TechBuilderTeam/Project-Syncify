@@ -8,7 +8,7 @@ import { FaCirclePlus } from "react-icons/fa6";
 import { IoIosOpen } from "react-icons/io";
 import { MdOutlineFileOpen } from "react-icons/md";
 
-const Workspace = () => {
+const Workspace = ({ load, setLoad}) => {
   const [reload, setReload] = useState(false);
   const [workspaces, setWorkspaces] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -45,7 +45,7 @@ const Workspace = () => {
     //sabrina setted setLoading(false) here
     setLoading(false);
     console.log("workspace data -> ", workspaces);
-  }, [user?.userId]);
+  }, [user?.userId, load]);
 
   const handleDeleteWorkspace = (workspaceId) => {
     setWorkspaces((prevWorkspaces) =>
