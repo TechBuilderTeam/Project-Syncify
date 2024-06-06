@@ -39,6 +39,8 @@ const CalendarHeader = () => {
     <div>
       <div className="dark:text-[#73e9fe] text-[#010ca1] ">
         <div className=" py-2">
+       <div className='dark:text-[#73e9fe] text-[#010ca1] '>
+        <div className=" py-2 mt-4">
           <div className="flex justify-between items-center pb-2">
             <h1 className="text-3xl pb-2 font-semibold">Check Out Plans</h1>
           </div>
