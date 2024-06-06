@@ -1,23 +1,35 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Sidebar from "./Sidebar";
 import CalendarHeader from "./CalendarHeader";
 import Month from "./Month";
 import { getMonth } from "../../../../Utils/Util";
 import GlobalContext from "../../../../context/GlobalContext";
+
 const Calendarui = () => {
-  console.log("getmonth", getMonth(3));
   const [currentMonth, setCurrentMonth] = useState(getMonth());
+  const [timelineEvents, setTimelineEvents] = useState([]);
   const { monthIndex } = useContext(GlobalContext);
+
   useEffect(() => {
     setCurrentMonth(getMonth(monthIndex));
   }, [monthIndex]);
+
+  useEffect(() => {
+    fetch(
+      "https://projectsyncifyapi.onrender.com/workspace/get-timeline-dates/8/"
+    )
+      .then((response) => response.json())
+      .then((data) => setTimelineEvents(data))
+      .catch((error) => console.error("Error fetching timeline data:", error));
+  }, []);
+
   return (
     <div className="h-screen flex flex-col">
       <CalendarHeader />
-      <flex className="flex-1">
+      <div className="flex flex-1">
         <Sidebar />
-        <Month month={currentMonth} />
-      </flex>
+        <Month month={currentMonth} timelineEvents={timelineEvents} />
+      </div>
     </div>
   );
 };
