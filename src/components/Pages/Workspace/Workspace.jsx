@@ -11,6 +11,7 @@ import { MdOutlineFileOpen } from "react-icons/md";
 const Workspace = () => {
   const [workspaces, setWorkspaces] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [reload, setReload] = useState(false)
   const { user } = useContext(AuthContext);
   const [error, setError] = useState(null);
 
@@ -44,7 +45,7 @@ const Workspace = () => {
     //sabrina setted setLoading(false) here
     setLoading(false);
     console.log("workspace data -> ", workspaces);
-  }, [user?.userId]);
+  }, [user?.userId, reload]);
 
   const handleDeleteWorkspace = (workspaceId) => {
     setWorkspaces((prevWorkspaces) =>
