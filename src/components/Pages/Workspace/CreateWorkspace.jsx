@@ -7,7 +7,7 @@ import { FaCirclePlus } from "react-icons/fa6";
 import TitlePages from "../../../pages/shared/TitlePages";
 import Lottie from "lottie-react";
 import AniTask from "../../../../public/tasks.json"
-const CreateWorkspace = () => {
+const CreateWorkspace = ({ load, setLoad}) => {
   const [workspaceName, setWorkspaceName] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -57,6 +57,7 @@ const CreateWorkspace = () => {
       if (response.status === 201) {
         toast.success("Project created successfully!");
         setSuccess("Project created successfully!");
+        setLoad(!load);
         handleCloseModelButton();
         setError("");
 

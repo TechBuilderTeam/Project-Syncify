@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import Sidebar from "./Sidebar";
 import CalendarHeader from "./CalendarHeader";
 import Month from "./Month";
 import { getMonth } from "../../../../Utils/Util";
 import GlobalContext from "../../../../context/GlobalContext";
 import { useParams } from "react-router-dom";
-
 const Calendarui = () => {
   const [currentMonth, setCurrentMonth] = useState(getMonth());
   const [timelineEvents, setTimelineEvents] = useState([]);
