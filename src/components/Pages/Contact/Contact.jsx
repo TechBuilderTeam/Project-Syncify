@@ -41,34 +41,30 @@ const Contact = () => {
           Have any question? We would love to hear from you.
         </h3>
       </div>
-      <div className="flex flex-col md:flex-row gap-y-8 md:gap-y-0 justify-between items-center gap-x-10">
+      <div className="flex flex-col md:flex-row gap-y-8 md:gap-y-0 justify-center items-center gap-x-10">
         <div className="h-auto md:h-[300px] lg:h-[200px] shadow-md px-10 py-8 space-y-3 rounded-lg border-t-4 border-t-purple-700">
           <h1 className="text-lg font-semibold">User Guide</h1>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-            vitae non nesciunt sequi neque! Neque.
+            Whether it's for a piece of software, hardware, or any other
+            product, the user guide is designed to help users understand and
+            effectively utilize the functionalities of what they have purchased.
           </p>
         </div>
         <div className="h-auto md:h-[350px] lg:h-[250px]  shadow-md px-10 py-8 space-y-3 rounded-lg border-t-4 border-t-cyan-500">
           <h1 className="text-lg font-semibold">Help & Support</h1>
           <p className="mb-10">
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-            vitae non nesciunt sequi neque! Neque.
+            Providing comprehensive help and support for project management
+            involves offering resources, tools, and assistance to team members
+            and stakeholders.
           </p>
-          <div className="flex justify-center items-center">
-            <a
-              href="#contact"
-              className="px-3 py-2 flex justify-between items-center gap-3 dark:bg-white dark:text-black  rounded-md hover:bg-black hover:text-white outline-none border-2 "
-            >
-              Contact <MdOutlineContactSupport className="text-lg" />
-            </a>
-          </div>
         </div>
         <div className="h-auto md:h-[300px] lg:h-[200px] shadow-md px-10 py-8 space-y-3 rounded-lg border-t-4 border-t-purple-700">
           <h1 className="text-lg font-semibold">Premium Account?</h1>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-            vitae non nesciunt sequi neque! Neque.
+            Premium account is often associated with subscription-based
+            services, providing exclusive access, advanced functionalities, and
+            improved user experience. Below is an overview of what a Premium
+            Account typically includes and its potential advantages.
           </p>
         </div>
       </div>
