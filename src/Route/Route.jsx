@@ -26,6 +26,10 @@ import OperationDetails from "../components/Pages/Home/DifferentTypeOfTabSection
 import ItDetials from "../components/Pages/Home/DifferentTypeOfTabSection/TabPages/ItDetials";
 import ProductDetails from "../components/Pages/Home/DifferentTypeOfTabSection/TabPages/ProductDetails";
 import CompanyDetails from "../components/Pages/Home/DifferentTypeOfTabSection/TabPages/CompanyDetails";
+import Inside from "./../components/Pages/Inside/Inside";
+import DynamicProfile from "../components/User/DynamicProfile";
+import TermsCondition from "../components/Pages/TermsCondition/TermsCondition";
+import PrivacyPolicy from "../components/Pages/PrivacyPolicy/PrivacyPolicy";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -39,6 +43,7 @@ const router = createBrowserRouter([
         path: "/features",
         element: <Features />,
       },
+
       {
         path: "/contact",
         element: <Contact />,
@@ -61,7 +66,31 @@ const router = createBrowserRouter([
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/terms&condition",
+        element: (
+          <PrivateRoute>
+            <TermsCondition />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/privacypolicy",
+        element: (
+          <PrivateRoute>
+            <PrivacyPolicy />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/profile/:pId",
+        element: <DynamicProfile />,
       },
       {
         path: "/forget",
@@ -95,6 +124,7 @@ const router = createBrowserRouter([
         path: "/workspace",
         element: (
           <PrivateRoute>
+            {" "}
             <UserWorkspace />
           </PrivateRoute>
         ),
@@ -111,6 +141,7 @@ const router = createBrowserRouter([
         path: "/editworkspace/:workspaceId",
         element: (
           <PrivateRoute>
+            {" "}
             <EditWorkspace />
           </PrivateRoute>
         ),
@@ -132,17 +163,18 @@ const router = createBrowserRouter([
         path: "/workspace/:id",
         element: (
           <PrivateRoute>
-            <Member />
+            {" "}
+            <Member />{" "}
           </PrivateRoute>
         ),
       },
-     
+
       {
         path: "/workspace/:id/boards",
         element: (
           <PrivateRoute>
-       
-            <Board />
+            {" "}
+            <Board />{" "}
           </PrivateRoute>
         ),
       },
@@ -150,8 +182,8 @@ const router = createBrowserRouter([
         path: "/workspace/:id/tasks",
         element: (
           <PrivateRoute>
-      
-            <Tasks />
+            {" "}
+            <Tasks />{" "}
           </PrivateRoute>
         ),
       },
@@ -159,8 +191,8 @@ const router = createBrowserRouter([
         path: "/workspace/:id/plans",
         element: (
           <PrivateRoute>
-          
-            <Plans />
+            {" "}
+            <Plans />{" "}
           </PrivateRoute>
         ),
       },
@@ -176,6 +208,10 @@ const router = createBrowserRouter([
       {
         path: "/workspace/:id/calendar",
         element: <Calendarui />,
+      },
+      {
+        path: "/workspace/:id/inside",
+        element: <Inside />,
       },
     ],
   },

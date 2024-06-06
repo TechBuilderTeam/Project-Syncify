@@ -9,6 +9,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { AiFillPrinter } from "react-icons/ai";
 import { GoTasklist } from "react-icons/go";
+import { RiCalendarTodoFill } from "react-icons/ri";
+import { MdInsights } from "react-icons/md";
+
 
 const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
   const [open, setOpen] = useState(false);
@@ -47,9 +50,10 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
   console.log('sidebar toggle from dynamic sidebar -> ', sidebarToggle);
 
   return (
-    <div
+  <div className="">
+     <div
       className={`${open ? "w-20" : "block w-20 md:w-56"
-        } absolute top-20 left-0 h-full px-4 py-2 border-r border-gray-300`}
+        } absolute top-20 left-0 h-[100%] px-4 py-2 border-r border-gray-300`}
     >
       {open ? (
         <FaArrowRight
@@ -62,7 +66,7 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
           className="absolute cursor-pointer rounded-full -right-3 top-9 w-5 h-5 border-2 text-xs"
         />
       )}
-      <div className="my-2 mb-2">
+      <div className="my-2 mt-8 mb-2">
         <h1 className={`${open? "text-xs font-semibold " : "text-xs md:text-lg font-bold text-center"}`}> 
         {open ? workspaceDetails?.name.slice(0, 20) : workspaceDetails?.name}
         </h1>
@@ -113,12 +117,19 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
         </li>
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/calendar`)}`}>
           <Link to={`/workspace/${id}/calendar`} className="px-3">
-            <SlCalender className="inline-block w-6 h-6 mr-2 -mt-2" />
+            <RiCalendarTodoFill className="inline-block w-6 h-6 mr-2 -mt-2" />
             {!open && <span className="hidden md:inline">Calendar</span>}
+          </Link>
+        </li>
+        <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/inside`)}`}>
+          <Link to={`/workspace/${id}/inside`} className="px-3">
+            <MdInsights  className="inline-block w-6 h-6 mr-2 -mt-2" />
+            {!open && <span className="hidden md:inline">Insights</span>}
           </Link>
         </li>
       </ul>
     </div>
+  </div> 
   );
 };
 
