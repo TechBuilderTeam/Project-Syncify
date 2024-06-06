@@ -100,7 +100,7 @@ const Board = () => {
         const result = await axios.post(`https://projectsyncifyapi.onrender.com/workspace/tasks/create/`, newTask)
 
         if (result) {
-            toast.success('Successfully Create successfully.');
+            toast.success('Task Successfully Created.');
 
             setReload(!reload);
             handleCloseModelButton('createTask')
