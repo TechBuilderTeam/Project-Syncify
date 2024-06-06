@@ -10,6 +10,8 @@ import axios from "axios";
 import { AiFillPrinter } from "react-icons/ai";
 import { GoTasklist } from "react-icons/go";
 import { RiCalendarTodoFill } from "react-icons/ri";
+import { MdInsights } from "react-icons/md";
+
 
 const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
   const [open, setOpen] = useState(false);
@@ -120,8 +122,8 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
         </li>
         <li className={`mb-2 rounded hover:shadow py-2 ${getLinkClass(`/workspace/${id}/calendar`)}`}>
           <Link to={`/workspace/${id}/inside`} className="px-3">
-            <SlCalender className="inline-block w-6 h-6 mr-2 -mt-2" />
-            {!open && <span className="hidden md:inline">Inside</span>}
+            <MdInsights  className="inline-block w-6 h-6 mr-2 -mt-2" />
+            {!open && <span className="hidden md:inline">Insights</span>}
           </Link>
         </li>
       </ul>
