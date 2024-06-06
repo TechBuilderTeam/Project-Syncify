@@ -9,6 +9,7 @@ import { IoIosOpen } from "react-icons/io";
 import { MdOutlineFileOpen } from "react-icons/md";
 
 const Workspace = () => {
+  const [reload, setReload] = useState(false);
   const [workspaces, setWorkspaces] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
@@ -23,7 +24,6 @@ const Workspace = () => {
       console.log("loading data ");
       setLoading(true);
       setError(null);
-
       try {
         console.log("currently in try block");
         const response = await axios.get(
@@ -33,6 +33,7 @@ const Workspace = () => {
         setWorkspaces(response.data);
         setLoading(false);
         console.log("out try block");
+        setReload(!reload);
         setError("");
       } catch (err) {
         setError("error");
