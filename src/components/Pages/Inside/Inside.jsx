@@ -100,7 +100,7 @@ const renderCustomizedLabel1 = ({ cx, cy, midAngle, innerRadius, outerRadius, pe
         onEnter={() => setCounterOn(true)}
         onExit={() => setCounterOn(false)}
       >
-            <h2 className="text-3xl my-6 ">
+            <h2 className="text-xl md:text-3xl my-6 ">
                 <span>Hi, Welcome </span>
                 <span className='font-bold '>
                 {
