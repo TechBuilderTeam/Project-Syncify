@@ -24,10 +24,10 @@ const Root = () => {
     }
     return (
         <AuthProviders>
-            <div className="bg-white dark:bg-gray-950 text-[#0c01a1] dark:text-[#73e9fe]">
+            <div className="bg-white dark:bg-gray-950 text-[#0c01a1] dark:text-[#73e9fe] min-h-screen">
                 {noHeaderFooter || <Navbar handleThemeChange={handleThemeChange} />}
                 <Outlet />
-                {/* {noHeaderFooter || <Footer />} */}
+                {noHeaderFooter || <Footer />}
             </div>
         </AuthProviders>
 
