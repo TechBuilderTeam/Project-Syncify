@@ -22,11 +22,11 @@ const Day = ({ day, rowIdx, timelineEvents }) => {
         {rowIdx === 0 && (
           <div className="w-full text-center">
             <p className="text-sm mt-1 border-b border-gray-300">
-              {day.format("ddd").toUpperCase()}
+              {day?.format("ddd").toUpperCase()}
             </p>
           </div>
         )}
-        <p className="text-sm p-2 my-1 text-center">{day.format("DD")}</p>
+        <p className="text-sm px-2 pt-1 text-center">{day?.format("DD")}</p>
       </header>
       <div className="relative flex flex-col items-center mt-1 flex-grow">
         {eventsOnDay.map((event, index) => (
@@ -37,7 +37,7 @@ const Day = ({ day, rowIdx, timelineEvents }) => {
               top: `${index * 10}px`,
               backgroundColor: colors[index % colors.length],
               margin: "1px 0",
-              borderRadius: "4px",
+              borderRadius: "2px",
               zIndex: 10,
             }}
             title={event.name}
