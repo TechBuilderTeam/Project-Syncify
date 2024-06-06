@@ -1,19 +1,59 @@
+import axios from "axios";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 
-const Education = () => {
+const Education = ({user,education,reload,setReload}) => {
+
+    console.log({user,education,reload, setReload})
     const [ educationAdd , setEducationAdd ] = useState()
-
+    const [isPresentEnd, setIsPresentEnd] = useState(false);
 
 
     const handleModalClose = () => {
         document.getElementById('my_modal_2').close();
     }
 
-    const handleAddEducation = () => {
-        handleModalClose()
-        setEducationAdd(true)
+    const handleAddEducation = async (e) => {
+        e.preventDefault()
+         
+        let endDate;
+        let currentlyStudying;
+
+         if(isPresentEnd){
+            currentlyStudying = true; 
+        }  
+         else{
+            endDate = e.target.endDate.value;
+            currentlyStudying = false;
+         }
+
+        const userEducation = {
+            user: user?.userId,
+            institution: e.target.institution_name.value,
+            degree: e.target.degree.value,
+            start_date: e.target.startDate.value,
+            end_date: endDate,
+            description: e.target.description.value,
+            currently_studying: currentlyStudying
+        }
+
+        console.log({userEducation})
+
+        try {
+            const result = await axios.post(`https://projectsyncifyapi.onrender.com/api/v1/profile/education/create/`, userEducation)
+            console.log({result});
+      
+            toast.success("Create successfully")
+            setReload(!reload)
+            handleModalClose()
+          } catch (error) {
+            console.log('error from designation -> ', error)
+          }
+        
+        // handleModalClose()
+        // setEducationAdd(true)
     }
     return (
         <div>
@@ -44,21 +84,39 @@ const Education = () => {
                                     <label className="label">
                                         <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">Degree</span>
                                     </label>
-                                    <input type="text" name="position" className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter your degree" required />
+                                    <input type="text" name="degree" className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter your degree" required />
                                 </div>
+
                                 <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">Description</span>
+                                    </label>
+                                    <input type="text" name="description" className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter your degree" required />
+                                </div>
+
+                                {/* <div className="form-control">
                                     <label className="label">
                                         <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">Result</span>
                                     </label>
                                     <input type="text" name="position" className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter your result" required />
+                                </div> */}
+
+                                <div className="form-control mb-4">
+                                    <label htmlFor="userType" className="label">Start Date</label>
+                                    <input type="date" name="startDate" id="startDate" className="input input-bordered bg-slate-200 dark:bg-black" />
                                 </div>
-
-                               
-                             
-
-
-
-
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">End Date</span>
+                                    </label>
+                                    {!isPresentEnd && (
+                                        <input type="date" name="endDate" className="input input-bordered bg-slate-200 dark:bg-black" required />
+                                    )}
+                                    <label className="flex items-center mt-2">
+                                        <input type="checkbox" className="checkbox" checked={isPresentEnd} onChange={() => setIsPresentEnd(!isPresentEnd)} />
+                                        <span className="ml-2 dark:text-[#73e9fe] text-[#0c01a1]">Present</span>
+                                    </label>
+                                </div>
 
 
                                 <div className="modal-action">
@@ -69,9 +127,9 @@ const Education = () => {
                     </dialog>
             </div>
             <div className="mt-4 text-lg font-bold">
-                <h1>Institution Name:</h1>
-                <h1>Degree:</h1>
-                <h1>Result:</h1>
+                <h1>Institution Name: {education[0]?.institution}</h1>
+                <h1>Degree: {education[0]?.degree}</h1>
+                <h1>Descriptionn: {education[0]?.description}</h1>
                 {/* <h1>Duration:</h1> */}
                 
             </div>

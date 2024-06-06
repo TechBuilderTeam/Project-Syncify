@@ -1,8 +1,10 @@
+import axios from "axios";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 
-const Work = () => {
+const Work = ({user, work, reload, setReload}) => {
 
     const [workAdd, setWorkAdd] = useState();
     const [isPresentEnd, setIsPresentEnd] = useState(false);
@@ -11,10 +13,48 @@ const Work = () => {
         document.getElementById('work').close();
     }
 
-    const handleAddWork = () => {
+    const handleAddWork = async (e) => {
+        e.preventDefault();
+        let working;
+        let end;
+        if(e.target.endDate?.value === undefined){
+            if(isPresentEnd){
+                working = true
+                end = ""
+            }
+        }
+        else{
+            working = false;
+            end = e.target.endDate?.value
+        }
+        const newWork = 
+            {
+                user: user?.userId,
+                company: e.target.company_name?.value,
+                position: e.target.position?.value,
+                start_date: e.target.startDate?.value,
+                end_date: end,
+                description: e.target.description?.value,
+                currently_working: working
+            }
+
+            console.log(newWork)
+
+        try {
+            console.log("try bloack")
+            const result = await axios.post("https://projectsyncifyapi.onrender.com/api/v1/profile/work/create/", newWork)
+            console.log("after try block")
+            console.log({result});
+            toast.success("Work Created Successfully. ");
+            setReload(!reload)
+        } catch (error) {
+            console.log("error form work -> ", error)
+        }
         handleModalClose()
         setWorkAdd(true)
     }
+
+
     return (
         <div>
             <div className=" py-10 px-10 md:px-32  md:py-12">
@@ -37,14 +77,20 @@ const Work = () => {
                                     <label className="label">
                                         <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">Company Name</span>
                                     </label>
-                                    <input type="text" name="company_name" className="input input-bordered bg-slate-200 dark:bg-black" required />
+                                    <input type="text" name="company_name" placeholder="Company Name" className="input input-bordered bg-slate-200 dark:bg-black" required />
                                 </div>
 
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">Position</span>
                                     </label>
-                                    <input type="text" name="position" className="input input-bordered bg-slate-200 dark:bg-black" required />
+                                    <input type="text" name="position" placeholder="position" className="input input-bordered bg-slate-200 dark:bg-black" required />
+                                </div>
+                                <div className="form-control">
+                                    <label className="label">
+                                        <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">Description</span>
+                                    </label>
+                                    <input type="text" name="description" placeholder="Write description..." className="input input-bordered bg-slate-200 dark:bg-black" required />
                                 </div>
 
                                 <div className="form-control">
@@ -79,9 +125,9 @@ const Work = () => {
                     </dialog>
                 </div>
                 <div className="mt-4 text-lg font-bold">
-                    <h1>Company Name:</h1>
-                    <h1>Position:</h1>
-                    <h1>Duration:</h1>
+                    <h1>Company Name: {work[0]?.company}</h1>
+                    <h1>Position: {work[0]?.position}</h1>
+                    <h1>Duration: {work[0]?.duration}</h1>
 
                 </div>
 
