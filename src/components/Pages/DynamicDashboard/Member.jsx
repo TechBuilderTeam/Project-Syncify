@@ -76,7 +76,7 @@ const Member = () => {
 
   const [selectedTimeline, setSelectedTimeline] = useState(null);
 
-  const handleOpenDialog = (member, modalName) => {
+
 
 
 const handleOpenDialog = (member, modalName) => {
