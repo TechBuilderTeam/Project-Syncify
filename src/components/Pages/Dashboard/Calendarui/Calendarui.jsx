@@ -4,11 +4,13 @@ import CalendarHeader from "./CalendarHeader";
 import Month from "./Month";
 import { getMonth } from "../../../../Utils/Util";
 import GlobalContext from "../../../../context/GlobalContext";
+import { useParams } from "react-router-dom";
 
 const Calendarui = () => {
   const [currentMonth, setCurrentMonth] = useState(getMonth());
   const [timelineEvents, setTimelineEvents] = useState([]);
   const { monthIndex } = useContext(GlobalContext);
+  const { id } = useParams();
 
   useEffect(() => {
     setCurrentMonth(getMonth(monthIndex));
@@ -16,7 +18,7 @@ const Calendarui = () => {
 
   useEffect(() => {
     fetch(
-      "https://projectsyncifyapi.onrender.com/workspace/get-timeline-dates/8/"
+      `https://projectsyncifyapi.onrender.com/workspace/get-timeline-dates/${id}/`
     )
       .then((response) => response.json())
       .then((data) => setTimelineEvents(data))
