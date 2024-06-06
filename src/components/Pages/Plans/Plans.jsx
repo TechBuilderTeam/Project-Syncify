@@ -215,7 +215,7 @@ const Plans = () => {
         const result = await axios.patch(`https://projectsyncifyapi.onrender.com/workspace/timelines/update/assign/${timelineId}/
         `, { "email": email })
         console.log('result -> ', result)
-        toast.success("Member Assign Successfully");
+        toast.success("Member is Assigned Successfully");
 
         setReload(!reload)
 
@@ -341,23 +341,23 @@ const Plans = () => {
 
         <dialog id="add" className="modal">
           <div className="modal-box bg-white dark:bg-black">
-            <button id="closeBtn" className="btn btn-sm btn-circle absolute right-2 top-2 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe]" onClick={() => handleCloseModelButton('add')}>✕</button>
+            <button id="closeBtn" className=" absolute right-3 top-3 bg-white dark:bg-black text-[#0c01a1] dark:text-[#73e9fe] rounded-full border w-6 h-6" onClick={() => handleCloseModelButton('add')}>✕</button>
             <h2 className="text-2xl font-bold mb-4 text-center">Create Plans</h2>
 
             <form onSubmit={handleAddTimelineButton}>
 
-              <div className='form-control'>
+              {/* <div className='form-control'>
                 <label htmlFor="text" className="label">Project Name</label>
                 <input type="text" id="WorkspaceName" name="WorkspaceName" className="input input-bordered bg-slate-200 dark:bg-black" placeholder="Enter Workspace Name" />
-              </div>
+              </div> */}
               <div className="form-control mb-4">
                 <label htmlFor="name" className="label">Plan Name</label>
-                <input type="text" id="name" name="name" className="input input-bordered bg-slate-200 dark:bg-black" />
+                <input type="text" id="name" name="name" className="input input-bordered bg-slate-200 dark:bg-black " placeholder="Enter Plan Name" />
 
               </div>
               <div className="form-control mb-4">
                 <label htmlFor="userType" className="label">Details</label>
-                <textarea name="details" id="details" className="input input-bordered bg-slate-200 dark:bg-black" ></textarea>
+                <textarea name="details" id="details" className="textarea textarea-bordered bg-slate-200 dark:bg-black" placeholder='Enter Details'></textarea>
               </div>
               <div className="form-control mb-4">
                 <label htmlFor="userType" className="label">Start Date</label>
@@ -368,7 +368,7 @@ const Plans = () => {
                 <input type="date" name="endDate" id="endDate" className="input input-bordered bg-slate-200 dark:bg-black" />
               </div>
               <div className="flex justify-between my-4">
-                <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-3">Add Timeline</button>
+                <button type="submit" className="text-lg border-none outline-none bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white rounded w-full px-4 py-3">Add Plan</button>
               </div>
             </form>
           </div>
@@ -376,7 +376,7 @@ const Plans = () => {
       </div>
       { timelinesLength === 0 ? (
         <div className="text-center mt-10 h-screen">
-          <h1 className="text-3xl font-bold">No Plans add yet... add some plans and explore more</h1>
+          <h1 className="text-xl font-bold">No Plans add yet... add some plans and explore more</h1>
         </div>
       ) : (
         <div>

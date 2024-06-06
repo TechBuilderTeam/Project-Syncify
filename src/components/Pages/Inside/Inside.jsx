@@ -11,28 +11,6 @@ import CountUp from "react-countup";
 const colors = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', 'red', 'pink'];
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
 
-const workspaceData = {
-    "workspaceName": "milestone-4",
-    "totaMembers": 5,
-    "members": {
-        "Associate Manager": 0,
-        "Team Leader": 4,
-        "Member": 1
-    },
-    "totalTimelines": 13,
-    "timelines": {
-        "In Progress": 0,
-        "To Do": 11,
-        "Testing": 1,
-        "Done": 1
-    },
-    "totalTasks": 3,
-    "tasks": {
-        "In Progress": 0,
-        "To Do": 3,
-        "Done": 0
-    }
-};
 
 const Inside = () => {
     const { user } = useContext(AuthContext);
@@ -79,13 +57,13 @@ const barChartData = Object.entries(timelineData).map(([stage, count], index) =>
 console.log({barChartData})
 console.log({taskChartData})
 
-const { members, timelines, tasks } = workspaceData;
-// Combine data from members, timelines, and tasks
-const combinedData = [
-    { category: 'Members', count: members["Associate Manager"] + members["Team Leader"] + members["Member"] },
-    { category: 'Timelines', count: timelines["In Progress"] + timelines["To Do"] + timelines["Testing"] + timelines["Done"] },
-    { category: 'Tasks', count: tasks["In Progress"] + tasks["To Do"] + tasks["Done"] }
-  ];
+// const { members, timelines, tasks } = workspaceData;
+// // Combine data from members, timelines, and tasks
+// const combinedData = [
+//     { category: 'Members', count: members["Associate Manager"] + members["Team Leader"] + members["Member"] },
+//     { category: 'Timelines', count: timelines["In Progress"] + timelines["To Do"] + timelines["Testing"] + timelines["Done"] },
+//     { category: 'Tasks', count: tasks["In Progress"] + tasks["To Do"] + tasks["Done"] }
+//   ];
 
   // custom shape for the bar chart
   const getPath = (x, y, width, height) => {
@@ -115,7 +93,7 @@ const renderCustomizedLabel1 = ({ cx, cy, midAngle, innerRadius, outerRadius, pe
     );
 };
 
-  console.log({combinedData})
+  // console.log({combinedData})
     return (
         <div className='m-8 '>
             <ScrollTrigger
@@ -209,7 +187,7 @@ const renderCustomizedLabel1 = ({ cx, cy, midAngle, innerRadius, outerRadius, pe
                             ))}
                         </Bar>
                     </BarChart>
-                    <h1 className='text-center text-2xl my-2'>Tasks Chart</h1>
+                    <h1 className='text-center text-xl font-bold my-2'>Plans Chart</h1>
                     </ResponsiveContainer>
             </div>
 
@@ -266,7 +244,7 @@ const renderCustomizedLabel1 = ({ cx, cy, midAngle, innerRadius, outerRadius, pe
 
             
         </div>
-            <div>
+            <div className='flex flex-col md:flex-row mb-20'>
             <div style={{ width: '100%', height: 400 }}>
       <ResponsiveContainer>
         <BarChart data={taskChartData}>
@@ -280,7 +258,7 @@ const renderCustomizedLabel1 = ({ cx, cy, midAngle, innerRadius, outerRadius, pe
             ))}
           </Bar>
         </BarChart>
-        <h1 className='text-center text-2xl my-2'>Timeline Chart</h1>
+        <h1 className='text-center text-xl my-2 font-bold'>Task Chart</h1>
       </ResponsiveContainer>
             </div> 
             </div>
