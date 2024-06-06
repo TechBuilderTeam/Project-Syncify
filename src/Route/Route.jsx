@@ -29,6 +29,7 @@ import CompanyDetails from "../components/Pages/Home/DifferentTypeOfTabSection/T
 import Inside from "./../components/Pages/Inside/Inside";
 import DynamicProfile from "../components/User/DynamicProfile";
 import TermsCondition from "../components/Pages/TermsCondition/TermsCondition";
+import PrivacyPolicy from "../components/Pages/PrivacyPolicy/PrivacyPolicy";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -76,6 +77,14 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <TermsCondition />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/privacypolicy",
+        element: (
+          <PrivateRoute>
+            <PrivacyPolicy />
           </PrivateRoute>
         ),
       },

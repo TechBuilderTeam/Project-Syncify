@@ -14,8 +14,7 @@ const TermsCondition = () => {
         </h2>
         <p>
           These terms and conditions outline the rules and regulations for the
-          use of Velzon Project Management's services, located at
-          ProjectSyncify.com.
+          use of Project Syncify services, located at ProjectSyncify.com.
         </p>
         <p className="mt-4">
           By accessing this website and our project management services, we
@@ -38,7 +37,7 @@ const TermsCondition = () => {
           Project Syncify for your own personal use subject to restrictions set
           in these terms and conditions.
         </p>
-        <ul className="list-disc list-inside mt-4">
+        <ul className="pl-5 list-disc list-inside mt-4">
           <li>Republish material from Project Syncify</li>
           <li>Sell, rent, or sub-license material from Project Syncify</li>
           <li>Reproduce, duplicate, or copy material from Project Syncify</li>
@@ -58,47 +57,12 @@ const TermsCondition = () => {
           or cause breach of these Terms and Conditions.
         </p>
 
-        <h3 className="text-lg font-semibold mt-6">
-          You warrant and represent that:
-        </h3>
-        <ul className="list-disc list-inside mt-4">
-          <li>
-            You are entitled to post the Comments on our website and have all
-            necessary licenses and consents to do so;
-          </li>
-          <li>
-            The Comments do not invade any intellectual property right,
-            including without limitation copyright, patent, or trademark of any
-            third party;
-          </li>
-          <li>
-            The Comments do not contain any defamatory, libelous, offensive,
-            indecent, or otherwise unlawful material which is an invasion of
-            privacy;
-          </li>
-          <li>
-            The Comments will not be used to solicit or promote business or
-            custom or present commercial activities or unlawful activity.
-          </li>
-        </ul>
         <p className="mt-4">
           You hereby grant Project Syncifyt a non-exclusive license to use,
           reproduce, edit, and authorize others to use, reproduce and edit any
           of your Comments in any and all forms, formats, or media.
         </p>
 
-        <h3 className="text-lg font-semibold mt-6">
-          Approved organizations may hyperlink to our Website as follows:
-        </h3>
-        <ul className="list-disc list-inside mt-4">
-          <li>By use of our corporate name.</li>
-          <li>By use of the uniform resource locator being linked to.</li>
-          <li>
-            By use of any other description of our Website being linked to that
-            makes sense within the context and format of content on the linking
-            party's site.
-          </li>
-        </ul>
         <p className="mt-4">
           No use of Project Syncify's logo or other artwork will be allowed for
           linking absent a trademark license agreement.
