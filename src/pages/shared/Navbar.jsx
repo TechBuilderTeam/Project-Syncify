@@ -11,7 +11,6 @@ const Navbar = ({ handleThemeChange }) => {
   console.log({ user });
   const navigate = useNavigate();
 
-
   const navlinks = (
     <>
       <NavLink
@@ -68,7 +67,6 @@ const Navbar = ({ handleThemeChange }) => {
 
       {user?.email && (
         <>
-
           <NavLink
             to="/workspace"
             className={({ isActive }) =>
@@ -81,8 +79,6 @@ const Navbar = ({ handleThemeChange }) => {
           </NavLink>
         </>
       )}
-
-
     </>
   );
 
@@ -91,7 +87,6 @@ const Navbar = ({ handleThemeChange }) => {
   const toggleMenu = () => {
     setOpen(!open);
   };
-
 
   const handleProfile = () => {
     console.log("profile button clicked");
@@ -103,19 +98,19 @@ const Navbar = ({ handleThemeChange }) => {
     setMenuVisible(!menuVisible);
   };
 
-
   const handleMenuClick = (action) => {
     action();
     setMenuVisible(false);
   };
 
-
   useEffect(() => {
     if (user && user.userId) {
-      fetch(`https://projectsyncifyapi.onrender.com/api/v1/user/details/${user.userId}/`)
+      fetch(
+        `https://projectsyncifyapi.onrender.com/api/v1/user/details/${user.userId}/`
+      )
         .then((res) => {
           if (!res.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error("Network response was not ok");
           }
           return res.json();
         })
@@ -124,7 +119,7 @@ const Navbar = ({ handleThemeChange }) => {
           setProfile(data);
         })
         .catch((error) => {
-          console.error('Error fetching profile:', error);
+          console.error("Error fetching profile:", error);
         });
     }
   }, [user]);
@@ -178,25 +173,32 @@ const Navbar = ({ handleThemeChange }) => {
             <Link to="/contact">Contact</Link>
             {user ? (
               <>
-                <button className=' group ' onClick={handleToggleMenu}>
-
-                  <img src={profile?.image} alt="image" className='w-8 md:w-10 h-8  md:h-10 rounded-full' />
+                <button className=" group " onClick={handleToggleMenu}>
+                  <img
+                    src={profile?.image}
+                    alt="image"
+                    className="w-8 md:w-10 h-8  md:h-10 rounded-full"
+                  />
 
                   {menuVisible && (
-                    <div className='z-10 absolute bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-20 top-full right-0'>
-                      <ul className='py-2 text-sm text-left px-4'>
-                        <li onClick={() => handleMenuClick(handleProfile)} className='hover:font-bold'>
+                    <div className="z-10 absolute bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-20 top-full right-0">
+                      <ul className="py-2 text-sm text-left px-4">
+                        <li
+                          onClick={() => handleMenuClick(handleProfile)}
+                          className="hover:font-bold"
+                        >
                           Profile
                         </li>
-                        <li onClick={() => handleMenuClick(handleLogout)} className='hover:font-bold'>
+                        <li
+                          onClick={() => handleMenuClick(handleLogout)}
+                          className="hover:font-bold"
+                        >
                           Logout
                         </li>
                       </ul>
                     </div>
                   )}
-
                 </button>
-
               </>
             ) : (
               <>
@@ -207,12 +209,9 @@ const Navbar = ({ handleThemeChange }) => {
                       Get Started
                     </button>
                   </Link>
-
                 </div>
               </>
-
             )}
-
           </div>
         </div>
 
@@ -256,20 +255,26 @@ const Navbar = ({ handleThemeChange }) => {
               </div>
               <hr className="w-[3px] h-[36px] bg-[#0c01a1] dark:bg-[#73e9fe]" />
               <div>
-                <button className=' group ' onClick={handleToggleMenu}>
-
-                  <img src={profile?.image} alt="image" className='w-8 md:w-10 h-8  md:h-10 rounded-full' title = "profile" />
+                <button className=" group " onClick={handleToggleMenu}>
+                  <img
+                    src={profile?.image}
+                    alt="image"
+                    className="w-8 md:w-10 h-8  md:h-10 rounded-full"
+                    title="profile"
+                  />
                   {/* <FaUserCircle  /> */}
                   {menuVisible && (
-                    <div className='z-10 absolute bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-20 top-full right-0'>
-                      <ul className='py-2 text-sm text-left px-4'>
-                        <li onClick={() => handleMenuClick(handleProfile)} className='hover:font-bold'>
+                    <div className="z-10 absolute bg-slate-100 dark:bg-slate-900 rounded-lg shadow w-20 top-full right-0">
+                      <ul className="py-2 text-sm text-left px-4">
+                        <li
+                          onClick={() => handleMenuClick(handleProfile)}
+                          className="hover:font-bold"
+                        >
                           Profile
                         </li>
                       </ul>
                     </div>
                   )}
-
                 </button>
               </div>
 
@@ -282,18 +287,20 @@ const Navbar = ({ handleThemeChange }) => {
               </div>
               {/** conditional show navlist items */}
               <div
-                className={`${open ? "flex" : "hidden"
-                  } w-full h-fit bg-cyan-100 dark:bg-sky-950 bg-opacity-80 dark:bg-opacity-90 p-4 absolute top-[80px] left-0`}
+                className={`${
+                  open ? "flex" : "hidden"
+                } w-full h-fit bg-cyan-100 dark:bg-sky-950 bg-opacity-80 dark:bg-opacity-90 p-4 absolute top-[80px] left-0`}
               >
                 <div className="flex flex-col justify-center items-center gap-4 w-full font-semibold ">
                   {navlinks}
                   <Link to="/contact">Contact</Link>
-                  {
-                    user ? <>
+                  {user ? (
+                    <>
                       <h1 onClick={handleLogout}>Log Out</h1>
-                    </> :
-                      <Link to="/login">Log In</Link>
-                  }
+                    </>
+                  ) : (
+                    <Link to="/login">Log In</Link>
+                  )}
                   {/* <button className="px-4 py-2 flex bg-[#0c01a1]  dark:bg-cyan-600 hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] rounded text-white">Get Started</button> */}
                 </div>
               </div>
@@ -303,7 +310,7 @@ const Navbar = ({ handleThemeChange }) => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   );
 };
 
