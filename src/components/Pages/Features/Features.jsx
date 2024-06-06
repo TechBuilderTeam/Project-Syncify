@@ -147,7 +147,7 @@ const Features = () => {
       </div>
       {/* actions  */}
       <div className="mt-10 grid grid-cols-1 md:grid-cols-4 gap-4">
-        <div className="card col-span-2 flex justify-center gap-y-3 items-center rounded-lg shadow-md p-10 bg-gray-100 dark:bg-black">
+        <div className="card col-span-none md:col-span-2 flex justify-center gap-y-3 items-center rounded-lg shadow-md p-10 bg-gray-100 dark:bg-black">
           <GoProjectRoadmap className="font-bold text-3xl" />
           <h1 className="text-lg">Project create</h1>
         </div>
