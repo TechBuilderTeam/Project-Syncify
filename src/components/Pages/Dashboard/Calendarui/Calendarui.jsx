@@ -1,22 +1,23 @@
-import React, { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import Sidebar from "./Sidebar";
 import CalendarHeader from "./CalendarHeader";
 import Month from "./Month";
 import { getMonth } from "../../../../Utils/Util";
 import GlobalContext from "../../../../context/GlobalContext";
-import { AuthContext } from "../../../../Providers/AuthProviders/AuthProviders";
+import { useParams } from "react-router-dom";
 const Calendarui = () => {
   const [currentMonth, setCurrentMonth] = useState(getMonth());
   const [timelineEvents, setTimelineEvents] = useState([]);
   const { monthIndex } = useContext(GlobalContext);
-  const { user } = useContext(AuthContext);
+
+  const { id } = useParams();
   useEffect(() => {
     setCurrentMonth(getMonth(monthIndex));
   }, [monthIndex]);
 
   useEffect(() => {
     fetch(
-      `https://projectsyncifyapi.onrender.com/workspace/get-timeline-dates/${user.userId}/`
+      `https://projectsyncifyapi.onrender.com/workspace/get-timeline-dates/${id}/`
     )
       .then((response) => response.json())
       .then((data) => setTimelineEvents(data))
