@@ -9,19 +9,20 @@ import CustomerSection from "../Pages/Home/CustomerSection/CustomerSection";
 import Banner from "./Banner";
 
 import Features from "../Pages/Home/Features/Features";
+import Footer from "../../pages/shared/Footer";
 const Home = () => {
   return (
     <div>
       <Banner />
-      
+
       <DifferentTypeOfTabSection />
       <Sponsors />
       <CustomerSection />
       <Features />
       <TopCompanySlider />
-     
-      
+
       <HomeEmailSection />
+      <Footer />
     </div>
   );
 };

@@ -2,23 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    overflow-x: hidden;
+body {
+  overflow-x: hidden;
 }
 
-main{
-    padding: 0 60px;
+main {
+  padding: 0 60px;
 }
 
-.slick-slide>div{
-    margin: 0 30px;
+.slick-slide > div {
+  margin: 0 30px;
 }
 
-.slick-slide>div:nth-child(1){
-    margin-left: 0;
+.slick-slide > div:nth-child(1) {
+  margin-left: 0;
 }
 
-.slick-list{
-    margin-right: -30px;
+.slick-list {
+  margin-right: -30px;
 }
 
+.clip-path-wave {
+  clip-path: ellipse(100% 100% at 50% 0%);
+}
