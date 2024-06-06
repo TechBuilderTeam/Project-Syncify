@@ -3,9 +3,29 @@ import logo2 from "../../../../assets/logo.jpg";
 import ScrollTrigger from "react-scroll-trigger";
 import CountUp from "react-countup";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 const CustomerSection = () => {
   const [counterOn, setCounterOn] = useState(false);
+  const [totalTask, setTotalTask] = useState(80);
+  const [totalPlans, setTotalPlan] = useState(320);
+  const [totalMember, setTotalMember] = useState(120);
+
+  useEffect(() => {
+    const getProjectData = async () => {
+       try {
+        const result = await axios.get("https://projectsyncifyapi.onrender.com/api/v1/insights/")
+        setTotalTask(result.data?.totalTasks);
+        setTotalPlan(result.data?.totalWorkspaces)
+        setTotalMember(result.data?.totalMembers)
+       } catch (error) {
+        
+       }
+    }
+
+    getProjectData()
+  },[])
   return (
     <div className="bg-gradient-to-b from-[#3fe2ff] to-[#13118f] w-full">
       <ScrollTrigger
@@ -69,7 +89,7 @@ const CustomerSection = () => {
               <div className="bg-white bg-opacity-20 mr-2 p-8 rounded-lg shadow-lg w-1/2">
                 <h3 className="text-white text-3xl font-bold mb-2">
                   {counterOn && (
-                    <CountUp start={310} end={320} duration={5} delay={0} />
+                    <CountUp start={totalTask-20} end={totalTask} duration={5} delay={0} />
                   )}
                   +
                 </h3>
@@ -80,7 +100,7 @@ const CustomerSection = () => {
               <div className="bg-white bg-opacity-20 ml-2 p-8 rounded-lg shadow-lg w-1/2">
                 <h3 className="text-white text-3xl font-bold mb-2">
                   {counterOn && (
-                    <CountUp start={70} end={80} duration={5} delay={0} />
+                    <CountUp start={totalPlans-10} end={totalPlans} duration={5} delay={0} />
                   )}
                   +
                 </h3>
@@ -93,7 +113,7 @@ const CustomerSection = () => {
               <div className="text-center bg-white bg-opacity-20 my-2 p-8 rounded-lg shadow-lg">
                 <h3 className="text-white text-3xl font-bold mb-2">
                   {counterOn && (
-                    <CountUp start={110} end={120} duration={5} delay={0} />
+                    <CountUp start={totalMember-10} end={totalMember} duration={5} delay={0} />
                   )}
                   +
                 </h3>

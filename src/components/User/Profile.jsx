@@ -206,7 +206,7 @@ const Profile = () => {
         </div>
       </div>
       {/* info  */}
-      <div className="translate-y-[-250px] bg-gradient-to-r from-sky-200 dark:from-sky-700  to-sky-600 dark:to-black text-[#0c01a1] dark:text-white -bottom-4 md:bottom-0 rounded ">
+      <div className="translate-y-[-250px] w-4/5 mx-auto bg-gradient-to-r from-sky-200 dark:from-sky-700  to-sky-600 dark:to-black text-[#0c01a1] dark:text-white -bottom-4 md:bottom-0 rounded ">
         {showComponent === "Info" ? (
           <Info user={user} profile={profile} />
         ) : // ) : showComponent === "Work" ? (
@@ -225,7 +225,7 @@ const Profile = () => {
       </div>
       
       <div>
-      {loading && <>data loading....</>}
+      {loading && <div className="flex items-center justify-center"><span className="loading loading-dots loading-lg"> </span>Profile loading ...</div>}
       </div>
 
       {profile && <>
