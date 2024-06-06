@@ -53,7 +53,7 @@ const DynamicSidebar = ({ sidebarToggle, setSidebarToggle, id }) => {
   <div className="">
      <div
       className={`${open ? "w-20" : "block w-20 md:w-56"
-        } absolute top-20 left-0 h-[100%] px-4 py-2 border-r border-gray-300`}
+        } absolute top-20 left-0 px-4  py-2 border-r border-gray-300`}
     >
       {open ? (
         <FaArrowRight

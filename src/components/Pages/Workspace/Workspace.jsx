@@ -45,7 +45,7 @@ const Workspace = () => {
     //sabrina setted setLoading(false) here
     setLoading(false);
     console.log("workspace data -> ", workspaces);
-  }, [user?.userId, reload]);
+  }, [user?.userId]);
 
   const handleDeleteWorkspace = (workspaceId) => {
     setWorkspaces((prevWorkspaces) =>
