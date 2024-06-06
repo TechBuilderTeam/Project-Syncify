@@ -3,7 +3,7 @@ import { MdOutlineMarkChatUnread } from "react-icons/md";
 import { VscGraphLine } from "react-icons/vsc";
 import Title from "../../../../pages/shared/Title";
 
-const Features = () => {
+const FeaturesHome = () => {
   return (
     <div className="px-10 py-0">
       <div className="flex justify-start text-start mb-5 gap-2">
@@ -43,4 +43,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+export default FeaturesHome;

@@ -48,14 +48,14 @@ const Contact = () => {
           <div className="w-full md:w-1/2 ml-10">
             <Lottie animationData={Con} loop={true} />
           </div>
-          </div>
         </div>
-        <div className="py-10 md:mb-16">
-          <h1 className="text-3xl md:text-4xl  pt-10 md:pt-10 font-bold ">
-            Have any question? We would love to hear from you.       
-             </h1>
-          <hr className="hidden md:flex md:w-[70%] h-1 bg-gradient-to-r from-[#141679] to-[#73e9fe] mt-1" />
-       
+      </div>
+      <div className="py-10 md:mb-16">
+        <h1 className="text-3xl md:text-4xl  pt-10 md:pt-10 font-bold ">
+          Have any question? We would love to hear from you.
+        </h1>
+        <hr className="hidden md:flex md:w-[70%] h-1 bg-gradient-to-r from-[#141679] to-[#73e9fe] mt-1" />
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-8 md:gap-y-0 justify-center items-center gap-x-10 mt-10 md:mt-20">
           <div className="h-auto md:h-[320px] lg:h-[200px] shadow-md px-10 py-8 space-y-3 rounded-lg border-t-4 border-t-blue-700">
             <h1 className="text-lg font-semibold">User Guide</h1>
@@ -83,8 +83,8 @@ const Contact = () => {
             </ul>
           </div>
         </div>
- 
-        </div>
+
+      </div>
 
       <section>
         <h1 className="text-3xl md:text-4xl  pt-10 md:pt-10 font-bold ">
