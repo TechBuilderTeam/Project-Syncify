@@ -24,10 +24,9 @@ const Calendarui = () => {
   }, []);
 
   return (
-    <div className="h-screen flex flex-col">
+    <div className="h-full flex flex-col">
       <CalendarHeader />
-      <div className="flex flex-1">
-        <Sidebar />
+      <div className="flex ">
         <Month month={currentMonth} timelineEvents={timelineEvents} />
       </div>
     </div>
