@@ -1,18 +1,40 @@
-import React from "react";
-import Day from "./Day";
+import React, { useContext } from "react";
+import dayjs from "dayjs";
+import GlobalContext from "../../../../context/GlobalContext";
+import Day from "./Day"; // Adjust the path as needed
 
-const Month = ({ month }) => {
+const Calendar = ({ timelineEvents }) => {
+  const { year, monthIndex } = useContext(GlobalContext);
+
+  const generateMonth = (monthIndex, year) => {
+    const firstDayOfMonth = dayjs(new Date(year, monthIndex, 1));
+    const lastDayOfMonth = dayjs(new Date(year, monthIndex + 1, 0));
+    const daysInMonth = [];
+
+    let currentDay = firstDayOfMonth.startOf("week");
+
+    while (currentDay.isBefore(lastDayOfMonth.endOf("week"))) {
+      daysInMonth.push(currentDay);
+      currentDay = currentDay.add(1, "day");
+    }
+
+    return daysInMonth;
+  };
+
+  const daysInMonth = generateMonth(monthIndex, year);
+
   return (
-    <div className="flex-1 grid grid-cols-7 grid-rows-5 h-5/6 ">
-      {month.map((row, i) => (
-        <React.Fragment key={i}>
-          {row.map((day, idx) => (
-            <Day day={day} key={idx} rowIdx={i} />
-          ))}
-        </React.Fragment>
+    <div className="grid grid-cols-7 w-full h-[650px] gap-1">
+      {daysInMonth.map((day, i) => (
+        <Day
+          key={i}
+          day={day}
+          rowIdx={Math.floor(i / 7)}
+          timelineEvents={timelineEvents}
+        />
       ))}
     </div>
   );
 };
 
-export default Month;
+export default Calendar;

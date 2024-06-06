@@ -9,6 +9,8 @@ import { IoPeopleSharp } from "react-icons/io5";
 import { FaRegEdit, FaSearch } from 'react-icons/fa';
 import TitlePages from '../../../pages/shared/TitlePages';
 import TitleDynamic from '../../../pages/shared/TitleDynamic';
+
+
 const Member = () => {
   const [members, setMembers] = useState([]);
   const [change, setChange] = useState(false);
@@ -395,6 +397,11 @@ const handleOpenDialog = (member, modalName) => {
         )}
     </div>
   );
-};
+}
 
 export default Member;
+  
+
+
+
+
