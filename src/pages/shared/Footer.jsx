@@ -36,14 +36,18 @@ const Footer = () => {
             <a href="/terms&condition" className="link link-hover">
               Terms of use
             </a>
-            <a className="link link-hover">Privacy policy</a>
+            <a href="/privacypolicy" className="link link-hover">
+              Privacy policy
+            </a>
           </nav>
         </footer>
         <div className="px-10">
           <div className="flex flex-col md:flex-row justify-center items-center gap-3 md:gap-10 py-8">
             <h3>© 2024 Project Syncify, Inc.</h3>
             <h3>English</h3>
-            <h3>Terms & Privacy</h3>
+            <h3>
+              <a href="/privacypolicy">Terms & Privacy</a>
+            </h3>
             {/* <div className="grid grid-flow-col gap-4">
               <a>
                 <svg
