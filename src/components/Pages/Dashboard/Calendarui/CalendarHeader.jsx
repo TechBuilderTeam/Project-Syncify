@@ -74,6 +74,9 @@ const CalendarHeader = () => {
         </div>
       </div>
     </div>
+
+    </div>
+    </div>
   );
 };
 

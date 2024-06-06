@@ -24,7 +24,7 @@ const Calendar = ({ timelineEvents }) => {
   const daysInMonth = generateMonth(monthIndex, year);
 
   return (
-    <div className="grid grid-cols-7 w-full h-[650px] gap-1">
+    <div className="grid grid-cols-7 w-full  gap-1">
       {daysInMonth.map((day, i) => (
         <Day
           key={i}
