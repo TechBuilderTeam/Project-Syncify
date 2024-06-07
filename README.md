@@ -24,9 +24,11 @@ list of all technologies we used
 - React route
 - Django
 - Django REST Framework
+- Django Channel
 - PyJWT
 - Google Auth
-- SQLite
+- PostgreSQL
+- Redis
  
 <h2 id="started">🚀 Getting started</h2>
 
@@ -60,6 +62,7 @@ Google, GitHub Credentials
 VITE_GOOGLE_CLIENT_ID={your google client id}
 CLIENT_SECRET={your client secret}
 VITE_GITHUB_ID={your github client id}
+VITE_IMAGE_HOSTING_KEY={imgbb hosting api}
 ```
 
 <h3>Starting</h3>
@@ -88,26 +91,35 @@ npm run dev
 <!--}-->
 <!--```-->
  
-<!-- <h2 id="colab">🤝 Collaborators</h2>
+< <h2 id="colab">🤝 Collaborators</h2>
 
 <p>Special thank you for all people that contributed for this project.</p>
 <table>
 <tr>
 
 <td align="center">
-<a href="https://github.com/najmulislamnajim">
-<img src="https://i.pinimg.com/736x/90/e7/37/90e7370bc6c22359dc07c5f8b057a5ce.jpg" width="100px;" alt="Najmul Islam Profile Picture"/><br>
+<a href="https://github.com/sabrinara">
+<img src="https://lh3.googleusercontent.com/a/ACg8ocKJK7vIhlo7jtM6BH1Tv57FrG3CP4L7ifVPw6ZkxR8-bws0Krk=s288-c-no" width="100px;" alt="Sabrina Rashid Profile Picture"/><br>
 <sub>
-<b>Najmul Islam</b>
+<b>Sabrina Rashid</b>
 </sub>
 </a>
 </td>
 
 <td align="center">
-<a href="https://github.com/Sifathislam">
-<img src="https://avatars.githubusercontent.com/u/105329974?v=4" width="100px;" alt="sifat isalm Profile Picture"/><br>
+<a href="https://github.com/AktherHosen">
+<img src="https://avatars.githubusercontent.com/u/79582560?v=4" width="100px;" alt="Md Akther Hosen Profile Picture"/><br>
 <sub>
-<b>Sifat Islam</b>
+<b>Md Akther Hosen</b>
+</sub>
+</a>
+</td>
+
+<td align="center">
+<a href="https://github.com/rasel-chowdhury1">
+<img src="https://avatars.githubusercontent.com/u/87080744?v=4" width="100px;" alt="Rasel Chowdhury Profile Picture"/><br>
+<sub>
+<b>Rasel Chowdhury</b>
 </sub>
 </a>
 </td>
@@ -115,7 +127,7 @@ npm run dev
 
 
 </tr>
-</table> -->
+</table> 
  
 <h2 id="contribute">📫 Contribute</h2>
 
