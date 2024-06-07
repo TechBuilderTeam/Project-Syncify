@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
 import bannerDark from "../../assets/bannerDark.png";
 import bannerLight from "../../assets/bannerLight.png";
+import { AuthContext } from "../../Providers/AuthProviders/AuthProviders";
+import { useContext } from "react";
+
 const Banner = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div>
       <div className="md:hidden relative bg-gradient-to-b from-[#73e9fe] to-[#78118f] text-[#0c01a1]">
@@ -59,9 +63,19 @@ const Banner = () => {
               With ProjectSyncify, you can drive clarity and impact at scale by
               connecting work and workflows to company-wide goals.
             </p>
-            <button className="px-4 py-2 bg-[#0c01a1] hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] text-white rounded-sm">
-              Learn More
-            </button>
+            {!user ? (
+              <Link to="/login">
+                <button className="px-4 py-2 bg-[#0c01a1] hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] text-white rounded-sm">
+                  Learn More
+                </button>
+              </Link>
+            ) : (
+              <Link to="/workspace">
+                <button className="px-4 py-2 bg-[#0c01a1] hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] text-white rounded-sm">
+                  Learn More
+                </button>
+              </Link>
+            )}
           </div>
         </div>
         <div
@@ -76,9 +90,19 @@ const Banner = () => {
               With ProjectSyncify, you can drive clarity and impact at scale by
               connecting work and workflows to company-wide goals.
             </p>
-            <button className="px-4 py-2 bg-[#0c01a1] hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] text-white rounded-sm">
-              Learn More
-            </button>
+            {!user ? (
+              <Link to="/login">
+                <button className="px-4 py-2 bg-[#0c01a1] hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] text-white rounded-sm">
+                  Learn More
+                </button>
+              </Link>
+            ) : (
+              <Link to="/workspace">
+                <button className="px-4 py-2 bg-[#0c01a1] hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] text-white rounded-sm">
+                  Learn More
+                </button>
+              </Link>
+            )}
           </div>
         </div>
       </div>
