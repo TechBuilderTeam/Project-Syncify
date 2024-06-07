@@ -59,20 +59,20 @@ const Banner = () => {
             <h1 className="text-4xl font-bold  mb-4">
               Syncify Project Management
             </h1>
-            <p className="mb-6">
+            <p className="mb-6 ">
               With ProjectSyncify, you can drive clarity and impact at scale by
               connecting work and workflows to company-wide goals.
             </p>
             {!user ? (
               <Link to="/login">
-                <button className="px-4 py-2 bg-[#0c01a1] hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] text-white rounded-sm">
-                  Learn More
+                <button className="px-4 py-2 bg-[#0c01a1]   hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] text-white rounded-sm">
+                  Get Started
                 </button>
               </Link>
             ) : (
               <Link to="/workspace">
-                <button className="px-4 py-2 bg-[#0c01a1] hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] text-white rounded-sm">
-                  Learn More
+                <button className="px-4 py-2 bg-[#0c01a1]  hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] text-white rounded-sm">
+                  Get Started
                 </button>
               </Link>
             )}
@@ -86,20 +86,20 @@ const Banner = () => {
             <h1 className="text-4xl font-bold  mb-4">
               Syncify Project Management
             </h1>
-            <p className="mb-6">
+            <p className="mb-6 font-medium">
               With ProjectSyncify, you can drive clarity and impact at scale by
               connecting work and workflows to company-wide goals.
             </p>
             {!user ? (
               <Link to="/login">
                 <button className="px-4 py-2 bg-[#0c01a1] hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] text-white rounded-sm">
-                  Learn More
+                  Get Started
                 </button>
               </Link>
             ) : (
               <Link to="/workspace">
                 <button className="px-4 py-2 bg-[#0c01a1] hover:bg-gradient-to-r from-[#30acc2] to-[#0c01a1] text-white rounded-sm">
-                  Learn More
+                  Get Started
                 </button>
               </Link>
             )}
