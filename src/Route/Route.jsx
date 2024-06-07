@@ -146,18 +146,13 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      // {
-      //   path: "workspace/:id",
-      //   element: <DynamicDashboard></DynamicDashboard>,
-      //   // loader: ({params}) => fetch(`https://projectsyncifyapi.onrender.com/workspace/list/${params.id}`)
-      // },
+    
     ],
   },
 
   {
     path: "/workspace/:id",
     element: <DynamicDashboard />,
-    // loader: ({params}) => fetch(`https://projectsyncifyapi.onrender.com/workspace/list/${params.id}`),
     children: [
       {
         path: "/workspace/:id",
