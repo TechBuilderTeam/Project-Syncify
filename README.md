@@ -91,7 +91,7 @@ npm run dev
 <!--}-->
 <!--```-->
  
-< <h2 id="colab">🤝 Collaborators</h2>
+ <h2 id="colab">🤝 Collaborators</h2>
 
 <p>Special thank you for all people that contributed for this project.</p>
 <table>
