@@ -3,15 +3,15 @@ import { MdOutlineMarkChatUnread } from "react-icons/md";
 import { VscGraphLine } from "react-icons/vsc";
 import Title from "../../../../pages/shared/Title";
 
-const Features = () => {
+const FeaturesHome = () => {
   return (
-    <div className="px-10 py-5">
+    <div className="px-10 py-0">
       <div className="flex justify-start text-start mb-5 gap-2">
         <Title title="See how Syncify can improve your systems productivity" />
       </div>
       {/* card  */}
-      <div className="flex flex-col md:flex-row flex-wrap justify-between md:justify-center gap-6 ">
-        <div className="w-full md:w-[400px] border shadow-md p-16 rounded-xl ">
+      <div className="flex flex-col md:flex-row justify-between md:justify-center gap-6 ">
+        <div className="border shadow-md p-8 md:p-16 rounded-xl ">
           <div className="flex gap-5">
             <div className="space-y-2">
               <h1 className="text-xl font-semibold">Task Management</h1>
@@ -20,7 +20,7 @@ const Features = () => {
             <BiBarChartSquare className="text-7xl" />
           </div>
         </div>
-        <div className="w-full md:w-[400px] border shadow-md p-16 rounded-xl">
+        <div className=" border shadow-md p-8 md:p-16 rounded-xl">
           <div className="flex gap-5">
             <div className="space-y-2">
               <h1 className="text-xl font-semibold">Team Collaboration</h1>
@@ -29,7 +29,7 @@ const Features = () => {
             <MdOutlineMarkChatUnread className="text-7xl" />
           </div>
         </div>
-        <div className="w-full md:w-[400px] border shadow-md p-16 rounded-xl">
+        <div className=" border shadow-md p-8 md:p-16 rounded-xl">
           <div className="flex gap-5">
             <div className="space-y-2">
               <h1 className="text-xl font-semibold">Project Planning</h1>
@@ -43,4 +43,4 @@ const Features = () => {
   );
 };
 
-export default Features;
+export default FeaturesHome;
