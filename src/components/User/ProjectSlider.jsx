@@ -11,10 +11,13 @@ const ProjectSlider = () => {
     const { user } = useContext(AuthContext);
 
     useEffect(() => {
-        fetch(`https://projectsyncifyapi.onrender.com/workspace/user/${user?.userId}/workspaces/`)
+        if(user){
+            fetch(`https://projectsyncifyapi.onrender.com/workspace/user/${user?.userId}/workspaces/`)
             .then(res => res.json())
             .then(data => setProjects(data))
-            .catch(error => console.log(error));
+            .catch(error => console.log(error));     
+        }
+        
     }, [user?.userId]);
 
     const settings = {

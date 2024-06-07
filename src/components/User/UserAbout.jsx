@@ -1,18 +1,39 @@
+import axios from "axios";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 
-const UserAbout = () => {
+const UserAbout = ({ user, about, reload, setReload }) => {
+
+    console.log({ user, about, reload, setReload })
 
     const [aboutAdd, setAboutAdd] = useState();
+
 
     const handleModalClose = () => {
         document.getElementById('UserAbout').close();
     }
 
-    const handleAddAbout = () => {
-        handleModalClose()
-        setAboutAdd(true)
+
+    const handleAddAbout = async (e) => {
+        e.preventDefault();
+
+        const addAbout = {
+            about: e.target.about.value,
+            user: user?.userId
+        }
+
+        console.log({ addAbout })
+
+        try {
+            const result = await axios.post(`https://projectsyncifyapi.onrender.com/api/v1/profile/about/`, addAbout)
+            toast.success("Updated About section")
+            setReload(!reload)
+            handleModalClose()
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 
@@ -37,7 +58,7 @@ const UserAbout = () => {
                             <label className="label">
                                 <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">Write Details about yourself</span>
                             </label>
-                          <textarea name="about" className="textarea textarea-bordered bg-slate-200 dark:bg-black" required></textarea>
+                            <textarea name="about" className="textarea textarea-bordered bg-slate-200 dark:bg-black" required></textarea>
                         </div>
                         <div className="modal-action">
                             <button type="submit" className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white  font-bold rounded w-full ">Add</button>
@@ -51,8 +72,7 @@ const UserAbout = () => {
 
 
             <p className="mt-5">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta a consequatur omnis molestiae, perspiciatis unde sed aperiam ipsum accusamus velit, commodi doloribus libero odit maiores consectetur. Eveniet distinctio debitis sequi?
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam culpa quam sint harum, aliquid sunt pariatur dolores assumenda error nihil eius fugit consectetur, dolorum saepe dolor sit quisquam impedit! Adipisci.
+                {about?.about}
             </p>
         </div >
     );

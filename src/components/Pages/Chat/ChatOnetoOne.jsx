@@ -34,9 +34,12 @@ const ChatOnetoOne = ({user, profile}) => {
 
 
     const loadMessage=()=>{
-        fetch(` https://projectsyncifyapi.onrender.com/api/v1/chat/${userGroup}/`)
+        fetch(`https://projectsyncifyapi.onrender.com/api/v1/chat/${userGroup}/`)
         .then((res) =>res.json())
-        .then((data) =>setMessages(data))
+        .then((data) =>{
+            
+            console.log({data})
+            setMessages(data)})
         .catch((err) =>console.log(err));
     };
 
