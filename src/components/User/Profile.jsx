@@ -70,6 +70,7 @@ const Profile = () => {
                 <h1 className="text-xl md:text-3xl font-bold">
                   {" "}
                   {user && user?.name}
+                  {}
                 </h1>
                 {/* <p className=""> {user && user.email}</p> */}
               </div>

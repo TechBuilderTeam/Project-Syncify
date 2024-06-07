@@ -173,8 +173,8 @@
 //               </dialog>
 //             </div>
 
-        
-            
+
+
 //           </div>
 //         </div>
 //       </div>
@@ -249,12 +249,13 @@ import ProjectSlider from "./ProjectSlider";
 import { Element, ScrollLink } from "react-scroll";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const DynamicProfile = () => {
   const { user } = useContext(AuthContext);
   const { pId } = useParams();
   const [profile, setProfile] = useState(null);
-  const [loading, setLoading ] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [reload, setReload] = useState(false);
   const [showComponent, setShowComponent] = useState("Info");
 
@@ -264,24 +265,46 @@ const DynamicProfile = () => {
     document.getElementById("UserEdit").close();
   };
 
- 
+  const handleAddUserEdit = async (e) => {
+
+    e.preventDefault();
+    const updateDesignation = {
+      designation: e.target.designation.value,
+      user: user?.userId
+    }
+    console.log({ updateDesignation });
+
+    try {
+      const result = await axios.post(`https://projectsyncifyapi.onrender.com/api/v1/profile/designation/`, updateDesignation)
+      console.log({ result })
+      handleCloseModal();
+      toast.success("Designation updated successfully")
+
+      setReload(!reload)
+    }
+    catch (error) {
+      console.log(error)
+    }
+
+
+  };
   useEffect(() => {
-     
-    const getProfileData = async() => {
+
+    const getProfileData = async () => {
       setLoading(true)
-      try{
+      try {
         const result = await axios.get(`https://projectsyncifyapi.onrender.com/api/v1/profile/${pId}/`)
-        console.log({result})
+        console.log({ result })
         setProfile(result.data)
         setLoading(false)
       }
-      catch(error){
+      catch (error) {
         console.log(error)
         setLoading(false)
       }
     }
 
-    if(user && user.userId){
+    if (user && user.userId) {
       getProfileData();
     }
   }, [user, reload]);
@@ -300,7 +323,7 @@ const DynamicProfile = () => {
                   alt={profile && profile.get_full_name}
                   className="w-28 md:w-40 h-28 md:h-40 rounded-full border-4 border-sky-900 dark:border-sky-300"
                 />
-            
+
               </div>
               <div className="flex flex-col justify-start">
                 <h1 className="text-xl md:text-3xl font-bold">
@@ -309,7 +332,7 @@ const DynamicProfile = () => {
                 </h1>
                 <h1 className="text-lg md:text-xl font-bold mt-2">
                   {" "}
-                  {profile && profile?.designation?.designation }
+                  {profile && profile?.designation?.designation}
                 </h1>
                 {/* <p className=""> {user && user.email}</p> */}
               </div>
@@ -319,18 +342,16 @@ const DynamicProfile = () => {
             <div className="flex flex-wrap gap-2 sm:items-center mt-10 md:mt-6 ml-10 md:ml-36 font-semibold ">
               <button
                 onClick={() => setShowComponent("Info")}
-                className={`rounded py-1 px-2  text-sm hover:bg-sky-200 dark:hover:bg-sky-300 hover:text-sky-900 ${
-                  showComponent === "Info" ? "bg-sky-50 dark:bg-sky-950 " : ""
-                }`}
+                className={`rounded py-1 px-2  text-sm hover:bg-sky-200 dark:hover:bg-sky-300 hover:text-sky-900 ${showComponent === "Info" ? "bg-sky-50 dark:bg-sky-950 " : ""
+                  }`}
               >
                 Info
               </button>
-           
+
               <button
                 onClick={() => setShowComponent("Contact")}
-                className={`rounded py-1 px-2  text-sm hover:bg-sky-200 dark:hover:bg-sky-300 hover:text-sky-900  ${
-                  showComponent === "Contact" ? "bg-sky-50 dark:bg-sky-950" : ""
-                }`}
+                className={`rounded py-1 px-2  text-sm hover:bg-sky-200 dark:hover:bg-sky-300 hover:text-sky-900  ${showComponent === "Contact" ? "bg-sky-50 dark:bg-sky-950" : ""
+                  }`}
               >
                 Contact
               </button>
@@ -358,7 +379,7 @@ const DynamicProfile = () => {
                     Edit
                   </h3>
                   <form onSubmit={handleAddUserEdit}>
-                    <div className="form-control">
+                    {/* <div className="form-control">
                       <label className="label">
                         <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">
                           Name
@@ -370,7 +391,7 @@ const DynamicProfile = () => {
                         className="input input-bordered bg-slate-200 dark:bg-black"
                         required
                       />
-                    </div>
+                    </div> */}
 
                     <div className="form-control">
                       <label className="label">
@@ -380,7 +401,7 @@ const DynamicProfile = () => {
                       </label>
                       <input
                         type="text"
-                        name="position"
+                        name="designation"
                         className="input input-bordered bg-slate-200 dark:bg-black"
                         required
                       />
@@ -405,42 +426,44 @@ const DynamicProfile = () => {
         {showComponent === "Info" ? (
           <Info user={user} profile={profile} />
         ) : // ) : showComponent === "Work" ? (
-        //   <Work />
-        // ) : showComponent === "Education" ? (
-        //   <Education />
-        showComponent === "Contact" ? (
-          <UserContact user={user} contact={profile.contact} reload={reload} setReload={setReload} />
-        ) : null}
+          //   <Work />
+          // ) : showComponent === "Education" ? (
+          //   <Education />
+          showComponent === "Contact" ? (
+            <UserContact user={user} contact={profile.contact} reload={reload} setReload={setReload} />
+          ) : null}
       </div>
       {/* profile banner end */}
 
       {/* add the chatting component here */}
-      <div className="fixed bottom-10 right-4">
-        <ChatOnetoOne />
-      </div>
-      
+
+
       <div>
-      {loading && <div className="flex items-center justify-center"><span className="loading loading-dots loading-lg"> </span>Profile loading ...</div>}
+        {loading && <div className="flex items-center justify-center"><span className="loading loading-dots loading-lg"> </span>Profile loading ...</div>}
       </div>
 
       {profile && <>
-        
+
+        <div className="fixed bottom-10 right-4">
+          <ChatOnetoOne user={user} profile={profile} />
+        </div>
+
         {/* about section start */}
-      <UserAbout user={user} about={profile.about} reload={reload} setReload={setReload}/>
+        <UserAbout user={user} about={profile.about} reload={reload} setReload={setReload} />
 
-      {/* portfolio section start */}
-      <UserPortfolio user={user} portfolio={profile.portfolio} reload={reload} setReload={setReload} />
+        {/* portfolio section start */}
+        <UserPortfolio user={user} portfolio={profile.portfolio} reload={reload} setReload={setReload} />
 
-      {/* skill section start */}
-      <UserSkills  user={user} skills={profile.skills} reload={reload} setReload={setReload}/>
+        {/* skill section start */}
+        <UserSkills user={user} skills={profile.skills} reload={reload} setReload={setReload} />
 
-      {/* education section start */}
+        {/* education section start */}
 
-      <Education  user={user} education={profile.education} reload={reload} setReload={setReload}/>
+        <Education user={user} education={profile.education} reload={reload} setReload={setReload} />
 
-      {/* work section start */}
-      <Work  user={user} work={profile.work} reload={reload} setReload={setReload}/>
-      
+        {/* work section start */}
+        <Work user={user} work={profile.work} reload={reload} setReload={setReload} />
+
       </>}
 
       {/* project in slider start */}

@@ -90,7 +90,7 @@ const Navbar = ({ handleThemeChange }) => {
 
   const handleProfile = () => {
     console.log("profile button clicked");
-    navigate("/profile");
+    navigate(`/profile/${user?.userId}`);
   };
   const [menuVisible, setMenuVisible] = useState(false);
 

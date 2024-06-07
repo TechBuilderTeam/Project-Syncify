@@ -8,7 +8,7 @@ const Banner = () => {
   const { user } = useContext(AuthContext);
   return (
     <div>
-      <div className="md:hidden relative bg-gradient-to-b from-[#73e9fe] to-[#78118f] text-[#0c01a1]">
+      <div className="md:hidden relative bg-gradient-to-b from-[#73e9fe] to-[#1d02b8] text-[#0c01a1]">
         <div className="h-[85vh] flex flex-col justify-center items-center space-y-4 space-x-4 md:space-x-0">
           <div>
             <h1 className="text-center text-5xl font-bold ">
