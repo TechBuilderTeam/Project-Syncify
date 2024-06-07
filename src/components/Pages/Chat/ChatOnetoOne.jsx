@@ -80,7 +80,7 @@ const ChatOnetoOne = ({user, profile}) => {
 
     return (
         <div className="">
-            <button onClick={() => handleToggleChat(user.userId, profile.id)} className="font-bold px-4 py-4 rounded-full bg-[#0154a1] text-white ">
+            <button onClick={() => handleToggleChat(user?.userId, profile?.id)} className="font-bold px-4 py-4 rounded-full bg-[#0154a1] text-white ">
                 <RiChatSmile3Line className="text-4xl rounded-full "  title="Chat Now"/>
             </button>
             {showChat && (
@@ -88,12 +88,12 @@ const ChatOnetoOne = ({user, profile}) => {
                     <div className="flex items-center justify-between p-4  bg-[#0154a1]  text-white  rounded-t-lg">
                         <div className="flex items-center">
                             <img
-                            src={profile.image ? `${profile.image}` : `${profile.image}`}
-                            alt={profile.first_name}
+                            src={profile?.image ? `${profile?.image}` : `${profile?.image}`}
+                            alt={profile?.get_full_name}
                             className="w-6 h-6 rounded-full mr-2"
                             />
                             <span className="text-lg font-semibold">
-                            {profile.first_name}
+                            {profile?.get_full_name}
                             </span>
                         </div>
                         <button onClick={handleToggleChat}>
