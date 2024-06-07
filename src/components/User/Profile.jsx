@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders/AuthProviders";
 import { CiEdit } from "react-icons/ci";
-import { AiOutlineProject, AiOutlineTeam } from "react-icons/ai";
 import Info from "./Info";
 import ChatOnetoOne from "../Pages/Chat/ChatOnetoOne";
 import Work from "./Work";
@@ -11,7 +10,6 @@ import UserAbout from "./UserAbout";
 import UserPortfolio from "./UserProtfolio";
 import UserSkills from "./UserSkills";
 import ProjectSlider from "./ProjectSlider";
-import { Element, ScrollLink } from "react-scroll";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
