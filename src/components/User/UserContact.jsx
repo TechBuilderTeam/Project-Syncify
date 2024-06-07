@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaPlus } from 'react-icons/fa6';
+import { AuthContext } from '../../Providers/AuthProviders/AuthProviders';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
-const UserContact = () => {
+const UserContact = ({user,contact,reload, setReload}) => {
+    console.log({user,contact,reload, setReload})
     const [contactAdd, setContactAdd] = useState()
     const [countryCode, setCountryCode] = useState('+88');
 
@@ -9,11 +13,36 @@ const UserContact = () => {
         document.getElementById('my_modal_2').close();
     }
 
-    const handleAddContact = () => {
+    
 
-        handleModalClose()
-        setContactAdd(true)
-    }
+    const handleAddContact= async (e) => {
+
+        e.preventDefault();
+    
+        const userContactInfo = {
+            phone: e.target.phone.value,
+            email: e.target.email.value,
+             user: user?.userId
+         }
+         
+       
+       console.log({userContactInfo})
+    
+       
+    
+        try {
+          const result = await axios.post(`https://projectsyncifyapi.onrender.com/api/v1/profile/contact/`, userContactInfo)
+          console.log({result});
+    
+          toast.success("update successfully")
+          setReload(!reload)
+          handleModalClose()
+        } catch (error) {
+          console.log('error from designation -> ', error)
+        }
+    
+      };
+
     return (
         <div>
             <div className=" py-10 px-10 md:px-20  md:py-12">
@@ -33,7 +62,7 @@ const UserContact = () => {
                                     <label className="label">
                                         <span className="label-text dark:text-[#73e9fe] text-[#0c01a1]">Email</span>
                                     </label>
-                                    <input type="email" name="email" className="input input-bordered bg-slate-200 dark:bg-black" required />
+                                    <input type="email" value={user?.email} name="email" className="input input-bordered bg-slate-200 dark:bg-black" required />
                                 </div>
 
                                 <div className="form-control">
@@ -76,8 +105,8 @@ const UserContact = () => {
 
                 </div>
                 <div className="mt-4 text-lg font-bold">
-                    <h1>Email: </h1>
-                    <h1>Phone Number:</h1>
+                    <h1>Email: {contact?.email}</h1>
+                    <h1>Phone Number: {contact?.phone}</h1>
 
                 </div>
 
