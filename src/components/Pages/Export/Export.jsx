@@ -29,14 +29,14 @@ const Export = () => {
 
     return (
         <div className="h-screen">
-            <div className="py-2 mt-4">
+            <div className="py-2 mt-6">
                 <div className="flex justify-between items-center pb-2">
                     <h1 className="text-3xl pb-2 font-semibold">
                         Export Project Documentation
                     </h1>
                     <button
                         className="bg-gradient-to-r from-cyan-500 to-[#0c01a1] text-white font-bold px-4 py-2 rounded-md"
-                        onClick={handleDownload}
+                        onClick={handleDownload} title={"Download"}
                     >
                         Download
                     </button>

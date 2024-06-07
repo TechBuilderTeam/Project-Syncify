@@ -1,9 +1,14 @@
-import { useState } from "react";
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa6";
+import { AuthContext } from './../../Providers/AuthProviders/AuthProviders';
+import { toast } from "react-toastify";
 
 
-const UserSkillls = () => {
+const UserSkillls = ({user, skills, reload, setReload}) => {
     const [skillAdd, setskillAdd] = useState();
+    const [skillList, setSkillList] = useState(null)
+    // const [reload, setReload] = useState(false)
 
     const dummydata = [
         {
@@ -33,10 +38,46 @@ const UserSkillls = () => {
         document.getElementById('Userskill').close();
     }
 
-    const handleAddskill = () => {
-        handleModalClose()
-        setskillAdd(true)
+    const handleAddskill = async (e) => {
+        e.preventDefault();
+        
+        const addSkill = {
+            name: e.target.skill.value,
+            user: user?.userId
+        }
+        
+         console.log(addSkill)
+         
+        console.log(e.target.skill.value)
+        
+        try {
+            const result = await axios.post(`https://projectsyncifyapi.onrender.com/api/v1/profile/skills/add/ 
+                `, addSkill)
+                toast.success("Successfully created skill")
+                handleModalClose()
+                setReload(!reload)
+        } catch (error) {
+            console.log(error)
+        }
     }
+
+    
+
+    // useEffect(()=> {
+    //     const getSkills = async () => {
+    //         try {
+    //           const result = await axios.get(`https://projectsyncifyapi.onrender.com/api/v1/profile/skills/${user?.userId}/`)
+    //           setSkillList(result.data)
+    //           console.log("get skills -> ", result)
+    //         } catch (error) {
+    //             console.log("get error -> ", error)
+    //         }
+    //     }
+
+    //     if(user){
+    //         getSkills()
+    //     }
+    // },[user,reload])
     return (
         <div className="  px-10 md:px-32 py-10 ">
             <div className="flex justify-between mb-4">
@@ -97,7 +138,7 @@ const UserSkillls = () => {
 
                 <div className="flex flex-wrap gap-4">
 
-                    {dummydata?.map((data) => (
+                    {skills?.map((data) => (
                         < div key={data.id} className="border rounded-sm px-2 py-1  text-sm shadow-lg dark:shadow-sky-900 bg-white dark:bg-black">
                             <p>{data.name}</p>
                         </div>

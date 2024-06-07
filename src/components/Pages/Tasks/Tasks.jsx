@@ -65,7 +65,7 @@ const Tasks = () => {
                 <div className="py-2">
                     <div className="flex justify-between items-center pb-2">
                         <h1 className="text-3xl pb-2 font-semibold">
-                            All Tasks
+                            Assigned Tasks
                         </h1>
                     </div>
 
@@ -76,7 +76,7 @@ const Tasks = () => {
                 </div>
                 {tasks.length === 0 ? (
                     <p className="text-2xl text-center font-bold mt-10">
-                        You don't have any tasks assigned yet .
+                        You don&apos;t have any tasks assigned yet .
                     </p>
                 ) :(
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">

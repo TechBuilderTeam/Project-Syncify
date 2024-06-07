@@ -34,9 +34,12 @@ const ChatOnetoOne = ({user, profile}) => {
 
 
     const loadMessage=()=>{
-        fetch(` https://projectsyncifyapi.onrender.com/api/v1/chat/${userGroup}/`)
+        fetch(`https://projectsyncifyapi.onrender.com/api/v1/chat/${userGroup}/`)
         .then((res) =>res.json())
-        .then((data) =>setMessages(data))
+        .then((data) =>{
+            
+            console.log({data})
+            setMessages(data)})
         .catch((err) =>console.log(err));
     };
 
@@ -78,7 +81,7 @@ const ChatOnetoOne = ({user, profile}) => {
     return (
         <div className="">
             <button onClick={() => handleToggleChat(user.userId, profile.id)} className="font-bold px-4 py-4 rounded-full bg-[#0154a1] text-white ">
-                <RiChatSmile3Line className="text-4xl rounded-full " />
+                <RiChatSmile3Line className="text-4xl rounded-full "  title="Chat Now"/>
             </button>
             {showChat && (
                 <div className="fixed bottom-10 right-4 w-96 h-96 bg-white dark:bg-gray-950 shadow-lg rounded-lg flex flex-col">

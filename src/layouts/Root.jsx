@@ -24,7 +24,7 @@ const Root = () => {
   };
   return (
     <AuthProviders>
-      <div className="bg-white dark:bg-gray-950 text-[#2e2b54] dark:text-[#73e9fe] min-h-screen">
+      <div className="bg-white dark:bg-gray-950 text-[#0c01a1] dark:text-[#73e9fe] min-h-screen">
         {noHeaderFooter || <Navbar handleThemeChange={handleThemeChange} />}
         <Outlet />
         {noHeaderFooter || <Footer />}

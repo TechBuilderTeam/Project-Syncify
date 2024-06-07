@@ -4,7 +4,8 @@ import DifferentTypeOfTabSection from "../Pages/Home/DifferentTypeOfTabSection/D
 import HomeEmailSection from "../Pages/Home/HomeEmailSection/HomeEmailSection";
 import CustomerSection from "../Pages/Home/CustomerSection/CustomerSection";
 import Banner from "./Banner";
-import Features from "../Pages/Home/Features/Features";
+import FeaturesHome from "../Pages/Home/Features/FeaturesHome";
+import Developer from "../Pages/Home/Developer";
 
 const Home = () => {
   return (
@@ -13,9 +14,10 @@ const Home = () => {
       <DifferentTypeOfTabSection />
       <Sponsors />
       <CustomerSection />
-      <Features />
+      <FeaturesHome />
       <TopCompanySlider />
       <HomeEmailSection />
+      <Developer />
     </div>
   );
 };

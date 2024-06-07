@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders/AuthProviders";
 import { CiEdit } from "react-icons/ci";
-import { AiOutlineProject, AiOutlineTeam } from "react-icons/ai";
 import Info from "./Info";
 import ChatOnetoOne from "../Pages/Chat/ChatOnetoOne";
 import Work from "./Work";
@@ -12,11 +11,15 @@ import UserPortfolio from "./UserProtfolio";
 import UserSkills from "./UserSkills";
 import ProjectSlider from "./ProjectSlider";
 import { Element, ScrollLink } from "react-scroll";
+import axios from "axios";
 
 const Profile = () => {
   const { user } = useContext(AuthContext);
   const [profile, setProfile] = useState(null);
+  const [loading, setLoading ] = useState(true);
+  const [reload, setReload] = useState(false);
   const [showComponent, setShowComponent] = useState("Info");
+
   const [edit, setEdit] = useState(false);
 
   const handleCloseModal = () => {
@@ -28,31 +31,31 @@ const Profile = () => {
     setEdit(true);
   };
   useEffect(() => {
-    if (user && user.userId) {
-      fetch(
-        `https://projectsyncifyapi.onrender.com/api/v1/user/details/${user?.userId}/`
-      )
-        .then((res) => {
-          if (!res.ok) {
-            throw new Error("Network response was not ok");
-          }
-          return res.json();
-        })
-        .then((data) => {
-          console.log(data);
-          setProfile(data);
-        })
-        .catch((error) => {
-          console.error("Error fetching profile:", error);
-        });
+     
+    const getProfileData = async() => {
+      setLoading(true)
+      try{
+        const result = await axios.get(`https://projectsyncifyapi.onrender.com/api/v1/profile/${user?.userId}/`)
+        console.log({result})
+        setProfile(result.data)
+        setLoading(false)
+      }
+      catch(error){
+        console.log(error)
+        setLoading(false)
+      }
     }
-  }, [user]);
+
+    if(user && user.userId){
+      getProfileData();
+    }
+  }, [user, reload]);
 
   console.log({ profile });
   return (
     <div className=" py-10">
       {/* profile banner */}
-      <div className="py-16 md:py-28 mb-40 bg-gradient-to-r from-sky-50 dark:from-sky-900 to-sky-500 dark:to-black relative ">
+      <div className="py-16 md:py-28 mb-32 bg-gradient-to-r from-sky-50 dark:from-sky-900 to-sky-500 dark:to-black relative ">
         <div className="flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="w-full md:w-1/2">
             <div className="flex items-center gap-6">
@@ -66,7 +69,7 @@ const Profile = () => {
               <div className="flex flex-col justify-start">
                 <h1 className="text-xl md:text-3xl font-bold">
                   {" "}
-                  {user && user.name.toUpperCase()}
+                  {user && user?.name}
                 </h1>
                 {/* <p className=""> {user && user.email}</p> */}
               </div>
@@ -204,7 +207,7 @@ const Profile = () => {
         </div>
       </div>
       {/* info  */}
-      <div className="translate-y-[-250px] bg-gradient-to-r from-sky-200 dark:from-sky-700  to-sky-600 dark:to-black text-[#0c01a1] dark:text-white -bottom-4 md:bottom-0 rounded ">
+      <div className="translate-y-[-200px] w-4/5 bg-gradient-to-r from-sky-200 dark:from-sky-700  to-sky-600 dark:to-black text-[#0c01a1] dark:text-white -bottom-4 md:bottom-0 rounded mx-10 md:mx-28">
         {showComponent === "Info" ? (
           <Info user={user} profile={profile} />
         ) : // ) : showComponent === "Work" ? (
@@ -212,7 +215,7 @@ const Profile = () => {
         // ) : showComponent === "Education" ? (
         //   <Education />
         showComponent === "Contact" ? (
-          <UserContact />
+          <UserContact user={user} contact={profile.contact} reload={reload} setReload={setReload} />
         ) : null}
       </div>
       {/* profile banner end */}
@@ -221,22 +224,30 @@ const Profile = () => {
       <div className="fixed bottom-10 right-4">
         <ChatOnetoOne />
       </div>
+      
+      <div>
+      {loading && <div className="flex items-center justify-center"><span className="loading loading-dots loading-lg"> </span>Profile loading ...</div>}
+      </div>
 
-      {/* about section start */}
-      <UserAbout />
+      {profile && <>
+        
+        {/* about section start */}
+      <UserAbout user={user} about={profile.about} reload={reload} setReload={setReload}/>
 
       {/* portfolio section start */}
-      <UserPortfolio />
+      <UserPortfolio user={user} portfolio={profile.portfolio} reload={reload} setReload={setReload} />
 
       {/* skill section start */}
-      <UserSkills />
+      <UserSkills  user={user} skills={profile.skills} reload={reload} setReload={setReload}/>
 
       {/* education section start */}
 
-      <Education />
+      <Education  user={user} education={profile.education} reload={reload} setReload={setReload}/>
 
       {/* work section start */}
-      <Work />
+      <Work  user={user} work={profile.work} reload={reload} setReload={setReload}/>
+      
+      </>}
 
       {/* project in slider start */}
 
