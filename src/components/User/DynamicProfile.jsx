@@ -264,10 +264,7 @@ const DynamicProfile = () => {
     document.getElementById("UserEdit").close();
   };
 
-  const handleAddUserEdit = () => {
-    handleCloseModal();
-    setEdit(true);
-  };
+ 
   useEffect(() => {
      
     const getProfileData = async() => {
@@ -318,35 +315,6 @@ const DynamicProfile = () => {
               </div>
             </div>
 
-            {/* <div>
-              <div className="flex gap-2  md:gap-5 mt-8 md:mt-16 ml-10 md:ml-40">
-                <ScrollLink to="info" smooth={true} duration={1000}>
-                  <button className="flex justify-between items-center gap-3 px-2 py-1 text-sm  bg-sky-200 dark:bg-sky-900  dark:text-sky-50 font-bold rounded">
-                    Info
-                  </button>
-                </ScrollLink>
-                <ScrollLink to="education" smooth={true} duration={1000}>
-                  <button className="flex justify-between items-center gap-3 px-2 py-1 text-sm  bg-sky-200 dark:bg-sky-900  dark:text-sky-50 font-bold rounded">
-                    Education
-                  </button>
-                </ScrollLink>
-                <ScrollLink to="work" smooth={true} duration={1000}>
-                  <button className="flex justify-between items-center gap-3 px-2 py-1 text-sm  bg-sky-200 dark:bg-sky-900  dark:text-sky-50 font-bold rounded">
-                    Work
-                  </button>
-                </ScrollLink>
-                <ScrollLink to="contact" smooth={true} duration={1000}>
-                  <button className="flex justify-between items-center gap-3 px-2 py-1 text-sm  bg-sky-200 dark:bg-sky-900  dark:text-sky-50 font-bold rounded">
-                    Contact
-                  </button>
-                </ScrollLink>
-                <ScrollLink to="projects" smooth={true} duration={1000}>
-                  <button className="flex justify-between items-center gap-3 px-2 py-1 text-sm  bg-sky-200 dark:bg-sky-900  dark:text-sky-50 font-bold rounded">
-                    Projects
-                  </button>
-                </ScrollLink>
-              </div>
-            </div> */}
 
             <div className="flex flex-wrap gap-2 sm:items-center mt-10 md:mt-6 ml-10 md:ml-36 font-semibold ">
               <button
@@ -357,24 +325,7 @@ const DynamicProfile = () => {
               >
                 Info
               </button>
-              {/* <button
-                onClick={() => setShowComponent("Work")}
-                className={`rounded py-1 px-2  text-sm   hover:bg-sky-200 dark:hover:bg-sky-300 hover:text-sky-900 ${showComponent === "Work"
-                  ? "bg-sky-50 dark:bg-sky-950 "
-                  : ""
-                  }`}
-              >
-                Work
-              </button> */}
-              {/* <button
-                onClick={() => setShowComponent("Education")}
-                className={`rounded py-1 px-2  text-sm hover:bg-sky-200 dark:hover:bg-sky-300 hover:text-sky-900  ${showComponent === "Education"
-                  ? "bg-sky-50 dark:bg-sky-950"
-                  : ""
-                  }`}
-              >
-                Education
-              </button> */}
+           
               <button
                 onClick={() => setShowComponent("Contact")}
                 className={`rounded py-1 px-2  text-sm hover:bg-sky-200 dark:hover:bg-sky-300 hover:text-sky-900  ${
