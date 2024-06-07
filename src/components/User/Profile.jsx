@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders/AuthProviders";
 import { CiEdit } from "react-icons/ci";
-import { AiOutlineProject, AiOutlineTeam } from "react-icons/ai";
 import Info from "./Info";
 import ChatOnetoOne from "../Pages/Chat/ChatOnetoOne";
 import Work from "./Work";
@@ -20,6 +19,8 @@ const Profile = () => {
   const [loading, setLoading ] = useState(true);
   const [reload, setReload] = useState(false);
   const [showComponent, setShowComponent] = useState("Info");
+
+  const [edit, setEdit] = useState(false);
 
   const handleCloseModal = () => {
     document.getElementById("UserEdit").close();
@@ -48,13 +49,13 @@ const Profile = () => {
     if(user && user.userId){
       getProfileData();
     }
-  }, [user]);
+  }, [user, reload]);
 
   console.log({ profile });
   return (
     <div className=" py-10">
       {/* profile banner */}
-      <div className="py-16 md:py-28 mb-40 bg-gradient-to-r from-sky-50 dark:from-sky-900 to-sky-500 dark:to-black relative ">
+      <div className="py-16 md:py-28 mb-32 bg-gradient-to-r from-sky-50 dark:from-sky-900 to-sky-500 dark:to-black relative ">
         <div className="flex flex-col md:flex-row justify-between items-center gap-10">
           <div className="w-full md:w-1/2">
             <div className="flex items-center gap-6">
@@ -68,7 +69,7 @@ const Profile = () => {
               <div className="flex flex-col justify-start">
                 <h1 className="text-xl md:text-3xl font-bold">
                   {" "}
-                  {user && user.name.toUpperCase()}
+                  {user && user?.name}
                 </h1>
                 {/* <p className=""> {user && user.email}</p> */}
               </div>
@@ -206,7 +207,7 @@ const Profile = () => {
         </div>
       </div>
       {/* info  */}
-      <div className="translate-y-[-250px] w-4/5 mx-auto bg-gradient-to-r from-sky-200 dark:from-sky-700  to-sky-600 dark:to-black text-[#0c01a1] dark:text-white -bottom-4 md:bottom-0 rounded ">
+      <div className="translate-y-[-200px] w-4/5 bg-gradient-to-r from-sky-200 dark:from-sky-700  to-sky-600 dark:to-black text-[#0c01a1] dark:text-white -bottom-4 md:bottom-0 rounded mx-10 md:mx-28">
         {showComponent === "Info" ? (
           <Info user={user} profile={profile} />
         ) : // ) : showComponent === "Work" ? (
