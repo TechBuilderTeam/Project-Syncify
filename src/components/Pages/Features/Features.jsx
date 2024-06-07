@@ -80,7 +80,7 @@ const Features = () => {
       {/* features section  */}
       <div>
         <div className="flex mt-10 mb-10 sm:mb-5 md:md-2 justify-center items-center">
-          <div className="w-[300px] text-start md:text-center flex justify-center flex-col items-center gap-y-3">
+          <div className="w-full md:w-[300px] text-center md:text-center flex justify-center flex-col items-center gap-y-3">
             <div className="text-center">
               <LuLayoutDashboard className="text-2xl" />
             </div>
@@ -94,7 +94,7 @@ const Features = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-2 h-auto md:h-[400px]">
           <div className="w-full md:w-2/5 flex flex-col gap-14 text-center md:text-right">
             <div className="flex flex-col-reverse md:flex-row gap-3 justify-center items-center sm:items-start">
-              <div className="w-80 md:w-[300px] text-start md:text-center space-y-2">
+              <div className="w-full md:w-[300px] text-center md:text-end space-y-2">
                 <h3 className="font-bold text-xl">Time Tracking</h3>
                 <p>
                   Now, you can track your workflows time through our system.
@@ -103,7 +103,7 @@ const Features = () => {
               <TbClockCancel className="text-3xl" />
             </div>
             <div className="flex flex-col-reverse md:flex-row  gap-3 justify-center items-center sm:items-start">
-              <div className="w-80 md:w-[300px] text-start md:text-center space-y-2">
+              <div className="w-80 md:w-[300px] text-center md:text-end space-y-2">
                 <h3 className="font-bold text-xl">Fun Facts</h3>
                 <p>
                   Project Syncify is an innovative project management tool
@@ -124,7 +124,7 @@ const Features = () => {
           <div className="w-full md:w-2/5 flex flex-col gap-14">
             <div className="flex flex-col md:flex-row gap-3 justify-center items-center sm:items-start ">
               <FaRegCalendarCheck className="text-3xl" />
-              <div className="w-80 md:w-[300px] space-y-2">
+              <div className="w-full md:w-[300px] text-center md:text-start space-y-2">
                 <h3 className="font-bold text-xl">Timeline Widget</h3>
                 <p>
                   Get Up to date with your work duration with our timeline
@@ -134,7 +134,7 @@ const Features = () => {
             </div>
             <div className="flex flex-col md:flex-row gap-3 justify-center items-center sm:items-start ">
               <IoChatbubbleEllipsesOutline className="text-3xl" />
-              <div className="w-80 md:w-[300px] space-y-2">
+              <div className="w-full md:w-[300px] text-center md:text-start space-y-2">
                 <h3 className="font-bold text-xl">Chat Widget</h3>
                 <p>
                   Make easier interaction with member of your workspace with
